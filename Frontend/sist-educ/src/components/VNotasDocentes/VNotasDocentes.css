@@ -1,0 +1,25 @@
+.VNotasDocenteContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+}
+.OpcionTitle{
+    align-self:flex-start;
+    margin: 1%;
+}
+
+.ElementsContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    padding: 1%;
+    box-sizing: border-box;
+    align-self: center;
+    align-items: center;
+}

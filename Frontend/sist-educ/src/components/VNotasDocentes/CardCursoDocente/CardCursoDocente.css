@@ -1,0 +1,62 @@
+:root{
+    --BackgroudColorCardCursoDocenteContainer:#F4F4F5;
+    --BorderCardCursoDocenteContainer:#171717;
+    --BackgroudColorCardCurDocenSup:#DC2626;
+}
+
+.CardCursoDocenteContainer{
+    width: 80%;
+    height: 440px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--BackgroudColorCardCursoDocenteContainer);
+    border: 1px solid var(--BorderCardCursoDocenteContainer) ;
+    border-radius: 4px;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1%;
+}
+.CardCursoDocenteSup{
+    width: 100%;
+    height: 10%;
+    background-color: var(--BackgroudColorCardCurDocenSup);
+    margin: 0px;
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 2px 2px 0px 0px;
+}
+.CardCursoDocenteSup .PLg{
+    color: var(--BackgroudColorCardCursoDocenteContainer);
+}
+.CardCursoDocenteMed{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100%;
+    height: 80%;
+}
+
+.CardCursoDocenteMedH{
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    flex: 1;
+}
+.CardCursoDocenteInf{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+

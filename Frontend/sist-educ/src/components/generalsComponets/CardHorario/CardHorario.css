@@ -1,0 +1,40 @@
+:root{
+    --ColorBgCardHorario:#DC2626;
+    --ColorHeaderLabelCardHorario: #FEF2F2;
+}
+
+.CardHorarioContainer{
+    padding: 0;
+    width: 90%;
+    height: auto;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+}
+
+.CardHorarioContainer .CardHorarioHeaderContainer{
+    width: 100%;
+    background-color: var(--ColorBgCardHorario);
+    padding: 18px;
+    box-sizing: border-box;
+    display: flex;
+    height: 10%;
+    border-radius: 16px 16px 0 0;
+}
+
+.CardHorarioContainer .CardHorarioHeaderContainer h3{
+    padding: 0;
+    margin: 0;
+    color: var(--ColorHeaderLabelCardHorario);
+}
+.CardHorarioContainer .CardHorarioContent{
+    display: flex;
+    background-color: var(--ColorBgCardHorario);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+}

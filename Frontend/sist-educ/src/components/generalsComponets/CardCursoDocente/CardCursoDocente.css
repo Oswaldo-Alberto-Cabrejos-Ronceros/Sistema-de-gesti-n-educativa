@@ -1,0 +1,48 @@
+
+:root{
+    --ColorCardDocenteLabel:#171717;
+    --ColorCardDocenteBackground:#FEF2F2;
+    --BorderRadiousDocente:12px;
+    --ShadowHover:#dc262633;
+    --Transition: 150ms;
+}
+
+.CardDocenteContainer{
+    width: 340px;
+    height: 240px;
+    color: var(--ColorCardDocenteLabel);
+    background-color: var(--ColorCardDocenteBackground);
+    box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.25);
+    flex-shrink: 0;
+    border-radius: var(--BorderRadiousDocente);
+    cursor: pointer;
+}
+
+.ImgDocenteContainer{
+    background-image: url('/src/assets/CardCurso/CardCurso.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 55%;
+    flex-shrink: 0;
+    border-radius: var(--BorderRadiousDocente) var(--BorderRadiousDocente) 0 0;
+}
+.ContentContainerDocente{
+    display: flex;
+    background-color: var(--ColorCardDocenteBackground);
+    width: 100%;
+    height: 45%;
+    flex-shrink: 0;
+    border-radius: 0 0 var(--BorderRadiousDocente) var(--BorderRadiousDocente);
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.CardDocenteContainer:hover{
+    box-shadow: 4px 4px 4px 0px var(--ShadowHover);
+    transition: var(--Transition);
+}
+
+.CardDocenteContainer .PMd{
+    align-self: flex-end;
+}

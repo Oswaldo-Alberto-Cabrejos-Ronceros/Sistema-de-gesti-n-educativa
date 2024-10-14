@@ -1,0 +1,58 @@
+:root {
+  --BorderTableInputNotas: #171717;
+  --BackgroudColorTableInputNotasTh: #ef4444;
+  --ColorTableInputNotasTh: #fef2f2;
+}
+
+.TablaNotasInputContainer{
+  width: 100%;
+}
+
+.TableInputNotas {
+  width: 100%;
+  border-collapse: collapse;
+}
+.TableInputNotas,
+th,
+td {
+  border: 1px solid var(--BorderTableInputNotas);
+}
+
+.TableInputNotas tr td {
+  padding: 8px;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: var(--PMdsize);
+}
+
+.TableInputNotas th {
+  padding: 8px;
+  box-sizing: border-box;
+  font-size: var(--PMdsize);
+}
+/* Eliminar las flechas de input number en chrome y safari*/
+.TableInputNotas tr td input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* Eliminar las flechas de input number en Firefox*/
+.TableInputNotas tr td input[type="number"] {
+    /*-moz-appearance: textfield;*/
+    margin: 0;
+}
+
+.TableInputNotas tr .Tdcomp {
+  width: 60px;
+  padding: 2px;
+}
+.TableInputNotas th {
+  background-color: var(--BackgroudColorTableInputNotasTh);
+  color: var(--ColorTableInputNotasTh);
+}
+.TableInputNotas td input {
+  padding: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+}

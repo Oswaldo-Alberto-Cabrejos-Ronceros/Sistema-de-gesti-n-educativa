@@ -1,0 +1,26 @@
+.VTareasEstudiantePorCursoContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.VTareasEstudiantePorCursoContainer .VTareasEstudiantePorCursoTitleContainer{
+    height: auto;
+    margin: 1%;
+    align-self: flex-start;
+}
+
+.VTareasEstudiantePorCursoContainer .VTareasEstudiantePorCursoTitleContainer h3{
+    padding: 0;
+    margin: 0;
+}
+
+.VTareasEstudiantePorCursoContainer .VTareasEstudiantePorCursoContent{
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}

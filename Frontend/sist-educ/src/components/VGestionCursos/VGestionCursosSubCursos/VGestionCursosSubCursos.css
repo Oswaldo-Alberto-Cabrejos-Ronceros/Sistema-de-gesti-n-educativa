@@ -1,0 +1,28 @@
+.VGestionCursosSubCursosContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.VGestionCursosSubCursosContainer .VGestionCursosSubCursosContainerTitle{
+    height: auto;
+    margin: 1%;
+    align-self: flex-start;
+}
+
+.VGestionCursosSubCursosContainer .VGestionCursosSubCursosContainerTitle h3{
+    padding: 0;
+    margin: 0;
+}
+
+.VGestionCursosSubCursosContainer .TablaGestionSubCursosContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:10px;
+}
