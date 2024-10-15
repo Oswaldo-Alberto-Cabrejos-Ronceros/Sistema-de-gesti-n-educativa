@@ -17,7 +17,7 @@ function barraNavegacionEstudiante() {
       <div className="HorizontalContainer">
         <Link to="/usuario">
         <NavUser
-          nombre={"Loocito"}
+          nombre={"Estudiante"}
           imagen={"https://dashboard.rtta.rw/public/assets/img/avatar.png"}
         />
         </Link>
