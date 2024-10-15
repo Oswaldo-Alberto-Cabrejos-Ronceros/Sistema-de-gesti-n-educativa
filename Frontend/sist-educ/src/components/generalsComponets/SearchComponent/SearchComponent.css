@@ -1,0 +1,51 @@
+:root{
+    --ColorBorderSearchComponent: #171717;
+    --ColorBorderSearchComponentHover: #DC2626;
+}
+
+.SearchComponentContainer{
+    margin-left: 15px;
+    width: 348px;
+    height: 44px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--ColorBorderSearchComponent);
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.SearchComponentContainer .IconSearchContainer{
+    width: 10%;
+    padding: 0;
+    margin: 0;
+    font-size: 28px;
+    display: flex;
+    color:var(--ColorBorderSearchComponent);
+}
+
+.SearchComponentContainer:hover{
+    transition: 150ms;
+    border-color: var(--ColorBorderSearchComponentHover) ;
+}
+
+.SearchComponentContainer .IconSearchContainer:hover{
+    transition: 150ms;
+    color: var(--ColorBorderSearchComponentHover) ;
+}
+
+
+.SearchComponentContainer input{
+    width: 95%;
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    align-self: start;
+    justify-self: flex-end;
+    padding-left: 8px;
+}

@@ -1,0 +1,34 @@
+.VHonorEstudianteBimestralContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.VHonorEstudianteBimestralContainer .TitleHonorEstudianteBimestralContainer{
+    height: auto;
+    margin: 1%;
+    align-self: flex-start;
+}
+
+.VHonorEstudianteBimestralContainer .TitleHonorEstudianteBimestralContainer h3{
+    padding: 0;
+    margin: 0;
+}
+
+.VHonorEstudianteBimestralContainer .SelectBimestralHonorEstudianteContainer{
+    height: auto;
+    margin-left: 1%;
+    align-self: flex-start;
+}
+
+.VHonorEstudianteBimestralContainer .VHonorEstudianteBimestralContent{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:10px;
+}

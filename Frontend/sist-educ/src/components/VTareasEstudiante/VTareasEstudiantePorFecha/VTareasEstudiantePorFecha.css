@@ -1,0 +1,28 @@
+.VTareasEstudiantePorFechaContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.VTareasEstudiantePorFechaContainer .VTareasEstudiantePorFechaTitleContainer{
+    height: auto;
+    margin: 1%;
+    align-self: flex-start;
+}
+
+.VTareasEstudiantePorFechaContainer .VTareasEstudiantePorFechaTitleContainer h3{
+    padding: 0;
+    margin: 0;
+}
+
+.VTareasEstudiantePorFechaContainer .ComBoxElementContainerVTareasFecha{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 10px;
+}

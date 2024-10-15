@@ -1,0 +1,66 @@
+:root {
+  --ColorBorderFormCurso: #171717;
+}
+
+.FormularioAgregarCursoContainer{
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.FormularioAgregarCursoContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--ColorBorderFormCurso);
+  border-radius: 8px;
+  box-shadow: 4px 4px 4px 0px rgba(0.0.0.25);
+}
+
+.FormularioAgregarCursoContainer form .formularioAgregarCursoContentPrin {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+}
+.FormularioAgregarCursoContainer form h3 {
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.FormularioAgregarCursoContainer .label-input-container {
+  padding: 4px;
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.FormularioAgregarCursoContainer .label-input-container label {
+  margin-right: 10px;
+}
+
+.FormularioAgregarCursoContainer label,
+input,
+textarea {
+  margin-bottom: 10px;
+}
+
+.FormularioAgregarCursoContainer .buttonSubmitCursoContainer {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

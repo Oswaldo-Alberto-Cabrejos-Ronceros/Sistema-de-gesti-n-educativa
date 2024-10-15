@@ -1,0 +1,14 @@
+.InfoUserContent{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    margin-top: 10px;
+}
+.ImgUserInfo{
+    width: 12%;
+    box-sizing: border-box;
+}
