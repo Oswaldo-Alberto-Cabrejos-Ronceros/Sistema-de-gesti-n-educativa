@@ -47,7 +47,6 @@ function VHonorEstudiante() {
           <Route path="unidad" element={<VHonorEstudianteUnidad info={info} estudiantesHonor={estudiantesHonor}/>}/>
           <Route path="bimestral" element={<VHonorEstudianteBimestral info={infoBimestral} estudiantesHonor={estudiantesHonor}/>}/>
         </Routes>
-        <VHonorEstudianteBimestral info={infoBimestral} estudiantesHonor={estudiantesHonor}/>
       </div>
     </div>
   );
