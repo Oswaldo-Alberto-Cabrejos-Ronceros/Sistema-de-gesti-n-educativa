@@ -3,7 +3,7 @@
     --ColorBackground:#FEF2F2;
     --ColorBorderBoxHover:#DC2626;
 }
-.ComBoxTareaXUnidadContainer{
+.ComBoxGeneralTareaXUnidadContainer{
     width: 94%;
     height: auto;
     display: flex;
@@ -15,7 +15,7 @@
     gap: 10px;
 }
 
-.ComBoxCursoXUnidadContainer{
+.ComBoxGeneralTareaXUnidadContainer .ComBoxTareaXUnidadContainer{
     width: 94%;
     height: 56px;
     flex-shrink: 0;
@@ -33,19 +33,19 @@
     cursor: pointer;
 }
 
-.ComBoxCursoXUnidadContainer .ArrowContainer{
+.ComBoxGeneralTareaXUnidadContainer .ComBoxGeneralTareaXUnidadContainer .ArrowContainer{
     color: var(--ColorBorderCB);
     font-size: 34px;
     display: flex;
 }
 
-.ComBoxCursoXUnidadContainer:hover{
+.ComBoxGeneralTareaXUnidadContainer .ComBoxTareaXUnidadContainer:hover{
     border: 1px solid var(--ColorBorderBoxHover);
     box-shadow: 4px 4px 4px 0px #dc262633;
     transition: 150ms;
 }
 
-.ComBoxElementTareaContainer{
+.ComBoxGeneralTareaXUnidadContainer .ComBoxGeneralElementTareaContainer{
     height: auto;
     display: flex;
     flex-direction: column;
@@ -54,6 +54,6 @@
     gap: 10px;
 }
 
-.ComBoxElementTareaContainer .PMd{
+.ComBoxGeneralTareaXUnidadContainer .ComBoxGeneralElementTareaContainer .PMd{
     cursor: default;
 }

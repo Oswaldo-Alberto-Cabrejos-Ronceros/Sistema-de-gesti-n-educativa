@@ -6,7 +6,7 @@ import VTareasEstudiantePorCurso from './VTareasEstudiantePorCurso/VTareasEstudi
 import VTareasEstudiantePorFecha from './VTareasEstudiantePorFecha/VTareasEstudiantePorFecha'
 
 function VTareasEstudiante() {
-  const tareasCurso = [
+  let tareasCurso = [
     [
       {
         nombre: "Tarea: Angulos Trigonometricos 1",
@@ -25,7 +25,6 @@ function VTareasEstudiante() {
         link: "https://www.youtube.com/",
         fechaEntrega: "12/05/2024",
       },
-
       {
         nombre: "Tarea: Angulos Complementarios 2",
         link: "https://www.youtube.com/",

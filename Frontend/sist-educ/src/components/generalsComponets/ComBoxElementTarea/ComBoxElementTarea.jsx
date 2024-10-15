@@ -6,7 +6,7 @@ function ComBoxElementTarea({tarea}) {
   return (
     <div className="ComBoxElementTareaContainer">
       <div className="IconContainer">
-        <SlPencil />
+        <SlPencil/>
       </div>
       <p className="PMd">{tarea.nombre}</p>
       <a href={tarea.link}>contenido</a>
