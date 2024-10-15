@@ -8,6 +8,10 @@
     flex-direction: column;
 }
 
+.VHonorEstudianteContainer .LinkVHonorEstudiante{
+    text-decoration: none;
+}
+
 .VHonorEstudianteContainer .TitleHonorEstudiante{
     align-self:flex-start;
     margin: 1%;

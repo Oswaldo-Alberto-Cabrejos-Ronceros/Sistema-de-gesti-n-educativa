@@ -6,12 +6,6 @@ import VHonorEstudianteBimestral from "./VHonorEstudianteBimestral/VHonorEstudia
 import {Routes, Route, Link} from "react-router-dom";
 
 function VHonorEstudiante() {
-  let fUnidad = function () {
-    alert("Presionando Unidad");
-  };
-  let fBimestral = function () {
-    alert("Presionando Bimestral");
-  };
   let info=["Primaria","6to","Unica", "3era Unidad"];
   let infoBimestral=["Primaria","6to","Unica","3er Bimestre"]
   let estudiantesHonor=[
@@ -40,8 +34,12 @@ function VHonorEstudiante() {
         <h3>Honor</h3>
       </div>
       <div className="VHonorEstudianteButtonsContainer">
-        <PrimaryButton onClick={fUnidad} nombre={"Unidad"} />
-        <PrimaryButton onClick={fBimestral} nombre={"Bimestral"} />
+        <Link className="LinkVHonorEstudiante" to="unidad">
+        <PrimaryButton nombre="Unidad"/>
+        </Link>
+        <Link className="LinkVHonorEstudiante" to="bimestral">
+        <PrimaryButton nombre={"Bimestral"}/>
+        </Link>
       </div>
       <div className="CambHonorEstudiante">
         <Routes>
@@ -49,8 +47,6 @@ function VHonorEstudiante() {
           <Route path="unidad" element={<VHonorEstudianteUnidad info={info} estudiantesHonor={estudiantesHonor}/>}/>
           <Route path="bimestral" element={<VHonorEstudianteBimestral info={infoBimestral} estudiantesHonor={estudiantesHonor}/>}/>
         </Routes>
-
-        {/**/}
         <VHonorEstudianteBimestral info={infoBimestral} estudiantesHonor={estudiantesHonor}/>
       </div>
     </div>
