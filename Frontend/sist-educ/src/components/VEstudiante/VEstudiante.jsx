@@ -20,6 +20,7 @@ import VCursosEstudiante from "../VCursosEstudiante/VCursosEstudiante";
 import VCursosEstudianteContenido from "../VCursosEstudiante/VCursoEstudianteContenido/VCursoEstudianteContenido";
 import VHorarioEstudiante from "../VHorarioEstudiante/VHorarioEstudiante";
 import VTareasEstudiante from "../VTareasEstudiante/VTareasEstudiante";
+import VNotasEstudiante from "../VNotasEstudiante/VNotasEstudiante";
 
 function VEstudiante() {
   let curso = {
@@ -278,15 +279,7 @@ function VEstudiante() {
             />
             <Route path="/tareas/*" element={<VTareasEstudiante />} />
             <Route path="/chat" element={<ComponenteVacio />} />
-            <Route
-              path="/notas"
-              element={
-                <VGestionCursos
-                  cursos={cursosGestion}
-                  subcursos={subcursosGestion}
-                />
-              }
-            />
+            <Route path="/notas/*" element={<VNotasEstudiante />} />
             <Route path="/honor/*" element={<VHonorEstudiante />} />
             <Route path="/curso/*" element={<VCursosEstudianteContenido />} />
             <Route path="/usuario" element={<InfoUser user={userAlumno} />} />
