@@ -1,10 +1,16 @@
 import React from 'react'
 import './VNotasEstudianteBimestre.css'
+import ComponentNotasEstudianteElement from '../../generalsComponets/ComponentNotasEstudianteElement/ComponentNotasEstudianteElement'
 
 function VNotasEstudianteBimestre() {
+  const bimestres=[1,2,3,4]
   return (
     <div className='VNotasEstudianteBimestreContainer'>
-        <h3>Bimestre</h3>
+        {
+          bimestres.map((bimestre)=>(
+            <ComponentNotasEstudianteElement title={"Bimestre " + bimestre}/>
+          ))
+        }
     </div>
   )
 }

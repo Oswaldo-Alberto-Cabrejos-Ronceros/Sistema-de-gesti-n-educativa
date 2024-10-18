@@ -1,0 +1,47 @@
+:root{
+    --ColorBorderCNE:#171717;
+    --ColorBackgroundCNE:#FEF2F2;
+    --ColorBorderBoxHoverCNE:#DC2626;
+}
+.ComponentNotasEstudianteElementContainer{
+    width: 94%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    align-self: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ComponentNotasEstudianteElementContainer .ComponentNotasEstudianteElementContent{
+    width: 94%;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid var(--ColorBorderCB);
+    background-color: var(--ColorBackground);
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+    align-self: flex-start;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+
+.ComponentNotasEstudianteElementContainer .ComponentNotasEstudianteElementContent:hover{
+    border: 1px solid var(--ColorBorderBoxHover);
+    box-shadow: 4px 4px 4px 0px #dc262633;
+    transition: 150ms;
+}
+
+
+
+.ComponentNotasEstudianteElementContainer .ComponentNotasEstudianteElementContent .PMd{
+    cursor: default;
+}
