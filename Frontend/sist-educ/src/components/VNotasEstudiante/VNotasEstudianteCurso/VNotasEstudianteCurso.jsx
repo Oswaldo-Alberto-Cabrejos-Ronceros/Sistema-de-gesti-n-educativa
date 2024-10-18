@@ -15,7 +15,7 @@ function VNotasEstudianteCurso() {
     <div className="VNotasEstudianteCursoContainer">
     {
       cursos.map((curso)=>(
-        <ComponentNotasEstudianteElement title={curso}/>
+        <ComponentNotasEstudianteElement title={curso} tipo={"curso"}/>
       ))
     }
     </div>

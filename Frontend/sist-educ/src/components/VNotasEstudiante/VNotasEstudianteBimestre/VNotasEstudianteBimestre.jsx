@@ -8,7 +8,7 @@ function VNotasEstudianteBimestre() {
     <div className='VNotasEstudianteBimestreContainer'>
         {
           bimestres.map((bimestre)=>(
-            <ComponentNotasEstudianteElement title={"Bimestre " + bimestre}/>
+            <ComponentNotasEstudianteElement title={"Bimestre " + bimestre} tipo={"bimestre"}/>
           ))
         }
     </div>

@@ -1,14 +1,21 @@
-import React from 'react'
-import './ComponentNotasEstudianteElement.css'
+import React from "react";
+import "./ComponentNotasEstudianteElement.css";
+import { Link } from "react-router-dom";
 
-function ComponentNotasEstudianteElement({title}) {
+function ComponentNotasEstudianteElement({ title, tipo }) {
   return (
-    <div className='ComponentNotasEstudianteElementContainer'>
-              <div className="ComponentNotasEstudianteElementContent">
-        <p className="PLg">{title}</p>
-      </div>
+    <div className="ComponentNotasEstudianteElementContainer">
+      <Link
+        to={`/notas/info/${tipo}`}
+        state={{ title }}
+        className="LinkComponentNotasEstudianteElement"
+      >
+        <div className="ComponentNotasEstudianteElementContent">
+          <p className="PLg">{title}</p>
+        </div>
+      </Link>
     </div>
-  )
+  );
 }
 
-export default ComponentNotasEstudianteElement
+export default ComponentNotasEstudianteElement;

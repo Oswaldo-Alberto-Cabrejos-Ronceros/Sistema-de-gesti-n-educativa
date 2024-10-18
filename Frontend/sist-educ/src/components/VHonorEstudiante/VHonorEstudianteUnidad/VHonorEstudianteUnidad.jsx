@@ -1,5 +1,5 @@
 import React from "react";
-import "./VHonerEstudianteUnidad.css";
+import "./VHonorEstudianteUnidad.css";
 import SelectComponent from "../../generalsComponets/SelectComponent/SelectComponent";
 import CardHonor from "../../generalsComponets/CardHonor/CardHonor"
 

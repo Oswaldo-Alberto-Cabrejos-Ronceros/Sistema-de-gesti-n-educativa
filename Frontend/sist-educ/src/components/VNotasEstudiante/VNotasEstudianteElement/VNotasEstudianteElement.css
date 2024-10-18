@@ -1,0 +1,28 @@
+.VNotasEstudianteElementContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.VNotasEstudianteElementContainer .TitleVNotasEstudianteElementContainer {
+  height: auto;
+  margin: 1%;
+  align-self: flex-start;
+}
+
+.VNotasEstudianteElementContainer .TitleVNotasEstudianteElementContainer h3 {
+  padding: 0;
+  margin: 0;
+}
+
+.VNotasEstudianteElementContainer .VNotasEstudianteElementContent {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
