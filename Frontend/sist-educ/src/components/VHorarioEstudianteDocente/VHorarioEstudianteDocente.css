@@ -1,5 +1,5 @@
 
-.VHorarioEstudianteContainer{
+.VHorarioEstudianteDocenteContainer{
     padding: 2%;
     display: flex;
     flex-wrap: wrap;
@@ -8,19 +8,19 @@
 }
 
 
-.VHorarioEstudianteContainer .VHorarioEstudianteTitle{
+.VHorarioEstudianteDocenteContainer .VHorarioEstudianteDocenteTitle{
     width: 100%;
     display: flex;
     align-self:flex-start;
     height: auto;
 }
-.VHorarioEstudianteContainer .VHorarioEstudianteTitle h3{
+.VHorarioEstudianteDocenteContainer .VHorarioEstudianteDocenteTitle h3{
     margin: 0;
     padding: 0;
     justify-self: start;
 }
 
-.VHorarioEstudianteContainer .HorarioContainer{
+.VHorarioEstudianteDocenteContainer .HorarioContainer{
     width: 100%;
     height: auto;
     margin: 0;

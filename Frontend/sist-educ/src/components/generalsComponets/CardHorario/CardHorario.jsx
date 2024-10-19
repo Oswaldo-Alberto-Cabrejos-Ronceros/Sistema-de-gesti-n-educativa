@@ -2,7 +2,7 @@ import React from "react";
 import "./CardHorario.css";
 
 function CardHorario({ grado, nivel }) {
-  let gradNivel = grado + " - " + nivel;
+  let gradNivel = grado + " " + nivel;
   return (
     <div className="CardHorarioContainer">
       <div className="CardHorarioHeaderContainer">

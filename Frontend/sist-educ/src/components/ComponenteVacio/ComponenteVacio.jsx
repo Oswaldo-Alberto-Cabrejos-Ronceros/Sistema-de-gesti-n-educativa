@@ -2,7 +2,7 @@ import React from 'react'
 
 function ComponenteVacio() {
   return (
-    <div>ComponenteVacio</div>
+    <div><p>Componente vacio</p></div>
   )
 }
 

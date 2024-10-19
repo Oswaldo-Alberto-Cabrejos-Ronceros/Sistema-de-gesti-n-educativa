@@ -18,7 +18,7 @@ import ComponenteVacio from "../ComponenteVacio/ComponenteVacio";
 import VHonorEstudiante from "../VHonorEstudiante/VHonorEstudiante";
 import VCursosEstudiante from "../VCursosEstudiante/VCursosEstudiante";
 import VCursosEstudianteContenido from "../VCursosEstudiante/VCursoEstudianteContenido/VCursoEstudianteContenido";
-import VHorarioEstudiante from "../VHorarioEstudiante/VHorarioEstudiante";
+import VHorarioEstudiante from "../VHorarioEstudianteDocente/VHorarioEstudianteDocente";
 import VTareasEstudiante from "../VTareasEstudiante/VTareasEstudiante";
 import VNotasEstudiante from "../VNotasEstudiante/VNotasEstudiante";
 
@@ -273,8 +273,8 @@ function VEstudiante() {
               path="/horario"
               element={
                 <VHorarioEstudiante
-                  grado={userAlumno.grado}
-                  nivel={userAlumno.nivel}
+                grado_Apellidos={userAlumno.grado}
+                nivel_Nombres={userAlumno.nivel}
                 />
               }
             />
