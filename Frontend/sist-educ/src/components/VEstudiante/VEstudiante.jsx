@@ -1,7 +1,7 @@
 import React from "react";
 import "./VEstudiante.css";
 import { useState } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import BarraNavegacion from "../BarraNavegacionEstudiante/BarraNavegacionEstudiante";
 import VNotasDocentes from "../VNotasDocentes/VNotasDocentes";
 import VSubirNotas from "../VNotasDocentes/VSubirNotas/VSubirNotas";
@@ -260,10 +260,11 @@ function VEstudiante() {
 
   return (
     <BrowserRouter>
-      <div className="main">
+      <div className="VEstudianteMain">
         <BarraNavegacion onOptionSelect={handleOptionSelect} />
         <div className="containerCamb">
           <Routes>
+          <Route path="/" element={<Navigate to="/cursos" />} />
             <Route
               path="/cursos/*"
               element={<VCursosEstudiante cursos={cursos} />}

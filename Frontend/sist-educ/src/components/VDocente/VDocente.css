@@ -1,0 +1,19 @@
+
+
+.VDocenteMain{
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  
+.VDocenteMain .containerCamb{
+    padding: 0;
+    width: 94%;
+    height: auto;
+    min-height: 89%;
+    position: absolute;
+    top: 11%;
+    left: 6%;
+    background-color: var(--BackgroundColor);
+    box-sizing: border-box;
+  }
