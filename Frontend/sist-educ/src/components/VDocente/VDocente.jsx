@@ -8,6 +8,8 @@ import VHorarioDocente from "../VHorarioEstudianteDocente/VHorarioEstudianteDoce
 import VCursosDocente from "../VCursosDocente/VCursosDocente";
 import VCursoDocenteContenido from "../VCursosDocente/VCursoDocenteContenido/VCursoDocenteContenido";
 import VTareasDocente from "../VTareasDocente/VTareasDocente";
+import VNotasDocentes from "../VNotasDocentes/VNotasDocentes"
+import VHonorDocenteAdministrador from "../VHonorDocenteAdministrador/VHonorDocenteAdministrador";
 
 function VDocente() {
   let userDocente = {
@@ -48,8 +50,8 @@ function VDocente() {
             <Route path="/horario" element={<VHorarioDocente grado_Apellidos={userDocente.apellidos} nivel_Nombres={userDocente.nombres}/>} />
             <Route path="/tareas/*" element={<VTareasDocente />} />
             <Route path="/chat" element={<ComponenteVacio />} />
-            <Route path="/notas/*" element={<ComponenteVacio />} />
-            <Route path="/honor/*" element={<ComponenteVacio />} />
+            <Route path="/notas/*" element={<VNotasDocentes />} />
+            <Route path="/honor/*" element={<VHonorDocenteAdministrador />} />
             <Route path="/curso/*" element={<VCursoDocenteContenido/>} />
             <Route path="/informes/*" element={<ComponenteVacio />} />
             <Route path="/usuario" element={<InfoUser user={userDocente} />} />

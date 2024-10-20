@@ -1,0 +1,38 @@
+.VHonorDocenteAdministradorContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+}
+
+.VHonorDocenteAdministradorContainer .LinkVHonorDocenteAdministrador{
+    text-decoration: none;
+}
+
+.VHonorDocenteAdministradorContainer .VHonorDocenteAdministradorTitleContainer{
+    align-self:flex-start;
+    margin: 1%;
+    height: auto;
+}
+.VHonorDocenteAdministradorContainer .VHonorDocenteAdministradorTitleContainer h3{
+    margin: 0;
+    padding: 0;
+}
+.VHonorDocenteAdministradorContainer .VHonorDocenteAdministradorButtonsContainer{
+    align-self: start;
+    padding: 0px 10px 10px 10px;
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.VHonorDocenteAdministradorContainer .CambVHonorDocenteAdministrador{
+    width: 100%;
+}

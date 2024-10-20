@@ -1,0 +1,38 @@
+.VHonorDocenteAdministradorUnidadContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.VHonorDocenteAdministradorUnidadContainer .VHonorDocenteAdministradorUnidadTitleContainer{
+    height: auto;
+    margin: 1%;
+    align-self: flex-start;
+}
+
+.VHonorDocenteAdministradorUnidadContainer .VHonorDocenteAdministradorUnidadTitleContainer h3{
+    padding: 0;
+    margin: 0;
+}
+
+.VHonorDocenteAdministradorUnidadContainer .SelectHonorDocenteAdministradorUnidadContainer{
+    height: auto;
+    margin-left: 1%;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    width: 720px;
+    justify-content: space-between;
+}
+
+.VHonorDocenteAdministradorUnidadContainer .VHonorDocenteAdministradorUnidadContent{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:10px;
+}
