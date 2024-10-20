@@ -1,6 +1,6 @@
 import React from "react";
 import "./VCursosDocenteContenidoContenido.css";
-import ComBoxCursoXUnidadDocente from "../../../generalsComponets/ComBoxCursoXUnidadEstudiante/ComBoxCursoXUnidadEstudiante";
+import ComBoxCursoXUnidadDocente from "../../../generalsComponets/ComBoxCursoXUnidadDocente/ComBoxCursoXUnidadDocente";
 
 
 function VCursoDocenteContenidoContenido({ contenidos }) {

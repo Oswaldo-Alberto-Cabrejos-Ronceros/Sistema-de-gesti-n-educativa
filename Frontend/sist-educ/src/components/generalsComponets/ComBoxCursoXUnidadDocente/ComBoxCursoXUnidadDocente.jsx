@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./ComBoxCursoXUnidadDocente.css";
 import { IoIosArrowDown,IoIosArrowUp } from "react-icons/io";
-import ComBoxElementCurso from "../ComBoxElementCurso/ComBoxElementCurso";
+import ComBoxElementCursoDocente from "../ComBoxElementCursoDocenteAdministrador/ComBoxElementCursoDocenteAdministrador";
 import ComBoxElementCursoSubir from "../ComBoxElementCursoSubir/ComBoxElementCursoSubir";
 
 function ComBoxCursoXUnidadDocente({unidad,contenidos}) {
@@ -27,7 +27,7 @@ function ComBoxCursoXUnidadDocente({unidad,contenidos}) {
     {mostrarOtroComponente && (
         <div className="ComBoxElementContainer">
           {contenidos.map((contenido, index) => (
-            <ComBoxElementCurso contenido={contenido} />
+            <ComBoxElementCursoDocente key={index} contenido={contenido} />
           ))}
           <ComBoxElementCursoSubir />
         </div>

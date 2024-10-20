@@ -1,0 +1,47 @@
+:root{
+    --ColorBorderCBEC:#171717;
+    --ColorBackgroundCBEC:#FEE2E2;
+    --ColorBorderBoxHoverCBEC:#DC2626;
+    --ColorIconHover:#EF4444;
+}
+
+.ComBoxElementCursoDoceAdminContainer{
+    width: 94%;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid var(--ColorBorderCBEC);
+    background-color: var(--ColorBackgroundCBEC);
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+    align-self: flex-start;
+    margin-left: 10px;
+}
+
+.ComBoxElementCursoDoceAdminContainer .IconSubirContainer,
+.ComBoxElementCursoDoceAdminContainer .IconEditarContainer,
+.ComBoxElementCursoDoceAdminContainer .IconEliminarContainer{
+    color: var(--ColorBorderCBEC);
+    font-size: 34px;
+    display: flex;
+}
+
+.ComBoxElementCursoDoceAdminContainer .IconEditarContainer:hover,
+.ComBoxElementCursoDoceAdminContainer .IconEliminarContainer:hover{
+    color:var(--ColorIconHover);
+    cursor: pointer;
+}
+
+.ComBoxElementCursoDoceAdminContainer:hover{
+    border: 1px solid var(--ColorBorderBoxHoverCBEC);
+    box-shadow: 4px 4px 4px 0px #dc262633;
+    transition: 150ms;
+}
+
+.ComBoxElementCursoDoceAdminContainer .IconsEdElContainer{
+    display: flex;
+}

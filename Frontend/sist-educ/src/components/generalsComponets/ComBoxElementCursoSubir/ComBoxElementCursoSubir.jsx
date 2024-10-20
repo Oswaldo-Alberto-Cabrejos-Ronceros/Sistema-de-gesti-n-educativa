@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { FaFileUpload } from "react-icons/fa";
-import ButtonSubmit from "../ButtonSubmit/ButtonSubtmit"
+import ButtonSubmit from "../ButtonSubmit/ButtonSubtmit";
 import "./ComBoxElementCursoSubir.css";
 
 function ComBoxElementCursoSubir({ cursoinfo }) {
@@ -12,24 +12,59 @@ function ComBoxElementCursoSubir({ cursoinfo }) {
   };
   return (
     <div className="ComBoxElementCursoDocSubirGeneralContainer">
-    <div className="ComBoxElementCursoDocSubirContainer " onClick={handleClick}>
-      <div className="FaFileUploadContainer">
-        <FaFileUpload />
+      <div
+        className="ComBoxElementCursoDocSubirContainer "
+        onClick={handleClick}
+      >
+        <div className="FaFileUploadContainer">
+          <FaFileUpload />
+        </div>
+        <p className="PMd">Subir Contenido</p>
       </div>
-      <p className="PMd">Subir Contenido</p>
-
-    </div>
-    {mostrarOtroComponente && (
-        <div className="ComBoxElementCurSubirFormSubida"> 
+      {mostrarOtroComponente && (
+        <div className="ComBoxElementCurSubirFormSubida">
           <form action="">
-            <label htmlFor="NombreContenido">Nombre del contenido:</label>
-            <input type="text" name="NombreContenido" id="NombreContenido" required/>
-            <label htmlFor="DescripcionDelContenido">Descripcion del Contenido:</label>
-            <input type="text" name="DescripcionDelContenido" id="DescripcionDelContenido" required/>
-            <label htmlFor="SubirArchivo">Subir Archivo:</label>
-            <input type="file" name="SubirArchivo" id="SubirArchivo" required/>
+            <div className="FormSubConSecContainer">
+              <label htmlFor="NombreContenido">Nombre del contenido:</label>
+              <input
+                type="text"
+                name="NombreContenido"
+                id="NombreContenido"
+                required
+              />
+            </div>
+            <div className="FormSubConTerContainer">
+              <label htmlFor="DescripcionDelContenido">
+                Descripcion del Contenido:
+              </label>
+              <textarea
+                name="DescripcionDelContenido"
+                id="DescripcionDelContenido"
+                required
+              />
+            </div>
+            <div className="FormSubConSecContainer">
+              <div className="FormSubConTerSubContainer">
+                <label htmlFor="SubirArchivo">Subir Archivo:</label>
+                <input
+                  type="file"
+                  name="SubirArchivo"
+                  id="SubirArchivo"
+                  required
+                />
+              </div>
+              <div className="FormSubConTerSubContainer">
+                <label htmlFor="FechaEntrega">Fecha de Entrega:</label>
+                <input
+                  type="date"
+                  name="FechaEntrega"
+                  id="FechaEntrega"
+                  required
+                />
+              </div>
+            </div>
             <div className="ButtonSubmitCursoSubir">
-            <ButtonSubmit nombre={"Subir"}/>
+              <ButtonSubmit nombre={"Subir"} />
             </div>
           </form>
         </div>
