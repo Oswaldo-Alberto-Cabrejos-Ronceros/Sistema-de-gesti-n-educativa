@@ -45,7 +45,7 @@ function ComBoxElementCursoSubir({ cursoinfo }) {
               />
             </div>
             <div className="FormSubConSecContainer">
-              <div className="FormSubConTerSubContainer">
+              <div className="FormSubConSecSubContainer">
                 <label htmlFor="SubirArchivo">Subir Archivo:</label>
                 <input
                   type="file"
@@ -54,7 +54,7 @@ function ComBoxElementCursoSubir({ cursoinfo }) {
                   required
                 />
               </div>
-              <div className="FormSubConTerSubContainer">
+              <div className="FormSubConSecSubContainer">
                 <label htmlFor="FechaEntrega">Fecha de Entrega:</label>
                 <input
                   type="date"
