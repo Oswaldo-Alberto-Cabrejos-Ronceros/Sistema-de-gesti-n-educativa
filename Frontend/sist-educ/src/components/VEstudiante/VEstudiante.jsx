@@ -67,28 +67,7 @@ function VEstudiante() {
       Docente: "Huanta Villegas Mirta Juanita",
     },
   ];
-  let cursosDocente = [
-    {
-      Nombre: "Trigonometria",
-      Grado: "1° Año",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-    {
-      Nombre: "Trigonometria",
-      Grado: "2° Año",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-    {
-      Nombre: "Geometria",
-      Grado: "1° Año",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-    {
-      Nombre: "Geometria",
-      Grado: "2° Año",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-  ];
+  
   let userAlumno = {
     rol: "STUDENT",
     nombres: "Edilberto Nicolas",

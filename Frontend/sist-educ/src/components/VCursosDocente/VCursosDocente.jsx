@@ -1,10 +1,10 @@
 import React from 'react'
 import './VCursosDocente.css'
 import CardCursoDocente from '../generalsComponets/CardCursoDocente/CardCursoDocente'
+import { Link } from 'react-router-dom';
 
 function VCursosDocente({cursos}) {
   let cursosarray=[...cursos];
-  console.log(cursos);
   return (
     <div className='CursosDoContainer'>
       <div className='VCursosDocenTitle'>
@@ -12,7 +12,7 @@ function VCursosDocente({cursos}) {
       </div>
         {
           cursosarray.map((curso)=>{
-            return <CardCursoDocente curso={curso}/>
+            return <Link to="/curso" state={{curso}}><CardCursoDocente curso={curso}/></Link>
           })
         }
     </div>

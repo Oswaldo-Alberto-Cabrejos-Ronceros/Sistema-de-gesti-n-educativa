@@ -5,6 +5,8 @@ import ComponenteVacio from "../ComponenteVacio/ComponenteVacio";
 import BarraNavegacionDocente from "../BarraNavegacionDocente/BarraNavegacionDocente";
 import InfoUser from "../generalsComponets/InfoUser/InfoUser";
 import VHorarioDocente from "../VHorarioEstudianteDocente/VHorarioEstudianteDocente";
+import VCursosDocente from "../VCursosDocente/VCursosDocente";
+import VCursoDocenteContenido from "../VCursosDocente/VCursoDocenteContenido/VCursoDocenteContenido";
 
 function VDocente() {
   let userDocente = {
@@ -12,6 +14,28 @@ function VDocente() {
     nombres: "Armando Fernando",
     apellidos: "Vega Moreno",
   };
+  let cursosDocente = [
+    {
+      Nombre: "Trigonometria",
+      Grado: "1° Año",
+      Docente: "Fernadez Flores Jose Marcos",
+    },
+    {
+      Nombre: "Trigonometria",
+      Grado: "2° Año",
+      Docente: "Fernadez Flores Jose Marcos",
+    },
+    {
+      Nombre: "Geometria",
+      Grado: "1° Año",
+      Docente: "Fernadez Flores Jose Marcos",
+    },
+    {
+      Nombre: "Geometria",
+      Grado: "2° Año",
+      Docente: "Fernadez Flores Jose Marcos",
+    },
+  ];
   return (
     <BrowserRouter>
       <div className="VDocenteMain">
@@ -19,13 +43,13 @@ function VDocente() {
         <div className="containerCamb">
           <Routes>
             <Route path="/" element={<Navigate to="/cursos" />} />
-            <Route path="/cursos/*" element={<ComponenteVacio />} />
+            <Route path="/cursos/*" element={<VCursosDocente cursos={cursosDocente} />} />
             <Route path="/horario" element={<VHorarioDocente grado_Apellidos={userDocente.apellidos} nivel_Nombres={userDocente.nombres}/>} />
             <Route path="/tareas/*" element={<ComponenteVacio />} />
             <Route path="/chat" element={<ComponenteVacio />} />
             <Route path="/notas/*" element={<ComponenteVacio />} />
             <Route path="/honor/*" element={<ComponenteVacio />} />
-            <Route path="/curso/*" element={<ComponenteVacio />} />
+            <Route path="/curso/*" element={<VCursoDocenteContenido/>} />
             <Route path="/informes/*" element={<ComponenteVacio />} />
             <Route path="/usuario" element={<InfoUser user={userDocente} />} />
           </Routes>

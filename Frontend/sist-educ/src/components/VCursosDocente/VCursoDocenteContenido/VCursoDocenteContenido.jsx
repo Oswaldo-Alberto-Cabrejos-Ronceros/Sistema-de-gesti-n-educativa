@@ -1,18 +1,14 @@
 import React from "react";
 import "./VCursoDocenteContenido.css";
 import PrimaryButton from "../../generalsComponets/PrimaryButton/PrimaryButton";
-import ComBoxCursoXUnidadDocente from "../../generalsComponets/ComBoxCursoXUnidadDocente/ComBoxCursoXUnidadDocente";
 import { useLocation } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
+import VCursoDocenteContenidoContenido from "./VCursoDocenteContenidoContenido/VCursosDocenteContenidoContenido";
+import VCursoDocenteContenidoTareas from "./VCursoDocenteContenidoTareas/VCursoDocenteContenidoTareas";
 
 function VCursoDocenteContenido() {
-  const location= useLocation();
-  const {curso}=location.state || {};
-  const onClick1 = function () {
-    alert("Presionando boton Contenido");
-  };
-  const onClick2 = function () {
-    alert("Presionando boton Tareas");
-  };
+  const location = useLocation();
+  const { curso } = location.state;
   const contenidos = [
     [
       {
@@ -42,27 +38,27 @@ function VCursoDocenteContenido() {
       },
     ],
   ];
-  let unidad="Unidad ";
-  let numerounidad=1;
-  let unidadString;
-  return (
-    <div className="VCursoDocenteDetalleContainer">
-      <div className="VCursoDocenteDetalleTitle">
-        <h3>{curso}</h3>
+  return <div className="VCursoDocenteContenidoContainer">
+          <div className="VCursoDocenteContenidoTitle">
+        <h3>{curso.Nombre + " - " + curso.Grado}</h3>
       </div>
-      <div className="VCurDoButtonsContainer">
-        <PrimaryButton onClick={onClick1} nombre={"Contenido"} />
-        <PrimaryButton onClick={onClick2} nombre={"Tareas"} />
+      <div className="VCurDoContenidoContenidoButtonsContainer">
+      <Link className="LinkVCursoDocenCont" to="contenido" state={{curso}}>
+        <PrimaryButton nombre={"Contenido"} />
+        </Link>
+        <Link className="LinkVCursoDocenCont" to="tareas" state={{curso}}>
+        <PrimaryButton nombre={"Tareas"} />
+        </Link>
       </div>
-      { 
-      contenidos.map((contenido)=>{
-        unidadString=unidad+numerounidad;
-        numerounidad++;
-        return <ComBoxCursoXUnidadDocente unidad={unidadString} contenidos={contenido} />
-      })
-        }
-    </div>
-  );
+      
+      <div className="VCurDocenCamb">
+      <Routes>
+      <Route index element={<VCursoDocenteContenidoContenido contenidos={contenidos}/>}/>
+      <Route path="contenido" element={<VCursoDocenteContenidoContenido contenidos={contenidos}/>}/>
+      <Route path="tareas" element={<VCursoDocenteContenidoTareas/>}/>
+      </Routes>
+      </div>
+  </div>;
 }
 
 export default VCursoDocenteContenido;
