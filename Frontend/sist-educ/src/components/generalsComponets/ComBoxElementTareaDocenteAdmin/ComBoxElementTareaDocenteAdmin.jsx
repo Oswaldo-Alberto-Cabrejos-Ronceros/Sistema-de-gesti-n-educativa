@@ -12,6 +12,7 @@ function ComBoxElementTareaDocenteAdmin({tarea}) {
       </div>
       <p className="PMd">{tarea.nombre}</p>
       <a href={tarea.link}>contenido</a>
+      <p className="PMd">{tarea.fechaEntrega}</p>
       <div className="IconsTareaEdElContainer">
         <div className="IconTareaEditarContainer">
           <GoPencil />
