@@ -1,0 +1,26 @@
+.VTareasDocentePorCursoContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.VTareasDocentePorCursoContainer .VTareasDocentePorCursoTitleContainer{
+    height: auto;
+    margin: 1%;
+    align-self: flex-start;
+}
+
+.VTareasDocentePorCursoContainer .VTareasDocentePorCursoTitleContainer h3{
+    padding: 0;
+    margin: 0;
+}
+
+.VTareasDocentePorCursoContainer .VTareasDocentePorCursoContent{
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}

@@ -1,0 +1,41 @@
+.VTareasDocenteContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+}
+
+.VTareasDocenteContainer .LinkVTareasDocCont{
+    text-decoration: none;
+}
+
+.VTareasDocenteContainer .VTareasDocenteCamb{
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.VTareasDocenteContainer .VTareasDocenteTitle{
+    align-self:flex-start;
+    margin: 1%;
+    height: auto;
+}
+.VTareasDocenteContainer .VTareasDocenteTitle h3{
+    margin: 0;
+    padding: 0;
+}
+.VTareasDocenteContainer .VTareasDocenteButtonsContainer{
+    align-self: start;
+    padding: 0px 10px 10px 10px;
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

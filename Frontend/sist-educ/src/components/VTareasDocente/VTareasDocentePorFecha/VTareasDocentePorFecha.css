@@ -1,0 +1,28 @@
+.VTareasDocentePorFechaContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.VTareasDocentePorFechaContainer .VTareasDocentePorFechaTitleContainer{
+    height: auto;
+    margin: 1%;
+    align-self: flex-start;
+}
+
+.VTareasDocentePorFechaContainer .VTareasDocentePorFechaTitleContainer h3{
+    padding: 0;
+    margin: 0;
+}
+
+.VTareasDocentePorFechaContainer .ComBoxElementTareaDocenteContainerVTareasFecha{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 10px;
+}

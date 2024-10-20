@@ -5,8 +5,8 @@ import ComBoxElementTarea from "../../generalsComponets/ComBoxElementTarea/ComBo
 function VTareasEstudiantePorFecha({ tareas }) {
   return (
     <div className="VTareasEstudiantePorFechaContainer">
-        <div className="VTareasEstudiantePorFechaTitleContainer">
-      <h3>Por Fecha</h3>
+      <div className="VTareasEstudiantePorFechaTitleContainer">
+        <h3>Por Fecha</h3>
       </div>
       <div className="ComBoxElementContainerVTareasFecha">
         {tareas.map((tarea, index) => (
