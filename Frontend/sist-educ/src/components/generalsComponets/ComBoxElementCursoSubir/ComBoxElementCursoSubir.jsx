@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { FaFileUpload } from "react-icons/fa";
 import ButtonSubmit from "../ButtonSubmit/ButtonSubtmit";
+import PrimaryButtonLarge from "../PrimaryButtonLarge/PrimaryButtonLarge";
 import "./ComBoxElementCursoSubir.css";
 
 function ComBoxElementCursoSubir({ cursoinfo }) {
@@ -64,7 +65,7 @@ function ComBoxElementCursoSubir({ cursoinfo }) {
               </div>
             </div>
             <div className="ButtonSubmitCursoSubir">
-              <ButtonSubmit nombre={"Subir"} />
+              <PrimaryButtonLarge nombre={"Subir"}/>
             </div>
           </form>
         </div>
