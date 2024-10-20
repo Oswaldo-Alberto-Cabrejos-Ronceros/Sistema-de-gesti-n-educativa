@@ -1,14 +1,14 @@
-import React from 'react'
-import './VCursoEstudianteContenidoTareas.css'
-import ComBoxCursoXUnidadEstudiante from '../../../generalsComponets/ComBoxCursoXUnidadEstudiante/ComBoxCursoXUnidadEstudiante';
+import React from "react";
+import "./VCursoEstudianteContenidoTareas.css";
+import ComBoxCursoXUnidadEstudiante from "../../../generalsComponets/ComBoxCursoXUnidadEstudiante/ComBoxCursoXUnidadEstudiante";
 
-function VCursoEstudianteContenidoTareas({tareas}) {
+function VCursoEstudianteContenidoTareas({ tareas }) {
   let unidad = "Unidad ";
   let numerounidad = 1;
   let unidadString;
   return (
-    <div className='VCursoEstudianteContenidoTareasContainer'>
-                      {tareas.map((tarea) => {
+    <div className="VCursoEstudianteContenidoTareasContainer">
+      {tareas.map((tarea) => {
         unidadString = unidad + numerounidad;
         numerounidad++;
         return (
@@ -19,7 +19,7 @@ function VCursoEstudianteContenidoTareas({tareas}) {
         );
       })}
     </div>
-  )
+  );
 }
 
-export default VCursoEstudianteContenidoTareas
+export default VCursoEstudianteContenidoTareas;

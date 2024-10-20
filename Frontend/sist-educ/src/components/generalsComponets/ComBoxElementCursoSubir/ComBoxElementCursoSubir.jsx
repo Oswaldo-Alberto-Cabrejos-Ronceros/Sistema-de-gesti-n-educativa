@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { FaFileUpload } from "react-icons/fa";
-import ButtonSubmit from "../ButtonSubmit/ButtonSubtmit";
 import PrimaryButtonLarge from "../PrimaryButtonLarge/PrimaryButtonLarge";
 import "./ComBoxElementCursoSubir.css";
 
@@ -45,7 +44,6 @@ function ComBoxElementCursoSubir({ cursoinfo }) {
               />
             </div>
             <div className="FormSubConSecContainer">
-              <div className="FormSubConSecSubContainer">
                 <label htmlFor="SubirArchivo">Subir Archivo:</label>
                 <input
                   type="file"
@@ -53,16 +51,6 @@ function ComBoxElementCursoSubir({ cursoinfo }) {
                   id="SubirArchivo"
                   required
                 />
-              </div>
-              <div className="FormSubConSecSubContainer">
-                <label htmlFor="FechaEntrega">Fecha de Entrega:</label>
-                <input
-                  type="date"
-                  name="FechaEntrega"
-                  id="FechaEntrega"
-                  required
-                />
-              </div>
             </div>
             <div className="ButtonSubmitCursoSubir">
               <PrimaryButtonLarge nombre={"Subir"}/>

@@ -1,0 +1,150 @@
+:root{
+    --ColorBorderCBEC:#171717;
+    --ColorBackgroundCBEC:#FEF2F2;
+    --ColorBorderBoxHoverCBEC:#DC2626;
+}
+
+.ComBoxElementTareaSubirGeneralContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.ComBoxElementTareaSubirContainer{
+    width: 94%;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid var(--ColorBorderCBEC);
+    background-color: var(--ColorBackgroundCBEC);
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+    align-self: flex-start;
+    margin-left: 10px;
+}
+
+.ComBoxElementTareaSubirGeneralContainer .FaFileUploadContainerTarea{
+    color: var(--ColorBorderCBEC);
+    font-size: 34px;
+    display: flex;
+}
+
+.ComBoxElementTareaSubirContainer:hover{
+    border: 1px solid var(--ColorBorderBoxHoverCBEC);
+    box-shadow: 4px 4px 4px 0px #dc262633;
+    transition: 150ms;
+}
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida{
+    width: 94%;
+    height: auto;
+    border: 1px solid var(--ColorBorderCBEC);
+    background-color: var(--ColorBackgroundCBEC);
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form input,  
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form label,
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form textarea{
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form input, 
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form textarea{
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid var(--ColorBorderCBEC);
+    width: 75%;
+    margin-bottom: 0;
+}
+
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form input[type="date"]{
+    background-color: var(--BackgroundColor);
+    padding: 6px;
+    width: 60%;
+    margin: 0;
+}
+
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form input[type="file"]{
+    border: none;
+    margin: 0;
+}
+
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form textarea{
+    resize:none;
+    height: 120px;
+}
+
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form .FormTareaSubConSecContainer{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form .FormTareaSubConTerContainer{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form .FormTareaSubConTerContainer label{
+    align-self: flex-start;
+}
+
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form  .FormTareaSubConSecSubContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form .FormTareaSubConTerContainer label{
+    justify-self:flex-start;
+}
+
+.ComBoxElementTareaSubirGeneralContainer .ComBoxElementTareaSubirFormSubida form .ButtonSubmitTareaSubir{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 20%;
+}

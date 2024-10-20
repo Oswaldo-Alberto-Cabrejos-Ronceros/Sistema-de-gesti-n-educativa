@@ -86,12 +86,6 @@
     margin-bottom: 0;
 }
 
-.ComBoxElementCurSubirFormSubida form input[type="date"]{
-    background-color: var(--BackgroundColor);
-    padding: 6px;
-    width: 60%;
-    margin: 0;
-}
 
 .ComBoxElementCurSubirFormSubida form input[type="file"]{
     border: none;
@@ -124,15 +118,6 @@
     align-self: flex-start;
 }
 
-.ComBoxElementCurSubirFormSubida form .FormSubConSecSubContainer{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
 
 .ComBoxElementCurSubirFormSubida form .FormSubConTerSubContainer label{
     justify-self:flex-start;

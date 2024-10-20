@@ -11,11 +11,6 @@ function ComBoxCursoXUnidadDocente({unidad,contenidos}) {
   const handleClick = () => {
     setMostrarOtroComponente(!mostrarOtroComponente);
   };
-  const contenido={
-    nombre:"Angulos Trigonometricos",
-    link:"https://www.youtube.com/",
-  }
-
   return (
     <div className="ComBoxGeneralContainer">
     <div className="ComBoxCursoXUnidadContainer" onClick={handleClick}>

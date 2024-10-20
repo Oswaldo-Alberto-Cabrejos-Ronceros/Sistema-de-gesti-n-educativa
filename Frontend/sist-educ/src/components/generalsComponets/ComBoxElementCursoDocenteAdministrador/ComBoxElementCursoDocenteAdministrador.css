@@ -22,7 +22,7 @@
     margin-left: 10px;
 }
 
-.ComBoxElementCursoDoceAdminContainer .IconSubirContainer,
+.ComBoxElementCursoDoceAdminContainer .IconContenidoContainer,
 .ComBoxElementCursoDoceAdminContainer .IconEditarContainer,
 .ComBoxElementCursoDoceAdminContainer .IconEliminarContainer{
     color: var(--ColorBorderCBEC);

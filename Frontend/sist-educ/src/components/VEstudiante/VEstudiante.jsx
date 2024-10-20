@@ -173,45 +173,7 @@ function VEstudiante() {
     },
   ];
 
-  const tareasCurso = [
-    [
-      {
-        nombre: "Tarea: Angulos Trigonometricos 1",
-        link: "https://www.youtube.com/",
-        fechaEntrega: "12/05/2024",
-      },
-      {
-        nombre: "Tarea: Angulos Trigonometricos 2",
-        link: "https://www.youtube.com/",
-        fechaEntrega: "12/05/2024",
-      },
-    ],
-    [
-      {
-        nombre: "Tarea: Angulos Complementarios 1",
-        link: "https://www.youtube.com/",
-        fechaEntrega: "12/05/2024",
-      },
 
-      {
-        nombre: "Tarea: Angulos Complementarios 2",
-        link: "https://www.youtube.com/",
-        fechaEntrega: "12/05/2024",
-      },
-    ],
-    [
-      {
-        nombre: "Tarea: Angulos Suplementarios 1",
-        link: "https://www.youtube.com/",
-        fechaEntrega: "12/05/2024",
-      },
-      {
-        nombre: "Tarea: Angulos Suplementarios 2",
-        link: "https://www.youtube.com/",
-        fechaEntrega: "12/05/2024",
-      },
-    ],
-  ];
 
   let tareasPorFechas = [
     {

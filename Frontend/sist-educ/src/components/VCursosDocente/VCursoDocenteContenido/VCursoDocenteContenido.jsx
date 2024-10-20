@@ -38,6 +38,45 @@ function VCursoDocenteContenido() {
       },
     ],
   ];
+  const tareasCurso = [
+    [
+      {
+        nombre: "Tarea: Angulos Trigonometricos 1",
+        link: "https://www.youtube.com/",
+        fechaEntrega: "12/05/2024",
+      },
+      {
+        nombre: "Tarea: Angulos Trigonometricos 2",
+        link: "https://www.youtube.com/",
+        fechaEntrega: "12/05/2024",
+      },
+    ],
+    [
+      {
+        nombre: "Tarea: Angulos Complementarios 1",
+        link: "https://www.youtube.com/",
+        fechaEntrega: "12/05/2024",
+      },
+
+      {
+        nombre: "Tarea: Angulos Complementarios 2",
+        link: "https://www.youtube.com/",
+        fechaEntrega: "12/05/2024",
+      },
+    ],
+    [
+      {
+        nombre: "Tarea: Angulos Suplementarios 1",
+        link: "https://www.youtube.com/",
+        fechaEntrega: "12/05/2024",
+      },
+      {
+        nombre: "Tarea: Angulos Suplementarios 2",
+        link: "https://www.youtube.com/",
+        fechaEntrega: "12/05/2024",
+      },
+    ],
+  ];
   return <div className="VCursoDocenteContenidoContainer">
           <div className="VCursoDocenteContenidoTitle">
         <h3>{curso.Nombre + " - " + curso.Grado}</h3>
@@ -55,7 +94,7 @@ function VCursoDocenteContenido() {
       <Routes>
       <Route index element={<VCursoDocenteContenidoContenido contenidos={contenidos}/>}/>
       <Route path="contenido" element={<VCursoDocenteContenidoContenido contenidos={contenidos}/>}/>
-      <Route path="tareas" element={<VCursoDocenteContenidoTareas/>}/>
+      <Route path="tareas" element={<VCursoDocenteContenidoTareas tareas={tareasCurso}/>}/>
       </Routes>
       </div>
   </div>;
