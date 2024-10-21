@@ -5,9 +5,16 @@
   }
   
   .TablaNotasVerDocContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
     width: 100%;
-
   }
+
+  .TableVerDocNotas{
+    width: 95%;
+  }
+
   .TableVerDocNotas,
   th,
   td {

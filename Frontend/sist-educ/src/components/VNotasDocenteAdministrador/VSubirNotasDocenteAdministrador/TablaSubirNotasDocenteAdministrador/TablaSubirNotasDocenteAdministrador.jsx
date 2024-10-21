@@ -1,5 +1,6 @@
 import React from "react";
 import './TablaSubirNotasDocenteAdministrador.css'
+import ButtonSubtmit from "../../../generalsComponets/ButtonSubmit/ButtonSubtmit";
 
 function TablaSubirNotasDocenteAdministrador({alumnos,competencias}) {
 
@@ -8,6 +9,7 @@ function TablaSubirNotasDocenteAdministrador({alumnos,competencias}) {
   
   return (
     <div className="TablaNotasInputContainer">
+      <form action="">
       <table className="TableInputNotas">
         <thead>
         {ths.map((item) => {
@@ -39,6 +41,10 @@ function TablaSubirNotasDocenteAdministrador({alumnos,competencias}) {
             }
           </tbody>
       </table>
+      <div className="ButtonSubmitSubirNotasDocAdmContainer">
+      <ButtonSubtmit nombre={"Subir Notas "}/>
+      </div>
+      </form>
     </div>
   );
 }

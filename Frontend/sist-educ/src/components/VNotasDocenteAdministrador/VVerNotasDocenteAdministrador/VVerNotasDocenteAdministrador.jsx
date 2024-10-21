@@ -2,6 +2,7 @@ import React from 'react'
 import './VVerNotasDocenteAdministrador.css'
 import TablaVerNotasDocente from './TablaVerNotasDocenteAdministrador/TablaVerNotasDocenteAdministrador';
 import { useLocation } from "react-router-dom";
+import SelectComponent from '../../generalsComponets/SelectComponent/SelectComponent';
 
 function VVerNotasDocenteAdministrador() {
   const location = useLocation();
@@ -51,7 +52,6 @@ function VVerNotasDocenteAdministrador() {
     <div className="OpcionTitleVVerNotasDocentes">
       <h3>Ver Notas</h3>
     </div>
-    <form action="">
       <div className="VVerNotasContent">
         <div className="InfoVerNot">
           <p className="PMd">Curso:</p>
@@ -63,19 +63,12 @@ function VVerNotasDocenteAdministrador() {
           <p className="PMd">Nivel:</p>
           <p className="PMd">{curso.nivel}</p>
           <p className="PMd">Unidad:</p>
-          <select name="Unidad" id="Unidad" required>
-          {
-            unidades.map((unidad)=>
-            <option value={unidad}>{unidad}</option>
-            )
-          }
-          </select>
+          <SelectComponent name={"Unidad"} options={unidades}/>
         </div>
         <div className="ContVerNot">
         <TablaVerNotasDocente alumnosNotas={alumnos}/>
         </div>
       </div>
-    </form>
   </div>
   )
 }

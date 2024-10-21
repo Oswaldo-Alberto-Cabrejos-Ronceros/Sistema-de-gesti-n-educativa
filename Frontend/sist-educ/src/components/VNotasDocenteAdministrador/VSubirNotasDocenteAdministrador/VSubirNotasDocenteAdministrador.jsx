@@ -2,6 +2,7 @@ import React from "react";
 import "./VSubirNotasDocenteAdministrador.css";
 import TablaSubirNotasDocente from "./TablaSubirNotasDocenteAdministrador/TablaSubirNotasDocenteAdministrador";
 import ButtonSubtmit from "../../generalsComponets/ButtonSubmit/ButtonSubtmit";
+import SelectComponent from "../../generalsComponets/SelectComponent/SelectComponent";
 import { useLocation } from "react-router-dom";
 
 function VSubirNotasDocenteAdministrador() {
@@ -43,7 +44,7 @@ function VSubirNotasDocenteAdministrador() {
       <div className="OpcionTitleVNotasDocentes">
         <h3>Subir Notas</h3>
       </div>
-      <form action="">
+
         <div className="VSubirNotasContent">
           <div className="InfoSubNot">
             <p className="PMd">Curso:</p>
@@ -55,13 +56,7 @@ function VSubirNotasDocenteAdministrador() {
             <p className="PMd">Nivel:</p>
             <p className="PMd">{curso.nivel}</p>
             <p className="PMd">Unidad:</p>
-            <select name="Unidad" id="Unidad" required>
-            {
-              unidades.map((unidad)=>
-              <option value={unidad}>{unidad}</option>
-              )
-            }
-            </select>
+            <SelectComponent name={"Unidad"} options={unidades}/>
           </div>
           <div className="IndicacionesContainer">
             <p className="PMd">
@@ -71,9 +66,9 @@ function VSubirNotasDocenteAdministrador() {
           <div className="ContSubNot">
             <TablaSubirNotasDocente alumnos={alumnos} competencias={competencias} />
           </div>
-            <ButtonSubtmit nombre={"Subir Notas "}/>
+            
         </div>
-      </form>
+
     </div>
   );
 }
