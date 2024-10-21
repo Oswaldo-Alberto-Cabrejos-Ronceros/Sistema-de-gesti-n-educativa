@@ -1,7 +1,7 @@
 import React from "react";
-import './TablaVerDocente.css'
+import './TablaVerNotasDocenteAdministrador.css'
 
-function TablaVerDocente({alumnosNotas}) {
+function TablaVerNotasDocenteAdministrador({alumnosNotas}) {
   const indexAlumnos = alumnosNotas.length > 0 ? Object.keys(alumnosNotas[0]) : [];
   return (
     <div className="TablaNotasVerDocContainer">
@@ -32,4 +32,4 @@ function TablaVerDocente({alumnosNotas}) {
   );
 }
 
-export default TablaVerDocente;
+export default TablaVerNotasDocenteAdministrador;

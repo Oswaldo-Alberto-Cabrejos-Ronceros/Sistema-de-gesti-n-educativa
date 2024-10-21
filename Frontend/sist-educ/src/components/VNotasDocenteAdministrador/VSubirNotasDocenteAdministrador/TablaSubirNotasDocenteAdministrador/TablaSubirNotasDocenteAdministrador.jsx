@@ -1,7 +1,7 @@
 import React from "react";
-import './TablasNotasInput.css'
+import './TablaSubirNotasDocenteAdministrador.css'
 
-function TablaNotasInput({alumnos,competencias}) {
+function TablaSubirNotasDocenteAdministrador({alumnos,competencias}) {
 
   const indexAlumnos = alumnos.length > 0 ? Object.keys(alumnos[0]) : [];
   const ths=[...indexAlumnos,...competencias];
@@ -43,4 +43,4 @@ function TablaNotasInput({alumnos,competencias}) {
   );
 }
 
-export default TablaNotasInput;
+export default TablaSubirNotasDocenteAdministrador;

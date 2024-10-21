@@ -1,0 +1,42 @@
+
+.VNotasDocenteAdministradorContainer{
+    padding: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+
+.VNotasDocenteAdministradorContainer .VNotasDocenteAdministradorTitle{
+    width: 100%;
+    display: flex;
+    align-self:flex-start;
+    height: auto;
+}
+.VNotasDocenteAdministradorContainer .VNotasDocenteAdministradorTitle h3{
+    margin: 0;
+    padding: 0;
+    justify-self: start;
+}
+
+.VNotasDocenteAdministradorContainer .SelectNotasDocenteAdministradorContainer{
+    height: auto;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    width: 540px;
+    justify-content: space-between;
+}
+
+.VNotasDocenteAdministradorContainer .VNotasDocenteAdministradorContent{
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}

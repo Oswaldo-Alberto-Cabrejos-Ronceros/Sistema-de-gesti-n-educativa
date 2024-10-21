@@ -1,8 +1,8 @@
 import React from 'react'
-import './VVerNotasDocentes.css'
-import TablaVerDocente from './TablaVerDocente/TablaVerDocente';
+import './VVerNotasDocenteAdministrador.css'
+import TablaVerNotasDocente from './TablaVerNotasDocenteAdministrador/TablaVerNotasDocenteAdministrador';
 
-function VVerNotasDocentes({curso}) {
+function VVerNotasDocenteAdministrador({curso}) {
   const alumnos = [
     {
       Id: "5",
@@ -68,7 +68,7 @@ function VVerNotasDocentes({curso}) {
           </select>
         </div>
         <div className="ContVerNot">
-        <TablaVerDocente alumnosNotas={alumnos}/>
+        <TablaVerNotasDocente alumnosNotas={alumnos}/>
         </div>
 
       </div>
@@ -77,4 +77,4 @@ function VVerNotasDocentes({curso}) {
   )
 }
 
-export default VVerNotasDocentes
+export default VVerNotasDocenteAdministrador

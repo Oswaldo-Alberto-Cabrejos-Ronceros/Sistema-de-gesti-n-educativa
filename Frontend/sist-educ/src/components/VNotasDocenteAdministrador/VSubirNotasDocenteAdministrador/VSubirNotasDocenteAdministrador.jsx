@@ -1,9 +1,9 @@
 import React from "react";
-import "./VSubirNotas.css";
-import TablaNotasInput from "./TablaNotasInput/TablaNotasInput";
+import "./VSubirNotasDocenteAdministrador.css";
+import TablaSubirNotasDocente from "./TablaSubirNotasDocenteAdministrador/TablaSubirNotasDocenteAdministrador";
 import ButtonSubtmit from "../../generalsComponets/ButtonSubmit/ButtonSubtmit";
 
-function VSubirNotas({curso}) {
+function VSubirNotasDocenteAdministrador({curso}) {
   const alumnos = [
     {
       Id: "5",
@@ -66,7 +66,7 @@ function VSubirNotas({curso}) {
             </p>
           </div>
           <div className="ContSubNot">
-            <TablaNotasInput alumnos={alumnos} competencias={competencias} />
+            <TablaSubirNotasDocente alumnos={alumnos} competencias={competencias} />
           </div>
             <ButtonSubtmit nombre={"Subir Notas "}/>
         </div>
@@ -75,4 +75,4 @@ function VSubirNotas({curso}) {
   );
 }
 
-export default VSubirNotas;
+export default VSubirNotasDocenteAdministrador;
