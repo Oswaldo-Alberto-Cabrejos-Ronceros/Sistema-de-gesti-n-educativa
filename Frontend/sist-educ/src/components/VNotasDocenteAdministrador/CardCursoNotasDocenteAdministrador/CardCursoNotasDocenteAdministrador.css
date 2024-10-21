@@ -1,79 +1,99 @@
-:root{
-    --BackgroudColorCardCursoDocenteContainer:#F4F4F5;
-    --BorderCardCursoDocenteContainer:#171717;
-    --BackgroudColorCardCurDocenSup:#DC2626;
+:root {
+  --BackgroudColorCardCursoDocenteContainer: #f4f4f5;
+  --BorderCardCursoDocenteContainer: #171717;
+  --BackgroudColorCardCurDocenSup: #dc2626;
 }
 
-.CardCursoNotasDocenteAdministradorContainer{
-    width: 80%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: var(--BackgroudColorCardCursoDocenteContainer);
-    border: 1px solid var(--BorderCardCursoDocenteContainer) ;
-    border-radius: 8px;
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    margin-bottom: 1%;
+.CardCursoNotasDocenteAdministradorContainer {
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--BackgroudColorCardCursoDocenteContainer);
+  border: 1px solid var(--BorderCardCursoDocenteContainer);
+  border-radius: 8px;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-bottom: 2%;
 }
-.CardCursoNotasDocenteAdministradorContainer .CardCursoNotasDocenteAdministradorSupContainer{
-    width: 100%;
-    height: 10%;
-    background-color: var(--BackgroudColorCardCurDocenSup);
-    margin: 0px;
-    padding: 10px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    border-radius: 6px 6px 0px 0px;
+.CardCursoNotasDocenteAdministradorContainer
+  .CardCursoNotasDocenteAdministradorSupContainer {
+  width: 100%;
+  height: 10%;
+  background-color: var(--BackgroudColorCardCurDocenSup);
+  margin: 0px;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 6px 6px 0px 0px;
 }
-.CardCursoNotasDocenteAdministradorContainer .CardCursoNotasDocenteAdministradorSupContainer .PLg{
-    color: var(--BackgroudColorCardCursoDocenteContainer);
+.CardCursoNotasDocenteAdministradorContainer
+  .CardCursoNotasDocenteAdministradorSupContainer
+  .PLg {
+  color: var(--BackgroudColorCardCursoDocenteContainer);
+  margin: 0;
 }
-.CardCursoNotasDocenteAdministradorContainer .CardCursoNotasDocenteAdministradorMedContainer{
-    padding: 0;
-    margin: 0;
-    display: flex;
-    width: 100%;
-    height: 75%;
-}
-
-.CardCursoNotasDocenteAdministradorContainer .CardCursoNotasDocenteAdministradorMedContainer .CardCursoNotasDocenteAdministradorMedSubContainer{
-    margin: 0;
-    padding: 10px;
-    padding-bottom: 0;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    flex: 1;
-    align-items: center;
+.CardCursoNotasDocenteAdministradorContainer
+  .CardCursoNotasDocenteAdministradorMedContainer {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  height: 75%;
 }
 
-.CardCursoNotasDocenteAdministradorContainer .CardCursoNotasDocenteAdministradorMedContainer .CardCursoNotasDocenteAdministradorMedSubContainer .CardCursoNotasDocenteAdministradorMedSubContainerColumn{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+.CardCursoNotasDocenteAdministradorContainer
+  .CardCursoNotasDocenteAdministradorMedContainer
+  .CardCursoNotasDocenteAdministradorMedSubContainer {
+  margin: 0;
+  padding: 10px;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  flex: 1;
+  align-items: center;
 }
 
-.CardCursoNotasDocenteAdministradorContainer .CardCursoNotasDocenteAdministradorMedContainer .CardCursoNotasDocenteAdministradorMedSubContainer .CardCursoNotasDocenteAdministradorMedSubContainerColumn .PMd{
-    padding: 10px;
-    box-sizing: border-box;
-    align-self: flex-start;
-    cursor: default;
+.CardCursoNotasDocenteAdministradorContainer
+  .CardCursoNotasDocenteAdministradorMedContainer
+  .CardCursoNotasDocenteAdministradorMedSubContainer
+  .CardCursoNotasDocenteAdministradorMedSubContainerColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.CardCursoNotasDocenteAdministradorContainer .CardNotasDocenteAdministradorInfContainer{
-    padding: 0;
-    margin: 0;
-    display: flex;
-    width: 100%;
-    height: 15%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin-bottom: 10px;
+.CardCursoNotasDocenteAdministradorContainer
+  .CardCursoNotasDocenteAdministradorMedContainer
+  .CardCursoNotasDocenteAdministradorMedSubContainer
+  .CardCursoNotasDocenteAdministradorMedSubContainerColumn
+  .PMd {
+  padding: 10px;
+  box-sizing: border-box;
+  align-self: flex-start;
+  cursor: default;
 }
 
+.CardCursoNotasDocenteAdministradorContainer
+  .CardNotasDocenteAdministradorInfContainer {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 
+.CardCursoNotasDocenteAdministradorContainer
+  .CardNotasDocenteAdministradorInfContainer
+  .LinkCardNotasDocAdmin {
+  text-decoration: none;
+}

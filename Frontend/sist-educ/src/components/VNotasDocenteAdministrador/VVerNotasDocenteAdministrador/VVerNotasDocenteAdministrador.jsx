@@ -1,8 +1,12 @@
 import React from 'react'
 import './VVerNotasDocenteAdministrador.css'
 import TablaVerNotasDocente from './TablaVerNotasDocenteAdministrador/TablaVerNotasDocenteAdministrador';
+import { useLocation } from "react-router-dom";
 
-function VVerNotasDocenteAdministrador({curso}) {
+function VVerNotasDocenteAdministrador() {
+  const location = useLocation();
+  const {curso} = location.state;
+  console.log(curso)
   const alumnos = [
     {
       Id: "5",
@@ -70,7 +74,6 @@ function VVerNotasDocenteAdministrador({curso}) {
         <div className="ContVerNot">
         <TablaVerNotasDocente alumnosNotas={alumnos}/>
         </div>
-
       </div>
     </form>
   </div>

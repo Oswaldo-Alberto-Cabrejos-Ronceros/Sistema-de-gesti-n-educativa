@@ -2,8 +2,11 @@ import React from "react";
 import "./VSubirNotasDocenteAdministrador.css";
 import TablaSubirNotasDocente from "./TablaSubirNotasDocenteAdministrador/TablaSubirNotasDocenteAdministrador";
 import ButtonSubtmit from "../../generalsComponets/ButtonSubmit/ButtonSubtmit";
+import { useLocation } from "react-router-dom";
 
-function VSubirNotasDocenteAdministrador({curso}) {
+function VSubirNotasDocenteAdministrador() {
+  const location = useLocation();
+  const {curso} = location.state;
   const alumnos = [
     {
       Id: "5",

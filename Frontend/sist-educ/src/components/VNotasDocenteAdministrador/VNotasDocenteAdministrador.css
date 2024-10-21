@@ -40,3 +40,10 @@
     align-items: center;
     justify-items: center;
 }
+
+.VNotasDocenteAdministradorContainer .VNotDocAdminCamb{
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}

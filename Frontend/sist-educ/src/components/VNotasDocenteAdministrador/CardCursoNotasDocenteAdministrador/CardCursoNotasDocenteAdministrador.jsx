@@ -1,12 +1,13 @@
 import React from 'react'
 import PrimaryButton from '../../generalsComponets/PrimaryButton/PrimaryButton'
 import './CardCursoNotasDocenteAdministrador.css'
+import { Link } from 'react-router-dom'
 
 function CardCursoNotasDocenteAdministrador({curso}) {
   return (
     <div className='CardCursoNotasDocenteAdministradorContainer'>
         <div className='CardCursoNotasDocenteAdministradorSupContainer'>
-            <p className='PLg'>{curso.name}</p>
+            <p className='PLg'>{curso.nombre}</p>
         </div>
         <div className='CardCursoNotasDocenteAdministradorMedContainer'>
             <div className='CardCursoNotasDocenteAdministradorMedSubContainer'>
@@ -34,8 +35,12 @@ function CardCursoNotasDocenteAdministrador({curso}) {
             </div>
         </div>
         <div className='CardNotasDocenteAdministradorInfContainer'>
-            <PrimaryButton nombre="Ver Notas" />
-            <PrimaryButton nombre="Subir Notas" />
+            <Link className='LinkCardNotasDocAdmin' to={"vernotas"} state={{curso}}>
+            <PrimaryButton nombre="Ver Notas"/>
+            </Link>
+            <Link className='LinkCardNotasDocAdmin' to={"subirnotas"} state={{curso}}>
+            <PrimaryButton nombre="Subir Notas"/>
+            </Link>
             </div>
     </div>
   )
