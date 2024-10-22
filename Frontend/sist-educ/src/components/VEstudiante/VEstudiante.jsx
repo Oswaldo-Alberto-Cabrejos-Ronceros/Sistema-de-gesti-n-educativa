@@ -72,11 +72,6 @@ function VEstudiante() {
     grado: "6to",
     nivel: "Primaria",
   };
-  let userDocente = {
-    rol: "TEACHER",
-    nombres: "Armando Fernando",
-    apellidos: "Vega Moreno",
-  };
   let userAdministrador = {
     rol: "ADMINISTRATOR",
     nombres: "Cesar Augusto",

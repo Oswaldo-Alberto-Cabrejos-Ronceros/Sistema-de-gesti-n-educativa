@@ -5,7 +5,7 @@
     --ColorOutSessionHover:#171717;
   }
 
-.BarraNavegacionDocenteContainer .HorizontalContainerBarDocente{
+.BarraNavegacionAdministradorContainer .HorizontalContainerBarAdministrador{
     position: absolute;
     left: 0;    
     top: 0; 
@@ -20,7 +20,7 @@
     align-items: center;
 }
 
-.BarraNavegacionDocenteContainer .VerticalContainerBarDocente{
+.BarraNavegacionAdministradorContainer .VerticalContainerBarAdmin{
     position: fixed;
     left: 0;    
     top: 0; 
@@ -33,8 +33,10 @@
     flex-direction: column;
 }
 
-.BarraNavegacionDocenteContainer .OptionsContainer{
+.BarraNavegacionAdministradorContainer .OptionsContainer{
     position: absolute;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     top: 11%;
     left: 0;
@@ -42,14 +44,14 @@
     box-sizing: border-box;
 }
 
-.BarraNavegacionDocenteContainer .SessionOutContainer{
+.BarraNavegacionAdministradorContainer .SessionOutContainer{
     font-size: 36px;
     position: absolute;
     right: 1%;
     cursor: pointer;
 }
 
-.BarraNavegacionDocenteContainer .SessionOutContainer:hover{
+.BarraNavegacionAdministradorContainer .SessionOutContainer:hover{
     color: var(--ColorOutSessionHover);
     transition: 150ms;
 }

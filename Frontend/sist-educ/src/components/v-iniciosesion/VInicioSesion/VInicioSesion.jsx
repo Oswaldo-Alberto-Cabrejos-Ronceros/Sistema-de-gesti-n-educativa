@@ -7,7 +7,7 @@ function VInicioSesion() {
     <div className="Container-Prin">
       <div className="Content-1">
         <img
-          src="https://scontent.fpio2-1.fna.fbcdn.net/v/t1.6435-9/119931467_102934771572270_2851731201534669293_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHb7GRpree8ylSIOsKgKaM8KEcbqGJa7QcoRxuoYlrtB0izSoKDIR4wLph5U9vL31vEsiVnDCF5YVSEPdX8WtfS&_nc_ohc=zd1eI4JkhnMQ7kNvgGF61JW&_nc_ht=scontent.fpio2-1.fna&_nc_gid=ALhaQVJxX82GHLAnMBw0Kuj&oh=00_AYBfSo8bcjrFq7nqCv3qZiTV1nslwXXmIhXvSCT3jMcFtA&oe=670D2050"
+          src="https://scontent.fpio2-1.fna.fbcdn.net/v/t1.6435-9/119931467_102934771572270_2851731201534669293_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHb7GRpree8ylSIOsKgKaM8KEcbqGJa7QcoRxuoYlrtB0izSoKDIR4wLph5U9vL31vEsiVnDCF5YVSEPdX8WtfS&_nc_ohc=mLtHC40Ez6gQ7kNvgETITH_&_nc_ht=scontent.fpio2-1.fna&_nc_gid=AlNLdyn8_ig9Qh0_l04cWQ9&oh=00_AYBTBa6BZwZnwQodIDDJV8kOjOU6sBmoiJmAI-VW57O10A&oe=673E9090"
           alt="Logo del Colegio"
         />
         <h3>Su nueva plataforma virtual</h3>

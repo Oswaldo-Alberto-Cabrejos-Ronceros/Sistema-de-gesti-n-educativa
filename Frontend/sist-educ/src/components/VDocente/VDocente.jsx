@@ -44,7 +44,7 @@ function VDocente() {
     <BrowserRouter>
       <div className="VDocenteMain">
         <BarraNavegacionDocente />
-        <div className="containerCamb">
+        <div className="containerCambDocente">
           <Routes>
             <Route path="/" element={<Navigate to="/cursos" />} />
             <Route path="/cursos/*" element={<VCursosDocente cursos={cursosDocente} />} />
