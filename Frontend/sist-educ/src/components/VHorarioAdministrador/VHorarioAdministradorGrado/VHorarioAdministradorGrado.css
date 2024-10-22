@@ -1,0 +1,50 @@
+.VHorarioAdministradorGradoContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.VHorarioAdministradorGradoContainer
+  .VHorarioAdministradorGradoTitleContainer {
+  height: auto;
+  margin: 1%;
+  align-self: flex-start;
+}
+
+.VHorarioAdministradorGradoContainer
+  .VHorarioAdministradorGradoTitleContainer
+  h3 {
+  padding: 0;
+  margin: 0;
+}
+
+.VHorarioAdministradorGradoContainer
+  .SelectHorarioAdministradorGradoGeneralContainer {
+  width: 100%;
+}
+
+.VHorarioAdministradorGradoContainer
+  .SelectHorarioAdministradorGradoGeneralContainer
+  .SelectHorarioAdministradorGradoContainer {
+    height: auto;
+    margin-left: 1%;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    width: 540px;
+    justify-content: space-between;
+}
+
+.VHorarioAdministradorGradoContainer .VHorarioAdministradorGradoContent {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  flex-direction: column;
+  gap: 20px;
+}

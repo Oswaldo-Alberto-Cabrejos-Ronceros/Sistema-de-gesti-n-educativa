@@ -1,0 +1,43 @@
+.VHorarioAdministradorDocenteContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.VHorarioAdministradorDocenteContainer
+  .VHorarioAdministradorDocenteTitleContainer {
+  height: auto;
+  margin: 1%;
+  align-self: flex-start;
+}
+
+.VHorarioAdministradorDocenteContainer
+  .VHorarioAdministradorDocenteTitleContainer
+  h3 {
+  padding: 0;
+  margin: 0;
+}
+
+.VHorarioAdministradorDocenteContainer
+  .SearchHorarioAdministradorDocenteContainer {
+  height: auto;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  width: 540px;
+  justify-content: space-between;
+}
+
+.VHorarioAdministradorDocenteContainer .VHorarioAdministradorDocenteContent {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  flex-direction: column;
+  gap: 20px;
+}

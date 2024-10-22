@@ -9,6 +9,7 @@ import VHonorAdministrador from '../VHonorDocenteAdministrador/VHonorDocenteAdmi
 import VInformesAdministrador from '../VInformesDocenteAdministrador/VInformesDocenteAdministrador';
 import VCursosAdministrador from '../VCursosAdministrador/VCursosAdministrador';
 import VCursoAdministradorContenido from '../VCursoDocenteAdministradorContenido/VCursoDocenteAdministradorContenido';
+import VHorarioAdministrador from '../VHorarioAdministrador/VHorarioAdministrador'
 
 function VAdministrador() {
   let userAdministrador = {
@@ -46,7 +47,7 @@ function VAdministrador() {
       <Routes>
       <Route path="/" element={<Navigate to="/cursos" />} />
             <Route path="/cursos/*" element={<VCursosAdministrador cursos={cursosDocente} />} />
-            <Route path="/horario" element={<ComponenteVacio/>} />
+            <Route path="/horario/*" element={<VHorarioAdministrador/>} />
             <Route path="/tareas/*" element={<ComponenteVacio/>} />
             <Route path="/notas/*" element={<VNotasAdministrador/>} />
             <Route path="/usuarios/*" element={<ComponenteVacio/>} />

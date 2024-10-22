@@ -1,0 +1,38 @@
+.VHorarioAdministradorContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+}
+
+.VHorarioAdministradorContainer .LinkVHorarioAdministrador{
+    text-decoration: none;
+}
+
+.VHorarioAdministradorContainer .VHorarioAdministradorTitleContainer{
+    align-self:flex-start;
+    margin: 1%;
+    height: auto;
+}
+.VHorarioAdministradorContainer .VHorarioAdministradorTitleContainer h3{
+    margin: 0;
+    padding: 0;
+}
+.VHorarioAdministradorContainer .VHorarioAdministradorButtonsContainer{
+    align-self: start;
+    padding: 0px 10px 10px 10px;
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.VHorarioAdministradorContainer .CambVHorarioAdministrador{
+    width: 100%;
+}
