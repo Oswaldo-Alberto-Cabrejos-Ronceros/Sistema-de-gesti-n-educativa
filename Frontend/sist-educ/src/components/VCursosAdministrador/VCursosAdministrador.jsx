@@ -1,34 +1,47 @@
 import React from "react";
 import CardCursoDocente from "../generalsComponets/CardCursoDocente/CardCursoDocente";
 import "./VCursosAdministrador.css";
+import { Link } from "react-router-dom";
+import SelectComponent from "../generalsComponets/SelectComponent/SelectComponent";
+
 
 function VCursosAdministrador({ cursos }) {
-  let niveles = ["Primaria", "Secundaria"];
-  let gradPrim=["1er Grado","2do Grado","3er Grado","4to Grado","5to Grado","6to Grado"];
-  let gradSec=["1er año","2do año","3er año","4to año","5 año"];
+  let optionsNivel=[
+    "Primaria",
+    "Secundaria"
+  ];
+  let optionsGrado=[
+    "1er Grado",
+    "2do Grado",
+    "3er Grado",
+    "4to Grado",
+    "5to Grado",
+    "6to Grado"
+  ];
+  let optionsSeccion=[
+    "Unica",
+    "A",
+    "B"
+  ];
   return (
     <div className="VCursosAdministradorContainer">
-      <div className="VCursosAdminTitle">
-        <h3>Cursos:</h3>
+      <div className="VCursosAdministradorTitleContainer">
+        <h3>Mis cursos</h3>
       </div>
-      <div className="VCursosAdminFilters">
-        <label htmlFor="Nivel">Nivel:</label>
-        <select name="Nivel" id="Nivel">
-        {
-          niveles.map((nivel)=>
-            <option value={nivel}>{nivel}</option>
-          )
-        }
-        </select>
-
-        <label htmlFor="Grado">Grado</label>
-        <select name="Grado" id="Grado"></select>
+      <div className="SelectCursosAdministradorGeneralContainer">
+      <div className="SelectCursosAdministradorContainer">
+      <SelectComponent name={"Nivel"} options={optionsNivel} />
+        <SelectComponent name={"Grado"} options={optionsGrado} />
+        <SelectComponent name={"Seccion"} options={optionsSeccion} />
       </div>
-      {
-          cursos.map((curso)=>{
-            return <CardCursoDocente curso={curso}/>
-          })
-        }
+      </div>
+      {cursos.map((curso) => {
+        return (
+          <Link to="/curso" state={{ curso }} className="LinkCardsCursosAdministrador">
+            <CardCursoDocente curso={curso} />
+          </Link>
+        );
+      })}
     </div>
   );
 }

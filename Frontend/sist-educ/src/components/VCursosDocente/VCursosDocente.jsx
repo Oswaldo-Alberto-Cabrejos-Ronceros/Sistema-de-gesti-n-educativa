@@ -4,14 +4,13 @@ import CardCursoDocente from '../generalsComponets/CardCursoDocente/CardCursoDoc
 import { Link } from 'react-router-dom';
 
 function VCursosDocente({cursos}) {
-  let cursosarray=[...cursos];
   return (
     <div className='CursosDoContainer'>
       <div className='VCursosDocenTitle'>
       <h3>Mis cursos</h3>
       </div>
         {
-          cursosarray.map((curso)=>{
+          cursos.map((curso)=>{
             return <Link to="/curso" state={{curso}} className='LinkCardsCursos'><CardCursoDocente curso={curso}/></Link>
           })
         }

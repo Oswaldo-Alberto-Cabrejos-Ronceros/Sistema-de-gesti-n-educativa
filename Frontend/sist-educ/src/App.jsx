@@ -10,9 +10,9 @@ function App() {
   return (
     <>
       {/*<VEstudiante/>*/}
-      {<VDocente/>}
+      {/*<VDocente/>*/}
       {/*<VInicioSesion/>*/}
-      {/*<VAdministrador/>*/}
+      {<VAdministrador/>}
     </>
   );
 }
