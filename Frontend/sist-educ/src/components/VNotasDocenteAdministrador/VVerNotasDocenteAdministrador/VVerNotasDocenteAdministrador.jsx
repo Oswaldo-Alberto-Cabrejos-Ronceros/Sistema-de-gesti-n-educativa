@@ -66,7 +66,7 @@ function VVerNotasDocenteAdministrador() {
           <SelectComponent name={"Unidad"} options={unidades}/>
         </div>
         <div className="ContVerNot">
-        <TablaVerNotasDocente alumnosNotas={alumnos}/>
+        <TablaVerNotasDocente estudiantesNotas={alumnos}/>
         </div>
       </div>
   </div>

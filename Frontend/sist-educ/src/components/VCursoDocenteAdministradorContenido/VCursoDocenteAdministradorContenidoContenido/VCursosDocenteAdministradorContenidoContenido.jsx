@@ -1,9 +1,9 @@
 import React from "react";
-import "./VCursosDocenteContenidoContenido.css";
-import ComBoxCursoXUnidadDocente from "../../../generalsComponets/ComBoxCursoXUnidadDocente/ComBoxCursoXUnidadDocente";
+import "./VCursosDocenteAdministradorContenidoContenido.css";
+import ComBoxCursoXUnidadDocente from "../../generalsComponets/ComBoxCursoXUnidadDocente/ComBoxCursoXUnidadDocente";
 
 
-function VCursoDocenteContenidoContenido({ contenidos }) {
+function VCursosDocenteAdministradorContenidoContenido({ contenidos }) {
   let unidad = "Unidad ";
   let numerounidad = 1;
   let unidadString;
@@ -23,4 +23,4 @@ function VCursoDocenteContenidoContenido({ contenidos }) {
   );
 }
 
-export default VCursoDocenteContenidoContenido;
+export default VCursosDocenteAdministradorContenidoContenido;

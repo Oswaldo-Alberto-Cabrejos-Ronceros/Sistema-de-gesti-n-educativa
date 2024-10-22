@@ -6,7 +6,7 @@ import BarraNavegacionDocente from "../BarraNavegacionDocente/BarraNavegacionDoc
 import InfoUser from "../generalsComponets/InfoUser/InfoUser";
 import VHorarioDocente from "../VHorarioEstudianteDocente/VHorarioEstudianteDocente";
 import VCursosDocente from "../VCursosDocente/VCursosDocente";
-import VCursoDocenteContenido from "../VCursosDocente/VCursoDocenteContenido/VCursoDocenteContenido";
+import VCursoDocenteContenido from "../VCursoDocenteAdministradorContenido/VCursoDocenteAdministradorContenido";
 import VTareasDocente from "../VTareasDocente/VTareasDocente";
 import VNotasDocente from "../VNotasDocenteAdministrador/VNotasDocenteAdministrador";
 import VHonorDocenteAdministrador from "../VHonorDocenteAdministrador/VHonorDocenteAdministrador";

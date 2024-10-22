@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import BarraNavegacion from "../BarraNavegacionEstudiante/BarraNavegacionEstudiante";
 //import ComponenteVacio from "../ComponenteVacio/ComponenteVacio";
 import VCursosDocente from "../VCursosDocente/VCursosDocente";
-import VCursoDocenteContenido from "../VCursosDocente/VCursoDocenteContenido/VCursoDocenteContenido";
 //import VEstudiante from "../VEstudiante/VEstudiante";
 import InfoUser from "../generalsComponets/InfoUser/InfoUser";
 import VCursosAdministrador from "../VCursosAdministrador/VCursosAdministrador";

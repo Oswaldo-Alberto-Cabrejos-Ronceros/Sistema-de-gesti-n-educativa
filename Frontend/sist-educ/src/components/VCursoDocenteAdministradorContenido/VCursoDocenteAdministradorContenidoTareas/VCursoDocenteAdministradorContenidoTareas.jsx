@@ -1,8 +1,8 @@
 import React from 'react'
-import './VCursoDocenteContenidoTareas.css'
-import ComBoxTareaXUnidadDocente from '../../../generalsComponets/ComBoxTareaXUnidadDocenteAdmin/ComBoxTareaXUnidadDocenteAdmin';
+import './VCursoDocenteAdministradorContenidoTareas.css'
+import ComBoxTareaXUnidadDocente from '../../generalsComponets/ComBoxTareaXUnidadDocenteAdmin/ComBoxTareaXUnidadDocenteAdmin';
 
-function VCursoDocenteContenidoTareas({tareas}) {
+function VCursoDocenteAdministradorContenidoTareas({tareas}) {
   console.log(tareas);
   let unidad = "Unidad ";
   let numerounidad = 1;
@@ -23,4 +23,4 @@ function VCursoDocenteContenidoTareas({tareas}) {
   )
 }
 
-export default VCursoDocenteContenidoTareas
+export default VCursoDocenteAdministradorContenidoTareas

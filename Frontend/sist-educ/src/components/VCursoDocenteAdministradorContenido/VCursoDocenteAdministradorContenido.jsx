@@ -1,12 +1,12 @@
 import React from "react";
-import "./VCursoDocenteContenido.css";
-import PrimaryButton from "../../generalsComponets/PrimaryButton/PrimaryButton";
+import "./VCursoDocenteAdministradorContenido.css";
+import PrimaryButton from "../generalsComponets/PrimaryButton/PrimaryButton";
 import { useLocation } from "react-router-dom";
 import { Routes, Route, Link } from "react-router-dom";
-import VCursoDocenteContenidoContenido from "./VCursoDocenteContenidoContenido/VCursosDocenteContenidoContenido";
-import VCursoDocenteContenidoTareas from "./VCursoDocenteContenidoTareas/VCursoDocenteContenidoTareas";
+import VCursoDocenteContenidoContenido from "./VCursoDocenteAdministradorContenidoContenido/VCursosDocenteAdministradorContenidoContenido";
+import VCursoDocenteContenidoTareas from "./VCursoDocenteAdministradorContenidoTareas/VCursoDocenteAdministradorContenidoTareas";
 
-function VCursoDocenteContenido() {
+function VCursoDocenteAdministradorContenido() {
   const location = useLocation();
   const { curso } = location.state;
   const contenidos = [
@@ -100,4 +100,4 @@ function VCursoDocenteContenido() {
   </div>;
 }
 
-export default VCursoDocenteContenido;
+export default VCursoDocenteAdministradorContenido;
