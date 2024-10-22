@@ -1,5 +1,5 @@
 import React from "react";
-import "./VHonorDocenteAdminsitradorUnidad.css";
+import "./VHonorDocenteAdministradorUnidad.css";
 import SelectComponent from "../../generalsComponets/SelectComponent/SelectComponent";
 import CardHonor from "../../generalsComponets/CardHonor/CardHonor";
 
@@ -30,7 +30,7 @@ function VHonorDocenteAdministradorUnidad({info, estudiantesHonor}) {
     "Unica",
     "A",
     "B"
-  ]
+  ];
   return (
     <div className="VHonorDocenteAdministradorUnidadContainer">
       <div className="VHonorDocenteAdministradorUnidadTitleContainer">

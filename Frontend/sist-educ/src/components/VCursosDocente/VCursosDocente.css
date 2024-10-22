@@ -8,14 +8,18 @@
     justify-content: space-between;
 }
 
-.VCursosDocenTitle{
+.CursosDoContainer .VCursosDocenTitle{
     width: 100%;
     display: flex;
     align-self:flex-start;
     height: auto;
 }
-.VCursosDocenTitle h3{
+.CursosDoContainer .VCursosDocenTitle h3{
     margin: 0;
     padding: 0;
     justify-self: start;
+}
+
+.CursosDoContainer .LinkCardsCursos{
+    text-decoration: none;
 }

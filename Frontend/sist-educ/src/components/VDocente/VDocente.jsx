@@ -10,6 +10,7 @@ import VCursoDocenteContenido from "../VCursosDocente/VCursoDocenteContenido/VCu
 import VTareasDocente from "../VTareasDocente/VTareasDocente";
 import VNotasDocente from "../VNotasDocenteAdministrador/VNotasDocenteAdministrador";
 import VHonorDocenteAdministrador from "../VHonorDocenteAdministrador/VHonorDocenteAdministrador";
+import VInformesDocente from "../VInformesDocenteAdministrador/VInformesDocenteAdministrador";
 
 function VDocente() {
   let userDocente = {
@@ -53,7 +54,7 @@ function VDocente() {
             <Route path="/notas/*" element={<VNotasDocente />} />
             <Route path="/honor/*" element={<VHonorDocenteAdministrador />} />
             <Route path="/curso/*" element={<VCursoDocenteContenido/>} />
-            <Route path="/informes/*" element={<ComponenteVacio />} />
+            <Route path="/informes/*" element={<VInformesDocente />} />
             <Route path="/usuario" element={<InfoUser user={userDocente} />} />
           </Routes>
         </div>

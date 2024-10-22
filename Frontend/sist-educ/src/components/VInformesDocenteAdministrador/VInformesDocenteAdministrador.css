@@ -1,0 +1,38 @@
+.VInformesDocenteAdministradorContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+}
+
+.VInformesDocenteAdministradorContainer .LinkVInformesDocenteAdministrador{
+    text-decoration: none;
+}
+
+.VInformesDocenteAdministradorContainer .VInformesDocenteAdministradorTitleContainer{
+    align-self:flex-start;
+    margin: 1%;
+    height: auto;
+}
+.VInformesDocenteAdministradorContainer .VInformesDocenteAdministradorTitleContainer h3{
+    margin: 0;
+    padding: 0;
+}
+.VInformesDocenteAdministradorContainer .VInformesDocenteAdministradorButtonsContainer{
+    align-self: start;
+    padding: 0px 10px 10px 10px;
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.VInformesDocenteAdministradorContainer .CambVInformesDocenteAdministrador{
+    width: 100%;
+}

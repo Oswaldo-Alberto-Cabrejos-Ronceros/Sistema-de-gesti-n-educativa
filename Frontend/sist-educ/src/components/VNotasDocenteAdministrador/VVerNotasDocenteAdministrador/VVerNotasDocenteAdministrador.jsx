@@ -1,6 +1,6 @@
 import React from 'react'
 import './VVerNotasDocenteAdministrador.css'
-import TablaVerNotasDocente from './TablaVerNotasDocenteAdministrador/TablaVerNotasDocenteAdministrador';
+import TablaVerNotasDocente from '../../generalsComponets/TablaVerNotasDocenteAdministrador/TablaVerNotasDocenteAdministrador';
 import { useLocation } from "react-router-dom";
 import SelectComponent from '../../generalsComponets/SelectComponent/SelectComponent';
 
@@ -10,7 +10,7 @@ function VVerNotasDocenteAdministrador() {
   console.log(curso)
   const alumnos = [
     {
-      Id: "5",
+      "N°": "5",
       Dni: "78984545",
       Nombres: "Alonzo Jorge",
       Apellidos: "Cardenas Godoy",
@@ -19,7 +19,7 @@ function VVerNotasDocenteAdministrador() {
       C3:14
     },
     {
-      Id: "8",
+      "N°": "8",
       Dni: "78848447",
       Nombres: "Karla Julia",
       Apellidos: "Fernandez Espinoza",
@@ -28,7 +28,7 @@ function VVerNotasDocenteAdministrador() {
       C3:14
     },
     {
-      Id: "7",
+      "N°": "7",
       Dni: "78945612",
       Nombres: "Luis Hermenegildo",
       Apellidos: "Castillo Cerron",

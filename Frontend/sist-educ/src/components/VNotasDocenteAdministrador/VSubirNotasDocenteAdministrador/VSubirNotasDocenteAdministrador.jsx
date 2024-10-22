@@ -10,19 +10,19 @@ function VSubirNotasDocenteAdministrador() {
   const {curso} = location.state;
   const alumnos = [
     {
-      Id: "5",
+      "N°": "5",
       Dni: "78984545",
       Nombres: "Alonzo Jorge",
       Apellidos: "Cardenas Godoy",
     },
     {
-      Id: "8",
+      "N°": "8",
       Dni: "78848447",
       Nombres: "Karla Julia",
       Apellidos: "Fernandez Espinoza",
     },
     {
-      Id: "7",
+      "N°": "7",
       Dni: "78945612",
       Nombres: "Luis Hermenegildo",
       Apellidos: "Castillo Cerron",

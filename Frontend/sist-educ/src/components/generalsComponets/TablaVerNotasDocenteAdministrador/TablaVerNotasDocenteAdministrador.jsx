@@ -1,8 +1,8 @@
 import React from "react";
 import './TablaVerNotasDocenteAdministrador.css'
 
-function TablaVerNotasDocenteAdministrador({alumnosNotas}) {
-  const indexAlumnos = alumnosNotas.length > 0 ? Object.keys(alumnosNotas[0]) : [];
+function TablaVerNotasDocenteAdministrador({estudiantesNotas}) {
+  const indexAlumnos = estudiantesNotas.length > 0 ? Object.keys(estudiantesNotas[0]) : [];
   return (
     <div className="TablaNotasVerDocContainer">
         {
@@ -17,7 +17,7 @@ function TablaVerNotasDocenteAdministrador({alumnosNotas}) {
                   })}
                 </thead>
                 <tbody>
-                  {alumnosNotas.map((item, index) => (
+                  {estudiantesNotas.map((item, index) => (
                     <tr key={index}>
                       {indexAlumnos.map((column) => (
                         <td key={`${index}-${column}`}> {item[column]}</td>

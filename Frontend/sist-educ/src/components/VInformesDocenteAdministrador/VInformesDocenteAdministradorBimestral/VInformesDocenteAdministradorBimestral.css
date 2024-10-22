@@ -1,0 +1,38 @@
+.VInformesDocenteAdministradorBimestralContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.VInformesDocenteAdministradorBimestralContainer .VInformesDocenteAdministradorBimestralTitleContainer{
+    height: auto;
+    margin: 1%;
+    align-self: flex-start;
+}
+
+.VInformesDocenteAdministradorBimestralContainer .VInformesDocenteAdministradorBimestralTitleContainer h3{
+    padding: 0;
+    margin: 0;
+}
+
+.VInformesDocenteAdministradorBimestralContainer .SelectInformesDocenteAdministradorBimestralContainer{
+    height: auto;
+    margin-left: 1%;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    width: 900px;
+    justify-content: space-between;
+}
+
+.VInformesDocenteAdministradorBimestralContainer .VInformesDocenteAdministradorBimestralContent{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:10px;
+}

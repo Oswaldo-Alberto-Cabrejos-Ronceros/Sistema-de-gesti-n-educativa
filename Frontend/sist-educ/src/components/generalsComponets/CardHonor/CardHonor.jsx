@@ -2,21 +2,21 @@ import React from "react";
 import "./CardHonor.css";
 import TablaHonor from "./TablaHonor/TablaHonor";
 
-function CardAuxiliar({ info, estudiantesHonor }) {
-  let headerCardAuxiliar = "";
+function CardHonor({ info, estudiantesHonor }) {
+  let headerCardHonor = "";
   let conElementHeader = 0;
   info.map((element) => {
-    headerCardAuxiliar += element;
+    headerCardHonor += element;
     conElementHeader++;
     if (conElementHeader < info.length) {
-      headerCardAuxiliar += " - ";
+      headerCardHonor += " - ";
     }
   });
 
   return (
     <div className="CardHonorContainer">
       <div className="CardHonorHeaderContainer">
-        <h3>{headerCardAuxiliar}</h3>
+        <h3>{headerCardHonor}</h3>
       </div>
       <div className="CardHonorContent">
       <TablaHonor estudiantesHonor={estudiantesHonor}/>
@@ -25,4 +25,4 @@ function CardAuxiliar({ info, estudiantesHonor }) {
   );
 }
 
-export default CardAuxiliar;
+export default CardHonor;
