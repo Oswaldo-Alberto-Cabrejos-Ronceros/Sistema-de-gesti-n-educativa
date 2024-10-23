@@ -1,0 +1,41 @@
+.VTareasAdministradorContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+}
+
+.VTareasAdministradorContainer .LinkVTareasAdministrador{
+    text-decoration: none;
+}
+
+.VTareasAdministradorContainer .VTareasAdministradorCamb{
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.VTareasAdministradorContainer .VTareasAdministradorTitle{
+    align-self:flex-start;
+    margin: 1%;
+    height: auto;
+}
+.VTareasAdministradorContainer .VTareasAdministradorTitle h3{
+    margin: 0;
+    padding: 0;
+}
+.VTareasAdministradorContainer .VTareasAdministradorButtonsContainer{
+    align-self: start;
+    padding: 0px 10px 10px 10px;
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

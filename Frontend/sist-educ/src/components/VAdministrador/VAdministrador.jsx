@@ -12,7 +12,7 @@ import VCursoAdministradorContenido from '../VCursoDocenteAdministradorContenido
 import VHorarioAdministrador from '../VHorarioAdministrador/VHorarioAdministrador'
 import VGestionCursos from '../VGestionCursos/VGestionCursos';
 import VGestionUsuarios from '../VGestionUsuarios/VGestionUsuarios'
-
+import VTareasAdministrador from '../VTareasAdministrador/VTareasAdministrador';
 
 function VAdministrador() {
   let userAdministrador = {
@@ -140,7 +140,7 @@ function VAdministrador() {
       <Route path="/" element={<Navigate to="/cursos" />} />
             <Route path="/cursos/*" element={<VCursosAdministrador cursos={cursosDocente} />} />
             <Route path="/horario/*" element={<VHorarioAdministrador/>} />
-            <Route path="/tareas/*" element={<ComponenteVacio/>} />
+            <Route path="/tareas/*" element={<VTareasAdministrador />} />
             <Route path="/notas/*" element={<VNotasAdministrador/>} />
             <Route path="/gestionusuarios/*" element={<VGestionUsuarios estudiantes={estudiantes} docentes={docentes}/>} />
             <Route path="/gestioncursos/*" element={<VGestionCursos cursos={cursosGestion} subcursos={subcursosGestion} />} />

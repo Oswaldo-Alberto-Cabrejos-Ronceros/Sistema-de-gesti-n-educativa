@@ -1,0 +1,47 @@
+.VTareasAdministradorPorFechaContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.VTareasAdministradorPorFechaContainer .VTareasAdministradorPorFechaTitleContainer{
+    height: auto;
+    margin: 1%;
+    align-self: flex-start;
+}
+
+.VTareasAdministradorPorFechaContainer .VTareasAdministradorPorFechaTitleContainer h3{
+    padding: 0;
+    margin: 0;
+}
+
+.VTareasAdministradorPorFechaContainer .SelectTareasAdministradorPorFechaGeneralContainer{
+    width: 100%;
+  
+  }
+  
+  .VTareasAdministradorPorFechaContainer .SelectTareasAdministradorPorFechaGeneralContainer .SelectTareasAdministradorPorFechaContainer{
+    height: auto;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    width: 540px;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+  }
+    
+
+.VTareasAdministradorPorFechaContainer .ComBoxElementTareaDocenteContainerVTareasAdministradorPorFecha{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
