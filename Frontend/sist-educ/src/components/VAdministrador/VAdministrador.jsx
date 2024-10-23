@@ -10,6 +10,7 @@ import VInformesAdministrador from '../VInformesDocenteAdministrador/VInformesDo
 import VCursosAdministrador from '../VCursosAdministrador/VCursosAdministrador';
 import VCursoAdministradorContenido from '../VCursoDocenteAdministradorContenido/VCursoDocenteAdministradorContenido';
 import VHorarioAdministrador from '../VHorarioAdministrador/VHorarioAdministrador'
+import VGestionUsuarios from '../VGestionCursos/VGestionCursos'
 
 function VAdministrador() {
   let userAdministrador = {
@@ -39,6 +40,47 @@ function VAdministrador() {
       Docente: "Fernadez Flores Jose Marcos",
     },
   ];
+  let cursosGestion = [
+    {
+      Nombre: "Matematica",
+      Descripcion: "Curso de numeros",
+      Nivel: "Secundaria",
+      Subcursos: ["Aritmetica", "Algebra", "Trigonometria"],
+    },
+    {
+      Nombre: "Comunicacion",
+      Descripcion: "Curso de letras",
+      Nivel: "Secundaria",
+      Subcursos: ["Lenguaje", "Razonamiento Verbal", "Literatura"],
+    },
+  ];
+  let subcursosGestion = [
+    {
+      Nombre: "Trigonometria",
+      Curso: "Matematica",
+      Descripcion: "Curso sobre triangulos",
+      Docente: "Maurtua Lopez, Antonio Jose",
+    },
+    {
+      Nombre: "Geometria",
+      Curso: "Matematica",
+      Descripcion: "Curso sobre poligonos",
+      Docente: "Maurtua Lopez, Antonio Jose",
+    },
+    {
+      Nombre: "Lenguaje",
+      Curso: "Comunicacíon",
+      Descripcion: "Curso sobre gramatica y lexico",
+      Docente: "Rodriguez Saavedra, Paolo Christian",
+    },
+    {
+      Nombre: "Literatura",
+      Curso: "Comunicacíon",
+      Descripcion: "Curso sobre literatura",
+      Docente: "Rodriguez Saavedra, Paolo Christian",
+    },
+  ];
+
   return (
     <BrowserRouter>
     <div className='VAdministradorMain'>
@@ -51,7 +93,7 @@ function VAdministrador() {
             <Route path="/tareas/*" element={<ComponenteVacio/>} />
             <Route path="/notas/*" element={<VNotasAdministrador/>} />
             <Route path="/usuarios/*" element={<ComponenteVacio/>} />
-            <Route path="/gestioncursos/*" element={<ComponenteVacio/>} />
+            <Route path="/gestioncursos/*" element={<VGestionUsuarios cursos={cursosGestion} subcursos={subcursosGestion} />} />
             <Route path="/honor/*" element={<VHonorAdministrador/>} />
             <Route path="/curso/*" element={<VCursoAdministradorContenido/>} />
             <Route path="/informes/*" element={<VInformesAdministrador/>} />

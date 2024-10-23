@@ -8,16 +8,20 @@
     flex-direction: column;
 }
 
-.TitleGestionCursos{
+.VGestionCursosContainer .VGestionCursosContainer{
+    text-decoration: none;
+}
+
+.VGestionCursosContainer .TitleGestionCursos{
     align-self:flex-start;
     margin: 1%;
     height: auto;
 }
-.TitleGestionCursos h3{
+.VGestionCursosContainer .TitleGestionCursos h3{
     margin: 0;
     padding: 0;
 }
-.VGestionCursosButtonsContainer{
+.VGestionCursosContainer .VGestionCursosButtonsContainer{
     align-self: start;
     padding: 0px 10px 10px 10px;
     box-sizing: border-box;

@@ -123,46 +123,6 @@ function VEstudiante() {
       ],
     },
   ];
-  let cursosGestion = [
-    {
-      Nombre: "Matematica",
-      Descripcion: "Curso de numeros",
-      Nivel: "Secundaria",
-      Subcursos: ["Aritmetica", "Algebra", "Trigonometria"],
-    },
-    {
-      Nombre: "Comunicacion",
-      Descripcion: "Curso de letras",
-      Nivel: "Secundaria",
-      Subcursos: ["Lenguaje", "Razonamiento Verbal", "Literatura"],
-    },
-  ];
-  let subcursosGestion = [
-    {
-      Nombre: "Trigonometria",
-      Curso: "Matematica",
-      Descripcion: "Curso sobre triangulos",
-      Docente: "Maurtua Lopez, Antonio Jose",
-    },
-    {
-      Nombre: "Geometria",
-      Curso: "Matematica",
-      Descripcion: "Curso sobre poligonos",
-      Docente: "Maurtua Lopez, Antonio Jose",
-    },
-    {
-      Nombre: "Lenguaje",
-      Curso: "Comunicacíon",
-      Descripcion: "Curso sobre gramatica y lexico",
-      Docente: "Rodriguez Saavedra, Paolo Christian",
-    },
-    {
-      Nombre: "Literatura",
-      Curso: "Comunicacíon",
-      Descripcion: "Curso sobre literatura",
-      Docente: "Rodriguez Saavedra, Paolo Christian",
-    },
-  ];
 
 
 

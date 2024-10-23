@@ -1,28 +1,30 @@
 import React from "react";
 import "./VGestionCursos.css";
 import PrimaryButton from "../generalsComponets/PrimaryButton/PrimaryButton";
+import { Routes, Route, Link } from 'react-router-dom';
 import VGestionCursosCursos from "./VGestionCursosCursos/VGestionCursosCursos";
 import VGestionCursosSubCursos from "./VGestionCursosSubCursos/VGestionCursosSubCursos";
 
 function VGestionCursos({ cursos, subcursos }) {
-  let fCursos = function () {
-    alert("Presionando Cursos");
-  };
-  let fSubcursos = function () {
-    alert("Presionando Subcursos");
-  };
   return (
     <div className="VGestionCursosContainer">
       <div className="TitleGestionCursos">
         <h3>Gestion de Cursos:</h3>
       </div>
       <div className="VGestionCursosButtonsContainer">
-        <PrimaryButton onClick={fCursos} nombre={"Cursos"} />
-        <PrimaryButton onClick={fSubcursos} nombre={"Subcursos"} />
+        <Link className="VGestionCursosContainer" to={"cursos"}> 
+        <PrimaryButton nombre={"Cursos"} />
+        </Link>
+        <Link className="VGestionCursosContainer" to={"subcursos"}>
+        <PrimaryButton nombre={"Subcursos"} />
+        </Link>
       </div>
       <div className="CambGestionCursos">
-        {/*<VGestionCursosCursos cursos={cursos}/>*/}
-        <VGestionCursosSubCursos subcursos={subcursos} />
+        <Routes>
+          <Route index element={<VGestionCursosCursos cursos={cursos}/>}/>
+          <Route path="cursos" element={<VGestionCursosCursos cursos={cursos}/>}/>
+          <Route path="subcursos" element={<VGestionCursosSubCursos subcursos={subcursos}/>}/>
+        </Routes>
       </div>
     </div>
   );

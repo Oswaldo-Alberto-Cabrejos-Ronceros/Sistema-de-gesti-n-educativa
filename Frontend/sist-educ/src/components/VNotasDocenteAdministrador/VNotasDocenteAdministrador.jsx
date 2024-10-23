@@ -1,6 +1,6 @@
 import React from "react";
 import "./VNotasDocenteAdministrador.css";
-import { Link, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import VNotasDocenteAdministradorCursos from "./VNotasDocenteAdministradorCursos/VNotasDocenteAdministradorCursos";
 import VSubirNotasDocente from "../VNotasDocenteAdministrador/VSubirNotasDocenteAdministrador/VSubirNotasDocenteAdministrador";
 import VVerNotasDocente from "./VVerNotasDocenteAdministrador/VVerNotasDocenteAdministrador";
