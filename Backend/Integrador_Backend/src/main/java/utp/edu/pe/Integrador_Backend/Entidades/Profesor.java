@@ -21,11 +21,12 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Profesor extends Usuario{
+
     @Column(name = "X_ESPECIALIDAD")
     private String especialidad;
 
-    // Relaciones con otras entidades
-    @OneToMany(mappedBy = "profesor")
-    @JsonIgnoreProperties("profesor")
-    private Set<AsignacionProfesor> asignaciones;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "X_NIVEL")
+    private Nivel nivel;  // Primaria o Secundaria
+
 }

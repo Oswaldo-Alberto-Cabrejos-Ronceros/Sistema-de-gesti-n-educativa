@@ -12,10 +12,18 @@ import java.util.Optional;
 
 @Repository
 public interface AlumnoRepository extends JpaRepository<Alumno, Long> {
+    //buscar alumnos por nivel
+    List<Alumno> findByNivel(Nivel nivel);
 
-    // Método para listar todos los alumnos
     List<Alumno> findAll();
+
+    //buscar alumno por su código
+    Optional<Alumno> findByCodigo(String codigo);
+
     boolean existsByCodigo(String codigo);
 
     long countByGradoAndNivel(Integer grado, Nivel nivel);
+
+    // filtrar alumnos por grado y subcurso
+    List<Alumno> findByGradoAndAsignaciones_Subcurso_SubcursoId(Integer grado, Long subcursoId);
 }

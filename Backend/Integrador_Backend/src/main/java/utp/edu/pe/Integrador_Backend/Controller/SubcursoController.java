@@ -7,6 +7,8 @@ import utp.edu.pe.Integrador_Backend.Entidades.Subcurso;
 import utp.edu.pe.Integrador_Backend.Service.SubcursoService;
 
 import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("api/subcursos")
 public class SubcursoController {
@@ -14,7 +16,7 @@ public class SubcursoController {
     @Autowired
     private SubcursoService subcursoService;
 
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<List<Subcurso>> listarSubcursos() {
         List<Subcurso> subcursos = subcursoService.listarSubcursos();
         return ResponseEntity.ok(subcursos);
@@ -32,5 +34,22 @@ public class SubcursoController {
         return ResponseEntity.ok(subcurso);
     }
 
+    @PutMapping("/update/{subcursoId}")
+    public ResponseEntity<Subcurso> actualizarSubcurso(
+            @PathVariable Long subcursoId,
+            @RequestBody Map<String, String> camposActualizados) {
+
+        String nuevoNombre = camposActualizados.get("nombreSubcurso");
+        String nuevaDescripcion = camposActualizados.get("descripcion");
+
+        Subcurso subcursoActualizado = subcursoService.actualizarSubcurso(subcursoId, nuevoNombre, nuevaDescripcion);
+        return ResponseEntity.ok(subcursoActualizado);
+    }
+
+    @DeleteMapping("/{subcursoId}")
+    public ResponseEntity<String> eliminarSubcurso(@PathVariable Long subcursoId) {
+        subcursoService.eliminarSubcurso(subcursoId);
+        return ResponseEntity.ok("Subcurso eliminado correctamente");
+    }
 
 }

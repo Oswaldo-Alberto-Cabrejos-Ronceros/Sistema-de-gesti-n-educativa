@@ -14,6 +14,9 @@ public interface AsignacionAlumnoRepository extends JpaRepository<AsignacionAlum
     // Encontrar asignaciones por alumno
     List<AsignacionAlumno> findByAlumno(Alumno alumno);
 
+    // Eliminar las asignaciones de los alumnos para un subcurso específico
+    void deleteBySubcurso(Subcurso subcurso);
+
     // Encontrar asignaciones por subcurso
     List<AsignacionAlumno> findBySubcurso(Subcurso subcurso);
     boolean existsByAlumnoAndSubcurso(Alumno alumno, Subcurso subcurso);

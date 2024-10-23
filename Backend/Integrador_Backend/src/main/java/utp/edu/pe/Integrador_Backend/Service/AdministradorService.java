@@ -1,9 +1,8 @@
 package utp.edu.pe.Integrador_Backend.Service;
 
-import de.mkammerer.argon2.Argon2;
-import de.mkammerer.argon2.Argon2Factory;
-import org.apache.velocity.exception.ResourceNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import utp.edu.pe.Integrador_Backend.Entidades.ActualizarAdministradorRequest;
@@ -18,33 +17,30 @@ public class AdministradorService {
     @Autowired
     private AdministradorRepository administradorRepository;
 
-    private final Argon2 argon2 = Argon2Factory.create();
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    // Método para listar administradores
+    // Metodo para listar administradores
     public List<Administrador> listarAdministradores() {
         return administradorRepository.findAll();
     }
 
     @Transactional
     public Administrador crearAdministrador(Administrador administrador) {
-        // Verificar si el DNI ya está registrado
         if (administradorRepository.findByDni(administrador.getDni()).isPresent()) {
             throw new RuntimeException("Ya existe un administrador con este DNI");
         }
 
-        // Verificar si el correo ya está registrado
         if (administradorRepository.findByCodigo(administrador.getCodigo()).isPresent()) {
             throw new RuntimeException("Ya existe un administrador con este correo");
         }
 
-        // Hashear la contraseña antes de guardar
-        String hashedPassword = argon2.hash(2, 65536, 1, administrador.getPassword().toCharArray());
+        // Hashear la contraseña con BCrypt
+        String hashedPassword = passwordEncoder.encode(administrador.getPassword());
         administrador.setPassword(hashedPassword);
 
-        // Asignar el rol de administrador
         administrador.setRol(Rol.ADMIN);
 
-        // Guardar el administrador en la base de datos
         return administradorRepository.save(administrador);
     }
 
@@ -90,7 +86,7 @@ public class AdministradorService {
 
         if (request.getPassword() != null && !request.getPassword().isEmpty()) {
             // Hashear la nueva contraseña
-            String hashedPassword = argon2.hash(2, 65536, 1, request.getPassword().toCharArray());
+            String hashedPassword = passwordEncoder.encode(request.getPassword());
             administrador.setPassword(hashedPassword);
         }
 

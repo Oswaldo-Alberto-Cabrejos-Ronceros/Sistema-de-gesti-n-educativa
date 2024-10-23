@@ -1,5 +1,6 @@
 package utp.edu.pe.Integrador_Backend.Controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class AdministradorController {
 
     // Crear un nuevo administrador
     @PostMapping
-    public ResponseEntity<Administrador> crearAdministrador(@RequestBody Administrador administrador) {
+    public ResponseEntity<Administrador> crearAdministrador(@Valid @RequestBody Administrador administrador) {
         Administrador nuevoAdministrador = administradorService.crearAdministrador(administrador);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoAdministrador);
     }
@@ -35,7 +36,7 @@ public class AdministradorController {
     @PutMapping("/{id}")
     public ResponseEntity<Administrador> actualizarAdministrador(
             @PathVariable Long id,
-            @RequestBody ActualizarAdministradorRequest request) {
+            @Valid @RequestBody ActualizarAdministradorRequest request) {
 
         Administrador administradorActualizado = administradorService.actualizarAdministrador(id, request);
         return ResponseEntity.ok(administradorActualizado);

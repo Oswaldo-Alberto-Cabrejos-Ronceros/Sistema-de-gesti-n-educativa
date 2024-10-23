@@ -1,6 +1,8 @@
 package utp.edu.pe.Integrador_Backend.Service;
 
 import org.apache.velocity.exception.ResourceNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +29,9 @@ public class NotaService {
     @Autowired
     private SubcursoRepository subcursoRepository;
 
+    private static final Logger logger = LoggerFactory.getLogger(NotaService.class);
+
+
     @Transactional
     public Nota registrarNota(Long alumnoId, Long subcursoId, Nota nota) {
         Alumno alumno = alumnoRepository.findById(alumnoId)
@@ -44,5 +49,28 @@ public class NotaService {
         nota.setSubcurso(subcurso);
 
         return notaRepository.save(nota);
+    }
+
+    // Actualizar una nota
+    @Transactional
+    public Nota actualizarNota(Long notaId, Nota nuevaNota) {
+        Nota nota = notaRepository.findById(notaId)
+                .orElseThrow(() -> new ResourceNotFoundException("Nota no encontrada con id: " + notaId));
+
+        nota.setUnidad(nuevaNota.getUnidad());
+        nota.setCalificacion(nuevaNota.getCalificacion());
+        logger.info("Nota actualizada con id {} a las {}", notaId, new java.util.Date());
+        return notaRepository.save(nota);
+    }
+
+    // Eliminar una nota
+    @Transactional
+    public void eliminarNota(Long notaId) {
+        Nota nota = notaRepository.findById(notaId)
+                .orElseThrow(() -> new ResourceNotFoundException("Nota no encontrada con id: " + notaId));
+
+        notaRepository.delete(nota);
+        logger.info("Nota eliminada con id {} a las {}", notaId, new java.util.Date());
+
     }
 }

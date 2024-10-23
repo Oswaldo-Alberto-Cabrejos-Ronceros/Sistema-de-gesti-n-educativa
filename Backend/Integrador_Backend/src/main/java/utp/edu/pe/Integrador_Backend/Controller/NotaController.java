@@ -18,4 +18,21 @@ public class NotaController {
         Nota nuevaNota = notaService.registrarNota(alumnoId, subcursoId, nota);
         return ResponseEntity.ok(nuevaNota);
     }
+
+
+
+
+    // Actualizar nota
+    @PutMapping("/update/{notaId}")
+    public ResponseEntity<Nota> actualizarNota(@PathVariable Long notaId, @RequestBody Nota nuevaNota) {
+        Nota notaActualizada = notaService.actualizarNota(notaId, nuevaNota);
+        return ResponseEntity.ok(notaActualizada);
+    }
+
+    // Eliminar nota
+    @DeleteMapping("/{notaId}")
+    public ResponseEntity<Void> eliminarNota(@PathVariable Long notaId) {
+        notaService.eliminarNota(notaId);
+        return ResponseEntity.noContent().build();
+    }
 }

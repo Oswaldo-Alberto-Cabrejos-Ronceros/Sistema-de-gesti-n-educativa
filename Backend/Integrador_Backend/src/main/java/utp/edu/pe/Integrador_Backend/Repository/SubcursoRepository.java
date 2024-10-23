@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface SubcursoRepository extends JpaRepository<Subcurso, Long> {
     List<Subcurso> findByNivel(Nivel nivel);
+    boolean existsByNombreSubcursoIgnoreCaseAndNivel(String nombreSubcurso, Nivel nivel);
 }

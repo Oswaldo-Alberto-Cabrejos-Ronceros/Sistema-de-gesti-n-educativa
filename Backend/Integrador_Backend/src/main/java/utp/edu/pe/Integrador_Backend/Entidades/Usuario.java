@@ -8,23 +8,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
-import java.io.Serializable;
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "SOP_USUARIO")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Usuario implements Serializable {
+public abstract class Usuario  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "C_USUARIOID")  // Código de usuario
     private Long usuarioId;
 
     @Column(name = "X_NOMBRE")
+    @NotBlank(message = "El nombre no puede estar vacío")
     private String nombre;
 
     @Column(name = "X_APELLIDO")
+    @NotBlank(message = "El apellido no puede estar vacío")
     private String apellido;
 
     @Column(name = "C_DNI", unique = true, length = 8)  // Código de DNI
@@ -33,7 +34,6 @@ public abstract class Usuario implements Serializable {
     private String dni;
 
     @Column(name = "C_TELEFONO")  // Código de teléfono
-    @NotBlank(message = "El teléfono no puede estar vacío")
     @Size(max = 9, message = "El teléfono debe tener máximo 9 dígitos")
     private String telefono;
 

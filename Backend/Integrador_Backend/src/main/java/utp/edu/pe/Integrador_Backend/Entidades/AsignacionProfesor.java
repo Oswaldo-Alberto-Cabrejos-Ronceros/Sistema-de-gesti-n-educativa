@@ -17,15 +17,16 @@ public class AsignacionProfesor {
     @Column(name = "C_ASIGNACIONPROFESORID")
     private Long asignacionProfesorId;
 
-    @Column(name = "N_GRADO")
-    private Integer grado;
-
-    // Relaciones
+    // Relacion con el profesor
     @ManyToOne
-    @JoinColumn(name = "FK_SOP_PROFESOR_C_USUARIOID") //FK a SOP_USUARIO_PROFESOR
+    @JoinColumn(name = "FK_SOP_PROFESOR_C_USUARIOID")
     private Profesor profesor;
 
+    // Relacion con el subcurso
     @ManyToOne
-    @JoinColumn(name = "FK_SOP_SUBCURSO_C_SUBCURSOID") // FK a SOP_CURSO_SUBCURSO
+    @JoinColumn(name = "FK_SOP_SUBCURSO_C_SUBCURSOID")
     private Subcurso subcurso;
+
+    @Column(name = "X_ESTADO")
+    private String estado = "ACTIVO";
 }

@@ -1,11 +1,14 @@
 package utp.edu.pe.Integrador_Backend.Controller;
 
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import utp.edu.pe.Integrador_Backend.Entidades.Alumno;
+import utp.edu.pe.Integrador_Backend.Entidades.Nota;
 import utp.edu.pe.Integrador_Backend.Entidades.UpdateRequest;
 import utp.edu.pe.Integrador_Backend.Service.AlumnoService;
 
@@ -17,15 +20,37 @@ public class AlumnoController {
     @Autowired
     private AlumnoService alumnoService;
 
-    @GetMapping("/listar")
+    @GetMapping("/list")
     public ResponseEntity<List<Alumno>> listarAlumnos() {
         List<Alumno> alumnos = alumnoService.listarAlumnos();
         return ResponseEntity.ok(alumnos);
     }
 
+    @GetMapping("/list/subcurso/{subcursoId}/grado/{grado}")
+    public ResponseEntity<List<Alumno>> obtenerAlumnosPorGradoYSubcurso(
+            @PathVariable Long subcursoId, @PathVariable Integer grado) {
+        List<Alumno> alumnos = alumnoService.obtenerAlumnosPorGradoYSubcurso(grado, subcursoId);
+        return ResponseEntity.ok(alumnos);
+    }
+
+    //notas por id de un alumno
+    @GetMapping("/{alumnoId}/notas")
+    public ResponseEntity<List<Nota>> obtenerNotasPorAlumno(@PathVariable Long alumnoId) {
+        List<Nota> notas = alumnoService.obtenerNotasPorAlumno(alumnoId);
+        return ResponseEntity.ok(notas);
+    }
+    //notas de un alumno e nun subcurso especifico
+    @GetMapping("/{alumnoId}/subcurso/{subcursoId}/notas")
+    public ResponseEntity<List<Nota>> obtenerNotasPorAlumnoYSubcurso(
+            @PathVariable Long alumnoId,
+            @PathVariable Long subcursoId) {
+        List<Nota> notas = alumnoService.obtenerNotasPorAlumnoYSubcurso(alumnoId, subcursoId);
+        return ResponseEntity.ok(notas);
+    }
+
     // Endpoint para crear un nuevo alumno
     @PostMapping("/registrar")
-    public ResponseEntity<Alumno> crearAlumno(@RequestBody Alumno alumno) {
+    public ResponseEntity<Alumno> crearAlumno(@Valid @RequestBody Alumno alumno) {
         Alumno nuevoAlumno = alumnoService.crearAlumno(alumno);
         return ResponseEntity.ok(nuevoAlumno);
     }
@@ -34,9 +59,16 @@ public class AlumnoController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Alumno> actualizarAlumno(
             @PathVariable Long id,
-            @RequestBody UpdateRequest request) {
+            @Valid @RequestBody UpdateRequest request) {
 
         Alumno alumnoActualizado = alumnoService.actualizarAlumno(id, request.getTelefono(), request.getPassword());
         return ResponseEntity.ok(alumnoActualizado);
     }
+
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<String> eliminarAlumno(@PathVariable Long id) {
+        alumnoService.eliminarAlumno(id);
+        return ResponseEntity.ok("Alumno Eliminado");
+    }
+
 }

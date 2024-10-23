@@ -7,6 +7,8 @@ import utp.edu.pe.Integrador_Backend.Entidades.Curso;
 import utp.edu.pe.Integrador_Backend.Service.CursoService;
 
 import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("api/cursos")
 public class CursoController {
@@ -14,7 +16,7 @@ public class CursoController {
     @Autowired
     private CursoService cursoService;
 
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<List<Curso>> listarCursos() {
         List<Curso> cursos = cursoService.listarCursos();
         return ResponseEntity.ok(cursos);
@@ -32,15 +34,21 @@ public class CursoController {
         return ResponseEntity.ok(nuevoCurso);
     }
 
-    @PutMapping("/{cursoId}")
-    public ResponseEntity<Curso> actualizarCurso(@PathVariable Long cursoId, @RequestBody Curso cursoActualizado) {
-        Curso curso = cursoService.actualizarCurso(cursoId, cursoActualizado);
-        return ResponseEntity.ok(curso);
+    @PutMapping("/update/{cursoId}")
+    public ResponseEntity<Curso> actualizarCurso(
+            @PathVariable Long cursoId,
+            @RequestBody Map<String, String> camposActualizados) {
+
+        String nuevoNombre = camposActualizados.get("nombreCurso");
+        String nuevaDescripcion = camposActualizados.get("descripcion");
+
+        Curso cursoActualizado = cursoService.actualizarCurso(cursoId, nuevoNombre, nuevaDescripcion);
+        return ResponseEntity.ok(cursoActualizado);
     }
 
     @DeleteMapping("/{cursoId}")
-    public ResponseEntity<Void> eliminarCurso(@PathVariable Long cursoId) {
+    public ResponseEntity<String> eliminarCurso(@PathVariable Long cursoId) {
         cursoService.eliminarCurso(cursoId);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Curso eliminado correctamente");
     }
 }
