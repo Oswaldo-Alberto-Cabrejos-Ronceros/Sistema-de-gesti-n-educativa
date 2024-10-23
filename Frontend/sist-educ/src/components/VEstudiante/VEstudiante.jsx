@@ -76,54 +76,7 @@ function VEstudiante() {
     nombres: "Cesar Augusto",
     apellidos: "Cabrera Wuffarden",
   };
-  let estudiantes = [
-    {
-      Dni: "7894561",
-      Apellidos: "Fujimori Higuchi",
-      Nombres: "Alberto Fernando",
-      Celular: "984859568",
-      Correo: "Alberto@example.com",
-      Nivel: "Primaria",
-      Grado: "6to",
-      Seccion: "A",
-    },
-    {
-      Dni: "7895445",
-      Apellidos: "Vizcarra Fujimori",
-      Nombres: "Keiko Sofia",
-      Celular: "994489860",
-      Correo: "Alberto@example.com",
-      Nivel: "Primaria",
-      Grado: "5to",
-      Seccion: "B",
-    },
-  ];
-
-  let docentes = [
-    {
-      Dni: "2225262",
-      Apellidos: "Maurtua Andrede",
-      Nombres: "Jose Marcos",
-      Celular: "985123265",
-      Correo: "Maurtua@example.com",
-      Nivel: "Secundaria",
-      Cursos: ["Trigonometria", "Geometria"],
-    },
-    {
-      Dni: "2598689",
-      Apellidos: "Rodriguez Advincula",
-      Nombres: "Maria Jesús",
-      Celular: "945002356",
-      Correo: "Rodriguez@example.com",
-      Nivel: "Primaria",
-      Cursos: [
-        "Matematica - 1er",
-        "Comunicación - 1er",
-        "Personal Social - 1er",
-      ],
-    },
-  ];
-
+  
 
 
   let tareasPorFechas = [

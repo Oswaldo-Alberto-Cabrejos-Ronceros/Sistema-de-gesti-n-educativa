@@ -6,38 +6,37 @@
     width: 100%;
     height: auto;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
 }
-.TitleGestionEstudiante{
+
+.VGestionEstudianteContainer .TitleGestionEstudiante{
     align-self:flex-start;
     margin: 1%;
     height: auto;
 }
 
-.TitleGestionEstudiante h3{
+.VGestionEstudianteContainer .TitleGestionEstudiante h3{
     margin: 0;
     padding: 0;
 }
 
-.VGestionEstudiantesContent{
+.VGestionEstudianteContainer .VGestionEstudiantesContent{
     display: flex;
     flex-direction: column;
     width: 100%;
     height: auto;
     max-height: none;
     min-height: 440px;
-    padding: 1%;
     box-sizing: border-box;
     align-self: flex-start;
-    margin-left: 0.5%;
+    margin-top: 20px;
     box-sizing: border-box;
-    border-radius: 4px;
-    margin-bottom: 1%;
     align-items: center;
 }
 
-.ButtonAgregar{
+.VGestionEstudianteContainer .ButtonAgregar{
     width: 100%;
     height: 10%;
     margin: 10px;

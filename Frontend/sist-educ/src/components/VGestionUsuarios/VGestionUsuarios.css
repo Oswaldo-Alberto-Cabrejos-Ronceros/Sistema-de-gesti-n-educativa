@@ -8,16 +8,20 @@
     flex-direction: column;
 }
 
-.TitleGestionUsuarios{
+.VGestionUsuariosContainer .LinkVGestionUsuarios{
+    text-decoration: none;
+}
+
+.VGestionUsuariosContainer .TitleGestionUsuarios{
     align-self:flex-start;
     margin: 1%;
     height: auto;
 }
-.TitleGestionUsuarios h3{
+.VGestionUsuariosContainer .TitleGestionUsuarios h3{
     margin: 0;
     padding: 0;
 }
-.VGestionUsuariosButtonsContainer{
+.VGestionUsuariosContainer .VGestionUsuariosButtonsContainer{
     align-self: start;
     padding: 0px 10px 10px 10px;
     box-sizing: border-box;
