@@ -17,6 +17,7 @@ import VCursosEstudianteContenido from "../VCursosEstudiante/VCursoEstudianteCon
 import VHorarioEstudiante from "../VHorarioEstudianteDocente/VHorarioEstudianteDocente";
 import VTareasEstudiante from "../VTareasEstudiante/VTareasEstudiante";
 import VNotasEstudiante from "../VNotasEstudiante/VNotasEstudiante";
+import VChatEstudiante from "../VChatEstudianteDocente/VChatEstudianteDocente";
 
 function VEstudiante() {
   let curso = {
@@ -124,7 +125,7 @@ function VEstudiante() {
               }
             />
             <Route path="/tareas/*" element={<VTareasEstudiante />} />
-            <Route path="/chat" element={<ComponenteVacio />} />
+            <Route path="/chat" element={<VChatEstudiante />} />
             <Route path="/notas/*" element={<VNotasEstudiante />} />
             <Route path="/honor/*" element={<VHonorEstudiante />} />
             <Route path="/curso/*" element={<VCursosEstudianteContenido />} />

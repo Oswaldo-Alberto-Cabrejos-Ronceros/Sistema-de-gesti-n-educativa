@@ -1,0 +1,58 @@
+:root{
+    --ColorIcon: #171717;
+    --ColorIconHover: #DC2626;
+}
+
+.InputMessageChatContainer{
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.25);
+    width: 75%;
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.InputMessageChatContainer .InputMessageChatLeftContainer{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.InputMessageChatContainer .InputMessageChatCenterContainer{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.InputMessageChatContainer .InputMessageChatIcon{
+    color: var(--ColorIcon);
+}
+
+.InputMessageChatContainer .InputMessageChatIcon:hover{
+    color: var(--ColorIconHover);
+    transition: 150ms;
+    cursor: pointer;
+}
+
+.InputMessageChatContainer .InputMessageChatCenterContainer input{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color:var(--ColorIcon);
+}
+
+.InputMessageChatContainer .InputMessageChatRightContainer{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

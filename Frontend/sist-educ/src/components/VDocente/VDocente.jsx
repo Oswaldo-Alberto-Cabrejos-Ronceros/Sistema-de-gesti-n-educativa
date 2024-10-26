@@ -11,6 +11,7 @@ import VTareasDocente from "../VTareasDocente/VTareasDocente";
 import VNotasDocente from "../VNotasDocenteAdministrador/VNotasDocenteAdministrador";
 import VHonorDocenteAdministrador from "../VHonorDocenteAdministrador/VHonorDocenteAdministrador";
 import VInformesDocente from "../VInformesDocenteAdministrador/VInformesDocenteAdministrador";
+import VChatDocente from "../VChatEstudianteDocente/VChatEstudianteDocente";
 
 function VDocente() {
   let userDocente = {
@@ -50,7 +51,7 @@ function VDocente() {
             <Route path="/cursos/*" element={<VCursosDocente cursos={cursosDocente} />} />
             <Route path="/horario" element={<VHorarioDocente grado_Apellidos={userDocente.apellidos} nivel_Nombres={userDocente.nombres}/>} />
             <Route path="/tareas/*" element={<VTareasDocente />} />
-            <Route path="/chat" element={<ComponenteVacio />} />
+            <Route path="/chat" element={<VChatDocente />} />
             <Route path="/notas/*" element={<VNotasDocente />} />
             <Route path="/honor/*" element={<VHonorDocenteAdministrador />} />
             <Route path="/curso/*" element={<VCursoDocenteContenido/>} />
