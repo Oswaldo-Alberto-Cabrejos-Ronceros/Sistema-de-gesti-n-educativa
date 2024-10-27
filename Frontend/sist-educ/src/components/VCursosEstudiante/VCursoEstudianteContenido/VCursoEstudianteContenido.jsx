@@ -72,6 +72,7 @@ function VCursoEstudianteContenido() {
       {
         nombre: "Tarea: Angulos Trigonometricos 1",
         link: "https://www.youtube.com/",
+        fechaEntrega:"17/12/24"
       },
       {
         nombre: "Tarea: Angulos Trigonometricos 2",

@@ -1,11 +1,9 @@
-import { useState } from "react";
-
 import "./App.css";
 import VInicioSesion from "./components/v-iniciosesion/VInicioSesion/VInicioSesion";
 import VEstudiante from "./components/VEstudiante/VEstudiante";
 import VDocente from "./components/VDocente/VDocente";
 import VAdministrador from "./components/VAdministrador/VAdministrador";
-import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 function App() {
   return (
     <>

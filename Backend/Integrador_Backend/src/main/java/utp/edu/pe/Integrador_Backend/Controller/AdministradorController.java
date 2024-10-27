@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/administradores")
+@CrossOrigin(origins = "http://localhost:5173/")
 public class AdministradorController {
     @Autowired
     private AdministradorService administradorService;

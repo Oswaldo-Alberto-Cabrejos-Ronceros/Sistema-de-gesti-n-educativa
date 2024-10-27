@@ -2,16 +2,14 @@ package utp.edu.pe.Integrador_Backend.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import utp.edu.pe.Integrador_Backend.Authentication.AuthResponse;
 import utp.edu.pe.Integrador_Backend.Authentication.LoginRequest;
 import utp.edu.pe.Integrador_Backend.Service.AuthenticationService;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "http://localhost:5173/")
 public class AuthenticationController {
 
     @Autowired
