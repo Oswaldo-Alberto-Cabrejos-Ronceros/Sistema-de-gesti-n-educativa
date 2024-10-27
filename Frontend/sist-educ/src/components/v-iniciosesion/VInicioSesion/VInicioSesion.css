@@ -16,6 +16,7 @@
   --ColorBackgroundInput: #f3f4f6;
   --ColorBtnBorderHover: #ef4444;
   --Transitionms: 150ms;
+  --ColorIconLabel:#171717;
 }
 
 .Container-Prin {
@@ -31,6 +32,7 @@
   background-size: cover; 
   background-position: center;
   background-repeat: no-repeat; 
+  color: var(--ColorIconLabel);
 }
 .Content-1 {
   display: flex;
@@ -43,6 +45,11 @@
   border-radius: 8px;
 }
 
+.Content-1 form{
+  display: flex;
+  flex-direction: column;
+  
+}
 
 .Content-1 img {
   width: 200px;
@@ -62,7 +69,7 @@
 }
 
 .Content-1 a:active {
-  color: var(--ColorBlack);
+  color: var(--ColorIconLabel);
 }
 
 .btnContainer {
@@ -120,14 +127,17 @@
   border: 1px solid var(--ColorBtnBorderHover);
   transition: var(--Transitionms);
 }
-.input-user-container:hover svg path {
-  stroke: var(--ColorBtnBorderHover);
-  transition: var(--Transitionms);
+
+.input-user-container .iconInputVInicioContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--ColorIconLabel)
 }
 
-.input-user-container svg {
-  width: 20px;
-  height: 20px;
-  align-self: center;
+.input-user-container .iconInputVInicioContainer:hover {
+  color: var(--ColorBtnPrin)
 }
+
 

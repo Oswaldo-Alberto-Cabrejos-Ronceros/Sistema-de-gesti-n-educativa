@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FaRegUser } from "react-icons/fa";
+import { IoMdEye } from "react-icons/io";
 import "./VInicioSesion.css";
+
 
 function VInicioSesion() {
   const [username, setUsername] = useState("");
@@ -68,15 +71,9 @@ function VInicioSesion() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            <svg
-              width="23"
-              height="26"
-              viewBox="0 0 23 26"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* SVG PATH */}
-            </svg>
+            <div className="iconInputVInicioContainer">
+            <FaRegUser/>
+            </div>
           </div>
           <div className="input-user-container">
             <input
@@ -85,15 +82,9 @@ function VInicioSesion() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}  
             />
-            <svg
-              width="25"
-              height="26"
-              viewBox="0 0 25 26"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* SVG PATH */}
-            </svg>
+            <div className="iconInputVInicioContainer">
+            <IoMdEye/>
+            </div>
           </div>
           <a href="#">Olvidaste tu contraseña</a>
           <div className="btnContainer">
