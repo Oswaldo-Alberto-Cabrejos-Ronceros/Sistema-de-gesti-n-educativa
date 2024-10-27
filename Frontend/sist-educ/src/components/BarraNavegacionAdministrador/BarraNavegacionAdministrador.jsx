@@ -17,7 +17,7 @@ function BarraNavegacionAdministrador() {
   return (
     <div className='BarraNavegacionAdministradorContainer'>
       <div className="HorizontalContainerBarAdministrador">
-        <Link to="/usuario">
+        <Link to="usuario">
         <NavUser
           nombre={"Administrador"}
           imagen={"https://dashboard.rtta.rw/public/assets/img/avatar.png"}
@@ -29,14 +29,14 @@ function BarraNavegacionAdministrador() {
       </div>
       <div className="VerticalContainerBarAdmin">
         <div className="OptionsContainer">
-          <NavItem id={"Cursos"} titulo={"Cursos"} icon={<IoBookOutline />} to="/cursos"/>
-          <NavItem id={"Horario"} titulo={"Horario"} icon={<FaCalendarAlt />} to="/horario"/>
-          <NavItem id={"Tareas"} titulo={"Tareas"} icon={<FaTasks />} to="/tareas"/>
-          <NavItem id={"Notas"} titulo={"Notas"} icon={<GrNotes />} to="/notas"/>
-          <NavItem id={"Usuarios"} titulo={"Usuarios"} icon={<TbUserEdit />} to="/gestionusuarios"/>
-          <NavItem id={"GestionCursos"} titulo={"Gestión Cursos"} icon={<GoPencil />} to="/gestioncursos"/>
-          <NavItem id={"Honor"} titulo={"Honor"} icon={<FaRankingStar />} to="/honor"/>
-          <NavItem id={"Informes"} titulo={"Informes"} icon={<FiTrendingUp />} to="/informes"/>
+          <NavItem id={"Cursos"} titulo={"Cursos"} icon={<IoBookOutline />} to="cursos"/>
+          <NavItem id={"Horario"} titulo={"Horario"} icon={<FaCalendarAlt />} to="horario"/>
+          <NavItem id={"Tareas"} titulo={"Tareas"} icon={<FaTasks />} to="tareas"/>
+          <NavItem id={"Notas"} titulo={"Notas"} icon={<GrNotes />} to="notas"/>
+          <NavItem id={"Usuarios"} titulo={"Usuarios"} icon={<TbUserEdit />} to="gestionusuarios"/>
+          <NavItem id={"GestionCursos"} titulo={"Gestión Cursos"} icon={<GoPencil />} to="gestioncursos"/>
+          <NavItem id={"Honor"} titulo={"Honor"} icon={<FaRankingStar />} to="honor"/>
+          <NavItem id={"Informes"} titulo={"Informes"} icon={<FiTrendingUp />} to="informes"/>
         </div>
       </div>
     </div>

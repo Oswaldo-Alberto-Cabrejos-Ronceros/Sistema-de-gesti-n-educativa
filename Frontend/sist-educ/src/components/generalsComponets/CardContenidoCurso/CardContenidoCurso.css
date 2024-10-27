@@ -1,0 +1,51 @@
+:root{
+    --ColorBorderCardContenidoCurso:#171717;
+    --ColorBgCardContenidoCurso:#FEF2F2;
+}
+
+.CardContenidoCursoContainer{
+    width: 80%;
+    height: 65vh;
+    margin: 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--ColorBorderCardContenidoCurso);
+    background-color: var(--ColorBgCardContenidoCurso);
+    display: flex;
+    flex-direction: column;
+}
+
+.CardContenidoCursoContainer .CardContenidoCursoTitleContainer{
+    display: flex;
+    align-self:flex-start;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    height: 8%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.CardContenidoCursoContainer .CardContenidoCursoTitleContainer h3{
+    margin: 0;
+    padding: 0;
+}
+
+
+.CardContenidoCursoContainer .CardContenidoCursoDescriptionContainer{
+    width: 100%;
+    height: 80%;
+    padding: 10px;
+    display: flex;
+    text-align: left;
+    
+}
+
+.CardContenidoCursoContainer .CardContenidoCursoButtonContainer{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

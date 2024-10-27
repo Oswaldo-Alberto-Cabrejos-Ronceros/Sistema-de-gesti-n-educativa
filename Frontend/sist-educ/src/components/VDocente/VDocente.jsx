@@ -42,25 +42,24 @@ function VDocente() {
     },
   ];
   return (
-    <BrowserRouter>
+
       <div className="VDocenteMain">
         <BarraNavegacionDocente />
         <div className="containerCambDocente">
           <Routes>
-            <Route path="/" element={<Navigate to="/cursos" />} />
-            <Route path="/cursos/*" element={<VCursosDocente cursos={cursosDocente} />} />
-            <Route path="/horario" element={<VHorarioDocente grado_Apellidos={userDocente.apellidos} nivel_Nombres={userDocente.nombres}/>} />
-            <Route path="/tareas/*" element={<VTareasDocente />} />
-            <Route path="/chat" element={<VChatDocente />} />
-            <Route path="/notas/*" element={<VNotasDocente />} />
-            <Route path="/honor/*" element={<VHonorDocenteAdministrador />} />
-            <Route path="/curso/*" element={<VCursoDocenteContenido/>} />
-            <Route path="/informes/*" element={<VInformesDocente />} />
-            <Route path="/usuario" element={<InfoUser user={userDocente} />} />
+            <Route index element={<Navigate to="cursos" />} />
+            <Route path="cursos/*" element={<VCursosDocente cursos={cursosDocente} />} />
+            <Route path="horario" element={<VHorarioDocente grado_Apellidos={userDocente.apellidos} nivel_Nombres={userDocente.nombres}/>} />
+            <Route path="tareas/*" element={<VTareasDocente />} />
+            <Route path="chat" element={<VChatDocente />} />
+            <Route path="notas/*" element={<VNotasDocente />} />
+            <Route path="honor/*" element={<VHonorDocenteAdministrador />} />
+            <Route path="curso/*" element={<VCursoDocenteContenido/>} />
+            <Route path="informes/*" element={<VInformesDocente />} />
+            <Route path="usuario" element={<InfoUser user={userDocente} />} />
           </Routes>
         </div>
       </div>
-    </BrowserRouter>
   );
 }
 

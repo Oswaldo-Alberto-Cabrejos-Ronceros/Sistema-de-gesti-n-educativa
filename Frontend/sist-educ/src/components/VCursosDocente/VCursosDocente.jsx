@@ -11,7 +11,7 @@ function VCursosDocente({cursos}) {
       </div>
         {
           cursos.map((curso)=>{
-            return <Link to="/curso" state={{curso}} className='LinkCardsCursos'><CardCursoDocente curso={curso}/></Link>
+            return <Link to="/docente/curso" state={{curso}} className='LinkCardsCursos'><CardCursoDocente curso={curso}/></Link>
           })
         }
     </div>

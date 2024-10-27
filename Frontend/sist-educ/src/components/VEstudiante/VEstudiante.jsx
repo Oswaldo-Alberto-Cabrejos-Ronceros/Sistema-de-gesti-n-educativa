@@ -105,18 +105,17 @@ function VEstudiante() {
   ];
 
   return (
-    <BrowserRouter>
       <div className="VEstudianteMain">
         <BarraNavegacion onOptionSelect={handleOptionSelect} />
         <div className="containerCamb">
           <Routes>
-          <Route path="/" element={<Navigate to="/cursos" />} />
+          <Route index element={<Navigate to="cursos" />} />
             <Route
-              path="/cursos/*"
+              path="cursos/*"
               element={<VCursosEstudiante cursos={cursos} />}
             />
             <Route
-              path="/horario"
+              path="horario"
               element={
                 <VHorarioEstudiante
                 grado_Apellidos={userAlumno.grado}
@@ -124,16 +123,15 @@ function VEstudiante() {
                 />
               }
             />
-            <Route path="/tareas/*" element={<VTareasEstudiante />} />
-            <Route path="/chat" element={<VChatEstudiante />} />
-            <Route path="/notas/*" element={<VNotasEstudiante />} />
-            <Route path="/honor/*" element={<VHonorEstudiante />} />
-            <Route path="/curso/*" element={<VCursosEstudianteContenido />} />
-            <Route path="/usuario" element={<InfoUser user={userAlumno} />} />
+            <Route path="tareas/*" element={<VTareasEstudiante />} />
+            <Route path="chat" element={<VChatEstudiante />} />
+            <Route path="notas/*" element={<VNotasEstudiante />} />
+            <Route path="honor/*" element={<VHonorEstudiante />} />
+            <Route path="curso/*" element={<VCursosEstudianteContenido />} />
+            <Route path="usuario" element={<InfoUser user={userAlumno} />} />
           </Routes>
         </div>
       </div>
-    </BrowserRouter>
   );
 }
 

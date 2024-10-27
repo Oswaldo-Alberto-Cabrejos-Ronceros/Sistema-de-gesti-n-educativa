@@ -132,26 +132,25 @@ function VAdministrador() {
 
 
   return (
-    <BrowserRouter>
     <div className='VAdministradorMain'>
       <BarraNavegacionAdministrador/>
       <div className='containerCambAdministrador'>
       <Routes>
-      <Route path="/" element={<Navigate to="/cursos" />} />
-            <Route path="/cursos/*" element={<VCursosAdministrador cursos={cursosDocente} />} />
-            <Route path="/horario/*" element={<VHorarioAdministrador/>} />
-            <Route path="/tareas/*" element={<VTareasAdministrador />} />
-            <Route path="/notas/*" element={<VNotasAdministrador/>} />
-            <Route path="/gestionusuarios/*" element={<VGestionUsuarios estudiantes={estudiantes} docentes={docentes}/>} />
-            <Route path="/gestioncursos/*" element={<VGestionCursos cursos={cursosGestion} subcursos={subcursosGestion} />} />
-            <Route path="/honor/*" element={<VHonorAdministrador/>} />
-            <Route path="/curso/*" element={<VCursoAdministradorContenido/>} />
-            <Route path="/informes/*" element={<VInformesAdministrador/>} />
-            <Route path="/usuario" element={<InfoUser user={userAdministrador} />} />
+      <Route index element={<Navigate to="cursos" />} />
+            <Route path="cursos/*" element={<VCursosAdministrador cursos={cursosDocente} />} />
+            <Route path="horario/*" element={<VHorarioAdministrador/>} />
+            <Route path="tareas/*" element={<VTareasAdministrador />} />
+            <Route path="notas/*" element={<VNotasAdministrador/>} />
+            <Route path="gestionusuarios/*" element={<VGestionUsuarios estudiantes={estudiantes} docentes={docentes}/>} />
+            <Route path="gestioncursos/*" element={<VGestionCursos cursos={cursosGestion} subcursos={subcursosGestion} />} />
+            <Route path="honor/*" element={<VHonorAdministrador/>} />
+            <Route path="curso/*" element={<VCursoAdministradorContenido/>} />
+            <Route path="informes/*" element={<VInformesAdministrador/>} />
+            <Route path="usuario" element={<InfoUser user={userAdministrador} />} />
       </Routes>
       </div>
     </div>
-    </BrowserRouter>
+
   )
 }
 

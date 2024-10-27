@@ -2,7 +2,7 @@ import React from 'react'
 import './VCursoEstudianteContenidoContenido.css'
 import ComBoxCursoXUnidadEstudiante from '../../../generalsComponets/ComBoxCursoXUnidadEstudiante/ComBoxCursoXUnidadEstudiante';
 
-function VCursoEstudianteContenidoContenido({contenidos}) {
+function VCursoEstudianteContenidoContenido({to,curso,contenidos}) {
     let unidad = "Unidad ";
     let numerounidad = 1;
     let unidadString;
@@ -15,6 +15,8 @@ function VCursoEstudianteContenidoContenido({contenidos}) {
           <ComBoxCursoXUnidadEstudiante
             unidad={unidadString}
             contenidos={contenido}
+            curso={curso}
+            to={to}
           />
         );
       })}
