@@ -47,4 +47,4 @@ function InfoUser({user}) {
   )
 }
 
-export default InfoUser
+export default InfoUser 

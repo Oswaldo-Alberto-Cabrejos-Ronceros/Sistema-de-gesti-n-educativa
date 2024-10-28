@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import utp.edu.pe.Integrador_Backend.Entidades.AsignacionProfesor;
 import utp.edu.pe.Integrador_Backend.Entidades.AsignarSubcursosRequest;
 import utp.edu.pe.Integrador_Backend.Entidades.Profesor;
 import utp.edu.pe.Integrador_Backend.Entidades.UpdateRequest;
@@ -16,6 +15,7 @@ import java.util.List;
 
 @RestController
 @Controller
+@CrossOrigin(origins = "http://localhost:5173/")
 @RequestMapping("api/profesores")
 public class ProfesorController {
 
@@ -33,7 +33,7 @@ public class ProfesorController {
     }
 
     // Listar todos los profesores
-    @GetMapping("/list")
+    @GetMapping
     public ResponseEntity<List<Profesor>> listarProfesores() {
         List<Profesor> profesores = profesorService.listarProfesores();
         return ResponseEntity.ok(profesores);

@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./VInicioSesion.css";
 import { FaRegUser } from "react-icons/fa";
 import { IoMdEye } from "react-icons/io";
-import "./VInicioSesion.css";
-
 
 function VInicioSesion() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    setErrorMessage(""); // Limpiar mensaje de error al intentar iniciar sesión de nuevo
+
     try {
       const response = await axios.post("http://localhost:8080/auth/login", {
         username: username,
@@ -24,23 +26,31 @@ function VInicioSesion() {
       // Guardar el token en sessionStorage
       sessionStorage.setItem("jwtToken", jwtToken);
 
-      // Guardar el resto de los datos del usuario en sessionStorage
-      sessionStorage.setItem("userData", JSON.stringify({
-        usuarioId: response.data.usuarioId,
-        nombre: response.data.nombre,
-        apellido: response.data.apellido,
-        dni: response.data.dni,
-        telefono: response.data.telefono,
-        codigo: response.data.codigo,
-        rol: response.data.rol,
-        grado: response.data.grado,
-        seccion: response.data.seccion,
-        nivel: response.data.nivel,
-        especialidad: response.data.especialidad,
-      }));
+      // Decodificar el JWT manualmente para obtener el rol
+      const base64Url = jwtToken.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const jsonPayload = JSON.parse(window.atob(base64));
+      const role = jsonPayload.authorities;
+
+      // Guardar los demás datos del usuario en sessionStorage
+      sessionStorage.setItem(
+        "userData",
+        JSON.stringify({
+          usuarioId: response.data.usuarioId,
+          nombre: response.data.nombre,
+          apellido: response.data.apellido,
+          dni: response.data.dni,
+          telefono: response.data.telefono,
+          codigo: response.data.codigo,
+          rol: response.data.rol,
+          grado: response.data.grado,
+          seccion: response.data.seccion,
+          nivel: response.data.nivel,
+          especialidad: response.data.especialidad,
+        })
+      );
 
       // Redirigir según el rol
-      const role = response.data.rol;
       if (role === "ADMIN") {
         navigate("/administrador");
       } else if (role === "PROFESOR") {
@@ -50,7 +60,12 @@ function VInicioSesion() {
       }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
-      alert("Credenciales incorrectas");
+      setErrorMessage("Credenciales incorrectas, intente nuevamente");
+
+      // Ocultar el mensaje de error después de 3 segundos
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
     }
   };
 
@@ -58,12 +73,13 @@ function VInicioSesion() {
     <div className="Container-Prin">
       <div className="Content-1">
         <img
-          src="https://scontent.fpio2-1.fna.fbcdn.net/v/t1.6435-9/119931467_102934771572270_2851731201534669293_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHb7GRpree8ylSIOsKgKaM8KEcbqGJa7QcoRxuoYlrtB0izSoKDIR4wLph5U9vL31vEsiVnDCF5YVSEPdX8WtfS&_nc_ohc=ylnQQeI_NAcQ7kNvgFfEdkP&_nc_ht=scontent.fpio2-1.fna&_nc_gid=AsQD5Xn6P_RDV_H7S6syKze&oh=00_AYDlwHGlZR4vbCgJsR2OdIJxaJqThnI3bsA8Jm-5XQjzCw&oe=67456050"
+          src="https://scontent.fpio2-1.fna.fbcdn.net/v/t1.6435-9/119931467_102934771572270_2851731201534669293_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHb7GRpree8ylSIOsKgKaM8KEcbqGJa7QcoRxuoYlrtB0izSoKDIR4wLph5U9vL31vEsiVnDCF5YVSEPdX8WtfS&_nc_ohc=mLtHC40Ez6gQ7kNvgETITH_&_nc_ht=scontent.fpio2-1.fna&_nc_gid=AlNLdyn8_ig9Qh0_l04cWQ9&oh=00_AYBTBa6BZwZnwQodIDDJV8kOjOU6sBmoiJmAI-VW57O10A&oe=673E9090"
           alt="Logo del Colegio"
         />
         <h3>Su nueva plataforma virtual</h3>
         <form onSubmit={handleLogin}>
           <p className="PMd">Ingrese sus datos</p>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
           <div className="input-user-container">
             <input
               type="text"
@@ -71,8 +87,8 @@ function VInicioSesion() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            <div className="iconInputVInicioContainer">
-            <FaRegUser/>
+            <div className="IconInicioSesionContainer">
+              <FaRegUser />
             </div>
           </div>
           <div className="input-user-container">
@@ -80,10 +96,10 @@ function VInicioSesion() {
               type="password"
               placeholder="Ingrese contraseña"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}  
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="iconInputVInicioContainer">
-            <IoMdEye/>
+            <div className="IconInicioSesionContainer">
+              <IoMdEye />
             </div>
           </div>
           <a href="#">Olvidaste tu contraseña</a>
@@ -96,4 +112,4 @@ function VInicioSesion() {
   );
 }
 
-export default VInicioSesion;
+export default VInicioSesion;

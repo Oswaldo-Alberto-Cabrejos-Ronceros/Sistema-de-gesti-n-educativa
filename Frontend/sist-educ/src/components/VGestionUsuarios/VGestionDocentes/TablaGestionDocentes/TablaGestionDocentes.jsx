@@ -4,15 +4,11 @@ import PrimaryButton from '../../../generalsComponets/PrimaryButton/PrimaryButto
 import SelectComponent from '../../../generalsComponets/SelectComponent/SelectComponent';
 
 function TablaGestionDocentes({docentes}) {
-    let fEditarDocente = function () {
-        alert("Presionando Boton Editar Docente");
-      };
-      let fEliminarDocente = function () {
-        alert("Presionano Boton Eliminar Docente");
-      };
+    let cursos=["Matematica","Comunicacion"];
+    console.log(docentes)
   return (
     <div className='TablaGestionDocentesContainer'>
-        {docentes.lenght===0?(
+        {docentes.lenght === 0 ? (
             <div className='TablaGestionDocentesVerDocEmpty'>
             <h3>No hay Docentes registrados</h3>
         </div>
@@ -25,7 +21,7 @@ function TablaGestionDocentes({docentes}) {
                         <th>Apellidos</th>
                         <th>Nombres</th>
                         <th>Celular</th>
-                        <th>Correo</th>
+                        <th>Codigo</th>
                         <th>Nivel</th>
                         <th>Cursos</th>
                         <th>Editar</th>
@@ -35,20 +31,20 @@ function TablaGestionDocentes({docentes}) {
                     <tbody>
                     {
                         docentes.map((docente)=>(
-                            <tr key={docente.Dni || index}>
-                                <td>{docente.Dni}</td>
-                                <td>{docente.Apellidos}</td>
-                                <td>{docente.Nombres}</td>
-                                <td>{docente.Celular}</td>
-                                <td>{docente.Correo}</td>
-                                <td>{docente.Nivel}</td>
+                            <tr key={docente.dni}>
+                                <td>{docente.dni}</td>
+                                <td>{docente.apellido}</td>
+                                <td>{docente.nombre}</td>
+                                <td>{docente.telefono}</td>
+                                <td>{docente.codigo}</td>
+                                <td>{docente.nivel}</td>
                                 <td>
-                                    <SelectComponent name={"Cursos"} options={docente.Cursos} />
+                                    <SelectComponent name={"Cursos"} options={cursos} />
                                 </td>
                                 <td>
-                                    <PrimaryButton onClick={fEditarDocente} nombre={"Editar"}/>
+                                    <PrimaryButton nombre={"Editar"}/>
                                 </td>
-                                <td><PrimaryButton onClick={fEliminarDocente} nombre={"Eliminar"}/></td>
+                                <td><PrimaryButton nombre={"Eliminar"}/></td>
                             </tr>
                         ))
                     }

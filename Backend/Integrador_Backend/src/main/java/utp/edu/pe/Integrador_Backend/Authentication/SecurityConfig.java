@@ -7,6 +7,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,7 +17,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import utp.edu.pe.Integrador_Backend.Service.AuthenticationService;
+
+import java.util.List;
 
 
 @Configuration
@@ -32,23 +38,21 @@ public class SecurityConfig {
 
         return httpSecurity
                 .csrf(csrf -> csrf.disable())
+                .cors(Customizer.withDefaults()) // Habilitar CORS en Spring Security
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(http -> {
                     // Endpoints públicos
                     http.requestMatchers("/auth/login").permitAll();
+                    http.requestMatchers("/api/alumnos/**").permitAll();
+
+
 
                     // Endpoints protegidos (solo ADMIN)
                     http.requestMatchers(HttpMethod.POST, "/api/administradores/**").hasAuthority("ADMIN");
                     http.requestMatchers(HttpMethod.PUT, "/api/administradores/**").hasAuthority("ADMIN");
                     http.requestMatchers(HttpMethod.DELETE, "/api/administradores/**").hasAuthority("ADMIN");
 
-                    // Endpoints relacionados a alumnos (ADMIN)
-                    http.requestMatchers(HttpMethod.POST, "/api/alumnos/**").hasAuthority("ADMIN");
-                    http.requestMatchers(HttpMethod.PUT, "/api/alumnos/**").hasAuthority("ADMIN");
-                    http.requestMatchers(HttpMethod.DELETE, "/api/alumnos/**").hasAuthority("ADMIN");
 
-                    // Acceso a GET de alumnos para ADMIN y PROFESORES
-                    http.requestMatchers(HttpMethod.GET, "/api/alumnos/**").hasAnyAuthority("ADMIN", "PROFESOR");
 
                     // Endpoints relacionados a profesores (ADMIN)
                     http.requestMatchers(HttpMethod.GET, "/api/profesores/**").hasAuthority("ADMIN");
@@ -100,5 +104,18 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }

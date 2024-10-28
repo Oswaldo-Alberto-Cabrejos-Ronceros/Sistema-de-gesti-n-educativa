@@ -1,16 +1,21 @@
 import React from 'react'
 import './InputComponent.css'
 
-
-function InputComponent({nombre,placeholder,icon,type}) {
+function InputComponent({ nombre, placeholder, icon, type, value, onChange }) {
   return (
-    <div className='InputComponentContainer'>
-      <div className='IconInputContainer'>
-      {icon}
-      </div>
-      <input type={type} name={nombre} id={nombre} placeholder={placeholder} required/>
+    <div className="InputComponentContainer">
+      <div className="IconInputContainer">{icon}</div>
+      <input
+        type={type}
+        name={nombre} // Cambiado a nombre
+        id={nombre} // Cambiado a nombre
+        placeholder={placeholder}
+        required
+        value={value} // Asegúrate de que reciba el valor del padre
+        onChange={onChange} // onChange directamente del padre
+      />
     </div>
-  )
+  );
 }
 
-export default InputComponent
+export default InputComponent;

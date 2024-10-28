@@ -1,26 +1,25 @@
 package utp.edu.pe.Integrador_Backend.Controller;
 
-import jakarta.transaction.Transactional;
+
 import jakarta.validation.Valid;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import utp.edu.pe.Integrador_Backend.Entidades.Alumno;
 import utp.edu.pe.Integrador_Backend.Entidades.Nota;
 import utp.edu.pe.Integrador_Backend.Entidades.UpdateRequest;
 import utp.edu.pe.Integrador_Backend.Service.AlumnoService;
-
 import java.util.List;
+
+
 @RestController
-@Controller
 @RequestMapping("api/alumnos")
 public class AlumnoController {
+
     @Autowired
     private AlumnoService alumnoService;
 
-    @GetMapping("/list")
+    @GetMapping
     public ResponseEntity<List<Alumno>> listarAlumnos() {
         List<Alumno> alumnos = alumnoService.listarAlumnos();
         return ResponseEntity.ok(alumnos);

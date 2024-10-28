@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import utp.edu.pe.Integrador_Backend.Entidades.Nota;
 import utp.edu.pe.Integrador_Backend.Service.NotaService;
 @RestController
+@CrossOrigin(origins = "http://localhost:5173/")
 @RequestMapping("api/notas")
 public class NotaController {
 

@@ -9,7 +9,6 @@ import utp.edu.pe.Integrador_Backend.Service.AuthenticationService;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "http://localhost:5173/")
 public class AuthenticationController {
 
     @Autowired

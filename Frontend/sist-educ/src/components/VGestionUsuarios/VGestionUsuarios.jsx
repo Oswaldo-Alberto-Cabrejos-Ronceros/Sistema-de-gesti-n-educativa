@@ -5,8 +5,34 @@ import VGestionEstudiante from "./VGestionEstudiante/VGestionEstudiante";
 import VGestionDocentes from "./VGestionDocentes/VGestionDocentes";
 import { Routes, Route, Link } from 'react-router-dom';
 
-function VGestionUsuarios({ estudiantes, docentes }) {
+function VGestionUsuarios() {
 
+  
+
+  let docentes = [
+    {
+      Dni: "2225262",
+      Apellidos: "Maurtua Andrede",
+      Nombres: "Jose Marcos",
+      Celular: "985123265",
+      Correo: "Maurtua@example.com",
+      Nivel: "Secundaria",
+      Cursos: ["Trigonometria", "Geometria"],
+    },
+    {
+      Dni: "2598689",
+      Apellidos: "Rodriguez Advincula",
+      Nombres: "Maria Jesús",
+      Celular: "945002356",
+      Correo: "Rodriguez@example.com",
+      Nivel: "Primaria",
+      Cursos: [
+        "Matematica - 1er",
+        "Comunicación - 1er",
+        "Personal Social - 1er",
+      ],
+    },
+  ];
   return (
     <div className="VGestionUsuariosContainer">
       <div className="TitleGestionUsuarios">
@@ -22,8 +48,8 @@ function VGestionUsuarios({ estudiantes, docentes }) {
       </div>
       <div className="CambGestionUsuarios">
         <Routes>
-          <Route index element={<VGestionEstudiante estudiantes={estudiantes}/>}/>
-          <Route path="estudiantes" element={<VGestionEstudiante estudiantes={estudiantes}/>}/>
+          <Route index element={<VGestionEstudiante />}/>
+          <Route path="estudiantes" element={<VGestionEstudiante />}/>
           <Route path="docentes" element={<VGestionDocentes docentes={docentes}/>}/>
         </Routes>
       </div>

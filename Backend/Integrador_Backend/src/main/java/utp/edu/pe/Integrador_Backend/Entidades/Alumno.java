@@ -33,11 +33,11 @@ public class Alumno  extends Usuario{
     private Date fechaNacimiento;
 
     // Relaciones con otras entidades
-    @OneToMany(mappedBy = "alumno")
+    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("alumno")
     private Set<AsignacionAlumno> asignaciones = new HashSet<>();;
 
-    @OneToMany(mappedBy = "alumno")
+    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("alumno")
     private Set<Nota> notas;
 }

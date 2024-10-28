@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './BarraNavegacionAdministrador.css';
-import { Link } from 'react-router-dom';
 import NavItem from '../generalsComponets/NavItem/NavItem';
 import NavUser from '../generalsComponets/CardUser/NavUser';
 import { FaSignOutAlt } from "react-icons/fa";
@@ -14,6 +14,16 @@ import { TbUserEdit } from "react-icons/tb";
 import { GoPencil } from "react-icons/go";
 
 function BarraNavegacionAdministrador() {
+
+  const [showLogoutModal, setShowLogoutModal] = useState(false); // Estado para controlar el modal
+  const navigate = useNavigate();
+
+  const handleLogoutConfirm = () => {
+    // Limpiar sessionStorage y redirigir
+    sessionStorage.clear();
+    navigate('/login');
+  };
+
   return (
     <div className='BarraNavegacionAdministradorContainer'>
       <div className="HorizontalContainerBarAdministrador">
@@ -23,8 +33,11 @@ function BarraNavegacionAdministrador() {
           imagen={"https://dashboard.rtta.rw/public/assets/img/avatar.png"}
         />
         </Link>
-        <div className="SessionOutContainer">
-        <FaSignOutAlt/>
+        <div
+          className="SessionOutContainer"
+          onClick={() => setShowLogoutModal(true)}
+        >
+          <FaSignOutAlt />
         </div>
       </div>
       <div className="VerticalContainerBarAdmin">
@@ -39,8 +52,32 @@ function BarraNavegacionAdministrador() {
           <NavItem id={"Informes"} titulo={"Informes"} icon={<FiTrendingUp />} to="informes"/>
         </div>
       </div>
+
+
+      {/* Modal de confirmación de cierre de sesión */}
+      {showLogoutModal && (
+        <div className="LogoutModalOverlay">
+          <div className="LogoutModalContent">
+            <h3>¿Estás seguro de cerrar la sesión?</h3>
+            <div className="LogoutModalButtons">
+              <button
+                onClick={() => setShowLogoutModal(false)}
+                className="LogoutButtonNo"
+              >
+                No
+              </button>
+              <button
+                onClick={handleLogoutConfirm}
+                className="LogoutButtonYes"
+              >
+                Sí
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
 export default BarraNavegacionAdministrador
