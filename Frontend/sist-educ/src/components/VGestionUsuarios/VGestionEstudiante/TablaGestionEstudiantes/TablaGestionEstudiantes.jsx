@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./TablaGestionEstudiantes.css";
 import PrimaryButton from "../../../generalsComponets/PrimaryButton/PrimaryButton";
+import AlumnoService from "../../../../services/alumnoService";
 
 function TablaGestionEstudiantes({ estudiantes, onStudentDeleted }) {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
