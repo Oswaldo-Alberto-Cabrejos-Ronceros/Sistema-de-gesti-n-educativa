@@ -1,0 +1,70 @@
+:root{
+    --ColorBorderCardTareaCurso:#171717;
+    --ColorBgCardTareaCurso:#FEF2F2;
+}
+
+.CardTareaCursoContainer{
+    width: 80%;
+    height: 65vh;
+    margin: 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--ColorBorderCardTareaCurso);
+    background-color: var(--ColorBgCardTareaCurso);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.CardTareaCursoContainer .PMd{
+    padding: 0;
+    margin: 0;
+    cursor: default;
+}
+
+.CardTareaCursoContainer .CardTareaCursoTitleContainer{
+    display: flex;
+    align-self:flex-start;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    height: 8%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.CardTareaCursoContainer .CardTareaCursoTitleContainer h3{
+    margin: 0;
+    padding: 0;
+}
+
+
+.CardTareaCursoContainer .CardTareaCursoDescriptionContainer{
+    width: 100%;
+    height: 70%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.CardTareaCursoContainer .CardTareaCursoFechaEntregaContainer{
+    width: 100%;
+    height: 10%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+}
+
+.CardTareaCursoContainer .CardTareaCursoButtonContainer{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}

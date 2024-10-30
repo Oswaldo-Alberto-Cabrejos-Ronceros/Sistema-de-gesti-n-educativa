@@ -1,8 +1,8 @@
 import React from "react";
 import "./VCursoEstudianteContenidoTareas.css";
-import ComBoxCursoXUnidadEstudiante from "../../../generalsComponets/ComBoxCursoXUnidadEstudiante/ComBoxCursoXUnidadEstudiante";
+import ComBoxTareaXUnidadEstudiante from "../../../generalsComponets/ComBoxTareaXUnidadEstudiante/ComBoxTareaXUnidadEstudiante";
 
-function VCursoEstudianteContenidoTareas({ tareas }) {
+function VCursoEstudianteContenidoTareas({to, curso, tareas }) {
   let unidad = "Unidad ";
   let numerounidad = 1;
   let unidadString;
@@ -12,9 +12,11 @@ function VCursoEstudianteContenidoTareas({ tareas }) {
         unidadString = unidad + numerounidad;
         numerounidad++;
         return (
-          <ComBoxCursoXUnidadEstudiante
+          <ComBoxTareaXUnidadEstudiante
             unidad={unidadString}
-            contenidos={tarea}
+            tareas={tarea}
+            curso={curso}
+            to={to}
           />
         );
       })}

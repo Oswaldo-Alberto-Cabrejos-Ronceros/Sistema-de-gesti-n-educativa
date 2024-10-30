@@ -4,7 +4,7 @@ import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import ComBoxElementTarea from "../../generalsComponets/ComBoxElementTarea/ComBoxElementTarea";
 
-function ComBoxTareaXUnidadEstudiante({ unidad, tareas }) {
+function ComBoxTareaXUnidadEstudiante({ to, curso, unidad, tareas }) {
   const [mostrarOtroComponente, setMostrarOtroComponente] = useState(false);
 
   const handleClick = () => {
@@ -22,7 +22,7 @@ function ComBoxTareaXUnidadEstudiante({ unidad, tareas }) {
       mostrarOtroComponente && (
         <div className="ComBoxGeneralElementTareaContainer">
           {tareas.map((tarea, index) => (
-            <ComBoxElementTarea key={index} tarea={tarea} />
+            <ComBoxElementTarea key={index} tarea={tarea} to={to} curso={curso}  />
           ))
           }
         </div>

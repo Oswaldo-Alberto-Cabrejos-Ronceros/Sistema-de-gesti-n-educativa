@@ -41,6 +41,7 @@ h3{
 
 .PMd{
   font-size: var(--PMdsize);
+  cursor: default;
 }
 
 .PSm{
