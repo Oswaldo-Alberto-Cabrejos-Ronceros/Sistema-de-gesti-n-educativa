@@ -3,15 +3,16 @@ import './ComBoxElementTareaDocenteAdmin.css'
 import { SlPencil } from "react-icons/sl";
 import { GoPencil } from "react-icons/go";
 import { MdOutlineDeleteOutline } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
-function ComBoxElementTareaDocenteAdmin({tarea}) {
+function ComBoxElementTareaDocenteAdmin({curso, to, tarea}) {
   return (
+    <Link state={{curso,tarea}} to={to}>
     <div className='ComBoxElementTareaDocenteAdminContainer'>
             <div className="IconTareaContainer">
         <SlPencil />
       </div>
       <p className="PMd">{tarea.nombre}</p>
-      <a href={tarea.link}>contenido</a>
       <p className="PMd">{tarea.fechaEntrega}</p>
       <div className="IconsTareaEdElContainer">
         <div className="IconTareaEditarContainer">
@@ -22,6 +23,7 @@ function ComBoxElementTareaDocenteAdmin({tarea}) {
         </div>
       </div>
     </div>
+    </Link>
   )
 }
 

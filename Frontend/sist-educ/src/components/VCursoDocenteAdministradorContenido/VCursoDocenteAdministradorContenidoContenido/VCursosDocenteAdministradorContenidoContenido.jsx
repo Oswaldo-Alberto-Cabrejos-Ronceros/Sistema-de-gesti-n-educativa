@@ -3,7 +3,7 @@ import "./VCursosDocenteAdministradorContenidoContenido.css";
 import ComBoxCursoXUnidadDocente from "../../generalsComponets/ComBoxCursoXUnidadDocente/ComBoxCursoXUnidadDocente";
 
 
-function VCursosDocenteAdministradorContenidoContenido({ contenidos }) {
+function VCursosDocenteAdministradorContenidoContenido({to,curso, contenidos }) {
   let unidad = "Unidad ";
   let numerounidad = 1;
   let unidadString;
@@ -16,6 +16,8 @@ function VCursosDocenteAdministradorContenidoContenido({ contenidos }) {
           <ComBoxCursoXUnidadDocente
             unidad={unidadString}
             contenidos={contenido}
+            curso={curso}
+            to={to}
           />
         );
       })}

@@ -5,7 +5,7 @@ import { IoIosArrowDown,IoIosArrowUp } from "react-icons/io";
 import ComBoxElementCursoDocente from "../ComBoxElementCursoDocenteAdministrador/ComBoxElementCursoDocenteAdministrador";
 import ComBoxElementCursoSubir from "../ComBoxElementCursoSubir/ComBoxElementCursoSubir";
 
-function ComBoxCursoXUnidadDocente({unidad,contenidos}) {
+function ComBoxCursoXUnidadDocente({to, curso, unidad,contenidos}) {
   const [mostrarOtroComponente, setMostrarOtroComponente] = useState(false);
 
   const handleClick = () => {
@@ -22,7 +22,7 @@ function ComBoxCursoXUnidadDocente({unidad,contenidos}) {
     {mostrarOtroComponente && (
         <div className="ComBoxElementContainer">
           {contenidos.map((contenido, index) => (
-            <ComBoxElementCursoDocente key={index} contenido={contenido} />
+            <ComBoxElementCursoDocente key={index} contenido={contenido} to={to} curso={curso} />
           ))}
           <ComBoxElementCursoSubir />
         </div>
