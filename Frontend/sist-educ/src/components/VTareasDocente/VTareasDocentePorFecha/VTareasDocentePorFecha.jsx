@@ -2,7 +2,7 @@ import React from "react";
 import "./VTareasDocentePorFecha.css";
 import ComBoxElementTareaDocente from "../../generalsComponets/ComBoxElementTareaDocenteAdmin/ComBoxElementTareaDocenteAdmin";
 
-function VTareasDocentePorFecha({ tareas }) {
+function VTareasDocentePorFecha({ to, tareasPorFecha, tareas }) {
   return (
     <div className="VTareasDocentePorFechaContainer">
       <div className="VTareasDocentePorFechaTitleContainer">
@@ -10,7 +10,7 @@ function VTareasDocentePorFecha({ tareas }) {
       </div>
       <div className="ComBoxElementTareaDocenteContainerVTareasFecha">
         {tareas.map((tarea, index) => (
-          <ComBoxElementTareaDocente key={index} tarea={tarea} />
+          <ComBoxElementTareaDocente key={index} tarea={tarea} to={to} curso={tareasPorFecha} />
         ))}
       </div>
     </div>

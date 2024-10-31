@@ -3,7 +3,7 @@ import "./VTareasAdministradorPorCurso.css";
 import ComBoxTareaXUnidadAdmin from "../../generalsComponets/ComBoxTareaXUnidadDocenteAdmin/ComBoxTareaXUnidadDocenteAdmin";
 import SelectComponent from "../../generalsComponets/SelectComponent/SelectComponent";
 
-function VTareasAdministradorPorCurso({ tareas }) {
+function VTareasAdministradorPorCurso({ to, tareasCurso, tareas }) {
   let optionsNivel = ["Primaria", "Secundaria"];
   let optionsGrado = [
     "1er Grado",
@@ -37,6 +37,8 @@ function VTareasAdministradorPorCurso({ tareas }) {
             <ComBoxTareaXUnidadAdmin
               unidad={unidadString}
               tareas={tarea}
+              to={to}
+              tareasCurso={tareasCurso}
             />
           );
         })}

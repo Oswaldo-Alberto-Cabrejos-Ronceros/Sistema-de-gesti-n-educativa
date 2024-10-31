@@ -3,7 +3,7 @@ import "./VTareasAdministradorPorFecha.css";
 import ComBoxElementTareaAdmin from "../../generalsComponets/ComBoxElementTareaDocenteAdmin/ComBoxElementTareaDocenteAdmin";
 import SelectComponent from "../../generalsComponets/SelectComponent/SelectComponent";
 
-function VTareasAdministradorPorFecha({ tareas }) {
+function VTareasAdministradorPorFecha({to, tareasPorFecha, tareas }) {
   let optionsNivel = ["Primaria", "Secundaria"];
   let optionsGrado = [
     "1er Grado",
@@ -28,7 +28,7 @@ function VTareasAdministradorPorFecha({ tareas }) {
       </div>
       <div className="ComBoxElementTareaDocenteContainerVTareasAdministradorPorFecha">
         {tareas.map((tarea, index) => (
-          <ComBoxElementTareaAdmin key={index} tarea={tarea} />
+          <ComBoxElementTareaAdmin key={index} tarea={tarea} to={to} curso={tareasPorFecha} />
         ))}
       </div>
     </div>

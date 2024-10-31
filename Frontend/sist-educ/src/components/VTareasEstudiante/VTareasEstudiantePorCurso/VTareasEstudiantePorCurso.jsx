@@ -2,7 +2,7 @@ import React from "react";
 import "./VTareasEstudiantePorCurso.css";
 import ComBoxTareaXUnidadEstudiante from "../../generalsComponets/ComBoxTareaXUnidadEstudiante/ComBoxTareaXUnidadEstudiante";
 
-function VTareasEstudiantePorCurso({ tareas }) {
+function VTareasEstudiantePorCurso({to, tareasCurso, tareas }) {
   let unidad = "Unidad ";
   let numerounidad = 1;
   let unidadString;
@@ -19,6 +19,8 @@ function VTareasEstudiantePorCurso({ tareas }) {
             <ComBoxTareaXUnidadEstudiante
               unidad={unidadString}
               tareas={tarea}
+              to={to}
+              curso={tareasCurso}
             />
           );
         })}

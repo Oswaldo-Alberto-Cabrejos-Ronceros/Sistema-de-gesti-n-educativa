@@ -2,7 +2,8 @@ import React from "react";
 import "./VTareasEstudiantePorFecha.css";
 import ComBoxElementTarea from "../../generalsComponets/ComBoxElementTarea/ComBoxElementTarea";
 
-function VTareasEstudiantePorFecha({ tareas }) {
+function VTareasEstudiantePorFecha({to, tareasPorFecha, tareas }) {
+  console.log(tareas)
   return (
     <div className="VTareasEstudiantePorFechaContainer">
       <div className="VTareasEstudiantePorFechaTitleContainer">
@@ -10,7 +11,7 @@ function VTareasEstudiantePorFecha({ tareas }) {
       </div>
       <div className="ComBoxElementContainerVTareasFecha">
         {tareas.map((tarea, index) => (
-          <ComBoxElementTarea key={index} tarea={tarea} />
+          <ComBoxElementTarea key={index} tarea={tarea} to={to} curso={tareasPorFecha} />
         ))}
       </div>
     </div>
