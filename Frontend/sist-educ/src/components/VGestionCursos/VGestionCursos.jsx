@@ -12,10 +12,10 @@ function VGestionCursos({ cursos, subcursos }) {
         <h3>Gestion de Cursos:</h3>
       </div>
       <div className="VGestionCursosButtonsContainer">
-        <Link className="VGestionCursosContainer" to={"cursos"}> 
+        <Link className="LinkGestionCursos" to={"cursos"}> 
         <PrimaryButton nombre={"Cursos"} />
         </Link>
-        <Link className="VGestionCursosContainer" to={"subcursos"}>
+        <Link className="LinkGestionCursos" to={"subcursos"}>
         <PrimaryButton nombre={"Subcursos"} />
         </Link>
       </div>

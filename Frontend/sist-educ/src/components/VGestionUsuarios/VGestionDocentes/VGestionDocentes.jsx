@@ -3,6 +3,7 @@ import DocenteService from "../../../services/docenteService";
 import "./VGestionDocentes.css";
 import TablaGestionDocentes from "./TablaGestionDocentes/TablaGestionDocentes";
 import FormularioAgregarDocente from "./FormularioAgregarDocente/FormularioAgregarDocente";
+import SearchComponent from "../../generalsComponets/SearchComponent/SearchComponent";
 
 function VGestionDocentes() {
   const [docentes, setDocentes] = useState([]); // Estado para almacenar docentes
@@ -36,6 +37,7 @@ function VGestionDocentes() {
       <div className="TitleGestionDocentes">
         <h3>Gestion de Docentes:</h3>
       </div>
+      <SearchComponent nombre={"Docentes"} placeholder={"Buscar Docente"}/>
       <div className="VGestionDocentesContent">
         <div className="TablaGestionDocentesContainer">
           <TablaGestionDocentes docentes={docentes} />
