@@ -1,7 +1,7 @@
 import React from 'react'
 import './InputComponent.css'
 
-function InputComponent({ nombre, placeholder, icon, type, value, onChange }) {
+function InputComponent({ nombre, placeholder, icon, type, value, onChange, disable }) {
   return (
     <div className="InputComponentContainer">
       <div className="IconInputContainer">{icon}</div>
@@ -13,6 +13,7 @@ function InputComponent({ nombre, placeholder, icon, type, value, onChange }) {
         required
         value={value} // Asegúrate de que reciba el valor del padre
         onChange={onChange} // onChange directamente del padre
+        disabled={disable}
       />
     </div>
   );

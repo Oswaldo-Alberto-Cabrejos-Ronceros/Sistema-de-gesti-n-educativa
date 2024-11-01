@@ -8,7 +8,7 @@ function SearchComponent({nombre,placeholder}) {
         <div className='IconSearchContainer'>
         <IoSearch/>
         </div>
-        <input type="text" name='nombre' id='nombre' placeholder={placeholder}/>
+        <input type="text" name={nombre} id={nombre} placeholder={placeholder}/>
     </div>
   )
 }

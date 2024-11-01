@@ -2,6 +2,7 @@ import React from "react";
 import "./VHorarioAdministradorGrado.css";
 import SelectComponent from "../../generalsComponets/SelectComponent/SelectComponent";
 import CardHorario from "../../generalsComponets/CardHorario/CardHorario";
+import CardFormularioHorarioGrado from "../../generalsComponets/CardFormularioHorarioGrado/CardFormularioHorarioGrado";
 
 function VHorarioAdministradorGrado() {
   let horariosCurso = [
@@ -44,6 +45,7 @@ function VHorarioAdministradorGrado() {
         {horariosCurso.map((horario,index)=>(
           <CardHorario key={index} grado={horario.grado} nivel={horario.nivel}/>
         ))}
+        <CardFormularioHorarioGrado/>
       </div>
     </div>
   );

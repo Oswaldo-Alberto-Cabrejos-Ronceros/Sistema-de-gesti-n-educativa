@@ -7,6 +7,7 @@ import { TbUserEdit } from "react-icons/tb";
 import { FiSmartphone } from "react-icons/fi";
 import SelectComponent from "../../../generalsComponets/SelectComponent/SelectComponent";
 import AlumnoService from "../../../../services/alumnoService"; // Importa el servicio
+import { CiCalendarDate } from "react-icons/ci";
 
 function FormularioAgregarEstudiante({ onStudentAdded }) {
   const [formData, setFormData] = useState({
@@ -151,6 +152,7 @@ function FormularioAgregarEstudiante({ onStudentAdded }) {
             <label htmlFor="fechaNacimiento">Fecha de Nacimiento:</label>
             <InputComponent
               nombre="fechaNacimiento"
+              icon={<CiCalendarDate/>}
               placeholder="Seleccione Fecha"
               type="date"
               value={formData.fechaNacimiento}
