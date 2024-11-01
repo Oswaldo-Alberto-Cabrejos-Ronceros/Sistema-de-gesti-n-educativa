@@ -21,6 +21,11 @@
     margin-left: 10px;
 }
 
+.LinkComBoxElementCurso{
+    text-decoration: none;
+    color: inherit;
+}
+
 .MdContentPasteSearchContainer{
     color: var(--ColorBorderCBEC);
     font-size: 34px;

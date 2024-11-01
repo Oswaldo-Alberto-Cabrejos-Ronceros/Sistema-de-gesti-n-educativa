@@ -22,6 +22,11 @@
     margin-left: 10px;
 }
 
+.LinkComBoxElementTareaDoceAdm{
+    text-decoration: none;
+    color: inherit;
+}
+
 .ComBoxElementTareaDocenteAdminContainer .IconTareaContainer,
 .ComBoxElementTareaDocenteAdminContainer .IconTareaEditarContainer,
 .ComBoxElementTareaDocenteAdminContainer .IconTareaEliminarContainer{

@@ -21,6 +21,11 @@
     margin-left: 10px;
 }
 
+.LinkComBoxElementTarea{
+    text-decoration: none;
+    color: inherit;
+}
+
 .ComBoxElementTareaContainer .IconContainer{
     color: var(--ColorBorderCBEC);
     font-size: 34px;

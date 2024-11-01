@@ -22,6 +22,11 @@
     margin-left: 10px;
 }
 
+.LinkComBoxElementCursoDoceAdm{
+    text-decoration: none;
+    color: inherit;
+}
+
 .ComBoxElementCursoDoceAdminContainer .IconContenidoContainer,
 .ComBoxElementCursoDoceAdminContainer .IconEditarContainer,
 .ComBoxElementCursoDoceAdminContainer .IconEliminarContainer{

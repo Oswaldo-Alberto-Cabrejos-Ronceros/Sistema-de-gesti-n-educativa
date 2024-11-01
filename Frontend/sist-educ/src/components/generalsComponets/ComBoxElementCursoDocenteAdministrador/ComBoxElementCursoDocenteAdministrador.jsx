@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function ComBoxElementCursoDocenteAdministrador({ curso, to, contenido }) {
   return (
-    <Link state={{curso, contenido}} to={to}>
+    <Link state={{curso, contenido}} to={to} className="LinkComBoxElementCursoDoceAdm">
     <div className="ComBoxElementCursoDoceAdminContainer">
       <div className="IconContenidoContainer">
         <IoDocumentTextOutline />
