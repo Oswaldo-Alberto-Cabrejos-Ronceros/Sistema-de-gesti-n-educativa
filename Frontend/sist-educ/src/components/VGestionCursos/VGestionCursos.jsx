@@ -1,7 +1,7 @@
 import React from "react";
 import "./VGestionCursos.css";
 import PrimaryButton from "../generalsComponets/PrimaryButton/PrimaryButton";
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, Navigate} from 'react-router-dom';
 import VGestionCursosCursos from "./VGestionCursosCursos/VGestionCursosCursos";
 import VGestionCursosSubCursos from "./VGestionCursosSubCursos/VGestionCursosSubCursos";
 
@@ -21,7 +21,7 @@ function VGestionCursos({ cursos, subcursos }) {
       </div>
       <div className="CambGestionCursos">
         <Routes>
-          <Route index element={<VGestionCursosCursos cursos={cursos}/>}/>
+          <Route index element={<Navigate to={"cursos"}/>}/>
           <Route path="cursos" element={<VGestionCursosCursos cursos={cursos}/>}/>
           <Route path="subcursos" element={<VGestionCursosSubCursos subcursos={subcursos}/>}/>
         </Routes>

@@ -3,7 +3,7 @@ import './VHorarioAdministrador.css'
 import PrimaryButton from '../generalsComponets/PrimaryButton/PrimaryButton';
 import VHorarioAdministradorGrado from './VHorarioAdministradorGrado/VHorarioAdministradorGrado';
 import VHorarioAdministradorDocente from './VHorarioAdministradorDocente/VHorarioAdministradorDocente';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
 
 function VHorarioAdministrador() {
   return (
@@ -21,7 +21,7 @@ function VHorarioAdministrador() {
       </div>
       <div className="CambVHorarioAdministrador">
         <Routes>
-          <Route index element={<VHorarioAdministradorGrado/>} />
+          <Route index element={<Navigate to={"grado"}/>} />
           <Route path="grado" element={<VHorarioAdministradorGrado/>}/>
           <Route path="docente" element={<VHorarioAdministradorDocente/>}/>
         </Routes>

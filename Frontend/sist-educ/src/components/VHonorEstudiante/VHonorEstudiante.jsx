@@ -3,7 +3,7 @@ import "./VHonorEstudiante.css";
 import PrimaryButton from "../generalsComponets/PrimaryButton/PrimaryButton";
 import VHonorEstudianteUnidad from "./VHonorEstudianteUnidad/VHonorEstudianteUnidad";
 import VHonorEstudianteBimestral from "./VHonorEstudianteBimestral/VHonorEstudianteBimestral";
-import {Routes, Route, Link} from "react-router-dom";
+import {Routes, Route, Link, Navigate} from "react-router-dom";
 
 function VHonorEstudiante() {
   let info=["Primaria","6to","Unica", "3era Unidad"];
@@ -43,7 +43,7 @@ function VHonorEstudiante() {
       </div>
       <div className="CambHonorEstudiante">
         <Routes>
-          <Route index element={<VHonorEstudianteUnidad info={info} estudiantesHonor={estudiantesHonor}/>} />
+          <Route index element={<Navigate to={"unidad"}/>} />
           <Route path="unidad" element={<VHonorEstudianteUnidad info={info} estudiantesHonor={estudiantesHonor}/>}/>
           <Route path="bimestral" element={<VHonorEstudianteBimestral info={infoBimestral} estudiantesHonor={estudiantesHonor}/>}/>
         </Routes>

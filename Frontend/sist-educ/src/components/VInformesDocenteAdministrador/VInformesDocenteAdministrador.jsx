@@ -1,6 +1,6 @@
 import React from 'react'
 import './VInformesDocenteAdministrador.css'
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import PrimaryButton from '../generalsComponets/PrimaryButton/PrimaryButton';
 import VInformesDocenteAdministradorAuxiliar from './VInformesDocenteAdministradorAuxiliar/VInformesDocenteAdministradorAuxiliar'
 import VInformesDocenteAdministradorBimestral from './VInformesDocenteAdministradorBimestral/VInformesDocenteAdministradorBimestral'
@@ -21,7 +21,7 @@ function VInformesDocenteAdministrador() {
         </div>
         <div className='CambVInformesDocenteAdministrador'>
             <Routes>
-                <Route index element ={<VInformesDocenteAdministradorAuxiliar/>}/>
+                <Route index element ={<Navigate to={"auxiliar"}/>}/>
                 <Route path='auxiliar' element={<VInformesDocenteAdministradorAuxiliar/>}/>
                 <Route path='bimestral' element={<VInformesDocenteAdministradorBimestral/>}/>
             </Routes>

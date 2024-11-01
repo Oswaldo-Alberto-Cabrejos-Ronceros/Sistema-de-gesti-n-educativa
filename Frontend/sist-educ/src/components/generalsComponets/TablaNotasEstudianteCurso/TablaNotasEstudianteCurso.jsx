@@ -1,19 +1,19 @@
-import React from "react";
-import "./TablaNotasEstudiante.css";
+import React from 'react'
+import './TablaNotasEstudianteCurso.css'
 
-function TablaNotasEstudiante({ notas }) {
+function TablaNotasEstudianteCurso({notas}) {
   return (
-    <div className="TablaNotasEstudianteContainer">
-      {notas.length === 0 ? (
-        <div className="TablaNotasEstudianteEmpty">
+    <div className='TablaNotasEstudianteCursoContainer'>
+              {notas.length === 0 ? (
+        <div className="TablaNotasEstudianteCursoEmpty">
           <h3>No hay Notas Registradas</h3>
         </div>
       ) : (
         <div>
-          <table className="TableNotasEstudiante">
+          <table className="TableNotasCursoEstudiante">
             <thead>
               <tr>
-                <th>Área</th>
+                <th>Unidad</th>
                 <th>C1</th>
                 <th>C2</th>
                 <th>C3</th>
@@ -25,7 +25,7 @@ function TablaNotasEstudiante({ notas }) {
             <tbody>
               {notas.map((nota, index) => (
                 <tr key={index}>
-                  <td>{nota.area}</td>
+                  <td>{nota.unidad}</td>
                   <td>{nota.c1}</td>
                   <td>{nota.c2}</td>
                   <td>{nota.c3}</td>
@@ -39,7 +39,7 @@ function TablaNotasEstudiante({ notas }) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default TablaNotasEstudiante;
+export default TablaNotasEstudianteCurso

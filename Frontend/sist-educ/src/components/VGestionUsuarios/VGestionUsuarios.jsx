@@ -3,7 +3,7 @@ import "./VGestionUsuarios.css";
 import PrimaryButton from "../generalsComponets/PrimaryButton/PrimaryButton";
 import VGestionEstudiante from "./VGestionEstudiante/VGestionEstudiante";
 import VGestionDocentes from "./VGestionDocentes/VGestionDocentes";
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
 
 function VGestionUsuarios() {
 
@@ -48,7 +48,7 @@ function VGestionUsuarios() {
       </div>
       <div className="CambGestionUsuarios">
         <Routes>
-          <Route index element={<VGestionEstudiante />}/>
+          <Route index element={<Navigate to={"estudiantes"}/>}/>
           <Route path="estudiantes" element={<VGestionEstudiante />}/>
           <Route path="docentes" element={<VGestionDocentes docentes={docentes}/>}/>
         </Routes>

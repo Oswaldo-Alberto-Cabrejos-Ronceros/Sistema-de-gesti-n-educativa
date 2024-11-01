@@ -1,6 +1,6 @@
 import React from "react";
 import "./VNotasEstudiante.css";
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, Navigate } from "react-router-dom";
 import PrimaryButton from "../generalsComponets/PrimaryButton/PrimaryButton";
 import VNotasEstudianteCurso from "../VNotasEstudiante/VNotasEstudianteCurso/VNotasEstudianteCurso";
 import VNotasEstudianteUnidad from "./VNotasEstudianteUnidad/VNotasEstudianteUnidad";
@@ -26,7 +26,7 @@ function VNotasEstudiante() {
       </div>
       <div className="VNotasEstudianteCamb">
         <Routes>
-          <Route index element={<VNotasEstudianteCurso />} />
+          <Route index element={<Navigate to={"curso"}/>} />
           <Route path="curso/*" element={<VNotasEstudianteCurso />} />
           <Route path="unidad/*" element={<VNotasEstudianteUnidad />} />
           <Route path="bimestre/*" element={<VNotasEstudianteBimestre />} />

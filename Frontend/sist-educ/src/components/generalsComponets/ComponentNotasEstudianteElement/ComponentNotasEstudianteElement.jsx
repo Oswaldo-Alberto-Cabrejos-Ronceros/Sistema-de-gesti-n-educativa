@@ -6,7 +6,7 @@ function ComponentNotasEstudianteElement({ title, tipo }) {
   return (
     <div className="ComponentNotasEstudianteElementContainer">
       <Link
-        to={`/notas/info/${tipo}`}
+        to={`/estudiante/notas/info/${tipo}`}
         state={{ title }}
         className="LinkComponentNotasEstudianteElement"
       >
