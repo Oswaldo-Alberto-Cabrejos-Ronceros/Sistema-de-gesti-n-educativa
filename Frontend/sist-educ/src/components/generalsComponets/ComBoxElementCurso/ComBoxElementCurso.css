@@ -21,6 +21,10 @@
     margin-left: 10px;
 }
 
+.ComBoxElementCursoDocContainer .PMd{
+    cursor: pointer;
+}
+
 .LinkComBoxElementCurso{
     text-decoration: none;
     color: inherit;

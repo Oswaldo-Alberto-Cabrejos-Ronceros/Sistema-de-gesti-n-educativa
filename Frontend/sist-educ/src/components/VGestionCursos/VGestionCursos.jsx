@@ -5,7 +5,7 @@ import { Routes, Route, Link, Navigate} from 'react-router-dom';
 import VGestionCursosCursos from "./VGestionCursosCursos/VGestionCursosCursos";
 import VGestionCursosSubCursos from "./VGestionCursosSubCursos/VGestionCursosSubCursos";
 
-function VGestionCursos({ cursos, subcursos }) {
+function VGestionCursos() {
   return (
     <div className="VGestionCursosContainer">
       <div className="TitleGestionCursos">
@@ -22,8 +22,8 @@ function VGestionCursos({ cursos, subcursos }) {
       <div className="CambGestionCursos">
         <Routes>
           <Route index element={<Navigate to={"cursos"}/>}/>
-          <Route path="cursos" element={<VGestionCursosCursos cursos={cursos}/>}/>
-          <Route path="subcursos" element={<VGestionCursosSubCursos subcursos={subcursos}/>}/>
+          <Route path="cursos" element={<VGestionCursosCursos/>}/>
+          <Route path="subcursos" element={<VGestionCursosSubCursos />}/>
         </Routes>
       </div>
     </div>

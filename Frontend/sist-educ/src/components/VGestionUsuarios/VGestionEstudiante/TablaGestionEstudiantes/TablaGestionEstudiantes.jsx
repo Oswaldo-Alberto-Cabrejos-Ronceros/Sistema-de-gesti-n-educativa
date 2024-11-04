@@ -1,151 +1,119 @@
 import React, { useState } from "react";
 import "./TablaGestionEstudiantes.css";
-import PrimaryButton from "../../../generalsComponets/PrimaryButton/PrimaryButton";
 import AlumnoService from "../../../../services/alumnoService";
+import PrimaryButton from "../../../generalsComponets/PrimaryButton/PrimaryButton";
+import EditEstudianteModal from "../../Modals/EditEstudianteModal";
+import DeleteUserModal from "../../Modals/DeleteUserModal";
+import ConfirmationModal from "../../Modals/ConfirmacionModal";
 
-function TablaGestionEstudiantes({ estudiantes, onStudentDeleted }) {
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
+function TablaGestionEstudiantes({ estudiantes, onStudentDeleted, onStudentUpdated }) {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
-  const [error, setError] = useState(null); // Estado para manejar errores
+  const [confirmationMessage, setConfirmationMessage] = useState(""); 
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleDeleteClick = (estudianteId) => {
     setSelectedStudent(estudianteId);
-    setShowConfirmModal(true); // Mostrar el modal de confirmación
+    setShowDeleteModal(true);
+  };
+
+  const handleEditClick = (estudiante) => {
+    setSelectedStudent(estudiante);
+    setShowEditModal(true);
   };
 
   const confirmDelete = async () => {
     try {
       await AlumnoService.deleteAlumno(selectedStudent);
       onStudentDeleted(selectedStudent);
-      setError(null); // Resetea el error si la eliminación fue exitosa
+      showConfirmationMessage("Alumno eliminado correctamente");
     } catch (error) {
-      console.error("Error al eliminar el estudiante:", error);
-      setError("No se puede eliminar el estudiante debido a dependencias.");
+      console.error("Error al eliminar:", error); // Asegúrate de ver el error en consola
+      showConfirmationMessage("Error al eliminar el alumno");
     } finally {
-      setShowConfirmModal(false);
+      setShowDeleteModal(false);
     }
+  };
+
+  const handleUpdate = async (updatedData) => {
+    try {
+      const response = await AlumnoService.AdminUpdateAlumno(selectedStudent.usuarioId, updatedData);
+      onStudentUpdated(response.data); // Actualizar en la lista de estudiantes
+      showConfirmationMessage("Alumno actualizado correctamente");
+    } catch (error) {
+      console.error("Error en la actualización:", error);  // Verificar en consola el error
+      showConfirmationMessage("El DNI proporcionado ya existe"); // Mensaje de error
+    } finally {
+      setShowEditModal(false);
+    }
+  };
+
+  const showConfirmationMessage = (message) => {
+    setConfirmationMessage(message);
+    setShowConfirmation(true);
+    setTimeout(() => setShowConfirmation(false), 1700);
   };
 
   return (
     <div className="TablaGestionEstudiantesContainer">
+      <ConfirmationModal show={showConfirmation} message={confirmationMessage} />
+
       {estudiantes.length === 0 ? (
         <div className="TablaGestionEstudianteVerDocEmpty">
           <h3>No hay Alumnos registrados</h3>
         </div>
       ) : (
-        <div>
-          <table className="TableGestionEstudiante">
-            <thead>
-              <tr>
-                <th>Dni</th>
-                <th>Apellidos</th>
-                <th>Nombres</th>
-                <th>Celular</th>
-                <th>Correo</th>
-                <th>Nivel</th>
-                <th>Grado</th>
-                <th>Seccion</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+        <table className="TableGestionEstudiante">
+          <thead>
+            <tr>
+              <th>Dni</th>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>Codigo</th>
+              <th>Celular</th>
+              <th>Nivel</th>
+              <th>Grado</th>
+              <th>Seccion</th>
+              <th>FechaNac</th>
+              <th>Editar</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {estudiantes.map((estudiante) => (
+              <tr key={estudiante.usuarioId}>
+                <td>{estudiante.dni}</td>
+                <td>{estudiante.nombre}</td>
+                <td>{estudiante.apellido}</td>
+                <td>{estudiante.codigo}</td>
+                <td>{estudiante.telefono}</td>
+                <td>{estudiante.nivel}</td>
+                <td>{estudiante.grado}</td>
+                <td>{estudiante.seccion}</td>
+                <td>{estudiante.fechaNacimiento}</td>
+                <td>
+                  <PrimaryButton onClick={() => handleEditClick(estudiante)} nombre="Editar" />
+                </td>
+                <td>
+                  <PrimaryButton onClick={() => handleDeleteClick(estudiante.usuarioId)} nombre="Eliminar" />
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {estudiantes.map((estudiante) => (
-                <tr key={estudiante.usuarioId}>
-                  <td>{estudiante.dni}</td>
-                  <td>{estudiante.apellido}</td>
-                  <td>{estudiante.nombre}</td>
-                  <td>{estudiante.telefono}</td>
-                  <td>{estudiante.codigo}</td>
-                  <td>{estudiante.nivel}</td>
-                  <td>{estudiante.grado}</td>
-                  <td>{estudiante.seccion}</td>
-                  <td>
-                    <PrimaryButton
-                      onClick={() => fEditar(estudiante.usuarioId)}
-                      nombre="Editar"
-                    />
-                  </td>
-                  <td>
-                    <PrimaryButton
-                      onClick={() => handleDeleteClick(estudiante.usuarioId)}
-                      nombre="Eliminar"
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       )}
 
-{/* Modal de Confirmación */}
-{showConfirmModal && (
-        <div style={modalStyles.overlay}>
-          <div style={modalStyles.modalContent}>
-            <h4>¿Estás seguro de que deseas eliminar este alumno?</h4>
-            {error && <p style={modalStyles.errorMessage}>{error}</p>}
-            <div style={modalStyles.buttonContainer}>
-              <button onClick={confirmDelete} style={{ ...modalStyles.button, ...modalStyles.yesButton }}>
-                Sí
-              </button>
-              <button onClick={() => setShowConfirmModal(false)} style={{ ...modalStyles.button, ...modalStyles.noButton }}>
-                No
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <DeleteUserModal show={showDeleteModal} onConfirm={confirmDelete} onCancel={() => setShowDeleteModal(false)} />
+
+      <EditEstudianteModal
+        show={showEditModal}
+        student={selectedStudent}
+        onUpdate={handleUpdate}
+        onClose={() => setShowEditModal(false)}
+      />
     </div>
   );
 }
-
-const modalStyles = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 1000,
-  },
-  modalContent: {
-    backgroundColor: "white",
-    padding: "20px",
-    borderRadius: "8px",
-    width: "300px",
-    textAlign: "center",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-  },
-  errorMessage: {
-    color: "red",
-    marginTop: "10px",
-  },
-  buttonContainer: {
-    display: "flex",
-    justifyContent: "space-around",
-    marginTop: "20px",
-  },
-  button: {
-    padding: "8px 16px",
-    fontSize: "16px",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
-  },
-  yesButton: {
-    backgroundColor: "red",
-    color: "white",
-  },
-  noButton: {
-    backgroundColor: "green",
-    color: "white",
-  },
-};
-
 
 export default TablaGestionEstudiantes;

@@ -6,7 +6,6 @@ const API_URL = 'http://localhost:8080/api/profesores';
 axios.interceptors.request.use(
     (config) => {
     const token = sessionStorage.getItem("jwtToken");
-    console.log("Token enviado:", token); // Verifica que el token esté definido
     if (token) {
         config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -31,8 +30,12 @@ class DocenteService{
         return axios.get(`${API_URL}/${Dni}`);
     }
 
-    updateProfesor(Id){
-        return axios.put(`${API_URL}/actualizar/${Id}`);
+    updateProfesor(Id,UpdateRequest){
+        return axios.put(`${API_URL}/actualizar/${Id}`,UpdateRequest);
+    }
+
+    AdminUpdateProfesor(id, profesorData) {
+        return axios.put(`${API_URL}/updateAll/${id}`, profesorData);
     }
     deleteProfesor(Id){
         return axios.delete(`${API_URL}/eliminar/${Id}`);

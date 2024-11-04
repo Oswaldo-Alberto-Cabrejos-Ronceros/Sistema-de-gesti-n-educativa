@@ -3,11 +3,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./VInicioSesion.css";
 import { FaRegUser } from "react-icons/fa";
-import { IoMdEye } from "react-icons/io";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 function VInicioSesion() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); 
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
@@ -93,13 +94,17 @@ function VInicioSesion() {
           </div>
           <div className="input-user-container">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"} 
               placeholder="Ingrese contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="IconInicioSesionContainer">
-              <IoMdEye />
+            <div
+              className="IconInicioSesionContainerPassword"
+              onClick={() => setShowPassword(!showPassword)}
+              style={{ cursor: "pointer" }}
+            >
+              {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
             </div>
           </div>
           <a href="#">Olvidaste tu contraseña</a>

@@ -3,41 +3,45 @@ import AlumnoService from "../../../services/alumnoService";
 import "./VGestionEstudiante.css";
 import TablaGestionEstudiantes from "./TablaGestionEstudiantes/TablaGestionEstudiantes";
 import FormularioAgregarEstudiante from "./FormularioAgregarEstudiante/FormularioAgregarEstudiante";
-import SearchComponent from "../../generalsComponets/SearchComponent/SearchComponent";
 
 function VGestionEstudiante() {
-  const [estudiantes, setEstudiantes] = useState([]); // Estado para almacenar estudiantes
-  const [loading, setLoading] = useState(true); // Estado de carga
-  const [error, setError] = useState(null); // Estado de error
+  const [estudiantes, setEstudiantes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchEstudiantes();
   }, []);
 
-  // Función para obtener estudiantes del backend
   const fetchEstudiantes = async () => {
     setLoading(true);
-    setError(null); // Resetear error antes de cargar nuevos datos
+    setError(null);
     try {
       const response = await AlumnoService.getAllAlumno();
-      console.log("Estudiantes recibidos:", response.data);
       setEstudiantes(response.data);
     } catch (error) {
-      console.error("Error al cargar estudiantes:", error);
       setError("Error al cargar estudiantes. Inténtalo más tarde.");
     } finally {
       setLoading(false);
     }
   };
 
-  // Función para eliminar estudiante de la lista en vivo
+  // Eliminar estudiante en vivo
   const handleStudentDeleted = (deletedId) => {
     setEstudiantes((prevEstudiantes) =>
       prevEstudiantes.filter((estudiante) => estudiante.usuarioId !== deletedId)
     );
   };
 
-  // Mensaje de carga o error
+  // Actualizar estudiante en vivo
+  const handleStudentUpdated = (updatedStudent) => {
+    setEstudiantes((prevEstudiantes) =>
+      prevEstudiantes.map((estudiante) =>
+        estudiante.usuarioId === updatedStudent.usuarioId ? updatedStudent : estudiante
+      )
+    );
+  };
+
   if (loading) return <div>Cargando estudiantes...</div>;
   if (error) return <div>{error}</div>;
 
@@ -46,15 +50,14 @@ function VGestionEstudiante() {
       <div className="TitleGestionEstudiante">
         <h3>Gestión de Estudiantes:</h3>
       </div>
-      <SearchComponent nombre={"Estudiantes"} placeholder={"Buscar Estudiante"}/>
       <div className="VGestionEstudiantesContent">
         <div>
           <TablaGestionEstudiantes
             estudiantes={estudiantes}
             onStudentDeleted={handleStudentDeleted}
+            onStudentUpdated={handleStudentUpdated}
           />
         </div>
-        {/* Pasamos fetchEstudiantes como prop para actualizar la lista tras agregar un estudiante */}
         <FormularioAgregarEstudiante onStudentAdded={fetchEstudiantes} />
       </div>
     </div>

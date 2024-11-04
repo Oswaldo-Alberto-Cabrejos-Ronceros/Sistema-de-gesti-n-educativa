@@ -21,6 +21,11 @@
     margin-left: 10px;
 }
 
+.ComBoxElementTareaContainer .PMd{
+    cursor: pointer;
+}
+
+
 .LinkComBoxElementTarea{
     text-decoration: none;
     color: inherit;

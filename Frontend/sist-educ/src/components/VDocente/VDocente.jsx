@@ -14,11 +14,6 @@ import VInformesDocente from "../VInformesDocenteAdministrador/VInformesDocenteA
 import VChatDocente from "../VChatEstudianteDocente/VChatEstudianteDocente";
 
 function VDocente() {
-  let userDocente = {
-    rol: "TEACHER",
-    nombres: "Armando Fernando",
-    apellidos: "Vega Moreno",
-  };
   let cursosDocente = [
     {
       Nombre: "Trigonometria",
@@ -56,7 +51,7 @@ function VDocente() {
             <Route path="honor/*" element={<VHonorDocenteAdministrador />} />
             <Route path="curso/*" element={<VCursoDocenteContenido/>} />
             <Route path="informes/*" element={<VInformesDocente />} />
-            <Route path="usuario" element={<InfoUser user={userDocente} />} />
+            <Route path="usuario" element={<InfoUser/>} />
           </Routes>
         </div>
       </div>

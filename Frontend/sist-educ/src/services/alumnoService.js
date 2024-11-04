@@ -6,7 +6,6 @@ const API_URL = 'http://localhost:8080/api/alumnos';
 axios.interceptors.request.use(
     (config) => {
     const token = sessionStorage.getItem("jwtToken");
-    console.log("Token enviado:", token); // Verifica que el token esté definido
     if (token) {
         config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -17,7 +16,6 @@ axios.interceptors.request.use(
     }
 );
 class AlumnoService{
-
     getAllAlumno(){
         return axios.get(API_URL);
     }
@@ -36,8 +34,11 @@ class AlumnoService{
     getClienteByDni(clienteDni){
         return axios.get(`${API_URL}/dni/${clienteDni}`);
     }
-    updateAlumno(Id,){
-        return axios.put(`${API_URL}/update/${Id}`);
+    updateAlumno(Id,UpdateRequest){
+        return axios.put(`${API_URL}/update/${Id}`,UpdateRequest);
+    }
+    AdminUpdateAlumno(id, alumnoData) {
+        return axios.put(`${API_URL}/updateAll/${id}`, alumnoData);
     }
     deleteAlumno(Id){
         return axios.delete(`${API_URL}/eliminar/${Id}`);

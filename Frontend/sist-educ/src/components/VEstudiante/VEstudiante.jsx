@@ -72,12 +72,6 @@ function VEstudiante() {
     grado: "6to",
     nivel: "Primaria",
   };
-  let userAdministrador = {
-    rol: "ADMINISTRATOR",
-    nombres: "Cesar Augusto",
-    apellidos: "Cabrera Wuffarden",
-  };
-  
 
 
   let tareasPorFechas = [
@@ -128,7 +122,7 @@ function VEstudiante() {
             <Route path="notas/*" element={<VNotasEstudiante />} />
             <Route path="honor/*" element={<VHonorEstudiante />} />
             <Route path="curso/*" element={<VCursosEstudianteContenido />} />
-            <Route path="usuario" element={<InfoUser user={userAlumno} />} />
+            <Route path="usuario" element={<InfoUser/>} />
           </Routes>
         </div>
       </div>

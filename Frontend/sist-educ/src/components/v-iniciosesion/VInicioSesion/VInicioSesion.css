@@ -157,3 +157,18 @@
   transition: 150ms;
   color: var(--ColorBtnPrin);
 }
+
+
+.Content-1 .IconInicioSesionContainerPassword{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--ColorIcon);
+  cursor: pointer;
+}
+
+.Content-1 .IconInicioSesionContainerPassword:hover{
+  transition: 150ms;
+  color: var(--ColorBtnPrin);
+}

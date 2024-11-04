@@ -28,6 +28,11 @@
     margin-left: 10px;
 }
 
+.ComBoxElementCursoDocSubirContainer .PMd{
+    cursor: pointer;
+}
+
+
 .FaFileUploadContainer{
     color: var(--ColorBorderCBEC);
     font-size: 34px;

@@ -15,6 +15,11 @@
     gap: 10px;
 }
 
+.ComBoxGeneralTareaXUnidadContainer .PMd{
+    cursor: pointer;
+}
+
+
 .ComBoxGeneralTareaXUnidadContainer .ComBoxTareaXUnidadContainer{
     width: 94%;
     height: 56px;

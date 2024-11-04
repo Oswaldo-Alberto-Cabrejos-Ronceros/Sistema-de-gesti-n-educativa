@@ -1,6 +1,6 @@
 import React from 'react'
 import './VAdministrador.css'
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import {Route, Routes, Navigate } from "react-router-dom";
 import InfoUser from '../generalsComponets/InfoUser/InfoUser';
 import BarraNavegacionAdministrador from '../BarraNavegacionAdministrador/BarraNavegacionAdministrador';
 import VNotasAdministrador from '../VNotasDocenteAdministrador/VNotasDocenteAdministrador';
@@ -16,11 +16,7 @@ import VTareasAdministrador from '../VTareasAdministrador/VTareasAdministrador';
 function VAdministrador() {
 
 
-  let userAdministrador = {
-    rol: "ADMINISTRATOR",
-    nombres: "Cesar Augusto",
-    apellidos: "Cabrera Wuffarden",
-  };
+
   let cursosDocente = [
     {
       Nombre: "Trigonometria",
@@ -41,20 +37,6 @@ function VAdministrador() {
       Nombre: "Geometria",
       Grado: "2° Año",
       Docente: "Fernadez Flores Jose Marcos",
-    },
-  ];
-  let cursosGestion = [
-    {
-      Nombre: "Matematica",
-      Descripcion: "Curso de numeros",
-      Nivel: "Secundaria",
-      Subcursos: ["Aritmetica", "Algebra", "Trigonometria"],
-    },
-    {
-      Nombre: "Comunicacion",
-      Descripcion: "Curso de letras",
-      Nivel: "Secundaria",
-      Subcursos: ["Lenguaje", "Razonamiento Verbal", "Literatura"],
     },
   ];
   let subcursosGestion = [
@@ -97,11 +79,11 @@ function VAdministrador() {
             <Route path="tareas/*" element={<VTareasAdministrador />} />
             <Route path="notas/*" element={<VNotasAdministrador/>} />
             <Route path="gestionusuarios/*" element={<VGestionUsuarios />} />
-            <Route path="gestioncursos/*" element={<VGestionCursos cursos={cursosGestion} subcursos={subcursosGestion} />} />
+            <Route path="gestioncursos/*" element={<VGestionCursos subcursos={subcursosGestion} />} />
             <Route path="honor/*" element={<VHonorAdministrador/>} />
             <Route path="curso/*" element={<VCursoAdministradorContenido/>} />
             <Route path="informes/*" element={<VInformesAdministrador/>} />
-            <Route path="usuario" element={<InfoUser user={userAdministrador} />} />
+            <Route path="usuario" element={<InfoUser />} />
       </Routes>
       </div>
     </div>

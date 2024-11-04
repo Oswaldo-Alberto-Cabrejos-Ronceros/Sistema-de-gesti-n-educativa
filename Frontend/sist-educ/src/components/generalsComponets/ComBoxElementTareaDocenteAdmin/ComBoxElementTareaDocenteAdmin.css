@@ -22,6 +22,11 @@
     margin-left: 10px;
 }
 
+.ComBoxElementTareaDocenteAdminContainer .PMd{
+    cursor: pointer;
+}
+
+
 .LinkComBoxElementTareaDoceAdm{
     text-decoration: none;
     color: inherit;

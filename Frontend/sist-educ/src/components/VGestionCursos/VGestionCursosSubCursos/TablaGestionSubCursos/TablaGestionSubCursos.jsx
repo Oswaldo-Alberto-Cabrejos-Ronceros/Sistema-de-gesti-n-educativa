@@ -1,47 +1,119 @@
-import React from 'react'
+import React, { useState } from "react";
 import './TablaGestionSubCursos.css'
 import PrimaryButton from '../../../generalsComponets/PrimaryButton/PrimaryButton';
+import ConfirmationModal from "../../../VGestionUsuarios/Modals/ConfirmacionModal";
+import EditGestionCursosModal from "../../ModalsCurso/EditGestionCursosModal/EditGestionCursosModal";
+import DeleteUserModal from "../../../VGestionUsuarios/Modals/DeleteUserModal";
+import SubcursoService from "../../../../services/subcursoService";
 
-function TablaGestionSubCursos({subcursos}) {
-    let fEditarSubCurso = function () {
-        alert("Presionando Boton Editar SubCurso");
-      };
-  return (
-    <div className='TablaGestionSubCursosContainer'>
-{subcursos.lenght === 0 ? (
-        <div className="TablaGestionSubCursosVerDocEmpty">
-          <h3>No hay Subcursos registrados</h3>
+function TablaGestionSubCursos({ subcursos, onSubCursoUpdated, onSubCursoDeleted }) {
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [selectedSubcurso, setSelectedSubcurso] = useState(null);
+    const [confirmationMessage, setConfirmationMessage] = useState("");
+    const [showConfirmation, setShowConfirmation] = useState(false);
+
+    const handleEditClick = (subcurso) => {
+        setSelectedSubcurso(subcurso);
+        setShowEditModal(true);
+    };
+
+    const handleDeleteClick = (subcursoId) => {
+        setSelectedSubcurso(subcursoId);
+        setShowDeleteModal(true);
+    };
+
+    const confirmDelete = async () => {
+        try {
+            await SubcursoService.deleteSubcurso(selectedSubcurso);
+            onSubCursoDeleted(selectedSubcurso);
+            showConfirmationMessage("Subcurso eliminado correctamente");
+        } catch (error) {
+            console.error("Error al eliminar el subcurso:", error);
+            showConfirmationMessage("Error al eliminar el subcurso");
+        } finally {
+            setShowDeleteModal(false);
+        }
+    };
+
+    const handleUpdate = async (updatedData) => {
+        try {
+            const response = await SubcursoService.SubcursoUpdate(selectedSubcurso.subcursoId, updatedData);
+            onSubCursoUpdated(response.data);
+            showConfirmationMessage("Subcurso actualizado correctamente");
+        } catch (error) {
+            console.error("Error en la actualización:", error);
+            if (error.response && error.response.status === 500) {
+                showConfirmationMessage(
+                    `Ya existe un subcurso con el nombre "${updatedData.nombre}" , verifique el nivel"`
+                );
+            } else {
+                showConfirmationMessage("Error al actualizar el subcurso");
+            }
+        } finally {
+            setShowEditModal(false);
+        }
+    };
+
+    const showConfirmationMessage = (message, duration = 1500) => {
+        setConfirmationMessage(message);
+        setShowConfirmation(true);
+        setTimeout(() => setShowConfirmation(false), duration);
+    };
+
+    return (
+        <div className="TablaGestionSubCursosContainer">
+            <ConfirmationModal show={showConfirmation} message={confirmationMessage} />
+
+            {subcursos.length === 0 ? (
+                <div className="TablaGestionSubCursosVerDocEmpty">
+                    <h3>No hay Subcursos registrados</h3>
+                </div>
+            ) : (
+                <table className="TableGestionSubCursos">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Nivel</th>
+                            <th>Curso</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {subcursos.map((subcurso) => (
+                            <tr key={subcurso.subcursoId}>
+                                <td>{subcurso.nombre}</td>
+                                <td>{subcurso.descripcion}</td>
+                                <td>{subcurso.nivel}</td>
+                                <td>{subcurso.curso.nombre}</td>
+                                <td>
+                                    <PrimaryButton nombre="Editar" onClick={() => handleEditClick(subcurso)} />
+                                </td>
+                                <td>
+                                    <PrimaryButton nombre="Eliminar" onClick={() => handleDeleteClick(subcurso.subcursoId)} />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
+
+            <EditGestionCursosModal
+                show={showEditModal}
+                curso={selectedSubcurso}
+                onUpdate={handleUpdate}
+                onClose={() => setShowEditModal(false)}
+            />
+
+            <DeleteUserModal
+                show={showDeleteModal}
+                onConfirm={confirmDelete}
+                onCancel={() => setShowDeleteModal(false)}
+            />
         </div>
-      ) : (
-        <div>
-          <table className="TableGestionSubCursos">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Curso</th>
-                <th>Descripción</th>
-                <th>Docente</th>
-                <th>Modificar</th>
-              </tr>
-              </thead>
-              <tbody>
-                {subcursos.map((subcurso, index) => (
-                  <tr key={index}>
-                    <td>{subcurso.Nombre}</td>
-                    <td>{subcurso.Curso}</td>
-                    <td>{subcurso.Descripcion}</td>
-                    <td>{subcurso.Docente}</td>
-                    <td>
-                      <PrimaryButton nombre={"Editar"} onClick={fEditarSubCurso} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-          </table>
-        </div>
-      )}
-    </div>
-  )
+    );
 }
 
-export default TablaGestionSubCursos
+export default TablaGestionSubCursos;

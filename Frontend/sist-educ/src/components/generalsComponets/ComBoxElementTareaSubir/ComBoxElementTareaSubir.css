@@ -28,6 +28,10 @@
     margin-left: 10px;
 }
 
+.ComBoxElementTareaSubirContainer .PMd{
+    cursor: pointer;
+}
+
 .ComBoxElementTareaSubirGeneralContainer .FaFileUploadContainerTarea{
     color: var(--ColorBorderCBEC);
     font-size: 34px;

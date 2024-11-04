@@ -25,27 +25,33 @@ html, body {
 
 h1{
   font-size: var(--H1size);
+  font-weight: 400;
 }
 
 h2{
   font-size: var(--H2size);
+  font-weight: 400;
 }
 
 h3{
   font-size: var(--H3size);
+  font-weight: 400;
 }
 
 .PLg{
   font-size: var(--PLgsize);
+  font-weight: 400;
 }
 
 .PMd{
   font-size: var(--PMdsize);
   cursor: default;
+  font-weight: 400;
 }
 
 .PSm{
   font-size: var(--PSmsize);
+  font-weight: 400;
 }
 h1,h2,h3,p{
   cursor: default;

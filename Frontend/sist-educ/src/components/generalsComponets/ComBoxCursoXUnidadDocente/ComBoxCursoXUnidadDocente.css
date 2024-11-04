@@ -33,6 +33,10 @@
     cursor: pointer;
 }
 
+.ComBoxCursoXUnidadContainer .PLg{
+    cursor: pointer;
+}
+
 .ArrowContainer{
     color: var(--ColorBorderCB);
     font-size: 34px;

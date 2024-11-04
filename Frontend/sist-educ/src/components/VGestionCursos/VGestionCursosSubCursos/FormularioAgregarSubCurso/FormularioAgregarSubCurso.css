@@ -1,66 +1,76 @@
 :root {
-    --ColorBorderFormSubCurso: #171717;
-  }
-  
-  .FormularioAgregarSubCursoContainer{
-      padding: 10px;
-      box-sizing: border-box;
-      margin: 0;
-      width: 100%;
-      height: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-  .FormularioAgregarSubCursoContainer form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid var(--ColorBorderFormSubCurso);
-    border-radius: 8px;
-    box-shadow: 4px 4px 4px 0px rgba(0.0.0.25);
-  }
-  
-  .FormularioAgregarSubCursoContainer form .formularioAgregarSubCursoContentPrin {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-  }
-  .FormularioAgregarSubCursoContainer form h3 {
-    padding: 0;
-    margin-top: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .FormularioAgregarSubCursoContainer .label-input-container {
-    padding: 4px;
-    box-sizing: border-box;
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .FormularioAgregarSubCursoContainer .label-input-container label {
-    margin-right: 10px;
-  }
-  
-  .FormularioAgregarSubCursoContainer label,
-  input,
-  textarea {
-    margin-bottom: 10px;
-  }
-  
-  .FormularioAgregarSubCursoContainer .buttonSubmitSubCursoContainer {
-    padding-top: 20px;
-    padding-bottom: 10px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+  --ColorBorderFormSubCurso: #171717;
+}
+
+.FormularioAgregarSubCursoContainer {
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.FormularioAgregarSubCursoContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 2px solid var(--ColorBorderFormSubCurso);
+  border-radius: 8px;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  max-width: 600px;
+  width: 100%;
+}
+
+.FormularioAgregarSubCursoContainer form h3 {
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.formularioAgregarSubCursoContentPrin {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+.label-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label-input-container label {
+  margin-bottom: 5px;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.textarea-container {
+  grid-column: span 1; /* Descripción ocupa ambas columnas */
+}
+
+.buttonSubmitSubCursoContainer {
+  padding-top: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

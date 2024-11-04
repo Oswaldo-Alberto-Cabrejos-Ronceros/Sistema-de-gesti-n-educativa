@@ -2,63 +2,77 @@
   --ColorBorderFormCurso: #171717;
 }
 
-.FormularioAgregarCursoContainer{
-    padding: 10px;
-    box-sizing: border-box;
-    margin: 0;
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.FormularioAgregarCursoContainer {
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 0 auto; /* Centra el formulario */
+  width: 100%;
+  max-width: 600px; /* Establece un ancho máximo para el formulario */
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .FormularioAgregarCursoContainer form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 20px;
   box-sizing: border-box;
-  border: 1px solid var(--ColorBorderFormCurso);
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  border: 2px solid var(--ColorBorderFormCurso);
   border-radius: 8px;
-  box-shadow: 4px 4px 4px 0px rgba(0.0.0.25);
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.FormularioAgregarCursoContainer form .formularioAgregarCursoContentPrin {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 10px;
-}
 .FormularioAgregarCursoContainer form h3 {
   padding: 0;
   margin-top: 10px;
   margin-bottom: 20px;
 }
 
-.FormularioAgregarCursoContainer .label-input-container {
-  padding: 4px;
-  box-sizing: border-box;
-  margin: 0;
+/* Contenedor para cada fila de entrada */
+.FormularioAgregarCursoContainer form .formularioAgregarCursoContentPrin {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
 }
 
-.FormularioAgregarCursoContainer .label-input-container label {
-  margin-right: 10px;
+/* Estilo para la fila de "Nombre" y "Nivel" */
+.label-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+  gap: 20px;
 }
 
-.FormularioAgregarCursoContainer label,
-input,
-textarea {
-  margin-bottom: 10px;
+.label-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
-.FormularioAgregarCursoContainer .buttonSubmitCursoContainer {
+.label-input-container label {
+  margin-bottom: 5px;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.buttonSubmitCursoContainer {
   padding-top: 20px;
-  padding-bottom: 10px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
