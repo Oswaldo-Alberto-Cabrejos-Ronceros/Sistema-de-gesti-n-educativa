@@ -1,0 +1,33 @@
+.VAsignacionSubCursoContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.VAsignacionSubCursoContainer .VAsignacionSubCursoTitleContainer{
+    align-self:flex-start;
+    margin: 1%;
+    height: auto;
+}
+
+.VAsignacionSubCursoContainer .VAsignacionSubCursoTitleContainer h3{
+    margin: 0;
+    padding: 0;
+}
+
+.VAsignacionSubCursoContainer .VAsignacionSubCursoContent{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    min-height: 440px;
+    box-sizing: border-box;
+    align-self: flex-start;
+    margin-top: 20px;
+    box-sizing: border-box;
+    align-items: center;
+}
