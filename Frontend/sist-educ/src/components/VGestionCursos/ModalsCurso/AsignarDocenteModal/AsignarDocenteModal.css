@@ -17,10 +17,24 @@
     padding: 20px;
     border-radius: 8px;
     width: 100%;
-    max-width: 400px;
+    max-width: 680px;
     position: relative;
     box-sizing: border-box;
 }
+
+.AsignarDocenteModalContainer .AsignarDocenteModalForm .AsignarDocenteModalFormSecondaryContainer{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+.AsignarDocenteModalContainer .AsignarDocenteModalForm input {
+    pointer-events: none;
+  }
+
+.AsignarDocenteModalContainer .AsignarDocenteModalForm .SearchAsignarDocenteModal input{
+    pointer-events: all;
+}
+
 
 .AsignarDocenteModalCloseButton {
     position: absolute;
@@ -85,6 +99,13 @@
     .AsignarDocenteModalButtonSave {
         padding: 8px;
         font-size: 0.9rem; /* Ajusta el tamaño de fuente del botón */
+    }
+    .AsignarDocenteModalContent{
+       min-width: 380px;
+    }
+    .AsignarDocenteModalContainer .AsignarDocenteModalForm .AsignarDocenteModalFormSecondaryContainer{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
     }
 }
 

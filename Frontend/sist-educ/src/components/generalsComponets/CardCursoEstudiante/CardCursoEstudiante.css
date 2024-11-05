@@ -1,23 +1,23 @@
-:root{
-    --ColorCardLabel:#171717;
-    --ColorCardBackground:#FEF2F2;
-    --BorderRadious:12px;
-    --ShadowHover:#dc262633;
+:root {
+    --ColorCardLabel: #171717;
+    --ColorCardBackground: #FEF2F2;
+    --BorderRadious: 12px;
+    --ShadowHover: #dc262633;
     --Transition: 150ms;
 }
 
-.CardContainer{
+.CardContainer {
     width: 340px;
     height: 240px;
     color: var(--ColorCardLabel);
     background-color: var(--ColorCardBackground);
-    box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.25);
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
     flex-shrink: 0;
     border-radius: var(--BorderRadious);
     cursor: pointer;
 }
 
-.ImgContainer{
+.ImgContainer {
     background-image: url('/src/assets/CardCurso/CardCurso.jpg');
     background-size: cover;
     background-position: center;
@@ -26,8 +26,10 @@
     flex-shrink: 0;
     border-radius: var(--BorderRadious) var(--BorderRadious) 0 0;
 }
-.ContentContainer{
+
+.ContentContainer {
     display: flex;
+    flex-direction: column;
     background-color: var(--ColorCardBackground);
     width: 100%;
     height: 45%;
@@ -37,11 +39,27 @@
     padding: 10px;
 }
 
-.CardContainer:hover{
-    box-shadow: 4px 4px 4px 0px #dc262633;
-    transition: var(--ShadowHover);
+.CardContainer:hover {
+    box-shadow: 4px 4px 4px 0px var(--ShadowHover);
+    transition: var(--Transition);
 }
 
-.PMd{
-    align-self: flex-end;
+.RowContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
+
+.PMd {
+    align-self: flex-start;
+    margin: 0;
+
+}
+
+.Nivel {
+    text-align: right;
+    margin: 0;
+    font-weight: bold;
+}
+

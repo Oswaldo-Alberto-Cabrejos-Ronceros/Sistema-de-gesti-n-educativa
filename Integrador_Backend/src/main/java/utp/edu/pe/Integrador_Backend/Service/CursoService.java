@@ -23,6 +23,7 @@ public class CursoService {
         return cursoRepository.findAll();
     }
 
+
     public List<Curso> listarCursosPorNivel(Nivel nivel) {
         return cursoRepository.findByNivel(nivel);
     }

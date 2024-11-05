@@ -20,7 +20,7 @@ function FormularioAgregarCurso({ onCourseAdded }) {
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
   
-  const nivelOptions = [ "PRIMARIA", "SECUNDARIA"];
+  const nivelOptions = [ "SELECCIONAR","PRIMARIA", "SECUNDARIA"];
   
   const handleChange = (e) => {
     const { name, value } = e.target;

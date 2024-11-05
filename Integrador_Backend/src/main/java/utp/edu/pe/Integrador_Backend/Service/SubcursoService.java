@@ -6,10 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import utp.edu.pe.Integrador_Backend.Entidades.Alumno;
-import utp.edu.pe.Integrador_Backend.Entidades.AsignacionAlumno;
-import utp.edu.pe.Integrador_Backend.Entidades.Curso;
-import utp.edu.pe.Integrador_Backend.Entidades.Subcurso;
+import utp.edu.pe.Integrador_Backend.Entidades.*;
 import utp.edu.pe.Integrador_Backend.Repository.*;
 
 import java.util.List;
@@ -36,6 +33,21 @@ public class SubcursoService {
 
     public List<Subcurso> listarSubcursos() {
         return subcursoRepository.findAll();
+    }
+
+    public List<Subcurso> listarSubcursosPorCursoId(Long cursoId) {
+        return subcursoRepository.findByCurso_CursoId(cursoId);
+    }
+
+
+    public List<Subcurso> listarSubcursosPorUsuarioId(Long usuarioId, Rol rol) {
+        if (rol == Rol.STUDENT) {
+            return subcursoRepository.findSubcursosByAlumnoId(usuarioId);
+        } else if (rol == Rol.PROFESOR) {
+            return subcursoRepository.findSubcursosByProfesorId(usuarioId);
+        } else {
+            throw new IllegalArgumentException("Rol no soportado para listar subcursos");
+        }
     }
 
     @Transactional

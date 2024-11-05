@@ -3,20 +3,19 @@ import './VCursosEstudiante.css'
 import CardCursoEstudiante from '../generalsComponets/CardCursoEstudiante/CardCursoEstudiante';
 import { Link } from 'react-router-dom';
 
-function VCursosEstudiante({cursos}) {
-  let cursosarray=[...cursos];
+function VCursosEstudiante({ cursos }) {
   return (
-    <div className='CursosEstudianteContainer'>
-      <div className='VCursosEstudianteTitle'>
-      <h3>Mis cursos</h3>
+    <div className="CursosEstudianteContainer">
+      <div className="VCursosEstudianteTitle">
+        <h3>Mis cursos</h3>
       </div>
-        {
-          cursosarray.map((curso)=>{
-            return <Link className='LinkCursoCardEstudiante' to="/estudiante/curso" state={{curso}}><CardCursoEstudiante curso={curso}/></Link>
-          })
-        }
+      {cursos.map((curso, index) => (
+        <Link key={index} className="LinkCursoCardEstudiante" to="/estudiante/curso" state={{ curso }}>
+          <CardCursoEstudiante curso={curso} />
+        </Link>
+      ))}
     </div>
-  )
+  );
 }
 
-export default VCursosEstudiante
+export default VCursosEstudiante;

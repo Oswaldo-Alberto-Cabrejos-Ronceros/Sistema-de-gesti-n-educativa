@@ -19,6 +19,20 @@ class subcursoService{
     getAllSubCurso(){
         return axios.get(`${API_URL}/list`);
     }
+
+    listarSubcursosPorUsuario(usuarioId, rol) {
+        return axios.get(`${API_URL}/usuario/${usuarioId}`, {
+            params: {
+                rol: rol
+            }
+        });
+    }
+    
+
+    getlistarSubcursosPorCurso(cursoId){
+        return axios.get(`${API_URL}/curso/${cursoId}`);
+    }
+
     createSubcurso(subCursoData){
         return axios.post(`${API_URL}/curso/${subCursoData.cursoId}`,subCursoData);
     }
@@ -31,5 +45,7 @@ class subcursoService{
     deleteSubcurso(IdSubcurso){
         return axios.delete(`${API_URL}/${IdSubcurso}`);
     }
+
+    
 }
 export default new subcursoService();

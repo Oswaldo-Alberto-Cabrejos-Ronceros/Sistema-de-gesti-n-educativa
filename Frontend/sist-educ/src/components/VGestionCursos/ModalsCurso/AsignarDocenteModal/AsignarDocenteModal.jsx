@@ -1,173 +1,158 @@
 import React, { useState, useEffect } from "react";
 import InputComponent from "../../../generalsComponets/InputComponent/InputComponent";
-import ButtonSubtmit from "../../../generalsComponets/ButtonSubmit/ButtonSubtmit";
-import { RiBook2Line } from "react-icons/ri";
+import SelectComponent from "../../../generalsComponets/SelectComponent/SelectComponent";
+import ButtonSubmit from "../../../generalsComponets/ButtonSubmit/ButtonSubtmit";
 import ConfirmationModal from "../../../VGestionUsuarios/Modals/ConfirmacionModal";
-import { FaSchool } from "react-icons/fa";
-import SearchComponent from "../../../generalsComponets/SearchComponent/SearchComponent";
 import { TbUserEdit } from "react-icons/tb";
+import CursoService from "../../../../services/cursosService"
+import SubcursoService from "../../../../services/subcursoService"
+import DocenteService from "../../../../services/docenteService"
 import "./AsignarDocenteModal.css";
 
-function AsignarDocenteModal({ show, curso, onUpdate, onClose }) {
-  const [nombre, setNombre] = useState(curso?.nombre || "");
-  const [nivel, setNivel] = useState(curso?.nivel || "");
-  const [cursobase, setCursoBase] = useState(curso?.curso.nombre || "");
-  const [errorMessages, setErrorMessages] = useState({});
+function AsignarDocenteModal({ show, docente, onDocenteUpdated, onClose, onShowConfirmation }) {
+  const [nivel, setNivel] = useState(docente?.nivel || "SELECCIONAR");
+  const [cursoOptions, setCursoOptions] = useState([]);
+  const [selectedCursoId, setSelectedCursoId] = useState("SELECCIONAR");
+  const [subcursoOptions, setSubcursoOptions] = useState([]);
+  const [selectedSubcursoId, setSelectedSubcursoId] = useState("SELECCIONAR");
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-    let docente={
-        nombre:"Armando Felipe",
-        apellidos:"Vega Moreno",
+  useEffect(() => {
+    if (nivel !== "SELECCIONAR") {
+      CursoService.listarCursosPorNivel(nivel)
+        .then((response) => {
+          setCursoOptions([
+            { label: "SELECCIONAR", value: "SELECCIONAR" },
+            ...response.data.map((curso) => ({
+              label: curso.nombre,
+              value: curso.cursoId,
+            })),
+          ]);
+        })
+        .catch((error) => console.error("Error al obtener los cursos:", error));
+    } else {
+      setCursoOptions([{ label: "SELECCIONAR", value: "SELECCIONAR" }]);
     }
+    setSelectedCursoId("SELECCIONAR");
+    setSubcursoOptions([{ label: "SELECCIONAR", value: "SELECCIONAR" }]);
+  }, [nivel]);
 
   useEffect(() => {
-    if (curso) {
-      setNombre(curso.nombre);
-      setNivel(curso.nivel);
-      setCursoBase(curso.curso.nombre)
+    if (selectedCursoId !== "SELECCIONAR") {
+      SubcursoService.getlistarSubcursosPorCurso(selectedCursoId)
+        .then((response) => {
+          setSubcursoOptions([
+            { label: "SELECCIONAR", value: "SELECCIONAR" },
+            ...response.data.map((subcurso) => ({
+              label: subcurso.nombre,
+              value: subcurso.subcursoId,
+            })),
+          ]);
+        })
+        .catch((error) => console.error("Error al obtener los subcursos:", error));
+    } else {
+      setSubcursoOptions([{ label: "SELECCIONAR", value: "SELECCIONAR" }]);
     }
-  }, [curso]);
+  }, [selectedCursoId]);
 
-  const handleSave = (event) => {
+  const handleNivelChange = (e) => {
+    setNivel(e.target.value);
+    setSelectedCursoId("SELECCIONAR");
+    setSelectedSubcursoId("SELECCIONAR");
+  };
+
+  const handleSave = async (event) => {
     event.preventDefault();
 
-    const errors = {};
-    if (!nombre.trim()) {
-      errors.nombre = "El nombre es obligatorio";
-    }
-    if (!descripcion.trim()) {
-      errors.descripcion = "La descripción es obligatorio";
-    }
-
-    setErrorMessages(errors);
-
-    // Borra los mensajes de error después de 1.5 segundos
-    if (Object.keys(errors).length > 0) {
-      setTimeout(() => {
-        setErrorMessages({});
-      }, 1500);
-      return;
+    if (selectedCursoId === "SELECCIONAR" || selectedSubcursoId === "SELECCIONAR") {
+        setConfirmationMessage("Debe seleccionar un curso y un subcurso válidos.");
+        setShowConfirmation(true);
+        setTimeout(() => setShowConfirmation(false), 2000);
+        return;
     }
 
-    const dataToSend = { nombre: nombre, descripcion };
-    console.log(
-      "Datos enviados al backend:",
-      JSON.stringify(dataToSend, null, 2)
-    );
+    const dataToSend = {
+        usuarioId: docente.usuarioId,
+        subcursosIds: [selectedSubcursoId],
+    };
 
-    onUpdate(dataToSend);
-    showConfirmationMessage("Curso actualizado correctamente");
-    onClose();
-  };
-
-  const showConfirmationMessage = (message, duration = 1500) => {
-    setConfirmationMessage(message);
-    setShowConfirmation(true);
-    setTimeout(() => setShowConfirmation(false), duration);
-  };
+    try {
+        await DocenteService.asignarProfesor(dataToSend);
+        onShowConfirmation("Subcurso asignado correctamente");
+        onDocenteUpdated(); // Actualiza la tabla en el componente principal
+        onClose(); // Cierra el modal
+    } catch (error) {
+        const errorMessage = error.response?.data || "Error al asignar subcurso";
+        onShowConfirmation(errorMessage);
+    }
+};
 
   if (!show) return null;
 
   return (
     <div className="AsignarDocenteModalContainer">
       <div className="AsignarDocenteModalContent">
-        <button onClick={onClose} className="AsignarDocenteModalCloseButton">
-          ✕
-        </button>
-        <h4>Asignar Docente</h4>
-        <ConfirmationModal
-          show={showConfirmation}
-          message={confirmationMessage}
-        />
+        <button onClick={onClose} className="AsignarDocenteModalCloseButton">✕</button>
+        <h4>Asignar Subcurso</h4>
+        <ConfirmationModal show={showConfirmation} message={confirmationMessage} />
+
         <form className="AsignarDocenteModalForm" onSubmit={handleSave}>
-        <div className="AsignarDocenteModalFormLabelInputRow">
-            <div className="AsignarDocenteModalFormLabelInputContainer">
-              <label htmlFor="nivel">Docente:</label>
-                <SearchComponent nombre={"docente"} placeholder={"Buscar Docente"}/>
-            </div>
-            {errorMessages.nombre && (
-              <p className="AsignarDocenteModalErrorMessage">
-                {errorMessages.nombre}
-              </p>
-            )}
-          </div>
-          
-          <div className="AsignarDocenteModalFormLabelInputRow">
-            <div className="AsignarDocenteModalFormLabelInputContainer">
-              <label htmlFor="nombre">Nombres Docente:</label>
+          <div className="AsignarDocenteModalFormSecondaryContainer">
+            <div className="AsignarDocenteModalFormLabelInputRow">
+              <label>Nombres Docente:</label>
               <InputComponent
                 nombre="nombreDocente"
                 placeholder="Nombres de Docente"
                 icon={<TbUserEdit />}
                 type="text"
-                value={docente.nombre}
+                value={docente?.nombre || ""}
+                disabled
               />
             </div>
-            {errorMessages.nombre && (
-              <p className="AsignarDocenteModalErrorMessage">
-                {errorMessages.nombre}
-              </p>
-            )}
-          </div>
-
-          <div className="AsignarDocenteModalFormLabelInputRow">
-            <div className="AsignarDocenteModalFormLabelInputContainer">
-              <label htmlFor="nombre">Apellidos Docente:</label>
+            <div className="AsignarDocenteModalFormLabelInputRow">
+              <label>Apellidos Docente:</label>
               <InputComponent
                 nombre="apellidoDocente"
                 placeholder="Apellidos de Docente"
                 icon={<TbUserEdit />}
                 type="text"
-                value={docente.apellidos}
+                value={docente?.apellido || ""}
+                disabled
               />
             </div>
-            {errorMessages.nombre && (
-              <p className="AsignarDocenteModalErrorMessage">
-                {errorMessages.nombre}
-              </p>
-            )}
-          </div>
-
-          <div className="AsignarDocenteModalFormLabelInputRow">
-            <div className="AsignarDocenteModalFormLabelInputContainer">
-              <label htmlFor="nivel">Nivel:</label>
-              <InputComponent
-                nombre="nivel"
-                placeholder="Nivel"
-                icon={<FaSchool />}
-                type="text"
+            <div className="AsignarDocenteModalFormLabelInputRow">
+              <label>Nivel:</label>
+              <SelectComponent
+                options={[
+                  { label: "SELECCIONAR", value: "SELECCIONAR" },
+                  { label: "PRIMARIA", value: "PRIMARIA" },
+                  { label: "SECUNDARIA", value: "SECUNDARIA" },
+                ]}
                 value={nivel}
-                onChange={(e) => setNombre(e.target.value)}
+                onChange={handleNivelChange}
               />
             </div>
-            {errorMessages.nombre && (
-              <p className="AsignarDocenteModalErrorMessage">
-                {errorMessages.nombre}
-              </p>
-            )}
-          </div>
-          <div className="AsignarDocenteModalFormLabelInputRow">
-            <div className="AsignarDocenteModalFormLabelInputContainer">
-              <label htmlFor="nivel">Curso:</label>
-              <InputComponent
-                nombre="curso"
-                placeholder="Curso"
-                icon={<RiBook2Line />}
-                type="text"
-                value={cursobase}
-                onChange={(e) => setNombre(e.target.value)}
+            <div className="AsignarDocenteModalFormLabelInputRow">
+              <label>Curso:</label>
+              <SelectComponent
+                options={cursoOptions}
+                value={selectedCursoId}
+                onChange={(e) => setSelectedCursoId(e.target.value)}
               />
             </div>
-            {errorMessages.nombre && (
-              <p className="AsignarDocenteModalErrorMessage">
-                {errorMessages.nombre}
-              </p>
-            )}
+            <div className="AsignarDocenteModalFormLabelInputRow">
+              <label>Subcurso:</label>
+              <SelectComponent
+                options={subcursoOptions}
+                value={selectedSubcursoId}
+                onChange={(e) => setSelectedSubcursoId(e.target.value)}
+              />
+            </div>
           </div>
           <div className="AsignarDocenteModalButtonContainer">
-                        <ButtonSubtmit className="AsignarDocenteModalButtonSave" nombre="Guardar" />
-                    </div>
+            <ButtonSubmit className="AsignarDocenteModalButtonSave" nombre="Guardar" />
+          </div>
         </form>
       </div>
     </div>

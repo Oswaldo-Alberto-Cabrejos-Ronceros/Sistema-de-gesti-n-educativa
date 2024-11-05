@@ -5,7 +5,6 @@ function SelectComponent({ name, options, value, onChange }) {
   return (
     <div className="SelectComponentContainer">
       <select name={name} id={name} value={value} onChange={onChange}>
-      <option value="">SELECCIONAR</option>
         {options.map((option) => {
           
           const optionValue = typeof option === 'object' ? option.value : option;

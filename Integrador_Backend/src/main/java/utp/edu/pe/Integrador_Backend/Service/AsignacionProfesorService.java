@@ -35,10 +35,11 @@ public class AsignacionProfesorService {
 
         for (Long subcursoId : subcursosIds) {
             if (asignacionProfesorRepository.existsBySubcurso_SubcursoId(subcursoId)) {
-                Profesor profesorAsignado = asignacionProfesorRepository.findBySubcurso_SubcursoId(subcursoId)
-                        .orElseThrow(() -> new RuntimeException("Subcurso no encontrado"))
-                        .getProfesor();
-                throw new RuntimeException("El subcurso " + subcursoId + " ya está asignado al profesor " + profesorAsignado.getNombre());
+                AsignacionProfesor asignacionExistente = asignacionProfesorRepository.findBySubcurso_SubcursoId(subcursoId)
+                        .orElseThrow(() -> new RuntimeException("Subcurso no encontrado"));
+                Profesor profesorAsignado = asignacionExistente.getProfesor();
+                String subcursoNombre = asignacionExistente.getSubcurso().getNombre(); // Obtener nombre del subcurso
+                throw new RuntimeException("El subcurso '" + subcursoNombre + "' ya está asignado al profesor " + profesorAsignado.getNombre()+" "+profesorAsignado.getApellido());
             }
 
             Subcurso subcurso = subcursoRepository.findById(subcursoId)

@@ -1,82 +1,113 @@
 import React, { useState } from 'react'
 import PrimaryButton from '../../../generalsComponets/PrimaryButton/PrimaryButton'
 import AsignarDocenteModal from '../../ModalsCurso/AsignarDocenteModal/AsignarDocenteModal';
-import ConfirmationModal from "../../../VGestionUsuarios/Modals/ConfirmacionModal";
+import DeleteUserModal from "../../../VGestionUsuarios/Modals/DeleteUserModal";
+import SelectComponent from '../../../generalsComponets/SelectComponent/SelectComponent';
+import DocenteService from "../../../../services/docenteService"
 import './TablaAsignacionSubCurso.css'
 
-function TablaAsignacionSubCurso({subcursos}) {
-    console.log(subcursos)
+function TablaAsignacionSubCurso({ docentes = [], onDocenteUpdated, onShowConfirmation }) {
     const [showEditModal, setShowEditModal] = useState(false);
-    const [selectedSubcurso, setSelectedSubcurso] = useState(null);
-    const [confirmationMessage, setConfirmationMessage] = useState("");
-    const [showConfirmation, setShowConfirmation] = useState(false);
-    const handleEditClick = (subcurso) => {
-        setSelectedSubcurso(subcurso);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [selectedDocente, setSelectedDocente] = useState(null);
+    const [selectedAsignacionId, setSelectedAsignacionId] = useState(null);
+
+    const handleEditClick = (docente) => {
+        setSelectedDocente(docente);
         setShowEditModal(true);
     };
-    const handleUpdate = async (updatedData) => {
+
+    const handleDeleteClick = (asignacionId) => {
+        setSelectedAsignacionId(asignacionId);
+        setShowDeleteModal(true);
+    };
+
+    const confirmDelete = async () => {
         try {
-            const response = await SubcursoService.SubcursoUpdate(selectedSubcurso.subcursoId, updatedData);
-            onSubCursoUpdated(response.data);
-            showConfirmationMessage("Subcurso actualizado correctamente");
+            await DocenteService.desasignarProfesor(selectedAsignacionId);
+            onShowConfirmation("Asignación eliminada correctamente");
+            onDocenteUpdated(); // Actualiza la lista de docentes después de eliminar la asignación
         } catch (error) {
-            console.error("Error en la actualización:", error);
-            if (error.response && error.response.status === 500) {
-                showConfirmationMessage(
-                    `Ya existe un subcurso con el nombre "${updatedData.nombre}" , verifique el nivel"`
-                );
-            } else {
-                showConfirmationMessage("Error al actualizar el subcurso");
-            }
+            console.error("Error al eliminar la asignación:", error);
+            onShowConfirmation("Error al eliminar la asignación");
         } finally {
-            setShowEditModal(false);
+            setShowDeleteModal(false);
         }
     };
 
-    const showConfirmationMessage = (message, duration = 1500) => {
-        setConfirmationMessage(message);
-        setShowConfirmation(true);
-        setTimeout(() => setShowConfirmation(false), duration);
-    };
-  return (
-    <div className='TablaAsignacionSubCursoContainer'>
-        <ConfirmationModal show={showConfirmation} message={confirmationMessage} />
-         {subcursos.length === 0 ? (
+    return (
+        <div className="TablaAsignacionSubCursoContainer">
+            {docentes.length === 0 ? (
                 <div className="TablaAsignacionSubCursoEmpty">
-                    <h3>No hay Subcursos registrados</h3>
+                    <h3>No hay docentes registrados</h3>
                 </div>
             ) : (
                 <table className="TableGestionSubCursos">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
                             <th>Nivel</th>
-                            <th>Curso</th>
+                            <th>Especialidad</th>
+                            <th>Cursos Asignados</th>
+                            <th>Estado</th>
                             <th>Asignar</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {subcursos.map((subcurso) => (
-                            <tr key={subcurso.subcursoId}>
-                                <td>{subcurso.nombre}</td>
-                                <td>{subcurso.nivel}</td>
-                                <td>{subcurso.curso.nombre}</td>
+                        {docentes.map((docente) => (
+                            <tr key={docente.usuarioId}>
+                                <td>{docente.nombre}</td>
+                                <td>{docente.apellido}</td>
+                                <td>{docente.nivel}</td>
+                                <td>{docente.especialidad}</td>
                                 <td>
-                                    <PrimaryButton nombre="Asignar"  onClick={() => handleEditClick(subcurso)}/>
+                                    <SelectComponent
+                                        name={`subcursos-${docente.usuarioId}`}
+                                        options={docente.asignacionProfesor.map((asignacion) => ({
+                                            label: asignacion.subcurso.nombre,
+                                            value: asignacion.subcurso.subcursoId,
+                                        }))}
+                                        value={null}
+                                        onChange={null}
+                                    />
+                                </td>
+                                <td>
+                                    {docente.asignacionProfesor.length > 0 && docente.asignacionProfesor[0].estado}
+                                </td>
+                                <td>
+                                    <PrimaryButton nombre="Asignar" onClick={() => handleEditClick(docente)} />
+                                </td>
+                                <td>
+                                    {docente.asignacionProfesor.length > 0 && (
+                                        <PrimaryButton
+                                            nombre="Eliminar"
+                                            onClick={() => handleDeleteClick(docente.asignacionProfesor[0].asignacionProfesorId)}
+                                        />
+                                    )}
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             )}
+
             <AsignarDocenteModal
                 show={showEditModal}
-                curso={selectedSubcurso}
-                onUpdate={handleUpdate}
+                docente={selectedDocente}
                 onClose={() => setShowEditModal(false)}
+                onDocenteUpdated={onDocenteUpdated}
+                onShowConfirmation={onShowConfirmation}
             />
-    </div>
-  )
+
+            <DeleteUserModal
+                show={showDeleteModal}
+                onConfirm={confirmDelete}
+                onCancel={() => setShowDeleteModal(false)}
+            />
+        </div>
+    );
 }
 
-export default TablaAsignacionSubCurso
+export default TablaAsignacionSubCurso;

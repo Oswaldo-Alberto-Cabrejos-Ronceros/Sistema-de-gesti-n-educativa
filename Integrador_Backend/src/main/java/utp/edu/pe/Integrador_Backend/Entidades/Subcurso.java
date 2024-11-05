@@ -40,15 +40,15 @@ public class Subcurso {
     // Relaciones
     @ManyToOne
     @JoinColumn(name = "FK_SOP_CURSO_C_CURSOID") // FK a SOP_CURSO
-    @JsonIgnoreProperties({"subcursos"})
+    @JsonIgnoreProperties("subcursos")
     private Curso curso;
 
     @OneToMany(mappedBy = "subcurso",cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("subcurso")
+    @JsonIgnoreProperties({"subcurso"}) //{"subcurso", "profesor"}
     private Set<AsignacionProfesor> asignacionesProfesor;
 
     @OneToMany(mappedBy = "subcurso", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("subcurso")
+    @JsonIgnoreProperties({"subcurso", "alumno"})
     private Set<AsignacionAlumno> asignacionesAlumno = new HashSet<>();
 
     @OneToMany(mappedBy = "subcurso", cascade = CascadeType.ALL)

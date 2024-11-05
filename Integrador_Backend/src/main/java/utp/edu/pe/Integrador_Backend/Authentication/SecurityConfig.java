@@ -68,7 +68,7 @@ public class SecurityConfig {
                     http.requestMatchers(HttpMethod.DELETE, "/api/cursos/**").hasAuthority("ADMIN");
 
                     // Endpoints relacionados a subcursos (ADMIN)
-                    http.requestMatchers(HttpMethod.GET, "/api/subcursos/**").hasAuthority("ADMIN");
+                    http.requestMatchers(HttpMethod.GET, "/api/subcursos/**").permitAll();
                     http.requestMatchers(HttpMethod.POST, "/api/subcursos/**").hasAuthority("ADMIN");
                     http.requestMatchers(HttpMethod.PUT, "/api/subcursos/**").hasAuthority("ADMIN");
                     http.requestMatchers(HttpMethod.DELETE, "/api/subcursos/**").hasAuthority("ADMIN");

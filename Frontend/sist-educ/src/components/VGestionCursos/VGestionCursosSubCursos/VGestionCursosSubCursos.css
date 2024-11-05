@@ -7,6 +7,12 @@
     box-sizing: border-box;
 }
 
+.VGestionCursosSubCursosContainer .VGestionCursosSubCursosContainerSearch{
+    margin: 0;
+    padding-left: 1vw;
+    box-sizing: content-box;
+}
+
 .VGestionCursosSubCursosContainer .VGestionCursosSubCursosContainerTitle{
     height: auto;
     margin: 1%;

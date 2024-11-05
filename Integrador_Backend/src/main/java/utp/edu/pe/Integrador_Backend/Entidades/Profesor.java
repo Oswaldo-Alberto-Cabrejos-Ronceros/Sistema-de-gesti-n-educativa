@@ -29,4 +29,9 @@ public class Profesor extends Usuario{
     @Column(name = "X_NIVEL")
     private Nivel nivel;  // Primaria o Secundaria
 
+
+    @OneToMany(mappedBy = "profesor",cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("profesor")
+    private Set<AsignacionProfesor> asignacionProfesor;
+
 }

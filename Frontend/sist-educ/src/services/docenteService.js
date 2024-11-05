@@ -40,8 +40,8 @@ class DocenteService{
     deleteProfesor(Id){
         return axios.delete(`${API_URL}/eliminar/${Id}`);
     }
-    asignarProfesor(){
-        return axios.post(`${API_URL}/asignar}`);
+    asignarProfesor(request){
+        return axios.post(`${API_URL}/asignar`,request);
     }
     desasignarProfesor(asignacionId){
         return axios.delete(`${API_URL}/desasignar/${asignacionId}`);

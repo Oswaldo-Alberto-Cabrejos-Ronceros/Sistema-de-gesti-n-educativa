@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import utp.edu.pe.Integrador_Backend.Entidades.Rol;
 import utp.edu.pe.Integrador_Backend.Entidades.Subcurso;
 import utp.edu.pe.Integrador_Backend.Service.SubcursoService;
 
@@ -22,6 +23,22 @@ public class SubcursoController {
         List<Subcurso> subcursos = subcursoService.listarSubcursos();
         return ResponseEntity.ok(subcursos);
     }
+
+    @GetMapping("/curso/{cursoId}")
+    public ResponseEntity<List<Subcurso>> listarSubcursosPorCursoId(@PathVariable Long cursoId) {
+        List<Subcurso> subcursos = subcursoService.listarSubcursosPorCursoId(cursoId);
+        return ResponseEntity.ok(subcursos);
+    }
+
+    // Endpoint para listar subcursos según el ID del usuario y su rol
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<Subcurso>> listarSubcursosPorUsuario(
+            @PathVariable Long usuarioId,
+            @RequestParam Rol rol) {
+        List<Subcurso> subcursos = subcursoService.listarSubcursosPorUsuarioId(usuarioId, rol);
+        return ResponseEntity.ok(subcursos);
+    }
+
 
     @PostMapping("/curso/{cursoId}")
     public ResponseEntity<Subcurso> crearSubcurso(@PathVariable Long cursoId, @RequestBody @Valid Subcurso subcurso) {

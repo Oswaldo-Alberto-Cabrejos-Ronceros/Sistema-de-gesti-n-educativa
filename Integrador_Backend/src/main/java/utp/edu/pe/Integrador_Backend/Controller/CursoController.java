@@ -24,6 +24,9 @@ public class CursoController {
         return ResponseEntity.ok(cursos);
     }
 
+
+
+
     @GetMapping("/{cursoId}")
     public ResponseEntity<Curso> obtenerCurso(@PathVariable Long cursoId) {
         Curso curso = cursoService.obtenerCursoPorId(cursoId);

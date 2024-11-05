@@ -51,7 +51,9 @@ function VGestionCursosCursos() {
         <div className="VGestionCursosCursosContainerTitle">
           <h3>Cursos:</h3>
         </div>
+        <div className='VGestionCursosCursosContainerSearch'>
         <SearchComponent nombre={"Cursos"} placeholder={"Buscar Curso"} />
+        </div>
         <div className="TablaGestionCursosContainer">
           <TablaGestionCursos cursos={cursos} onCourseUpdated={handleCourseUpdated} onCourseDeleted={handleCourseDeleted} />
         </div>

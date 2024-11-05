@@ -1,16 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./VEstudiante.css";
-import { useState } from "react";
-import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import subcursoService from "../../services/subcursoService";
 import BarraNavegacion from "../BarraNavegacionEstudiante/BarraNavegacionEstudiante";
 //import ComponenteVacio from "../ComponenteVacio/ComponenteVacio";
-import VCursosDocente from "../VCursosDocente/VCursosDocente";
 //import VEstudiante from "../VEstudiante/VEstudiante";
 import InfoUser from "../generalsComponets/InfoUser/InfoUser";
-import VCursosAdministrador from "../VCursosAdministrador/VCursosAdministrador";
-import VGestionCursos from "../VGestionCursos/VGestionCursos";
-import VGestionUsuarios from "../VGestionUsuarios/VGestionUsuarios";
-import ComponenteVacio from "../ComponenteVacio/ComponenteVacio";
 import VHonorEstudiante from "../VHonorEstudiante/VHonorEstudiante";
 import VCursosEstudiante from "../VCursosEstudiante/VCursosEstudiante";
 import VCursosEstudianteContenido from "../VCursosEstudiante/VCursoEstudianteContenido/VCursoEstudianteContenido";
@@ -20,83 +15,39 @@ import VNotasEstudiante from "../VNotasEstudiante/VNotasEstudiante";
 import VChatEstudiante from "../VChatEstudianteDocente/VChatEstudianteDocente";
 
 function VEstudiante() {
-  let curso = {
-    nombre: "Matematica",
-    grado: "6to",
-    seccion: "Unica",
-    nivel: "Primaria",
-  };
+  const [cursos, setCursos] = useState([]);
+  const [userAlumno, setUserAlumno] = useState({});
   const [componentToShow, setComponentToShow] = useState("Cursos");
+
+  useEffect(() => {
+    const userData = JSON.parse(sessionStorage.getItem("userData"));
+    setUserAlumno(userData || {});
+
+    if (userData) {
+      subcursoService
+        .listarSubcursosPorUsuario(userData.usuarioId, userData.rol)
+        .then((response) => {
+          setCursos(
+            response.data.map((curso) => {
+              const profesorAsignado = curso.asignacionesProfesor[0]?.profesor || {};
+              return {
+                Nombre: curso.nombre,
+                Nivel: curso.nivel,
+                Docente: profesorAsignado.nombre && profesorAsignado.apellido
+                  ? `${profesorAsignado.nombre} ${profesorAsignado.apellido}`
+                  : "No asignado",
+              };
+            })
+          );
+        })
+        .catch((error) => console.error("Error al obtener los cursos:", error));
+    }
+  }, []);
+
   const handleOptionSelect = (option) => {
     setComponentToShow(option);
   };
-  let curso2 = {
-    nombre: "Matematicas",
-    imagen: "https://definicion.de/wp-content/uploads/2008/06/asignatura.png",
-    codigo: "789456",
-    modalidad: "Presencial",
-    profesor: "Loo Parian Luis Alberto",
-  };
-  let cursoarray = [curso2];
-  let tarea = [
-    {
-      titulo: "Semana 1",
-      curso: "Matematicas",
-      fechaVecimiento: "10 de Agosto",
-    },
-  ];
-  //
-  let cursos = [
-    {
-      Nombre: "Trigonometria",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-    {
-      Nombre: "Lenguaje",
-      Docente: "Huanta Villegas Mirta Juanita",
-    },
-    {
-      Nombre: "Geometria",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-    {
-      Nombre: "Literatura",
-      Docente: "Huanta Villegas Mirta Juanita",
-    },
-  ];
-  
-  let userAlumno = {
-    rol: "STUDENT",
-    nombres: "Edilberto Nicolas",
-    apellidos: "Chumbivilca Flores",
-    grado: "6to",
-    nivel: "Primaria",
-  };
 
-
-  let tareasPorFechas = [
-    {
-      nombre: "Tarea: Angulos Suplementarios 1",
-      link: "https://www.youtube.com/",
-      fechaEntrega: "12/05/2024",
-    },
-    {
-      nombre: "Tarea: Angulos Suplementarios 2",
-      link: "https://www.youtube.com/",
-      fechaEntrega: "12/05/2024",
-    },
-    {
-      nombre: "Tarea: Angulos Complementarios 1",
-      link: "https://www.youtube.com/",
-      fechaEntrega: "12/05/2024",
-    },
-
-    {
-      nombre: "Tarea: Angulos Complementarios 2",
-      link: "https://www.youtube.com/",
-      fechaEntrega: "12/05/2024",
-    },
-  ];
 
   return (
       <div className="VEstudianteMain">

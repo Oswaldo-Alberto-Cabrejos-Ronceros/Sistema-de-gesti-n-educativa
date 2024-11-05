@@ -1,34 +1,42 @@
 import React , { useState, useEffect } from "react";
-import SubcursoService from '../../../services/subcursoService'
+import DocenteService from '../../../services/docenteService'
 import TablaAsignacionSubCurso from "./TablaAsignacionSubCurso/TablaAsignacionSubCurso";
 import './VAsignacionSubCurso.css'
+import ConfirmationModal from "../../VGestionUsuarios/Modals/ConfirmacionModal";
+
 
 function VAsignacionSubCurso() {
-    const [subcursos, setSubCursos] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [docentes, setDocentes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [confirmationMessage, setConfirmationMessage] = useState("");
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
-    useEffect(() => {
-        fetchSubCursos(); // Cargar los subcursos al montar el componente
-    }, []);
+  useEffect(() => {
+    fetchDocentes();
+  }, []);
 
-    const fetchSubCursos = async () => {
-        setLoading(true);
-        setError(null);
-        try {
-            const response = await SubcursoService.getAllSubCurso();
-            setSubCursos(response.data);
-        } catch (error) {
-            setError("Error al cargar subcursos. Inténtalo más tarde.");
-        } finally {
-            setLoading(false);
-        }
-    };
-    if (loading) return <div>Cargando subcursos...</div>;
-    if (error) return <div>{error}</div>;
-    // Agregar subcurso en vivo
+  const fetchDocentes = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await DocenteService.getAllDocente();
+      setDocentes(response.data);
+    } catch (error) {
+      setError("Error al cargar docentes. Inténtalo más tarde.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  const showConfirmationMessage = (message, duration = 1300) => {
+    setConfirmationMessage(message);
+    setShowConfirmation(true);
+    setTimeout(() => setShowConfirmation(false), duration);
+  };
 
+  if (loading) return <div>Cargando docentes...</div>;
+  if (error) return <div>{error}</div>;
   return (
     <div className="VAsignacionSubCursoContainer">
       <div className="VAsignacionSubCursoTitleContainer">
@@ -36,8 +44,13 @@ function VAsignacionSubCurso() {
       </div>
       <div className="VAsignacionSubCursoContent">
         <div>
-        <TablaAsignacionSubCurso subcursos={subcursos}/>
+        <TablaAsignacionSubCurso 
+          docentes={docentes} 
+          onDocenteUpdated={fetchDocentes} 
+          onShowConfirmation={showConfirmationMessage} 
+        />
         </div>
+        <ConfirmationModal show={showConfirmation} message={confirmationMessage} />
       </div>
     </div>
   );

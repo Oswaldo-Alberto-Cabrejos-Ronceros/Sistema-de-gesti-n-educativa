@@ -37,10 +37,10 @@ public class Alumno  extends Usuario{
 
     // Relaciones con otras entidades
     @OneToMany(mappedBy = "alumno",cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("alumno")
+    @JsonIgnoreProperties({"asignaciones", "notas"})
     private Set<AsignacionAlumno> asignaciones = new HashSet<>();;
 
     @OneToMany(mappedBy = "alumno",cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("alumno")
+    @JsonIgnoreProperties({"notas", "asignaciones"})
     private Set<Nota> notas;
 }

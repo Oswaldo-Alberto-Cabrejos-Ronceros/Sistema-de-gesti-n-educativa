@@ -56,7 +56,9 @@ function VGestionCursosSubCursos() {
             <div className="VGestionCursosSubCursosContainerTitle">
                 <h3>SubCursos:</h3>
             </div>
+            <div className='VGestionCursosSubCursosContainerSearch'>
             <SearchComponent nombre={"Subcursos"} placeholder={"Buscar Subcurso"} />
+            </div>
             <div className="TablaGestionSubCursosContainer">
                 <TablaGestionSubCursos
                     subcursos={subcursos}

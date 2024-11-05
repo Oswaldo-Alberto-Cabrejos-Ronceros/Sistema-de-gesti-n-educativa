@@ -127,6 +127,7 @@ function FormularioAgregarSubCurso({ onSubCursoAdded }) {
             <label htmlFor="Nivel">Nivel:</label>
             <SelectComponent
               options={[
+                { label: "SELECCIONAR", value: "SELECCIONAR" },
                 { label: "PRIMARIA", value: "PRIMARIA" },
                 { label: "SECUNDARIA", value: "SECUNDARIA" },
               ]}

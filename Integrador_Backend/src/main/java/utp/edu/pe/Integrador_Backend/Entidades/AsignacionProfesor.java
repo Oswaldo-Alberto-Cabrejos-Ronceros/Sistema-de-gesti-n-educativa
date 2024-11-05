@@ -1,6 +1,7 @@
 package utp.edu.pe.Integrador_Backend.Entidades;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,11 +21,13 @@ public class AsignacionProfesor {
     // Relacion con el profesor
     @ManyToOne
     @JoinColumn(name = "FK_SOP_PROFESOR_C_USUARIOID")
+    @JsonIgnoreProperties("asignacionesProfesor")
     private Profesor profesor;
 
     // Relacion con el subcurso
     @ManyToOne
     @JoinColumn(name = "FK_SOP_SUBCURSO_C_SUBCURSOID")
+    @JsonIgnoreProperties("asignacionesProfesor")
     private Subcurso subcurso;
 
     @Column(name = "X_ESTADO")
