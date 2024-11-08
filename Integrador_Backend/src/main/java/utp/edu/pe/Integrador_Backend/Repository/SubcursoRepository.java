@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public interface SubcursoRepository extends JpaRepository<Subcurso, Long> {
     List<Subcurso> findByNivel(Nivel nivel);
+    List<Subcurso> findByCurso_CursoId(Long cursoId);
 
     // Metodo para obtener subcursos asignados a un alumno por su ID
     @Query("SELECT s FROM Subcurso s JOIN s.asignacionesAlumno aa WHERE aa.alumno.usuarioId = :usuarioId")
@@ -20,6 +21,6 @@ public interface SubcursoRepository extends JpaRepository<Subcurso, Long> {
     @Query("SELECT s FROM Subcurso s JOIN s.asignacionesProfesor ap WHERE ap.profesor.usuarioId = :usuarioId")
     List<Subcurso> findSubcursosByProfesorId(@Param("usuarioId") Long usuarioId);
     
-    List<Subcurso> findByCurso_CursoId(Long cursoId);
+
     boolean existsByNombreIgnoreCaseAndNivel(String nombre, Nivel nivel);
 }

@@ -13,6 +13,5 @@ public interface CursoRepository  extends JpaRepository<Curso, Long> {
 
     List<Curso> findByNivel(Nivel nivel);
 
-
     boolean existsByNombreIgnoreCaseAndNivel(String nombre, Nivel nivel);
 }

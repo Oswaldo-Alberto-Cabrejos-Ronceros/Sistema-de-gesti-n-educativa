@@ -41,18 +41,19 @@ public class AlumnoService {
     }
 
     public List<Alumno> obtenerAlumnosPorGradoYSubcurso(Integer grado, Long subcursoId) {
-        return alumnoRepository.findByGradoAndAsignaciones_Subcurso_SubcursoId(grado, subcursoId);
+        return alumnoRepository.findByGradoAndAsignaciones_Subcurso_SubcursoIdOrderByApellidoAsc(grado, subcursoId);
     }
-    public List<Nota> obtenerNotasPorAlumno(Long alumnoId) {
-        Alumno alumno = alumnoRepository.findById(alumnoId)
-                .orElseThrow(() -> new ResourceNotFoundException("Alumno no encontrado con id: " + alumnoId));
+
+    public List<Nota> obtenerNotasPorAlumno(Long usuarioId) {
+        Alumno alumno = alumnoRepository.findById(usuarioId)
+                .orElseThrow(() -> new ResourceNotFoundException("Alumno no encontrado con id: " + usuarioId));
         return alumno.getNotas().stream().toList();
     }
 
     @Transactional
-    public List<Nota> obtenerNotasPorAlumnoYSubcurso(Long alumnoId, Long subcursoId) {
-        Alumno alumno = alumnoRepository.findById(alumnoId)
-                .orElseThrow(() -> new ResourceNotFoundException("Alumno no encontrado con id: " + alumnoId));
+    public List<Nota> obtenerNotasPorAlumnoYSubcurso(Long usuarioId, Long subcursoId) {
+        Alumno alumno = alumnoRepository.findById(usuarioId)
+                .orElseThrow(() -> new ResourceNotFoundException("Alumno no encontrado con id: " + usuarioId));
 
         return alumno.getNotas().stream()
                 .filter(nota -> nota.getSubcurso().getSubcursoId().equals(subcursoId))

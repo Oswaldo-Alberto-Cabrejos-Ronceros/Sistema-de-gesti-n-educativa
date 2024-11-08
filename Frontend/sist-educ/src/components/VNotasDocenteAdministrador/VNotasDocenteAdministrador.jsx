@@ -18,12 +18,7 @@ function VNotasDocenteAdministrador() {
         <h3>Notas</h3>
       </div>
       <div className="VNotDocAdminCamb">
-        <Routes>
-          <Route index element={<VNotasDocenteAdministradorCursos />} />
-          <Route path="cursos" element={<VNotasDocenteAdministradorCursos />} />
-          <Route path="subirnotas" element={<VSubirNotasDocente />} />
-          <Route path="vernotas" element={<VVerNotasDocente/>} />
-        </Routes>
+      <VNotasDocenteAdministradorCursos />
       </div>
     </div>
   );

@@ -38,6 +38,17 @@
     padding: 10px;
 }
 
+.ContentContainerDocente .PLg{
+    align-self: flex-start;
+}
+
+.ContentContainerDocente .RowContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 .CardDocenteContainer:hover{
     box-shadow: 4px 4px 4px 0px var(--ShadowHover);
     transition: var(--Transition);
@@ -45,4 +56,11 @@
 
 .CardDocenteContainer .PMd{
     align-self: flex-end;
+}
+
+
+.ContentContainerDocente .Nivel {
+    text-align: right;
+    margin: 0;
+    font-weight: bold;
 }

@@ -39,6 +39,10 @@
     padding: 10px;
 }
 
+.ContentContainer .PLg{
+    align-self: flex-start;
+}
+
 .CardContainer:hover {
     box-shadow: 4px 4px 4px 0px var(--ShadowHover);
     transition: var(--Transition);

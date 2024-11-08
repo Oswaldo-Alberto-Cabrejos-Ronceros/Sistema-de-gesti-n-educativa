@@ -33,17 +33,17 @@ public class AlumnoController {
     }
 
     //notas por id de un alumno
-    @GetMapping("/{alumnoId}/notas")
-    public ResponseEntity<List<Nota>> obtenerNotasPorAlumno(@PathVariable Long alumnoId) {
-        List<Nota> notas = alumnoService.obtenerNotasPorAlumno(alumnoId);
+    @GetMapping("/{usuarioId}/notas")
+    public ResponseEntity<List<Nota>> obtenerNotasPorAlumno(@PathVariable Long usuarioId) {
+        List<Nota> notas = alumnoService.obtenerNotasPorAlumno(usuarioId);
         return ResponseEntity.ok(notas);
     }
-    //notas de un alumno e nun subcurso especifico
-    @GetMapping("/{alumnoId}/subcurso/{subcursoId}/notas")
+    //notas de un alumno en un subcurso especifico
+    @GetMapping("/{usuarioId}/subcurso/{subcursoId}/notas")
     public ResponseEntity<List<Nota>> obtenerNotasPorAlumnoYSubcurso(
-            @PathVariable Long alumnoId,
+            @PathVariable Long usuarioId,
             @PathVariable Long subcursoId) {
-        List<Nota> notas = alumnoService.obtenerNotasPorAlumnoYSubcurso(alumnoId, subcursoId);
+        List<Nota> notas = alumnoService.obtenerNotasPorAlumnoYSubcurso(usuarioId, subcursoId);
         return ResponseEntity.ok(notas);
     }
 

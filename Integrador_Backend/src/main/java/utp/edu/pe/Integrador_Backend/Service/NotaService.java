@@ -14,6 +14,8 @@ import utp.edu.pe.Integrador_Backend.Repository.AsignacionAlumnoRepository;
 import utp.edu.pe.Integrador_Backend.Repository.NotaRepository;
 import utp.edu.pe.Integrador_Backend.Repository.SubcursoRepository;
 
+import java.util.List;
+
 @Service
 public class NotaService {
 
@@ -29,48 +31,59 @@ public class NotaService {
     @Autowired
     private SubcursoRepository subcursoRepository;
 
+        //LOOGBAK
     private static final Logger logger = LoggerFactory.getLogger(NotaService.class);
 
-
     @Transactional
-    public Nota registrarNota(Long alumnoId, Long subcursoId, Nota nota) {
-        Alumno alumno = alumnoRepository.findById(alumnoId)
-                .orElseThrow(() -> new ResourceNotFoundException("Alumno no encontrado con id: " + alumnoId));
+    public Nota registrarCalificacion(Long usuarioId , Long subcursoId, Integer unidad, Integer calificacionNumero, Double calificacion) {
+        Alumno alumno = alumnoRepository.findById(usuarioId )
+                .orElseThrow(() -> new ResourceNotFoundException("Alumno no encontrado con id: " + usuarioId ));
         Subcurso subcurso = subcursoRepository.findById(subcursoId)
                 .orElseThrow(() -> new ResourceNotFoundException("Subcurso no encontrado con id: " + subcursoId));
 
-        // Verificar que el alumno esté asignado al subcurso
-        boolean estaAsignado = asignacionAlumnoRepository.existsByAlumnoAndSubcurso(alumno, subcurso);
-        if (!estaAsignado) {
-            throw new IllegalArgumentException("El alumno no está asignado al subcurso.");
+        Nota nuevaNota = new Nota();
+        nuevaNota.setAlumno(alumno);
+        nuevaNota.setSubcurso(subcurso);
+        nuevaNota.setUnidad(unidad);
+        nuevaNota.setCalificacion(calificacion);
+        nuevaNota.setCalificacionNumero(calificacionNumero);
+
+        return notaRepository.save(nuevaNota);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Nota> obtenerNotasPorAlumnoYUnidad(Long subcursoId, Integer unidad, Long usuarioId) {
+        return notaRepository.findBySubcurso_SubcursoIdAndUnidadAndAlumno_UsuarioId(subcursoId, unidad, usuarioId);
+    }
+
+    @Transactional(readOnly = true)
+    public Double calcularPromedioPorUnidad(Long usuarioId , Long subcursoId, Integer unidad) {
+        List<Nota> notas = notaRepository.findByAlumnoUsuarioIdAndSubcursoIdAndUnidad(usuarioId , subcursoId, unidad);
+        return notas.stream().mapToDouble(Nota::getCalificacion).average().orElse(0.0);
+    }
+
+    @Transactional(readOnly = true)
+    public Double calcularPromedioBimestral(Long usuarioId , Long subcursoId, Integer bimestre) {
+        int unidad1 = (bimestre - 1) * 2 + 1;
+        int unidad2 = unidad1 + 1;
+
+        Double promedioUnidad1 = calcularPromedioPorUnidad(usuarioId , subcursoId, unidad1);
+        Double promedioUnidad2 = calcularPromedioPorUnidad(usuarioId , subcursoId, unidad2);
+
+        return (promedioUnidad1 + promedioUnidad2) / 2;
+    }
+
+    @Transactional(readOnly = true)
+    public Double calcularPromedioFinalDelCurso(Long usuarioId , Long cursoId) {
+        List<Subcurso> subcursos = subcursoRepository.findByCurso_CursoId(cursoId);
+        double totalPromediosBimestrales = 0.0;
+        int totalBimestres = 4; // Asumiendo 4 bimestres
+
+        for (Subcurso subcurso : subcursos) {
+            for (int bimestre = 1; bimestre <= totalBimestres; bimestre++) {
+                totalPromediosBimestrales += calcularPromedioBimestral(usuarioId , subcurso.getSubcursoId(), bimestre);
+            }
         }
-
-        nota.setAlumno(alumno);
-        nota.setSubcurso(subcurso);
-
-        return notaRepository.save(nota);
-    }
-
-    // Actualizar una nota
-    @Transactional
-    public Nota actualizarNota(Long notaId, Nota nuevaNota) {
-        Nota nota = notaRepository.findById(notaId)
-                .orElseThrow(() -> new ResourceNotFoundException("Nota no encontrada con id: " + notaId));
-
-        nota.setUnidad(nuevaNota.getUnidad());
-        nota.setCalificacion(nuevaNota.getCalificacion());
-        logger.info("Nota actualizada con id {} a las {}", notaId, new java.util.Date());
-        return notaRepository.save(nota);
-    }
-
-    // Eliminar una nota
-    @Transactional
-    public void eliminarNota(Long notaId) {
-        Nota nota = notaRepository.findById(notaId)
-                .orElseThrow(() -> new ResourceNotFoundException("Nota no encontrada con id: " + notaId));
-
-        notaRepository.delete(nota);
-        logger.info("Nota eliminada con id {} a las {}", notaId, new java.util.Date());
-
+        return totalPromediosBimestrales / (subcursos.size() * totalBimestres);
     }
 }

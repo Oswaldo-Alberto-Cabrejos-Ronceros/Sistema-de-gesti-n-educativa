@@ -27,5 +27,5 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Long> {
     long countByGradoAndNivel(Integer grado, Nivel nivel);
 
     // filtrar alumnos por grado y subcurso
-    List<Alumno> findByGradoAndAsignaciones_Subcurso_SubcursoId(Integer grado, Long subcursoId);
+      List<Alumno>findByGradoAndAsignaciones_Subcurso_SubcursoIdOrderByApellidoAsc(Integer grado, Long subcursoId);
 }

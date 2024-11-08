@@ -26,6 +26,9 @@ function FormularioAgregarSubCurso({ onSubCursoAdded }) {
       CursoService.listarCursosPorNivel(nivel)
         .then((response) => {
           const options = [
+              {label:"SELECCIONAR",
+                value:"SELECCIONAR"
+              },
             ...response.data.map((curso) => ({
               label: curso.nombre,
               value: curso.cursoId,
