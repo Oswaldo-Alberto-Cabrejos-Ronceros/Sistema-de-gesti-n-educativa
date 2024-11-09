@@ -3,7 +3,6 @@ import subcursoService from "../../../services/subcursoService";
 import NotasService from "../../../services/notasService";
 import "./TablaNotasEstudiante.css";
 
-
 function TablaNotasEstudiante({ tipo, indicador }) {
   const [cursos, setCursos] = useState([]);
   const [notas, setNotas] = useState([]);
@@ -171,8 +170,11 @@ function TablaNotasEstudiante({ tipo, indicador }) {
         // Crear un arreglo para almacenar todas las promesas de obtención de notas por unidad
         const unidadesPromises = Array.from({ length: 8 }, (_, i) =>
           Promise.all([
-            NotasService
-              .obtenerNotasPorAlumnoSubcursoYUnidad(userData.usuarioId, indicador, i + 1)
+            NotasService.obtenerNotasPorAlumnoSubcursoYUnidad(
+              userData.usuarioId,
+              indicador,
+              i + 1
+            )
               .then((response) => ({
                 unidad: i + 1,
                 ...response.data.reduce((acc, nota) => {
@@ -181,8 +183,11 @@ function TablaNotasEstudiante({ tipo, indicador }) {
                 }, {}),
               }))
               .catch(() => null),
-            NotasService
-              .obtenerPromedioUnidad(userData.usuarioId, indicador, i + 1)
+            NotasService.obtenerPromedioUnidad(
+              userData.usuarioId,
+              indicador,
+              i + 1
+            )
               .then((response) => ({ promedio: response.data }))
               .catch(() => ({ promedio: "-" })),
           ]).then(([notasUnidad, promedioUnidad]) => ({
@@ -190,35 +195,36 @@ function TablaNotasEstudiante({ tipo, indicador }) {
             promedio: parseInt(promedioUnidad.promedio),
           }))
         );
-  
+
         // Ejecutamos todas las promesas y variamos las notas con setNotas
         Promise.all(unidadesPromises)
           .then((unidadesData) => {
-            const notasFiltradas = unidadesData.filter((unidad) => unidad !== null);
+            const notasFiltradas = unidadesData.filter(
+              (unidad) => unidad !== null
+            );
             setNotas(notasFiltradas);
-            console.log("Notas por unidad con promedio:", notasFiltradas); 
+            console.log("Notas por unidad con promedio:", notasFiltradas);
           })
           .catch((error) => console.error("Error al obtener notas:", error));
       }
     }, [indicador]);
   }
 
-
   let unidades = obtenerUnidadesBimestre(indicador);
   console.log(notas);
 
- let noHayNotas;
+  let noHayNotas;
 
-  if(tipo==="unidad"){
-    notas.every((nota) => nota.promedio === 0);
-    noHayNotas=false;
-  } else if(tipo==="bimestre"){
-    notas.every(
-      (nota) => nota.unidad1.promedio === 0 && nota.unidad2.promedio === 0);
-      noHayNotas=false;
-  } else{
-
+  if (tipo === "unidad") {
+    noHayNotas = notas.every((nota) => nota.promedio === 0);
+  } else if (tipo === "bimestre") {
+    noHayNotas = notas.every(
+      (nota) => nota.unidad1.promedio === 0 && nota.unidad2.promedio === 0
+    );
+  } else {
+    noHayNotas = notas.every((nota) => nota.promedio === 0);
   }
+  console.log(noHayNotas);
 
   return (
     <div className="TablaNotasEstudianteContainer">
@@ -305,7 +311,7 @@ function TablaNotasEstudiante({ tipo, indicador }) {
           </table>
         </div>
       ) : (
-                <div>
+        <div>
           <table className="TableNotasEstudiante">
             <thead>
               <tr>
