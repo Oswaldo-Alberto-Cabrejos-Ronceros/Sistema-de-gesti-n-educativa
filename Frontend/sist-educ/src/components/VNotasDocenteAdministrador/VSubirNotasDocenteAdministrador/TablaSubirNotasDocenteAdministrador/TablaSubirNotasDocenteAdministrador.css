@@ -53,6 +53,9 @@ td {
   font-size: var(--PMdsize);
 }
 
+.TableInputNotas tr .Tdcomp{
+  text-align: center;
+}
 .TableInputNotas th {
   padding: 8px;
   box-sizing: border-box;

@@ -10,6 +10,7 @@ function VNotasEstudanteUnidad() {
         <ComponentNotasEstudianteElement
           title={"Unidad " + unidad}
           tipo={"unidad"}
+          indicador={unidad}
         />
       ))}
     </div>

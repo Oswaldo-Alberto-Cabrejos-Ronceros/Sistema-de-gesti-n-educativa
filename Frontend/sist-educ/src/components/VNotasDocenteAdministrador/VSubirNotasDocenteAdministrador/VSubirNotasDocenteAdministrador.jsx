@@ -1,23 +1,33 @@
+
 import React, { useEffect, useState } from "react";
 import "./VSubirNotasDocenteAdministrador.css";
-import TablaSubirNotasDocente from "./TablaSubirNotasDocenteAdministrador/TablaSubirNotasDocenteAdministrador";
-import ButtonSubtmit from "../../generalsComponets/ButtonSubmit/ButtonSubtmit";
+import TablaSubirNotasDocenteAdministrador from "./TablaSubirNotasDocenteAdministrador/TablaSubirNotasDocenteAdministrador";
 import SelectComponent from "../../generalsComponets/SelectComponent/SelectComponent";
-import { useLocation } from "react-router-dom";
+
 
 function VSubirNotasDocenteAdministrador({ curso, alumnos }) {
   const [userDocente, setUserDocente] = useState({});
+  const [selectedUnidad, setSelectedUnidad] = useState(1);
+  const [unidadesDesbloqueadas, setUnidadesDesbloqueadas] = useState([true, ...Array(7).fill(false)]);
+
   useEffect(() => {
     const userData = JSON.parse(sessionStorage.getItem("userData"));
-    setUserDocente(userData || {});},[]);
-    console.log(userDocente)
-    console.log(alumnos);
-    console.log(curso);
+    setUserDocente(userData || {});
+  }, []);
 
-    const [selectedUnidad, setSelectedUnidad] = useState("SELECCIONAR");
+  // Maneja cuando una unidad es completada
+  const handleUnidadCompleta = () => {
+    setUnidadesDesbloqueadas((prev) => {
+      const updatedUnidades = [...prev];
+      const nextUnidad = selectedUnidad;
+      if (nextUnidad < 8) {
+        updatedUnidades[nextUnidad] = true; // Desbloquear la siguiente unidad
+      }
+      return updatedUnidades;
+    });
+  };
 
   const unidades = [
-    { label: "SELECCIONAR", value: "SELECCIONAR" },
     { label: "Unidad 1", value: 1 },
     { label: "Unidad 2", value: 2 },
     { label: "Unidad 3", value: 3 },
@@ -36,24 +46,29 @@ function VSubirNotasDocenteAdministrador({ curso, alumnos }) {
           <p className="PMd">{curso.nombre}</p>
           <p className="PMd">Grado:</p>
           <p className="PMd">{curso.grado}</p>
-          <p className="PMd">Seccion:</p>
+          <p className="PMd">Sección:</p>
           <p className="PMd">{curso.seccion}</p>
           <p className="PMd">Nivel:</p>
           <p className="PMd">{userDocente.nivel}</p>
           <p className="PMd">Unidad:</p>
-          <SelectComponent name="Unidad" options={unidades} onChange={(e) => setSelectedUnidad(e.target.value)} />
+          <SelectComponent
+            name="Unidad"
+            options={unidades}
+            value={selectedUnidad}
+            onChange={(e) => setSelectedUnidad(Number(e.target.value))}
+            disabledOptions={unidades.map((_, index) => !unidadesDesbloqueadas[index])}
+          />
         </div>
         <div className="IndicacionesContainer">
-          <p className="PMd">
-            Suba notas del 0 al 20, no deje alumnos con notas en blanco
-          </p>
+          <p className="PMd">Suba notas del 0 al 20, no deje alumnos con notas en blanco.</p>
         </div>
         <div className="ContSubNot">
-          <TablaSubirNotasDocente
+          <TablaSubirNotasDocenteAdministrador
             alumnos={alumnos}
             subcursoId={curso.cursoId}
             unidad={selectedUnidad}
-            competencias={["C1", "C2", "C3","C4"]}
+            competencias={["C1", "C2", "C3", "C4"]}
+            onUnidadCompleta={handleUnidadCompleta} // Pasamos la función
           />
         </div>
       </div>
@@ -62,3 +77,4 @@ function VSubirNotasDocenteAdministrador({ curso, alumnos }) {
 }
 
 export default VSubirNotasDocenteAdministrador;
+

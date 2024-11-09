@@ -1,21 +1,21 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import './TablaSubirNotasDocenteAdministrador.css'
 import ButtonSubmit from "../../../generalsComponets/ButtonSubmit/ButtonSubtmit";
 import NotasService from "../../../../services/notasService"
 
-function TablaSubirNotasDocenteAdministrador({ alumnos, competencias, subcursoId, unidad }) {
+function TablaSubirNotasDocenteAdministrador({ alumnos, competencias, subcursoId, unidad, onUnidadCompleta }) {
   const [notas, setNotas] = useState({});
   const [competenciasSubidas, setCompetenciasSubidas] = useState({});
   const [competenciaActiva, setCompetenciaActiva] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [bloquearFormulario, setBloquearFormulario] = useState(false);
 
-  // Carga inicial de las notas guardadas desde la base de datos
   useEffect(() => {
     async function cargarNotas() {
       try {
         const notasRegistradas = {};
         const competenciasIniciales = {};
 
-        // Cargar notas de cada alumno
         for (const alumno of alumnos) {
           const response = await NotasService.obtenerNotasPorAlumnoSubcursoYUnidad(
             alumno.usuarioId,
@@ -23,18 +23,34 @@ function TablaSubirNotasDocenteAdministrador({ alumnos, competencias, subcursoId
             unidad
           );
           const alumnoNotas = response.data.reduce((acc, nota) => {
-            acc[nota.calificacionNumero - 1] = nota.calificacion; // Guardar cada nota por índice
+            acc[nota.calificacionNumero - 1] = nota.calificacion;
             return acc;
           }, {});
 
           notasRegistradas[alumno.usuarioId] = alumnoNotas;
-
-          // Marcar competencias ya subidas para el alumno
-          competenciasIniciales[alumno.usuarioId] = competencias.map((_, index) => !!alumnoNotas[index]);
+          competenciasIniciales[alumno.usuarioId] = competencias.map(
+            (_, index) => alumnoNotas[index] !== undefined
+          );
         }
 
         setNotas(notasRegistradas);
         setCompetenciasSubidas(competenciasIniciales);
+
+        // Contar competencias llenas para bloquear el formulario y ocultar el botón
+        const competenciasLlenasCount = competencias.reduce((count, _, index) => {
+          return count + (Object.values(notasRegistradas).every(alumnoNotas => alumnoNotas[index] !== undefined) ? 1 : 0);
+        }, 0);
+
+
+
+        // Bloquea el formulario si al menos dos competencias están llenas
+        setBloquearFormulario(competenciasLlenasCount >= 1);
+
+        // Actualiza la competencia activa dependiendo de si el formulario está bloqueado o no
+        setCompetenciaActiva(competenciasLlenasCount >= 2 ? competencias.length : 0);
+        setErrorMessage("");
+
+
       } catch (error) {
         console.error("Error al cargar notas:", error);
       }
@@ -43,7 +59,6 @@ function TablaSubirNotasDocenteAdministrador({ alumnos, competencias, subcursoId
     cargarNotas();
   }, [alumnos, subcursoId, unidad, competencias]);
 
-  // Maneja el cambio en los inputs de calificaciones
   const handleNotaChange = (usuarioId, competenciaIndex, value) => {
     setNotas((prevNotas) => ({
       ...prevNotas,
@@ -54,13 +69,38 @@ function TablaSubirNotasDocenteAdministrador({ alumnos, competencias, subcursoId
     }));
   };
 
-  // Envía las notas al servidor
+  const esCompetenciaVacia = (competenciaIndex) => {
+    return alumnos.every(
+      (alumno) =>
+        notas[alumno.usuarioId]?.[competenciaIndex] === "" ||
+        notas[alumno.usuarioId]?.[competenciaIndex] === undefined
+    );
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const todasVacias = esCompetenciaVacia(competenciaActiva);
+
+    if (!todasVacias) {
+      const camposVacios = alumnos.some(
+        (alumno) =>
+          notas[alumno.usuarioId]?.[competenciaActiva] === undefined ||
+          notas[alumno.usuarioId]?.[competenciaActiva] === ""
+      );
+
+      if (camposVacios) {
+        setErrorMessage(`Complete todas las notas para C${competenciaActiva + 1} o ignore esta.`);
+        return;
+      }
+    }
+
+    setErrorMessage("");
 
     for (const alumno of alumnos) {
       const usuarioId = alumno.usuarioId;
       const calificacion = notas[usuarioId]?.[competenciaActiva];
+
       if (calificacion !== undefined && calificacion !== null) {
         try {
           await NotasService.registrarCalificacion(
@@ -71,7 +111,6 @@ function TablaSubirNotasDocenteAdministrador({ alumnos, competencias, subcursoId
             calificacion
           );
 
-          // Bloquear la competencia subida
           setCompetenciasSubidas((prev) => ({
             ...prev,
             [usuarioId]: {
@@ -85,8 +124,24 @@ function TablaSubirNotasDocenteAdministrador({ alumnos, competencias, subcursoId
       }
     }
 
-    // Mover a la siguiente competencia después de subir
-    setCompetenciaActiva((prev) => (prev + 1 < competencias.length ? prev + 1 : prev));
+    if (todasVacias) {
+      setCompetenciasSubidas((prev) =>
+        alumnos.reduce((acc, alumno) => {
+          acc[alumno.usuarioId] = {
+            ...acc[alumno.usuarioId],
+            [competenciaActiva]: true,
+          };
+          return acc;
+        }, { ...prev })
+      );
+    }
+
+    const nuevaCompetenciaActiva = competenciaActiva + 1;
+    setCompetenciaActiva(nuevaCompetenciaActiva < competencias.length ? nuevaCompetenciaActiva : competencias.length);
+    // Llama a onUnidadCompleta si todas las competencias están llenas
+    if (competenciaActiva >= competencias.length - 1) {
+      onUnidadCompleta();
+    }
   };
 
   return (
@@ -101,9 +156,8 @@ function TablaSubirNotasDocenteAdministrador({ alumnos, competencias, subcursoId
             <thead>
               <tr>
                 <th>N°</th>
-                <th>DNI</th>
-                <th>Nombres</th>
                 <th>Apellidos</th>
+                <th>Nombres</th>
                 {competencias.map((_, index) => (
                   <th key={index}>C{index + 1}</th>
                 ))}
@@ -113,31 +167,35 @@ function TablaSubirNotasDocenteAdministrador({ alumnos, competencias, subcursoId
               {alumnos.map((alumno, index) => (
                 <tr key={alumno.usuarioId}>
                   <td>{index + 1}</td>
-                  <td>{alumno.dni}</td>
-                  <td>{alumno.nombre}</td>
                   <td>{alumno.apellido}</td>
+                  <td>{alumno.nombre}</td>
                   {competencias.map((_, compIndex) => (
                     <td key={compIndex} className="Tdcomp">
-                      <input
-                        type="number"
-                        min={0}
-                        max={20}
-                        value={notas[alumno.usuarioId]?.[compIndex] || ""}
-                        onChange={(e) =>
-                          handleNotaChange(alumno.usuarioId, compIndex, e.target.value)
-                        }
-                        disabled={
-                          competenciasSubidas[alumno.usuarioId]?.[compIndex] || compIndex > competenciaActiva
-                        }
-                      />
+                      {competenciasSubidas[alumno.usuarioId]?.[compIndex] || bloquearFormulario ? (
+                        <span>{notas[alumno.usuarioId]?.[compIndex] !== undefined ? notas[alumno.usuarioId][compIndex] : "-"}</span>
+                      ) : (
+                        <input
+                          type="number"
+                          min={0}
+                          max={20}
+                          value={notas[alumno.usuarioId]?.[compIndex] || ""}
+                          onChange={(e) =>
+                            handleNotaChange(alumno.usuarioId, compIndex, e.target.value)
+                          }
+                          disabled={bloquearFormulario || compIndex > competenciaActiva}
+                        />
+                      )}
                     </td>
                   ))}
                 </tr>
               ))}
             </tbody>
           </table>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
           <div className="ButtonSubmitSubirNotasDocAdmContainer">
-            <ButtonSubmit nombre={`Subir Notas C${competenciaActiva + 1}`} />
+            {!bloquearFormulario && competenciaActiva < competencias.length && (
+              <ButtonSubmit nombre={`Subir Notas C${competenciaActiva + 1}`} />
+            )}
           </div>
         </form>
       )}
