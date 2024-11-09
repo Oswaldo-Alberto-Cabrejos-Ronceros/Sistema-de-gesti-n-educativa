@@ -139,6 +139,7 @@ function TablaSubirNotasDocenteAdministrador({ alumnos, competencias, subcursoId
     const nuevaCompetenciaActiva = competenciaActiva + 1;
     setCompetenciaActiva(nuevaCompetenciaActiva < competencias.length ? nuevaCompetenciaActiva : competencias.length);
     // Llama a onUnidadCompleta si todas las competencias están llenas
+
     if (competenciaActiva >= competencias.length - 1) {
       onUnidadCompleta();
     }
@@ -204,3 +205,4 @@ function TablaSubirNotasDocenteAdministrador({ alumnos, competencias, subcursoId
 }
 
 export default TablaSubirNotasDocenteAdministrador;
+

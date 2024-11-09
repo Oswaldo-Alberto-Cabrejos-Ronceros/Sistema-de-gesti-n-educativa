@@ -25,6 +25,8 @@
     font-size: var(--PMdsize);
   }
   
+
+
   .TablaNotasEstudianteContainer .TableNotasEstudiante tr .TdNota{
     text-align: center;
   }

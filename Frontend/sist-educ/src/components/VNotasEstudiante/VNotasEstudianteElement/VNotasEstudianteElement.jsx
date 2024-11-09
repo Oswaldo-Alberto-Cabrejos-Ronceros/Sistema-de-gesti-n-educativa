@@ -13,6 +13,7 @@ function VNotasEstudianteElement() {
   const { tipo } = useParams();
   console.log(title);
   console.log(tipo);
+  console.log(indicador);
 
   return (
     <div className="VNotasEstudianteElementContainer">
@@ -20,11 +21,7 @@ function VNotasEstudianteElement() {
         <h3>{title}</h3>
       </div>
       <div className="VNotasEstudianteElementContent">
-        {tipo === "curso" ? (
-          <TablaNotasEstudianteCurso notas={notasCurso} />
-        ) : (
           <TablaNotasEstudiante tipo={tipo} indicador={indicador} />
-        )}
       </div>
     </div>
   );

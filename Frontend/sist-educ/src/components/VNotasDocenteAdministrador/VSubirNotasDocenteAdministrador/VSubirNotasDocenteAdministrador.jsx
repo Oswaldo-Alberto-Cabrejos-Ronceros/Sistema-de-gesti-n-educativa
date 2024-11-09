@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import "./VSubirNotasDocenteAdministrador.css";
 import TablaSubirNotasDocenteAdministrador from "./TablaSubirNotasDocenteAdministrador/TablaSubirNotasDocenteAdministrador";
@@ -77,4 +76,5 @@ function VSubirNotasDocenteAdministrador({ curso, alumnos }) {
 }
 
 export default VSubirNotasDocenteAdministrador;
+
 

@@ -1,7 +1,8 @@
 import React from 'react'
 import './TablaNotasEstudianteCurso.css'
 
-function TablaNotasEstudianteCurso({notas}) {
+function TablaNotasEstudianteCurso() {
+  const notas=[];
   return (
     <div className='TablaNotasEstudianteCursoContainer'>
               {notas.length === 0 ? (
