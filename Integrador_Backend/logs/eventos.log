@@ -731,3 +731,5 @@ com.auth0.jwt.exceptions.JWTVerificationException: Invalid JWT token, NOT AUTHOR
 2024-11-09 14:35:43 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-11-09 14:35:43 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 2024-11-09 14:35:43 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-11-09 17:46:10 INFO  u.e.p.I.Service.SubcursoService - Creando subcurso: Algebra en curso ID: 9 a las Sat Nov 09 17:46:10 PET 2024
+2024-11-09 17:46:10 INFO  u.e.p.I.Service.SubcursoService - Subcurso creado: ID: 4, Nombre: Algebra, a las Sat Nov 09 17:46:10 PET 2024

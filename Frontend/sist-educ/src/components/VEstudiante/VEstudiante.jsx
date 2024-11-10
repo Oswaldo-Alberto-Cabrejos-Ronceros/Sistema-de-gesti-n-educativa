@@ -51,7 +51,7 @@ function VEstudiante() {
 
   return (
       <div className="VEstudianteMain">
-        <BarraNavegacion onOptionSelect={handleOptionSelect} />
+        <BarraNavegacion onOptionSelect={handleOptionSelect} nombre={userAlumno.nombre} apellido={userAlumno.apellido}/>
         <div className="containerCamb">
           <Routes>
           <Route index element={<Navigate to="cursos" />} />

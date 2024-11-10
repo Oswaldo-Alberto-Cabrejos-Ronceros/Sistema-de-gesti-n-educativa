@@ -101,7 +101,7 @@ console.log(cursos2)
   return (
 
       <div className="VDocenteMain">
-        <BarraNavegacionDocente />
+        <BarraNavegacionDocente nombre={userDocente.nombre} apellido={userDocente.apellido} />
         <div className="containerCambDocente">
           <Routes>
             <Route index element={<Navigate to="cursos" />} />

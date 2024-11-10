@@ -17,6 +17,12 @@
     height: auto;
 }
 
+.VGestionEstudianteContainer .VGestionEstudianteContainerSearch{
+    margin: 0;
+    padding-left: 1vw;
+    box-sizing: content-box;
+}
+
 .VGestionEstudianteContainer .TitleGestionEstudiante h3{
     margin: 0;
     padding: 0;

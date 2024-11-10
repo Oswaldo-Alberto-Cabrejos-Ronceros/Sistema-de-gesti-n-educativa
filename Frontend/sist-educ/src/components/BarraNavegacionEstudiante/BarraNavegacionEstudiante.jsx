@@ -12,7 +12,7 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { FaRankingStar } from "react-icons/fa6";
 
 
-function barraNavegacionEstudiante() {
+function barraNavegacionEstudiante({nombre, apellido}) {
   const [showLogoutModal, setShowLogoutModal] = useState(false); // Estado para controlar el modal
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ function barraNavegacionEstudiante() {
       <div className="HorizontalContainer">
         <Link to="usuario">
         <NavUser
-          nombre={"Estudiante"}
+          nombre={apellido + ", " + nombre}
           imagen={"https://dashboard.rtta.rw/public/assets/img/avatar.png"}
         />
         </Link>

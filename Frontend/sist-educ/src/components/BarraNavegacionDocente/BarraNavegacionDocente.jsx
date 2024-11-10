@@ -13,7 +13,7 @@ import { FaRankingStar } from "react-icons/fa6";
 import { FiTrendingUp } from "react-icons/fi";
 
 
-function BarraNavegacionDocente() {
+function BarraNavegacionDocente({nombre, apellido}) {
 
   const [showLogoutModal, setShowLogoutModal] = useState(false); // Estado para controlar el modal
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function BarraNavegacionDocente() {
       <div className="HorizontalContainerBarDocente">
         <Link to="usuario">
         <NavUser
-          nombre={"Docente"}
+          nombre={apellido + ", " + nombre}
           imagen={"https://dashboard.rtta.rw/public/assets/img/avatar.png"}
         />
         </Link>

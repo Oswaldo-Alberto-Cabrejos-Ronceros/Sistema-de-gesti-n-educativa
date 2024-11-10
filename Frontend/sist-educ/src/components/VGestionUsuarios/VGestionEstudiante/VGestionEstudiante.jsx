@@ -3,6 +3,7 @@ import AlumnoService from "../../../services/alumnoService";
 import "./VGestionEstudiante.css";
 import TablaGestionEstudiantes from "./TablaGestionEstudiantes/TablaGestionEstudiantes";
 import FormularioAgregarEstudiante from "./FormularioAgregarEstudiante/FormularioAgregarEstudiante";
+import SearchComponent from "../../generalsComponets/SearchComponent/SearchComponent";
 
 function VGestionEstudiante() {
   const [estudiantes, setEstudiantes] = useState([]);
@@ -50,6 +51,9 @@ function VGestionEstudiante() {
       <div className="TitleGestionEstudiante">
         <h3>Gestión de Estudiantes:</h3>
       </div>
+      <div className='VGestionEstudianteContainerSearch'>
+        <SearchComponent nombre={"Cursos"} placeholder={"Buscar Estudiante"} />
+        </div>
       <div className="VGestionEstudiantesContent">
         <div>
           <TablaGestionEstudiantes

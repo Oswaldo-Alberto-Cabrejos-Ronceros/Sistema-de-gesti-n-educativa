@@ -13,6 +13,25 @@ function VNotasDocenteAdministradorCursos() {
   const [alumnos, setAlumnos] = useState([]);
   const [cursos, setCursos] = useState([]);
   const [userDocente, setUserDocente] = useState({});
+  const optionsGradoPrimaria=[
+    { label: "SELECCIONAR", value: "SELECCIONAR" },
+    { label: "1er Grado", value: 1 },
+    { label: "2do Grado", value: 2 },
+    { label: "3er Grado", value: 3 },
+    { label: "4to Grado", value: 4 },
+    { label: "5to Grado", value: 5 },
+    { label: "6to Grado", value: 6 }
+  ]
+  const optionsGradoSecundaria=[
+    { label: "SELECCIONAR", value: "SELECCIONAR" },
+    { label: "1er Año", value: 1 },
+    { label: "2do Año", value: 2 },
+    { label: "3er Año", value: 3 },
+    { label: "4to Año", value: 4 },
+    { label: "5to Año", value: 5 },
+
+  ]
+
 
   useEffect(() => {
     const userData = JSON.parse(sessionStorage.getItem("userData"));
@@ -61,11 +80,15 @@ function VNotasDocenteAdministradorCursos() {
     }
   }, [selectedCursoId, selectedGrado]);
 
+  //logica para cambiar el nivel segun el docente
+
+  const docentePrimaria = userDocente.nivel==="PRIMARIA";
+
   const curso = {
     nombre: selectedCurso,
     grado: selectedGrado,
     seccion: selectedSeccion,
-    nivel: "Primaria",
+    nivel: userDocente.nivel,
     cursoId: selectedCursoId,
   };
 
@@ -74,14 +97,9 @@ function VNotasDocenteAdministradorCursos() {
       <div className="SelectNotasDocenteAdministradorCursosContainer">
         <SelectComponent
           name="Grado"
-          options={[
-            { label: "SELECCIONAR", value: "SELECCIONAR" },
-            { label: "1er Grado", value: 1 },
-            { label: "2do Grado", value: 2 },
-            { label: "3er Grado", value: 3 },
-            { label: "4to Grado", value: 4 },
-            { label: "5to Grado", value: 5 },
-          ]}
+          options={
+            docentePrimaria?(optionsGradoPrimaria):(optionsGradoSecundaria)
+          }
           value={selectedGrado}
           onChange={(e) => setSelectedGrado(e.target.value)}
         />

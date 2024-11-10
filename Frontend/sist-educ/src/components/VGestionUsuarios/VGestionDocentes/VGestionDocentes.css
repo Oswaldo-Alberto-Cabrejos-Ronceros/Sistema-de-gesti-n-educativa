@@ -16,6 +16,12 @@
     height: auto;
 }
 
+.VGestionDocentesContainer .VGestionDocentesContainerSearch{
+    margin: 0;
+    padding-left: 1vw;
+    box-sizing: content-box;
+}
+
 .VGestionDocentesContainer .TitleGestionDocentes h3{
     margin: 0;
     padding: 0;

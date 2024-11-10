@@ -13,7 +13,7 @@ import { FiTrendingUp } from "react-icons/fi";
 import { TbUserEdit } from "react-icons/tb";
 import { GoPencil } from "react-icons/go";
 
-function BarraNavegacionAdministrador() {
+function BarraNavegacionAdministrador({apellido, nombre}) {
 
   const [showLogoutModal, setShowLogoutModal] = useState(false); // Estado para controlar el modal
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function BarraNavegacionAdministrador() {
       <div className="HorizontalContainerBarAdministrador">
         <Link to="usuario">
         <NavUser
-          nombre={"Administrador"}
+          nombre={apellido + ", " + nombre}
           imagen={"https://dashboard.rtta.rw/public/assets/img/avatar.png"}
         />
         </Link>

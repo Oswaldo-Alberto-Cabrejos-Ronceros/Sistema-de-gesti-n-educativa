@@ -1,9 +1,17 @@
+:root{
+  --ColorBtnPrin:#DC2626;
+  --ColorBtnPrinHover:#EF4444;
+  --ColorButton:#FEF2F2;
+  --ColorBtnSave:#65A30D;
+  --ColorBtnSaveHover:#84CC16;
+}
 Container {
     display: flex;
     max-width: 1200px;
     margin: 0 auto;
     padding-top: 60px; /* Ajusta este valor para alinearlo con la barra roja */
   }
+  
   
   .Menu {
     position: fixed;
@@ -18,16 +26,22 @@ Container {
     width: 200px; /* Anchura fija para el menú */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   }
+
   
   .Menu button {
     font-size: 14px;
     padding: 10px 20px;
     border: none;
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--ColorBtnPrin) ;
+    color: var(--ColorButton);
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
+    transition: 150ms;
+  }
+
+  .Menu button:hover{
+    background-color: var(--ColorBtnPrinHover);
   }
   
   .InfoUserContainer {
@@ -101,11 +115,16 @@ Container {
     margin-top: 20px;
     padding: 8px 16px;
     border: none;
-    background-color: #28a745;
-    color: #fff;
+    background-color:var(--ColorBtnSave);
+    color: var(--ColorButton);
     border-radius: 4px;
     cursor: pointer;
+    transition: 150ms;
   }
+  .SaveButton:hover{
+    background-color: var(--ColorBtnSaveHover);
+  }
+
   
   /* Media Queries for Responsiveness */
   
