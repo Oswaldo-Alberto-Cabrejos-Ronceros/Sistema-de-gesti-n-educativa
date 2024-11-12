@@ -1,29 +1,38 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./VHonorEstudianteUnidad.css";
-import SelectComponent from "../../generalsComponets/SelectComponent/SelectComponent";
 import CardHonor from "../../generalsComponets/CardHonor/CardHonor"
+import alumnoService from "../../../services/alumnoService";
 
-function VHonorEstudianteUnidad({info, estudiantesHonor}) {
-  let optionsUnidad = [
-    "Unidad 1",
-    "Unidad 2",
-    "Unidad 3",
-    "Unidad 4",
-    "Unidad 5",
-    "Unidad 6",
-    "Unidad 7",
-    "Unidad 8",
-  ];
+function VHonorEstudianteUnidad() {
+  const [alumnos, setAlumnos] = useState([]);
+  const [userAlumno, setUserAlumno] = useState({});
+
+  useEffect(() => {
+    const userData = JSON.parse(sessionStorage.getItem("userData"));
+    setUserAlumno(userData || {});
+  }, []);
+
+  useEffect(() => {
+    alumnoService.listarAlumnosPorGradoNivelConMayorPromedio(userAlumno.grado, userAlumno.nivel)
+      .then(response => {
+        setAlumnos(response.data); // Guarda los datos en el estado
+      })
+      .catch(error => {
+        console.error("Error al obtener los alumnos:", error);
+      });
+  }, [userAlumno.grado, userAlumno.nivel]);
+
+  console.log(alumnos)
+
+
+  let info=[userAlumno.grado, userAlumno.nivel]
   return (
     <div className="VHonorEstudianteUnidadContainer">
       <div className="TitleHonorEstudianteUnidadContainer">
-        <h3>Unidad</h3>
-      </div>
-      <div className="SelectUnidadHonorEstudianteContainer">
-        <SelectComponent name={"Unidad"} options={optionsUnidad} />
+        <h3>General</h3>
       </div>
       <div className="VHonorEstudianteUnidadContent">
-        <CardHonor info={info} estudiantesHonor={estudiantesHonor}/>
+        <CardHonor info={info} estudiantesHonor={alumnos}/>
       </div>
     </div>
   );

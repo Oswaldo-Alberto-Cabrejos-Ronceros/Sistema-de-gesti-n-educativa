@@ -55,7 +55,7 @@ function VSubirNotasDocenteAdministrador({ curso, alumnos }) {
             options={unidades}
             value={selectedUnidad}
             onChange={(e) => setSelectedUnidad(Number(e.target.value))}
-            disabledOptions={unidades.map((_, index) => !unidadesDesbloqueadas[index])}
+            /*disabledOptions={unidades.map((_, index) => !unidadesDesbloqueadas[index])}*/
           />
         </div>
         <div className="IndicacionesContainer">

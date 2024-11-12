@@ -22,10 +22,10 @@ function TablaHonor({estudiantesHonor}) {
                 <tbody>
                     {estudiantesHonor.map((estudiante, index)=>(
                         <tr key={estudiante.Merito || index}>
-                            <td>{estudiante.Merito}</td>
-                            <td>{estudiante.Apellidos}</td>
-                            <td>{estudiante.Nombres}</td>
-                            <td>{estudiante.Promedio}</td>
+                            <td>{index+1}</td>
+                            <td>{estudiante.alumno.nombre}</td>
+                            <td>{estudiante.alumno.apellido}</td>
+                            <td>{parseInt(estudiante.promedio)}</td>
                         </tr>
                     ))}
                 </tbody>

@@ -33,19 +33,9 @@ function VHonorDocenteAdministrador() {
       <div className="VHonorDocenteAdministradorTitleContainer">
         <h3>Honor</h3>
       </div>
-      <div className="VHonorDocenteAdministradorButtonsContainer">
-        <Link className="LinkVHonorDocenteAdministrador" to="unidad">
-        <PrimaryButton nombre="Unidad"/>
-        </Link>
-        <Link className="LinkVHonorDocenteAdministrador" to="bimestral">
-        <PrimaryButton nombre={"Bimestral"}/>
-        </Link>
-      </div>
       <div className="CambVHonorDocenteAdministrador">
         <Routes>
-          <Route index element={<Navigate to={"unidad"}/>} />
-          <Route path="unidad" element={<VHonorDocenteUnidad info={info} estudiantesHonor={estudiantesHonor}/>}/>
-          <Route path="bimestral" element={<VHonorDocenteBimestral info={infoBimestral} estudiantesHonor={estudiantesHonor}/>}/>
+          <Route index element={<VHonorDocenteUnidad info={info} estudiantesHonor={estudiantesHonor}/>} />
         </Routes>
       </div>
     </div>

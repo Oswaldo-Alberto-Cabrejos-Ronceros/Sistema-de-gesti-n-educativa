@@ -33,7 +33,6 @@ public class SecurityConfig {
 
     @Autowired
     private JwtUtil jwtUtil;
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
@@ -62,7 +61,7 @@ public class SecurityConfig {
                     http.requestMatchers(HttpMethod.DELETE, "/api/profesores/**").hasAuthority("ADMIN");
 
                     // Endpoints relacionados a cursos (ADMIN)
-                    http.requestMatchers(HttpMethod.GET, "/api/cursos/**").hasAuthority("ADMIN");
+                    http.requestMatchers(HttpMethod.GET, "/api/cursos/**").permitAll();
                     http.requestMatchers(HttpMethod.POST, "/api/cursos/**").hasAuthority("ADMIN");
                     http.requestMatchers(HttpMethod.PUT, "/api/cursos/**").hasAuthority("ADMIN");
                     http.requestMatchers(HttpMethod.DELETE, "/api/cursos/**").hasAuthority("ADMIN");
@@ -74,6 +73,7 @@ public class SecurityConfig {
                     http.requestMatchers(HttpMethod.DELETE, "/api/subcursos/**").hasAuthority("ADMIN");
 
                     // Endpoints de notas (PROFESOR)
+                    http.requestMatchers(HttpMethod.GET, "/api/notas/**").permitAll();
                     http.requestMatchers(HttpMethod.POST, "/api/notas/**").hasAuthority("PROFESOR");
                     http.requestMatchers(HttpMethod.PUT, "/api/notas/**").hasAuthority("PROFESOR");
                     http.requestMatchers(HttpMethod.DELETE, "/api/notas/**").hasAuthority("PROFESOR");

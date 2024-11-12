@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import utp.edu.pe.Integrador_Backend.Entidades.Alumno;
+import utp.edu.pe.Integrador_Backend.Entidades.Nivel;
 import utp.edu.pe.Integrador_Backend.Entidades.Nota;
 import utp.edu.pe.Integrador_Backend.Entidades.UpdateRequest;
 import utp.edu.pe.Integrador_Backend.Service.AlumnoService;
+import utp.edu.pe.Integrador_Backend.Service.NotaService;
+
 import java.util.List;
 
 
@@ -18,6 +21,8 @@ public class AlumnoController {
 
     @Autowired
     private AlumnoService alumnoService;
+    @Autowired
+    private NotaService notaService;
 
     @GetMapping
     public ResponseEntity<List<Alumno>> listarAlumnos() {
@@ -78,5 +83,15 @@ public class AlumnoController {
         alumnoService.eliminarAlumno(id);
         return ResponseEntity.ok("Alumno Eliminado");
     }
+
+    @GetMapping("/grado/{grado}/nivel/{nivel}/honor")
+    public ResponseEntity<List<NotaService.AlumnoPromedio>> listarAlumnosPorGradoNivelConMayorPromedio(
+            @PathVariable Integer grado,
+            @PathVariable Nivel nivel) {
+
+        List<NotaService.AlumnoPromedio> alumnosConPromedio = notaService.listarAlumnosPorGradoNivelConMayorPromedio(grado, nivel);
+        return ResponseEntity.ok(alumnosConPromedio);
+    }
+
 
 }

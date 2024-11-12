@@ -13,6 +13,7 @@ function CardHonor({ info, estudiantesHonor }) {
     }
   });
 
+  
   return (
     <div className="CardHonorContainer">
       <div className="CardHonorHeaderContainer">

@@ -43,5 +43,11 @@ class AlumnoService{
     deleteAlumno(Id){
         return axios.delete(`${API_URL}/eliminar/${Id}`);
     }
+
+    //cuadro honor
+    // Nuevo método para listar alumnos con el mayor promedio por grado y nivel
+    listarAlumnosPorGradoNivelConMayorPromedio(grado, nivel) {
+        return axios.get(`${API_URL}/grado/${grado}/nivel/${nivel}/honor`);
+    }
 }
 export default new AlumnoService();

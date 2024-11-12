@@ -29,7 +29,7 @@ function BarraNavegacionAdministrador({apellido, nombre}) {
       <div className="HorizontalContainerBarAdministrador">
         <Link to="usuario">
         <NavUser
-          nombre={apellido + ", " + nombre}
+          nombre={"Admin"}
           imagen={"https://dashboard.rtta.rw/public/assets/img/avatar.png"}
         />
         </Link>

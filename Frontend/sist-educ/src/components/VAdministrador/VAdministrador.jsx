@@ -14,16 +14,17 @@ import VGestionUsuarios from '../VGestionUsuarios/VGestionUsuarios'
 import VTareasAdministrador from '../VTareasAdministrador/VTareasAdministrador';
 
 function VAdministrador() {
-  const [userAdmin, setUserAdmin] = useState(null);
+  const [userUser, setUser] = useState(null);
   
 
   useEffect(() => {
     const userData = sessionStorage.getItem("userData");
     if (userData) {
       const parsedUser = JSON.parse(userData);
-      setUserAdmin(parsedUser);
+      setUser(parsedUser  || {nombre:"Admin", apellido:"Admin"});
     }
   }, []);
+  console.log(userUser)
 
   let cursosDocente = [
     {
@@ -78,7 +79,7 @@ function VAdministrador() {
 
   return (
     <div className='VAdministradorMain'>
-      <BarraNavegacionAdministrador  nombre={userAdmin.nombre} apellido={userAdmin.apellido} />
+      <BarraNavegacionAdministrador/>
       <div className='containerCambAdministrador'>
       <Routes>
       <Route index element={<Navigate to="cursos" />} />
