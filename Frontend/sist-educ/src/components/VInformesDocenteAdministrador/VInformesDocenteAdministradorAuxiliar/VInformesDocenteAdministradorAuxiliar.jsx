@@ -1,67 +1,134 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import './VInformesDocenteAdministradorAuxiliar.css'
 import SelectComponent from '../../generalsComponets/SelectComponent/SelectComponent';
 import CardInformeDocenteAdministrador from '../../generalsComponets/CardInformeDocenteAdministrador/CardInformeDocenteAdministrador';
+import subcursoService from '../../../services/subcursoService';
+import AlumnoService from '../../../services/alumnoService';
+import NotasService from '../../../services/notasService';
 
 
 function VInformesDocenteAdministradorAuxiliar() {
-  let optionsNivel=[
-    "Primaria",
-    "Secundaria"
-  ];
-  let optionsGrado=[
-    "1er Grado",
-    "2do Grado",
-    "3er Grado",
-    "4to Grado",
-    "5to Grado",
-    "6to Grado"
-  ];
-  let optionsSeccion=[
-    "Unica",
-    "A",
-    "B"
-  ];
+  const [selectedGrado, setSelectedGrado] = useState("SELECCIONAR");
+  const [selectedSeccion, setSelectedSeccion] = useState("A");
+  const [selectedCurso, setSelectedCurso] = useState("SELECCIONAR");
+  const [selectedCursoId, setSelectedCursoId] = useState(null);
+  const [alumnos, setAlumnos] = useState([]);
+  const [cursos, setCursos] = useState([]);
+  const [userDocente, setUserDocente] = useState({});
+  const [selectedUnidad, setSelectedUnidad] = useState(1);
+  const [notas, setNotas] = useState({});
+  const optionsGradoPrimaria=[
+    { label: "SELECCIONAR", value: "SELECCIONAR" },
+    { label: "1er Grado", value: 1 },
+    { label: "2do Grado", value: 2 },
+    { label: "3er Grado", value: 3 },
+    { label: "4to Grado", value: 4 },
+    { label: "5to Grado", value: 5 },
+    { label: "6to Grado", value: 6 }
+  ]
+  const optionsGradoSecundaria=[
+    { label: "SELECCIONAR", value: "SELECCIONAR" },
+    { label: "1er Año", value: 1 },
+    { label: "2do Año", value: 2 },
+    { label: "3er Año", value: 3 },
+    { label: "4to Año", value: 4 },
+    { label: "5to Año", value: 5 },
 
-  let optionsCursos=[
-    "Matematicas",
-    "Comunicación",
-    "Inglés",
-    "Personal Social",
-    "Ciencia y Tecnología"
-  ];
-  let optionsUnidad = [
-    "Unidad 1",
-    "Unidad 2",
-    "Unidad 3",
-    "Unidad 4",
-    "Unidad 5",
-    "Unidad 6",
-    "Unidad 7",
-    "Unidad 8",
-  ];
+  ]
 
-  let infoAuxiliar = ["Primaria", "6to", "Unica", "3era Unidad"];
-  let estudiantesNotas = [
-    {
-      "N°": 1,
-      Apellidos: "Rodriguez Pastor",
-      Nombres: "Alberto Jorge",
-      Promedio: 18.5,
-    },
-    {
-      "N°": 2,
-      Apellidos: "Yupa Mayuri",
-      Nombres: "Karla Luisa",
-      Promedio: 18.1,
-    },
-    {
-      "N°": 3,
-      Apellidos: "Cabrera Huanta",
-      Nombres: "Xiomara Maria",
-      Promedio: 17.8,
-    },
+
+  useEffect(() => {
+    const userData = JSON.parse(sessionStorage.getItem("userData"));
+    setUserDocente(userData || {});
+
+    if (userData) {
+      subcursoService
+        .listarSubcursosPorUsuario(userData.usuarioId, userData.rol)
+        .then((response) => {
+          setCursos(
+            response.data.map((curso) => {
+              const profesorAsignado = curso.asignacionesProfesor[0]?.profesor || {};
+              return {
+                nombre: curso.nombre,
+                subcursoId: curso.subcursoId,
+                nivel: curso.nivel,
+                docente:
+                  profesorAsignado.nombre && profesorAsignado.apellido
+                    ? `${profesorAsignado.nombre} ${profesorAsignado.apellido}`
+                    : "No asignado",
+              };
+            })
+          );
+        })
+        .catch((error) => console.error("Error al obtener los cursos:", error));
+    }
+  }, []);
+
+  useEffect(() => {
+    async function cargarNotas() {
+      try {
+        const notasRegistradas = {};
+  
+        for (const alumno of alumnos) {
+          const response = await NotasService.obtenerNotasPorAlumnoSubcursoYUnidad(
+            alumno.usuarioId,
+            selectedCursoId,
+            selectedUnidad
+          );
+          const alumnoNotas = response.data.reduce((acc, nota) => {
+            acc[nota.calificacionNumero - 1] = nota.calificacion;
+            return acc;
+          }, {});
+  
+          notasRegistradas[alumno.usuarioId] = alumnoNotas;
+        }
+  
+        setNotas(notasRegistradas);
+  
+      } catch (error) {
+        console.error("Error al cargar notas:", error);
+      }
+    }
+  
+    cargarNotas();
+  }, [alumnos, selectedCursoId, selectedUnidad]);
+
+  // Maneja el cambio del select de Curso y actualiza selectedCursoId
+  const handleCursoChange = (e) => {
+    const selectedOption = cursos.find((curso) => curso.nombre === e.target.value);
+    setSelectedCurso(e.target.value);
+    setSelectedCursoId(selectedOption ? selectedOption.subcursoId : null);
+  };
+
+  useEffect(() => {
+    if (selectedCursoId && selectedGrado !== "SELECCIONAR") {
+      AlumnoService.obtenerAlumnosPorGradoYSubcurso(selectedCursoId, selectedGrado)
+        .then((response) => {
+          console.log("Alumnos del curso y grado seleccionados:");
+          setAlumnos(response.data);
+        })
+        .catch((error) => console.error("Error al obtener los alumnos:", error));
+    } else {
+      setAlumnos([]); // Reiniciar lista si no se ha seleccionado Grado o Curso
+    }
+  }, [selectedCursoId, selectedGrado]);
+
+  //logica para cambiar el nivel segun el docente
+
+  const docentePrimaria = userDocente.nivel==="PRIMARIA";
+
+  const unidades = [
+    { label: "Unidad 1", value: 1 },
+    { label: "Unidad 2", value: 2 },
+    { label: "Unidad 3", value: 3 },
+    { label: "Unidad 4", value: 4 },
+    { label: "Unidad 5", value: 5 },
+    { label: "Unidad 6", value: 6 },
+    { label: "Unidad 7", value: 7 },
+    { label: "Unidad 8", value: 8 },
   ];
+  let infoAuxiliar = [userDocente.nivel, selectedGrado, selectedSeccion, selectedUnidad+  " unidad"];
+  const competencias=["C1", "C2", "C3", "C4"];
 
   return (
     <div className='VInformesDocenteAdministradorAuxiliarContainer'>
@@ -69,14 +136,37 @@ function VInformesDocenteAdministradorAuxiliar() {
       <h3>Auxiliar</h3>
       </div>
       <div className='SelectInformesDocenteAdministradorAuxiliarContainer'> 
-      <SelectComponent name={"Nivel"} options={optionsNivel}/>
-      <SelectComponent name={"Grado"} options={optionsGrado}/>
-      <SelectComponent name={"Seccion"} options={optionsSeccion}/>
-      <SelectComponent name={"Cursos"} options={optionsCursos}/>
-      <SelectComponent name={"Unidad"} options={optionsUnidad} />
+      <SelectComponent
+          name="Grado"
+          options={
+            docentePrimaria?(optionsGradoPrimaria):(optionsGradoSecundaria)
+          }
+          value={selectedGrado}
+          onChange={(e) => setSelectedGrado(e.target.value)}
+        />
+        <SelectComponent
+          name="Seccion"
+          options={["A", "B"]}
+          value={selectedSeccion}
+          onChange={(e) => setSelectedSeccion(e.target.value)}
+        />
+        <SelectComponent
+          name="Curso"
+          options={["SELECCIONAR", ...cursos.map((curso) => curso.nombre)]}
+          value={selectedCurso}
+          onChange={handleCursoChange}
+        />
+                <SelectComponent
+            name="Unidad"
+            options={unidades}
+            value={selectedUnidad}
+            onChange={(e) => setSelectedUnidad(Number(e.target.value))}
+          />
       </div>
       <div className='VInformesDocenteAdministradorAuxiliarContent'>
-      <CardInformeDocenteAdministrador info={infoAuxiliar} estudiantesNotas={estudiantesNotas}/>
+      <CardInformeDocenteAdministrador info={infoAuxiliar} estudiantes={alumnos} notas={notas} competencias={competencias} nivel={userDocente.nivel} grado={selectedGrado}
+      subcursoId={selectedCursoId} unidad={selectedUnidad} bimestral={false}
+      />
       </div>
     </div>
   )

@@ -12,8 +12,9 @@ import java.util.Optional;
 
 @Repository
 public interface AlumnoRepository extends JpaRepository<Alumno, Long> {
-    //buscar alumnos por nivel
     List<Alumno> findByNivel(Nivel nivel);
+    List<Alumno> findByGradoAndNivel(Integer grado, Nivel nivel);
+
 
     List<Alumno> findAll();
 
@@ -28,5 +29,4 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Long> {
 
     // filtrar alumnos por grado y subcurso
       List<Alumno>findByGradoAndAsignaciones_Subcurso_SubcursoIdOrderByApellidoAsc(Integer grado, Long subcursoId);
-    List<Alumno> findByGradoAndNivel(Integer grado, Nivel nivel);
 }

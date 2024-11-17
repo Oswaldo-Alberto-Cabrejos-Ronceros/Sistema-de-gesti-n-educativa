@@ -16,6 +16,11 @@ public interface NotaRepository  extends JpaRepository<Nota, Long> {
     // Encontrar notas por alumno y subcurso
     List<Nota> findByAlumnoAndSubcurso(Alumno alumno, Subcurso subcurso);
 
+
+    Nota findFirstByAlumno_UsuarioIdAndSubcurso_SubcursoIdAndUnidadAndCalificacionNumero(
+            Long alumnoId, Long subcursoId, Integer unidad, Integer calificacionNumero);
+
+
     @Query("SELECT n FROM Nota n WHERE n.alumno.usuarioId = :usuarioId AND n.subcurso.subcursoId = :subcursoId AND n.unidad = :unidad")
     List<Nota> findByAlumnoUsuarioIdAndSubcursoIdAndUnidad(@Param("usuarioId") Long usuarioId, @Param("subcursoId") Long subcursoId, @Param("unidad") Integer unidad);
 

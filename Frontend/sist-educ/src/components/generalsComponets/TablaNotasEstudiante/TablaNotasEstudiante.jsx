@@ -65,7 +65,7 @@ function TablaNotasEstudiante({ tipo, indicador }) {
                     }),
                 ]).then(([notasCurso, promedio]) => ({
                   ...notasCurso,
-                  promedio: parseInt(promedio.promedio),
+                  promedio: Math.round(promedio.promedio),
                 }))
               )
             ).then((notasArray) => {
@@ -126,7 +126,7 @@ function TablaNotasEstudiante({ tipo, indicador }) {
                     .catch(() => ({ promedio: "-" })),
                 ]).then(([notasCurso, promedio]) => ({
                   ...notasCurso,
-                  promedio: parseInt(promedio.promedio),
+                  promedio: Math.round(promedio.promedio),
                 }))
               );
 
@@ -152,7 +152,7 @@ function TablaNotasEstudiante({ tipo, indicador }) {
                 area: curso.Nombre,
                 unidad1: unidadesData[0],
                 unidad2: unidadesData[1],
-                promedioBimestral: parseInt(
+                promedioBimestral: Math.round(
                   promedioBimestral.promedioBimestral
                 ),
               }));
@@ -192,7 +192,7 @@ function TablaNotasEstudiante({ tipo, indicador }) {
               .catch(() => ({ promedio: "-" })),
           ]).then(([notasUnidad, promedioUnidad]) => ({
             ...notasUnidad,
-            promedio: parseInt(promedioUnidad.promedio),
+            promedio: Math.round(promedioUnidad.promedio),
           }))
         );
 

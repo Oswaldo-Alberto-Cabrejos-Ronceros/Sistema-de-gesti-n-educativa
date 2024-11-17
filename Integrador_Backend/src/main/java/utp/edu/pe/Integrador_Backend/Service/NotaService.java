@@ -6,10 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import utp.edu.pe.Integrador_Backend.Entidades.Alumno;
-import utp.edu.pe.Integrador_Backend.Entidades.Nivel;
-import utp.edu.pe.Integrador_Backend.Entidades.Nota;
-import utp.edu.pe.Integrador_Backend.Entidades.Subcurso;
+import utp.edu.pe.Integrador_Backend.Entidades.*;
 import utp.edu.pe.Integrador_Backend.Repository.AlumnoRepository;
 import utp.edu.pe.Integrador_Backend.Repository.AsignacionAlumnoRepository;
 import utp.edu.pe.Integrador_Backend.Repository.NotaRepository;
@@ -59,11 +56,25 @@ public class NotaService {
         return notaRepository.findBySubcurso_SubcursoIdAndUnidadAndAlumno_UsuarioId(subcursoId, unidad, usuarioId);
     }
 
+
+    @Transactional(readOnly = true)
+    public Double obtenerCalificacionEspecificaPorAlumnoSubcursoUnidadYCalificacionNumero(
+            Long alumnoId, Long subcursoId, Integer unidad, Integer calificacionNumero) {
+        Nota nota = notaRepository.findFirstByAlumno_UsuarioIdAndSubcurso_SubcursoIdAndUnidadAndCalificacionNumero(
+                alumnoId, subcursoId, unidad, calificacionNumero);
+        if (nota != null) {
+            return nota.getCalificacion();
+        } else {
+            return null;
+        }
+    }
+
     @Transactional(readOnly = true)
     public Double calcularPromedioPorUnidad(Long usuarioId , Long subcursoId, Integer unidad) {
         List<Nota> notas = notaRepository.findByAlumnoUsuarioIdAndSubcursoIdAndUnidad(usuarioId , subcursoId, unidad);
         return notas.stream().mapToDouble(Nota::getCalificacion).average().orElse(0.0);
     }
+
     @Transactional(readOnly = true)
     public Double calcularPromedioBimestral(Long usuarioId, Long subcursoId, Integer bimestre) {
         int unidad1 = (bimestre - 1) * 2 + 1;
@@ -101,7 +112,8 @@ public class NotaService {
 
         return totalBimestresContados > 0 ? totalPromediosBimestrales / totalBimestresContados : 0.0;
     }
-    ////////////////////// METODO  RELACIONADO AL CUADOR DE HONOR  ///////////////////
+
+////////////////////// METODO  RELACIONADO AL CUADOR DE HONOR  ///////////////////
     @Transactional(readOnly = true)
     public List<AlumnoPromedio> listarAlumnosPorGradoNivelConMayorPromedio(Integer grado, Nivel nivel) {
         List<Alumno> alumnos = alumnoRepository.findByGradoAndNivel(grado, nivel);
@@ -149,9 +161,4 @@ public class NotaService {
             return promedio;
         }
     }
-
-
-
-
-
 }

@@ -93,5 +93,4 @@ public class AlumnoController {
         return ResponseEntity.ok(alumnosConPromedio);
     }
 
-
 }

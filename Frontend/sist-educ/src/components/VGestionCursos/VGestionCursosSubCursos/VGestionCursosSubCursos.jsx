@@ -51,6 +51,7 @@ function VGestionCursosSubCursos() {
     if (loading) return <div>Cargando subcursos...</div>;
     if (error) return <div>{error}</div>;
 
+    console.log(subcursos)
     return (
         <div className="VGestionCursosSubCursosContainer">
             <div className="VGestionCursosSubCursosContainerTitle">

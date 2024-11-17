@@ -4,61 +4,47 @@
     --ColorTableVerNotasDocTh: #fef2f2;
   }
   
-  .TablaNotasVerDocContainer {
+  .TablaVerNotasDocenteAdministradorBimestralContainer {
     display: flex;
     align-items: flex-start;
     justify-content: center;
     width: 100%;
   }
 
-  .TableVerDocNotas{
+  .TableVerDocNotasBimestral{
     width: 95%;
   }
 
-  .TableVerDocNotas,
+  .TableVerDocNotasBimestral,
   th,
   td {
     border: 1px solid var(--BorderTableVerNotasDoc);
     border-collapse:collapse;
   }
   
-  .TableVerDocNotas tr td {
+  .TableVerDocNotasBimestral tr td {
     padding: 8px;
     box-sizing: border-box;
     text-align: left;
     font-size: var(--PMdsize);
   }
-
-  .TableVerDocNotas tr .TdCenter{
-    text-align: center;
-  }
   
-  .TableVerDocNotas th {
+  .TableVerDocNotasBimestral th {
     padding: 8px;
     box-sizing: border-box;
     font-size: var(--PMdsize);
   }
-  /* Eliminar las flechas de input number en chrome y safari*/
-  .TableVerDocNotas tr td input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-  }
-  /* Eliminar las flechas de input number en Firefox*/
-  .TableVerDocNotas tr td input[type="number"] {
-      /*-moz-appearance: textfield;*/
-      margin: 0;
-  }
+
   
-  .TableVerDocNotas tr .Tdcomp {
-    width: 60px;
-    padding: 2px;
+  
+  .TableVerDocNotasBimestral tr .TdCenter {
+ text-align: center;
   }
-  .TableVerDocNotas th {
+  .TableVerDocNotasBimestral th {
     background-color: var(--BackgroudColorTableVerNotasDocTh);
     color: var(--ColorTableVerNotasDocTh);
   }
-  .TableVerDocNotas td input {
+  .TableVerDocNotasBimestral td input {
     padding: 4px;
     box-sizing: border-box;
     width: 100%;

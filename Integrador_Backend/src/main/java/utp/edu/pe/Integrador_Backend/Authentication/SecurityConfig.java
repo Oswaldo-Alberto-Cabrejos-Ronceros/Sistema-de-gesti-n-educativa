@@ -33,6 +33,7 @@ public class SecurityConfig {
 
     @Autowired
     private JwtUtil jwtUtil;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
@@ -44,6 +45,7 @@ public class SecurityConfig {
                     // Endpoints públicos
                     http.requestMatchers("/auth/login").permitAll();
                     http.requestMatchers("/api/alumnos/**").permitAll();
+                    http.requestMatchers("/reportes/notas/**").permitAll();
 
 
 

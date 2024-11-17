@@ -44,6 +44,11 @@ public class AlumnoService {
         return alumnoRepository.findByGradoAndAsignaciones_Subcurso_SubcursoIdOrderByApellidoAsc(grado, subcursoId);
     }
 
+    public List<Alumno> listarAlumnosPorGradoYNivel(Integer grado, Nivel nivel) {
+        return alumnoRepository.findByGradoAndNivel(grado, nivel);
+    }
+
+
     public List<Nota> obtenerNotasPorAlumno(Long usuarioId) {
         Alumno alumno = alumnoRepository.findById(usuarioId)
                 .orElseThrow(() -> new ResourceNotFoundException("Alumno no encontrado con id: " + usuarioId));
