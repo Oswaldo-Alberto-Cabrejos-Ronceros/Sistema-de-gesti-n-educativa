@@ -1,0 +1,44 @@
+:root {
+  --BackgroundColorVAccesoDenegado: #dc2626;
+  --ColorH3VAccesoDenegado: #f9fafb;
+  --ColorBorderButtonVAccesoDenegado: #0f172a;
+}
+
+.VAccesoDenegadoContainer {
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--BackgroundColorVAccesoDenegado);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.VAccesoDenegadoContainer .LinkVAccesoDenegado {
+  text-decoration: none;
+}
+
+.VAccesoDenegadoContainer h1 {
+  color: var(--ColorH3VAccesoDenegado);
+  font-size: 140px;
+  font-weight: bolder;
+  margin: 0;
+}
+
+.VAccesoDenegadoContainer h3 {
+  color: var(--ColorH3VAccesoDenegado);
+  font-weight: bolder;
+  margin-top: 0;
+}
+
+.VAccesoDenegadoContainer button {
+  background-color: var(--BackgroundColorVAccesoDenegado);
+  border: 2px solid var(--ColorBorderButtonVAccesoDenegado);
+  border-bottom: 4px solid var(--ColorBorderButtonVAccesoDenegado);
+  border-right: 4px solid var(--ColorBorderButtonVAccesoDenegado);
+  padding: 25px;
+  border-radius: 4px;
+}
