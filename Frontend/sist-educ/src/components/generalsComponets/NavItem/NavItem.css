@@ -19,6 +19,7 @@
   cursor: pointer;
   box-sizing: border-box;
   flex-wrap: wrap;
+  text-decoration: none;
 }
 
 .IconContainer {

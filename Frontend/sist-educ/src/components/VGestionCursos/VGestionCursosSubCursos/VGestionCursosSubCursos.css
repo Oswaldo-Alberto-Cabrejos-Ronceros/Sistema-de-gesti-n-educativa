@@ -32,3 +32,12 @@
     justify-content: center;
     margin:10px;
 }
+
+.VGestionCursosSubCursosContainer .ButtonFormularioContent{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

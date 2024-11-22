@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./VHorarioAdministradorGrado.css";
 import SelectComponent from "../../generalsComponets/SelectComponent/SelectComponent";
 import CardHorario from "../../generalsComponets/CardHorario/CardHorario";
 import CardFormularioHorarioGrado from "../../generalsComponets/CardFormularioHorarioGrado/CardFormularioHorarioGrado";
+import PrimaryButton from "../../generalsComponets/PrimaryButton/PrimaryButton";
 
 function VHorarioAdministradorGrado() {
+  const [formularioIsVisible, setformularioIsVisible] = useState(false);
+
+  // Función para alternar la visibilidad
+  const toggleVisibility = () => {
+    setformularioIsVisible(!formularioIsVisible);
+  };
+
   let horariosCurso = [
     {
       grado: "1er",
@@ -42,10 +50,17 @@ function VHorarioAdministradorGrado() {
         </div>
       </div>
       <div className="VHorarioAdministradorGradoContent">
-        {horariosCurso.map((horario,index)=>(
-          <CardHorario key={index} grado={horario.grado} nivel={horario.nivel}/>
+        {horariosCurso.map((horario, index) => (
+          <CardHorario
+            key={index}
+            grado={horario.grado}
+            nivel={horario.nivel}
+          />
         ))}
-        <CardFormularioHorarioGrado/>
+        <div className="ButtonFormularioContent">
+        <PrimaryButton nombre={formularioIsVisible ? "Ocultar" : "Mostrar" } onClick={toggleVisibility}/>
+        </div>
+        {formularioIsVisible &&  <CardFormularioHorarioGrado />}
       </div>
     </div>
   );

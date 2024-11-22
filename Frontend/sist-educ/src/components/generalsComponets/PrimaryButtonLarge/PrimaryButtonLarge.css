@@ -3,6 +3,7 @@
     --ColorBtnPrin:#DC2626;
     --ColorBtnPrinHover:#EF4444;
     --ColorButton:#FEF2F2;
+    --ColorBorderButton:#171717;
 }
 .PrimaryButtonLargeContainer{
     width: 360px;
@@ -23,6 +24,7 @@
     background-color: var(--ColorBtnPrin);
     color: var(--ColorButton);
     cursor: pointer;
+    border: 1px solid var(--ColorBorderButton);
 }
 .PrimaryButtonLargeContainer .BtnPrimaryLargeContent:hover{
     background-color: var(--ColorBtnPrinHover);

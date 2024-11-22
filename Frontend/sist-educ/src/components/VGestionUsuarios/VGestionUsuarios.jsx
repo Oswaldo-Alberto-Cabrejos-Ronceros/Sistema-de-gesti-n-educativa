@@ -10,7 +10,7 @@ function VGestionUsuarios() {
   return (
     <div className="VGestionUsuariosContainer">
       <div className="TitleGestionUsuarios">
-        <h3>Gestion de Usuarios:</h3>
+        <h3>Gestión de Usuarios</h3>
       </div>
       <div className="VGestionUsuariosButtonsContainer">
         <Link className="LinkVGestionUsuarios" to={"estudiantes"}>

@@ -4,11 +4,19 @@ import "./VGestionEstudiante.css";
 import TablaGestionEstudiantes from "./TablaGestionEstudiantes/TablaGestionEstudiantes";
 import FormularioAgregarEstudiante from "./FormularioAgregarEstudiante/FormularioAgregarEstudiante";
 import SearchComponent from "../../generalsComponets/SearchComponent/SearchComponent";
+import PrimaryButton from "../../generalsComponets/PrimaryButton/PrimaryButton";
+
 
 function VGestionEstudiante() {
   const [estudiantes, setEstudiantes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [formularioIsVisible, setformularioIsVisible] = useState(false);
   const [error, setError] = useState(null);
+
+  // Función para alternar la visibilidad
+  const toggleVisibility = () => {
+    setformularioIsVisible(!formularioIsVisible);
+  };
 
   useEffect(() => {
     fetchEstudiantes();
@@ -49,7 +57,7 @@ function VGestionEstudiante() {
   return (
     <div className="VGestionEstudianteContainer">
       <div className="TitleGestionEstudiante">
-        <h3>Gestión de Estudiantes:</h3>
+        <h3>Estudiantes</h3>
       </div>
       <div className='VGestionEstudianteContainerSearch'>
         <SearchComponent nombre={"Cursos"} placeholder={"Buscar Estudiante"} />
@@ -62,7 +70,10 @@ function VGestionEstudiante() {
             onStudentUpdated={handleStudentUpdated}
           />
         </div>
-        <FormularioAgregarEstudiante onStudentAdded={fetchEstudiantes} />
+        <div className="ButtonFormularioContent">
+        <PrimaryButton nombre={formularioIsVisible ? "Ocultar" : "Mostrar" } onClick={toggleVisibility}/>
+        </div>
+        {formularioIsVisible &&  <FormularioAgregarEstudiante onStudentAdded={fetchEstudiantes} />}
       </div>
     </div>
   );

@@ -24,6 +24,7 @@
 .VHorarioAdministradorDocenteContainer
   .SearchHorarioAdministradorDocenteContainer {
   height: auto;
+  margin-left: 1%;
   align-self: flex-start;
   display: flex;
   align-items: center;
@@ -40,4 +41,13 @@
   margin-top: 20px;
   flex-direction: column;
   gap: 20px;
+}
+
+.VHorarioAdministradorDocenteContainer .ButtonFormularioContent {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

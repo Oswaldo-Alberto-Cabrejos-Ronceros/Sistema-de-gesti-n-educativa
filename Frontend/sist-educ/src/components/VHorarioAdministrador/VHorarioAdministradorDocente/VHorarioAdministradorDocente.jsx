@@ -1,10 +1,18 @@
-import React from "react";
+import React,{useState} from "react";
 import './VHorarioAdministradorDocente.css'
 import SearchComponent from "../../generalsComponets/SearchComponent/SearchComponent";
 import CardHorario from "../../generalsComponets/CardHorario/CardHorario";
 import CardFormularioHorarioDocente from "../../generalsComponets/CardFormularioHorarioDocente/CardFormularioHorarioDocente";
+import PrimaryButton from "../../generalsComponets/PrimaryButton/PrimaryButton";
 
 function VHorarioAdministradorDocente() {
+  const [formularioIsVisible, setformularioIsVisible] = useState(false);
+
+  // Función para alternar la visibilidad
+  const toggleVisibility = () => {
+    setformularioIsVisible(!formularioIsVisible);
+  };
+
   let docentes=[
     {
       apellidos:"Maurtua Andrade",
@@ -29,7 +37,11 @@ function VHorarioAdministradorDocente() {
             <CardHorario key={index} grado={docente.apellidos} nivel={docente.nombres}/>
           ))
         }
-        <CardFormularioHorarioDocente/>
+                <div className="ButtonFormularioContent">
+        <PrimaryButton nombre={formularioIsVisible ? "Ocultar" : "Mostrar" } onClick={toggleVisibility}/>
+        </div>
+        {formularioIsVisible && <CardFormularioHorarioDocente/>}
+
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import { FiSmartphone } from "react-icons/fi";
 import SelectComponent from "../../../generalsComponets/SelectComponent/SelectComponent";
 import AlumnoService from "../../../../services/alumnoService"; // Importa el servicio
 import ConfirmationModal from "../../Modals/ConfirmacionModal"; // Importa el modal de confirmación
+import { FaBirthdayCake } from "react-icons/fa";
 
 function FormularioAgregarEstudiante({ onStudentAdded }) {
   const [formData, setFormData] = useState({
@@ -206,6 +207,7 @@ function FormularioAgregarEstudiante({ onStudentAdded }) {
                 type="date"
                 value={formData.fechaNacimiento}
                 onChange={handleChange}
+                icon={<FaBirthdayCake/>}
               />
             </div>
           </div>

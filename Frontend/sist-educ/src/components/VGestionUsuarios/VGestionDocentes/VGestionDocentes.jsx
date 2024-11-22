@@ -4,11 +4,18 @@ import "./VGestionDocentes.css";
 import TablaGestionDocentes from "./TablaGestionDocentes/TablaGestionDocentes";
 import FormularioAgregarDocente from "./FormularioAgregarDocente/FormularioAgregarDocente";
 import SearchComponent from "../../generalsComponets/SearchComponent/SearchComponent";
+import PrimaryButton from "../../generalsComponets/PrimaryButton/PrimaryButton";
 
 function VGestionDocentes() {
   const [docentes, setDocentes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [formularioIsVisible, setformularioIsVisible] = useState(false);
+
+    // Función para alternar la visibilidad
+    const toggleVisibility = () => {
+      setformularioIsVisible(!formularioIsVisible);
+    };
 
   useEffect(() => {
     fetchDocentes();
@@ -47,7 +54,7 @@ function VGestionDocentes() {
   return (
     <div className="VGestionDocentesContainer">
       <div className="TitleGestionDocentes">
-        <h3>Gestión de Docentes:</h3>
+        <h3>Docentes</h3>
       </div>
       <div className='VGestionDocentesContainerSearch'>
         <SearchComponent nombre={"Cursos"} placeholder={"Buscar Docente"} />
@@ -58,7 +65,11 @@ function VGestionDocentes() {
           onDocenteDeleted={handleDocenteDeleted}
           onDocenteUpdated={handleDocenteUpdated}
         />
-        <FormularioAgregarDocente onDocenteAdded={fetchDocentes} />
+        <div className="ButtonFormularioContent">
+        <PrimaryButton nombre={formularioIsVisible ? "Ocultar" : "Mostrar" } onClick={toggleVisibility}/>
+        </div>
+        {formularioIsVisible &&  <FormularioAgregarDocente onDocenteAdded={fetchDocentes} />}
+        
       </div>
     </div>
   );
