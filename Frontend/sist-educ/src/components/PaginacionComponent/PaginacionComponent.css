@@ -1,0 +1,40 @@
+
+
+:root{
+    --ColorBtnPag:#DC2626;
+    --ColorBtnPagHover:#EF4444;
+    --ColorButtonPag:#FEF2F2;
+    --ColorBorderButtonPag:#171717;
+}
+.PaginacionComponentContainer{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.PaginacionComponentContainer .ButtonPage{
+    height: 32px;
+    width: 32px;
+    border-radius: 4px;
+    border: none;
+    background-color: var(--ColorBtnPag);
+    color: var(--ColorButtonPag);
+    border: 1px solid var(--ColorBorderButtonPag);
+    cursor: pointer;
+    transition: 150ms;
+}
+
+.PaginacionComponentContainer .ButtonPage:hover{
+    background-color: var(--ColorBtnPagHover);
+}
+
+.PaginacionComponentContainer .ButtonPage.active {
+    background-color:var(--ColorButtonPag);
+    color:var(--ColorBtnPag);
+    border:2px solid var(--ColorBtnPag)
+}
