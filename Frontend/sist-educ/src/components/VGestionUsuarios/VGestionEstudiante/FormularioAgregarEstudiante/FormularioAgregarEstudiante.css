@@ -42,11 +42,6 @@
   width: 100px; /* Ajusta el ancho del label */
 }
 
-.error-message {
-  color: red;
-  font-size: 0.87rem;
-  margin-top: 5px; /* Espacio entre el input y el mensaje de error */
-}
 
 .FormularioAgregarEstudianteContainer .butonSubmitEstudiantesContainer {
   padding-top: 20px;

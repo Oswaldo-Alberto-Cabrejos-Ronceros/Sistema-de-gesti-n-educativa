@@ -44,6 +44,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(http -> {
                     // Endpoints públicos
                     http.requestMatchers("/auth/login").permitAll();
+                    http.requestMatchers("/auth/refresh").permitAll();
                     http.requestMatchers("/api/alumnos/**").permitAll();
                     http.requestMatchers("/reportes/notas/**").permitAll();
 

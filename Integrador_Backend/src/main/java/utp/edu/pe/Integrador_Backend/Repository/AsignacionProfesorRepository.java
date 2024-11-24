@@ -14,6 +14,7 @@ public interface AsignacionProfesorRepository extends JpaRepository<AsignacionPr
 
     void deleteBySubcurso(Subcurso subcurso);
 
+
     // Obtener el profesor que tiene asignado un subcurso
     Optional<AsignacionProfesor> findBySubcurso_SubcursoId(Long subcursoId);
 

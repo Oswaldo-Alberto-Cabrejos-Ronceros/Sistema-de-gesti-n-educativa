@@ -1,39 +1,116 @@
-import React from "react";
+import React,{useState} from "react";
 import "./CardFormularioHorarioGrado.css";
 import SelectComponent from "../SelectComponent/SelectComponent";
 import InputComponent from "../InputComponent/InputComponent";
 import { FaUpload } from "react-icons/fa6";
 import ButtonSubtmit from "../ButtonSubmit/ButtonSubtmit";
+import ConfirmationModal from "../../VGestionUsuarios/Modals/ConfirmacionModal";
 
 function CardFormularioHorarioGrado() {
-  const optionsNivel = ["Primaria", "Secundaria"];
-  const optionsGrado = ["1er", "2do", "3er", "4to", "5to"];
+  const optionsNivel = ["SELECCIONAR", "PRIMARIA", "SECUNDARIA"];
+  const optionsGradoPrimaria = ["1", "2", "3", "4", "5", "6"];
+  const optionsGradoSecundaria = ["1", "2", "3", "4", "5"];
   const optionsSeccion = ["A", "B"];
+
+  const [formData, setFormData] = useState({
+    nivel: "",
+    grado: "1",
+    seccion: "A",
+    horario: null,
+  });
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleChangeHorario=(e) => {
+    const { name, files } = e.target;
+    setFormData({ ...formData, [name]: files[0] });
+  };
+
+  const getOptionsGrado = () => {
+    return formData.nivel === "PRIMARIA" ? optionsGradoPrimaria : optionsGradoSecundaria;
+  };
+
+  const [errorMessages, setErrorMessages] = useState({});
+  const [confirmationMessage, setConfirmationMessage] = useState("");
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+
+
+  const showErrorMessage = (field, message) => {
+    setErrorMessages((prevErrors) => ({ ...prevErrors, [field]: message }));
+    setTimeout(() => {
+      setErrorMessages((prevErrors) => ({ ...prevErrors, [field]: "" }));
+    }, 1300);
+  };
+
+  const showConfirmationMessage = (message, duration = 1500) => {
+    setConfirmationMessage(message);
+    setShowConfirmation(true);
+    setTimeout(() => setShowConfirmation(false), duration);
+  };
+
+
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+    if (formData.nivel === "" || formData.nivel === "SELECCIONAR") {
+      showErrorMessage("nivel", "Debe seleccionar un nivel");
+      return;
+    }
+    if (formData.horario === null) {
+      showErrorMessage("horario", "Debe subir una imagen");
+      return;
+    }
+    try{
+      showConfirmationMessage("Horario agregado correctamente", 1500);
+      console.log(formData)
+      setTimeout(() => {
+        setFormData({
+          nivel: "",
+          grado: "1",
+          seccion: "",
+          horario: null,
+        });
+      }, 1500); 
+    } catch(error){
+      console.error("Error al agregar horario:", error);
+      showConfirmationMessage("Ya existe el horario ", 1500);
+    }
+  }
+
   return (
     <div className="CardFormularioHorarioGradoContainer">
-      <form>
+      <ConfirmationModal show={showConfirmation} message={confirmationMessage} />
+      <form onSubmit={handleSubmit}>
         <h3>Agregar Horario</h3>
         <div className="CardFormularioHorarioGradoContent">
           <div className="label-input-container">
             <label htmlFor="Nivel">Nivel</label>
-            <SelectComponent name={"nivel"} options={optionsNivel} />
+            <SelectComponent name={"nivel"} options={optionsNivel} value={formData.nivel}  onChange={handleChange}/>
           </div>
+          {errorMessages.nivel && <p className="error-message">{errorMessages.nivel}</p>}
           <div className="label-input-container">
             <label htmlFor="Grado">Grado</label>
-            <SelectComponent name={"grado"} options={optionsGrado} />
+            <SelectComponent name={"grado"} options={getOptionsGrado()} value={formData.grado} onChange={handleChange}/>
           </div>
           <div className="label-input-container">
             <label htmlFor="Seccion">Seccion</label>
-            <SelectComponent name={"seccion"} options={optionsSeccion} />
+            <SelectComponent name={"seccion"} options={optionsSeccion} value={formData.seccion} onChange={handleChange} />
           </div>
           <div className="label-input-container">
             <label htmlFor="Imagen">Imagen</label>
             <InputComponent
               type={"file"}
-              nombre={"imagen"}
+              nombre={"horario"}
               icon={<FaUpload />}
+              onChange={handleChangeHorario}
+              accept="image/*"
             />
           </div>
+          {errorMessages.horario && <p className="error-message">{errorMessages.horario}</p>}
         </div>
         <div className="buttonSubmitHorarioContainer">
           <ButtonSubtmit className="buttonSubmirHorario" nombre={"Agregar"} />

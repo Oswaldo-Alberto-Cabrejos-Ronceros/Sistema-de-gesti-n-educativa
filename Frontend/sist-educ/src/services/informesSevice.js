@@ -1,26 +1,14 @@
-import axios from "axios";
+import axiosInstance from './axiosInstance';
 
 // URL base para los endpoints de reportes
 const API_URL = "http://localhost:8080/reportes";
 
-// Interceptor para agregar el token de autorización a cada solicitud
-axios.interceptors.request.use(
-  (config) => {
-    const token = sessionStorage.getItem("jwtToken");
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+
 
 class InformesService {
   // Método para obtener el informe en formato Excel
   generarReporteNotasAuxiliar(nivel, grado, subcursoId, unidad) {
-    return axios.get(
+    return axiosInstance.get(
       `${API_URL}/notas/auxiliar`,
       {
         params: {
@@ -36,7 +24,7 @@ class InformesService {
 
   //metodo para bimestre
   generarReporteNotasBimestral(nivel, grado, subcursoId, bimestre) {
-    return axios.get(`${API_URL}/notas/bimestral`, {
+    return axiosInstance.get(`${API_URL}/notas/bimestral`, {
       params: {
         nivel: nivel,
         grado: grado,

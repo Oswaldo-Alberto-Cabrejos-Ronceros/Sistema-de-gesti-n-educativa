@@ -21,44 +21,70 @@ public class JwtUtil {
     @Value("${security.jwt.key.private}")
     private String privateKey;
 
+    @Value("${security.jwt.key.refresh}")
+    private String refreshKey;
+
     @Value("${security.jwt.user.generator}")
     private String userGenerator;
 
-    public String createToken(Authentication authentication){
+    // Metodo para crear el token de acceso (15 minutos)
+    public String createAccessToken(Authentication authentication){
         Algorithm algorithm = Algorithm.HMAC256(this.privateKey);
-
-        String username =authentication.getPrincipal().toString();
+        String username = authentication.getPrincipal().toString();
         String authorities = authentication.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
 
-
         String jwtToken = JWT.create()
                 .withIssuer(this.userGenerator)
                 .withSubject(username)
-                .withClaim("authorities",authorities)
+                .withClaim("authorities", authorities)
                 .withIssuedAt(new Date())
-                .withExpiresAt(new Date(System.currentTimeMillis()+10800000) )
-                .withJWTId(UUID.randomUUID().toString())
-                .withNotBefore(new Date(System.currentTimeMillis()))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 15 * 60 * 1000)) // 15 minutos
                 .sign(algorithm);
 
         return jwtToken;
     }
 
-    public DecodedJWT validateToken(String token){
-       try{
+    public DecodedJWT validateToken(String token) {
+        try {
             Algorithm algorithm = Algorithm.HMAC256(this.privateKey);
+            JWTVerifier verifier = JWT.require(algorithm)
+                    .withIssuer(this.userGenerator)
+                    .build();
+            return verifier.verify(token);
+        } catch (JWTVerificationException exception) {
+            throw new JWTVerificationException("Invalid JWT token, NOT AUTHORIZED");
+        }
+    }
 
-           JWTVerifier verifier =JWT.require(algorithm)
-                   .withIssuer(this.userGenerator)
-                   .build();
-           DecodedJWT decodedJWT= verifier.verify(token);
-           return decodedJWT;
-       }catch (JWTVerificationException exception){
-           throw new JWTVerificationException("Invalid JWT token, NOT AUTHORIZED");
-       }
+    // Metodo para crear el token de refresco (12 horas)
+    public String createRefreshToken(String username){
+        Algorithm algorithm = Algorithm.HMAC256(this.refreshKey);
+
+        String refreshToken = JWT.create()
+                .withIssuer(this.userGenerator)
+                .withSubject(username)
+                .withIssuedAt(new Date())
+                .withExpiresAt(new Date(System.currentTimeMillis() + 7 * 60 * 60 * 1000)) // 7 horas de respaldo
+                .sign(algorithm);
+
+        return refreshToken;
+    }
+
+
+    // Metodo para validar el token de refresco
+    public DecodedJWT validateRefreshToken(String token){
+        try{
+            Algorithm algorithm = Algorithm.HMAC256(this.refreshKey);
+            JWTVerifier verifier = JWT.require(algorithm)
+                    .withIssuer(this.userGenerator)
+                    .build();
+            return verifier.verify(token);
+        } catch (JWTVerificationException exception){
+            throw new JWTVerificationException("Invalid Refresh Token, NOT AUTHORIZED");
+        }
     }
 
     public String extractUsername(DecodedJWT decodedJWT){

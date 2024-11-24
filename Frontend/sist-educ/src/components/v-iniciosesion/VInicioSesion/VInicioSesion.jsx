@@ -17,10 +17,16 @@ function VInicioSesion() {
     setErrorMessage(""); // Limpiar mensaje de error al intentar iniciar sesión de nuevo
 
     try {
-      const response = await axios.post("http://localhost:8080/auth/login", {
-        username: username,
-        password: password,
-      });
+      const response = await axios.post(
+        "http://localhost:8080/auth/login",
+        {
+          username: username,
+          password: password,
+        },
+        {
+          withCredentials: true, // Asegura que las cookies HTTP-only sean aceptadas
+        }
+      );
 
       const jwtToken = response.data.jwt;
 

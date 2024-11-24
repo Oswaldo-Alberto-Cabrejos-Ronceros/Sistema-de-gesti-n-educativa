@@ -1,50 +1,38 @@
-import axios from "axios";
+import axiosInstance from './axiosInstance';
 
 const API_URL = 'http://localhost:8080/api/profesores';
 
-// Interceptor para agregar el token a cada solicitud
-axios.interceptors.request.use(
-    (config) => {
-    const token = sessionStorage.getItem("jwtToken");
-    if (token) {
-        config.headers["Authorization"] = `Bearer ${token}`;
-    }
-    return config;
-    },
-    (error) => {
-    return Promise.reject(error);
-    }
-);
+
 class DocenteService{
 
     getAllDocente(){
-        return axios.get(API_URL);
+        return axiosInstance.get(API_URL);
     }
     createProfesor(profesor) {
-        return axios.post(`${API_URL}/registrar`, profesor);
+        return axiosInstance.post(`${API_URL}/registrar`, profesor);
     }
     obtenerProfesorPorId(Id) {
-        return axios.get(`${API_URL}/${Id}`);
+        return axiosInstance.get(`${API_URL}/${Id}`);
     }
     obtenerProfesorPorDni(Dni) {
-        return axios.get(`${API_URL}/${Dni}`);
+        return axiosInstance.get(`${API_URL}/${Dni}`);
     }
 
     updateProfesor(Id,UpdateRequest){
-        return axios.put(`${API_URL}/actualizar/${Id}`,UpdateRequest);
+        return axiosInstance.put(`${API_URL}/actualizar/${Id}`,UpdateRequest);
     }
 
     AdminUpdateProfesor(id, profesorData) {
-        return axios.put(`${API_URL}/updateAll/${id}`, profesorData);
+        return axiosInstance.put(`${API_URL}/updateAll/${id}`, profesorData);
     }
     deleteProfesor(Id){
-        return axios.delete(`${API_URL}/eliminar/${Id}`);
+        return axiosInstance.delete(`${API_URL}/eliminar/${Id}`);
     }
     asignarProfesor(request){
-        return axios.post(`${API_URL}/asignar`,request);
+        return axiosInstance.post(`${API_URL}/asignar`,request);
     }
     desasignarProfesor(asignacionId){
-        return axios.delete(`${API_URL}/desasignar/${asignacionId}`);
+        return axiosInstance.delete(`${API_URL}/desasignar/${asignacionId}`);
     }
 
 

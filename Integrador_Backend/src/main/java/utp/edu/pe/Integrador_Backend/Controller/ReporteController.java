@@ -17,7 +17,6 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/reportes")
-
 public class ReporteController {
 
     @Autowired
@@ -60,5 +59,3 @@ public class ReporteController {
         return new ResponseEntity<>(outputStream.toByteArray(), headers, HttpStatus.OK);
     }
 }
-
-

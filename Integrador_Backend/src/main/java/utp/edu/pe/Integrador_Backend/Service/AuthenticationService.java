@@ -3,6 +3,7 @@ package utp.edu.pe.Integrador_Backend.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -54,7 +55,7 @@ public class AuthenticationService {
                 usuario.getCodigo(), usuario.getPassword(), authorityList);
     }
 
-    private Optional<Usuario> obtenerUsuarioPorCorreoOCodigo(String username) {
+    public Optional<Usuario> obtenerUsuarioPorCorreoOCodigo(String username) {
         return administradorRepository.findByCodigo(username)
                 .map(admin -> (Usuario) admin)
                 .or(() -> profesorRepository.findByCodigo(username)
@@ -63,11 +64,14 @@ public class AuthenticationService {
                         .map(alumno -> (Usuario) alumno));
     }
 
-    public AuthResponse  authenticateUser(LoginRequest loginRequest) {
+    public AuthResponse authenticateUser(LoginRequest loginRequest) {
         UserDetails userDetails = loadUserByUsername(loginRequest.getUsername());
         if (passwordEncoder.matches(loginRequest.getPassword(), userDetails.getPassword())) {
-            String jwtToken = jwtUtil.createToken(new UsernamePasswordAuthenticationToken(
-                    userDetails.getUsername(), null, userDetails.getAuthorities()));
+            // Generar token de acceso
+            Authentication authentication = new UsernamePasswordAuthenticationToken(
+                    userDetails.getUsername(), null, userDetails.getAuthorities());
+
+            String accessToken = jwtUtil.createAccessToken(authentication);
 
             Usuario usuario = obtenerUsuarioPorCorreoOCodigo(loginRequest.getUsername())
                     .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
@@ -75,18 +79,14 @@ public class AuthenticationService {
             // Imprimir los datos del usuario autenticado en la consola
             imprimirDatosUsuarioEnConsola(usuario);
 
-
-            // Verificar el tipo de usuario y devolver la respuesta adecuada
+            // Crear y devolver AuthResponse
             if (usuario instanceof Alumno) {
-                Alumno alumno = (Alumno) usuario;
-                return new AuthResponse(jwtToken, alumno);
+                return new AuthResponse(accessToken, (Alumno) usuario);
             } else if (usuario instanceof Profesor) {
-                Profesor profesor = (Profesor) usuario;
-                return new AuthResponse(jwtToken, profesor);
+                return new AuthResponse(accessToken, (Profesor) usuario);
             } else {
-                return new AuthResponse(jwtToken, usuario);  // Para Administrador
+                return new AuthResponse(accessToken, usuario);  // Para Administrador
             }
-
         } else {
             throw new BadCredentialsException("Credenciales incorrectas");
         }
