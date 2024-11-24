@@ -38,3 +38,6 @@
 2024-11-24 17:37:00 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
 2024-11-24 17:37:00 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
 2024-11-24 17:37:00 INFO  u.e.p.I.IntegradorBackendApplication - Started IntegradorBackendApplication in 11.102 seconds (process running for 20.752)
+2024-11-24 17:37:53 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-24 17:37:53 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-24 17:37:53 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
