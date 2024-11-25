@@ -28,6 +28,11 @@
     justify-content: space-between;
 }
 
+.VInformesDocenteAdministradorAuxiliarContainer .SelectInformesDocenteAdministradorAuxiliarContainer.admin{
+width: 900px;
+}
+
+
 .VInformesDocenteAdministradorAuxiliarContainer .VInformesDocenteAdministradorAuxiliarContent{
     width: 100%;
     height: auto;

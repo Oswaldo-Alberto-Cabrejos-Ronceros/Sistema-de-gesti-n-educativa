@@ -6,12 +6,7 @@ import VSubirNotasDocente from "../VNotasDocenteAdministrador/VSubirNotasDocente
 import VVerNotasDocente from "./VVerNotasDocenteAdministrador/VVerNotasDocenteAdministrador";
 
 function VNotasDocenteAdministrador() {
-  let curso = {
-    nombre: "Matematica",
-    grado: "6to",
-    seccion: "Unica",
-    nivel: "Primaria",
-  };
+
   return (
     <div className="VNotasDocenteAdministradorContainer">
       <div className="VNotasDocenteAdministradorTitle">

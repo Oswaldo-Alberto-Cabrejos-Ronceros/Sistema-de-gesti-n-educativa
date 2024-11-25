@@ -39,6 +39,10 @@ public class SubcursoService {
         return subcursoRepository.findByCurso_CursoId(cursoId);
     }
 
+    public List<Subcurso> listarSubcursosPornivel(Nivel nivel) {
+        return subcursoRepository.findByNivel(nivel);
+    }
+
 
     public List<Subcurso> listarSubcursosPorUsuarioId(Long usuarioId, Rol rol) {
         if (rol == Rol.STUDENT) {

@@ -21,6 +21,12 @@ class subcursoService{
         return axiosInstance.get(`${API_URL}/curso/${cursoId}`);
     }
 
+
+    getlistarSubcursosPorNivel(nivel){
+        return axiosInstance.get(`${API_URL}/nivel/${nivel}`);
+    }
+
+
     createSubcurso(subCursoData){
         return axiosInstance.post(`${API_URL}/curso/${subCursoData.cursoId}`,subCursoData);
     }

@@ -3,7 +3,7 @@ import './VAdministrador.css'
 import {Route, Routes, Navigate } from "react-router-dom";
 import InfoUser from '../generalsComponets/InfoUser/InfoUser';
 import BarraNavegacionAdministrador from '../BarraNavegacionAdministrador/BarraNavegacionAdministrador';
-import VNotasAdministrador from '../VNotasDocenteAdministrador/VNotasDocenteAdministrador';
+import VNotasAdministrador from '../VNotasAdministrador/VNotasAdministrador';
 import VHonorAdministrador from '../VHonorDocenteAdministrador/VHonorDocenteAdministrador';
 import VInformesAdministrador from '../VInformesDocenteAdministrador/VInformesDocenteAdministrador';
 import VCursosAdministrador from '../VCursosAdministrador/VCursosAdministrador';
@@ -12,6 +12,7 @@ import VHorarioAdministrador from '../VHorarioAdministrador/VHorarioAdministrado
 import VGestionCursos from '../VGestionCursos/VGestionCursos';
 import VGestionUsuarios from '../VGestionUsuarios/VGestionUsuarios'
 import VTareasAdministrador from '../VTareasAdministrador/VTareasAdministrador';
+
 
 function VAdministrador() {
   const [userUser, setUser] = useState(null);

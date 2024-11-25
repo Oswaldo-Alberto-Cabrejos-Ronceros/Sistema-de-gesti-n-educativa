@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import utp.edu.pe.Integrador_Backend.Entidades.Nivel;
 import utp.edu.pe.Integrador_Backend.Entidades.Rol;
 import utp.edu.pe.Integrador_Backend.Entidades.Subcurso;
 import utp.edu.pe.Integrador_Backend.Service.SubcursoService;
@@ -68,6 +69,13 @@ public class SubcursoController {
     public ResponseEntity<String> eliminarSubcurso(@PathVariable Long subcursoId) {
         subcursoService.eliminarSubcurso(subcursoId);
         return ResponseEntity.ok("Subcurso eliminado correctamente");
+    }
+
+    ////////////controller/////////////
+    @GetMapping("/nivel/{nivel}")
+    public ResponseEntity<List<Subcurso>> obtenerSubcursosPorNivel(@PathVariable Nivel nivel) {
+        List<Subcurso> subcursos = subcursoService.listarSubcursosPornivel(nivel);
+        return ResponseEntity.ok(subcursos);
     }
 
 }

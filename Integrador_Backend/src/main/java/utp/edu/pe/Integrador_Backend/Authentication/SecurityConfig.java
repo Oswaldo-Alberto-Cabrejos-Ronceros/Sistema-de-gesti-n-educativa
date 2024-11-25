@@ -78,6 +78,7 @@ public class SecurityConfig {
                     // Endpoints de notas (PROFESOR)
                     http.requestMatchers(HttpMethod.GET, "/api/notas/**").permitAll();
                     http.requestMatchers(HttpMethod.POST, "/api/notas/**").hasAuthority("PROFESOR");
+                    http.requestMatchers(HttpMethod.POST, "/api/notas/**").hasAuthority("ADMIN");
                     http.requestMatchers(HttpMethod.PUT, "/api/notas/**").hasAuthority("PROFESOR");
                     http.requestMatchers(HttpMethod.DELETE, "/api/notas/**").hasAuthority("PROFESOR");
 
