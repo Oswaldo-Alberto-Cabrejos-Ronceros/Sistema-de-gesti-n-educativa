@@ -44,8 +44,73 @@ public class AlumnoService {
         return alumnoRepository.findByGradoAndAsignaciones_Subcurso_SubcursoIdOrderByApellidoAsc(grado, subcursoId);
     }
 
-    public List<Alumno> listarAlumnosPorGradoYNivel(Integer grado, Nivel nivel) {
-        return alumnoRepository.findByGradoAndNivel(grado, nivel);
+    public List<Alumno> buscarAlumnosPorDNI(String dni) {
+        List<Alumno> alumnos = alumnoRepository.findByDniStartingWith(dni);
+        if (alumnos.isEmpty()) {
+            throw new RuntimeException("No hay alumnos con el DNI proporcionado.");
+        }
+        return alumnos;
+    }
+
+
+    public List<Alumno> buscarAlumnos(Nivel nivel, Integer grado, String seccion) {
+        List<Alumno> alumnos;
+
+        try {
+            if (nivel != null && grado != null && seccion != null) {
+                // Filtrar por nivel, grado y sección
+                alumnos = alumnoRepository.findByNivelAndGradoAndSeccion(nivel, grado, seccion);
+                if (alumnos.isEmpty()) {
+                    throw new RuntimeException("No hay alumnos en el grado " + grado + " - sección " + seccion + " para el nivel " + nivel);
+                }
+            } else if (nivel != null && grado != null) {
+                // Filtrar por nivel y grado
+                alumnos = alumnoRepository.findByGradoAndNivel(grado, nivel);
+                if (alumnos.isEmpty()) {
+                    throw new RuntimeException("No hay alumnos en el grado " + grado + " para el nivel " + nivel);
+                }
+            } else if (grado != null && seccion != null) {
+                // Filtrar por grado y sección
+                alumnos = alumnoRepository.findByGradoAndSeccion(grado, seccion);
+                if (alumnos.isEmpty()) {
+                    throw new RuntimeException("No hay alumnos en el grado " + grado + " - sección " + seccion);
+                }
+            } else if (nivel != null && seccion != null) {
+                // Filtrar por nivel y sección
+                alumnos = alumnoRepository.findByNivelAndSeccion(nivel, seccion);
+                if (alumnos.isEmpty()) {
+                    throw new RuntimeException("No hay alumnos en la sección " + seccion + " para el nivel " + nivel);
+                }
+            } else if (nivel != null) {
+                // Filtrar solo por nivel
+                alumnos = alumnoRepository.findByNivel(nivel);
+                if (alumnos.isEmpty()) {
+                    throw new RuntimeException("No hay alumnos para el nivel " + nivel);
+                }
+            } else if (grado != null) {
+                // Filtrar solo por grado
+                alumnos = alumnoRepository.findByGrado(grado);
+                if (alumnos.isEmpty()) {
+                    throw new RuntimeException("No hay alumnos en el grado " + grado);
+                }
+            } else if (seccion != null) {
+                // Filtrar solo por sección
+                alumnos = alumnoRepository.findBySeccion(seccion);
+                if (alumnos.isEmpty()) {
+                    throw new RuntimeException("No hay alumnos en la sección " + seccion);
+                }
+            } else {
+                // Obtener todos los alumnos si no hay filtros
+                alumnos = alumnoRepository.findAll();
+                if (alumnos.isEmpty()) {
+                    throw new RuntimeException("No hay alumnos registrados.");
+                }
+            }
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
+        return alumnos;
     }
 
 

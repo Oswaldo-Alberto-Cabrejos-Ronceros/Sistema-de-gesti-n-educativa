@@ -3,15 +3,14 @@ package utp.edu.pe.Integrador_Backend.Controller;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import utp.edu.pe.Integrador_Backend.Entidades.Alumno;
-import utp.edu.pe.Integrador_Backend.Entidades.Nivel;
-import utp.edu.pe.Integrador_Backend.Entidades.Nota;
-import utp.edu.pe.Integrador_Backend.Entidades.UpdateRequest;
+import utp.edu.pe.Integrador_Backend.Entidades.*;
 import utp.edu.pe.Integrador_Backend.Service.AlumnoService;
 import utp.edu.pe.Integrador_Backend.Service.NotaService;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -28,6 +27,30 @@ public class AlumnoController {
     public ResponseEntity<List<Alumno>> listarAlumnos() {
         List<Alumno> alumnos = alumnoService.listarAlumnos();
         return ResponseEntity.ok(alumnos);
+    }
+
+    @GetMapping("/buscarPorDni")
+    public ResponseEntity<List<Alumno>> buscarAlumnosPorDNI(@RequestParam String dni) {
+        try {
+            List<Alumno> alumnos = alumnoService.buscarAlumnosPorDNI(dni);
+            return ResponseEntity.ok(alumnos);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.emptyList());
+        }
+    }
+
+    @GetMapping("/buscar")
+    public ResponseEntity<?> buscarAlumnos(
+            @RequestParam(required = false) Nivel nivel,
+            @RequestParam(required = false) Integer grado,
+            @RequestParam(required = false) String seccion) {
+
+        try {
+            List<Alumno> alumnos = alumnoService.buscarAlumnos(nivel, grado, seccion);
+            return ResponseEntity.ok(alumnos);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
     @GetMapping("/list/subcurso/{subcursoId}/grado/{grado}")

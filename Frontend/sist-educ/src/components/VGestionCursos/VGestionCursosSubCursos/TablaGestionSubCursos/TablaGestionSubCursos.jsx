@@ -3,7 +3,7 @@ import './TablaGestionSubCursos.css'
 import PrimaryButton from '../../../generalsComponets/PrimaryButton/PrimaryButton';
 import ConfirmationModal from "../../../VGestionUsuarios/Modals/ConfirmacionModal";
 import EditGestionCursosModal from "../../ModalsCurso/EditGestionCursosModal/EditGestionCursosModal";
-import DeleteUserModal from "../../../VGestionUsuarios/Modals/DeleteUserModal";
+import EliminarAsignacionModal from "../../ModalsCurso/EliminarAsignacionModal/EliminarAsignacionModal";
 import SubcursoService from "../../../../services/subcursoService";
 
 function TablaGestionSubCursos({ subcursos, onSubCursoUpdated, onSubCursoDeleted }) {
@@ -107,8 +107,9 @@ function TablaGestionSubCursos({ subcursos, onSubCursoUpdated, onSubCursoDeleted
                 onClose={() => setShowEditModal(false)}
             />
 
-            <DeleteUserModal
+            <EliminarAsignacionModal
                 show={showDeleteModal}
+                message={`¿Estás seguro de que deseas eliminar este Subcurso ?`}
                 onConfirm={confirmDelete}
                 onCancel={() => setShowDeleteModal(false)}
             />

@@ -1,6 +1,7 @@
 package utp.edu.pe.Integrador_Backend.Entidades;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -37,10 +38,10 @@ public class Alumno  extends Usuario{
 
     // Relaciones con otras entidades
     @OneToMany(mappedBy = "alumno",cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties({"asignaciones", "notas"})
+    @JsonIgnoreProperties({"asignaciones", "notas","alumno"})
     private Set<AsignacionAlumno> asignaciones = new HashSet<>();;
 
     @OneToMany(mappedBy = "alumno",cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties({"notas", "asignaciones"})
+    @JsonIgnore
     private Set<Nota> notas;
 }

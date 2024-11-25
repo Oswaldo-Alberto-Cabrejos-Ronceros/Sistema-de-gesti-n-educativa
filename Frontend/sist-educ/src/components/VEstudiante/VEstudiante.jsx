@@ -3,14 +3,11 @@ import "./VEstudiante.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import subcursoService from "../../services/subcursoService";
 import BarraNavegacion from "../BarraNavegacionEstudiante/BarraNavegacionEstudiante";
-//import ComponenteVacio from "../ComponenteVacio/ComponenteVacio";
-//import VEstudiante from "../VEstudiante/VEstudiante";
 import InfoUser from "../generalsComponets/InfoUser/InfoUser";
 import VHonorEstudiante from "../VHonorEstudiante/VHonorEstudiante";
 import VCursosEstudiante from "../VCursosEstudiante/VCursosEstudiante";
 import VCursosEstudianteContenido from "../VCursosEstudiante/VCursoEstudianteContenido/VCursoEstudianteContenido";
 import VHorarioEstudiante from "../VHorarioEstudianteDocente/VHorarioEstudianteDocente";
-import VTareasEstudiante from "../VTareasEstudiante/VTareasEstudiante";
 import VNotasEstudiante from "../VNotasEstudiante/VNotasEstudiante";
 import VChatEstudiante from "../VChatEstudianteDocente/VChatEstudianteDocente";
 
@@ -68,7 +65,6 @@ function VEstudiante() {
                 />
               }
             />
-            <Route path="tareas/*" element={<VTareasEstudiante />} />
             <Route path="chat" element={<VChatEstudiante />} />
             <Route path="notas/*" element={<VNotasEstudiante />} />
             <Route path="honor/*" element={<VHonorEstudiante />} />

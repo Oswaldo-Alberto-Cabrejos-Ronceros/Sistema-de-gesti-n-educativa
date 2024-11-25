@@ -2,15 +2,16 @@ package utp.edu.pe.Integrador_Backend.Controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import utp.edu.pe.Integrador_Backend.Entidades.AsignarSubcursosRequest;
-import utp.edu.pe.Integrador_Backend.Entidades.Profesor;
-import utp.edu.pe.Integrador_Backend.Entidades.UpdateRequest;
+import utp.edu.pe.Integrador_Backend.Entidades.*;
+import utp.edu.pe.Integrador_Backend.Repository.AsignacionProfesorRepository;
 import utp.edu.pe.Integrador_Backend.Service.AsignacionProfesorService;
 import utp.edu.pe.Integrador_Backend.Service.ProfesorService;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -18,6 +19,9 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173/")
 @RequestMapping("api/profesores")
 public class ProfesorController {
+
+    @Autowired
+    private AsignacionProfesorRepository asignacionProfesorRepository;
 
     @Autowired
     private ProfesorService profesorService;
@@ -46,17 +50,22 @@ public class ProfesorController {
         return ResponseEntity.ok(profesor);
     }
 
+
+    @GetMapping("/listar/nivel/{nivel}")
+    public ResponseEntity<List<Profesor>> ListarPorNivel(@PathVariable Nivel nivel) {
+        List<Profesor> profesor = profesorService.ListarProfesorPorNivel(nivel);
+        return ResponseEntity.ok(profesor);
+    }
+
     // Buscar profesor por DNI
     @GetMapping("/buscarPorDni")
-    public ResponseEntity<List<Profesor>> buscarProfesoresPorDni(@RequestParam(required = false) String dniPrefix) {
-        if (dniPrefix == null || dniPrefix.isEmpty()) {
-            // Si no se envía un prefijo, devolver todos los profesores
-            return ResponseEntity.ok(profesorService.listarProfesores());
-        }
+    public ResponseEntity<List<Profesor>> buscarProfesoresPorDni(@RequestParam String dni) {
+       try{
+        List<Profesor> profesores = profesorService.buscarProfesoresPorDniPrefix(dni);
+           return ResponseEntity.ok(profesores);
+        }catch (RuntimeException e){
+           return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.emptyList());       }
 
-        // Si se envía un prefijo, buscar por el DNI que comience con ese prefijo
-        List<Profesor> profesores = profesorService.buscarProfesoresPorDniPrefix(dniPrefix);
-        return ResponseEntity.ok(profesores);
     }
 
     // Actualizar teléfono y/o contraseña del profesor
@@ -92,6 +101,15 @@ public class ProfesorController {
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @GetMapping("/{profesorId}/asignaciones")
+    public ResponseEntity<List<AsignacionProfesor>> obtenerAsignacionesPorProfesor(@PathVariable Long profesorId) {
+        List<AsignacionProfesor> asignaciones = asignacionProfesorRepository.findByProfesor_UsuarioId(profesorId);
+        if (asignaciones.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(asignaciones);
     }
 
     // Desasignar subcurso de un profesor

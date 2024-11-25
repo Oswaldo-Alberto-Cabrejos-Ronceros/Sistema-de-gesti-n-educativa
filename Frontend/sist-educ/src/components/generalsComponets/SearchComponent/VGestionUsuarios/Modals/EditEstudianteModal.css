@@ -1,0 +1,74 @@
+.edit-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Asegura que ocupe todo el ancho de la ventana */
+    height: 100vh; /* Asegura que ocupe todo el alto de la ventana */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Aumenta el z-index para asegurarte de que esté por encima de todo */
+}
+
+
+.edit-modal-content {
+    background-color: white;
+    padding: 30px; /* Aumenta el padding para dar más espacio */
+    border-radius: 18px;
+    width: 650px; /* Asegura suficiente ancho para dos columnas */
+    text-align: left; /* Alinea el texto a la izquierda */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos dentro del modal */
+}
+
+.edit-form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%; /* Ocupa todo el ancho del modal */
+}
+
+.edit-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px; /* Tamaño un poco más grande para mejor visibilidad */
+    cursor: pointer;
+    color: #333; /* Color oscuro para que sea más visible */
+}
+
+
+.label-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.label-input-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.edit-button-container {
+    grid-column: span 2; /* Ocupa las dos columnas */
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.edit-update-button {
+    background-color: #d32f2f; /* Cambia el color a un rojo más oscuro */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

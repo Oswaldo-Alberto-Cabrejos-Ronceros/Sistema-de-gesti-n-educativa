@@ -35,12 +35,12 @@ public class SubcursoService {
         return subcursoRepository.findAll();
     }
 
-    public List<Subcurso> listarSubcursosPorCursoId(Long cursoId) {
-        return subcursoRepository.findByCurso_CursoId(cursoId);
-    }
-
     public List<Subcurso> listarSubcursosPornivel(Nivel nivel) {
         return subcursoRepository.findByNivel(nivel);
+    }
+
+    public List<Subcurso> listarSubcursosPorCursoId(Long cursoId) {
+        return subcursoRepository.findByCurso_CursoId(cursoId);
     }
 
 

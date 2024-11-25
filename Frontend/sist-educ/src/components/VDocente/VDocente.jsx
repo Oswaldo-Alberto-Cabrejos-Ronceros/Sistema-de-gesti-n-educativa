@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./VDocente.css";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import ComponenteVacio from "../ComponenteVacio/ComponenteVacio";
+import { Route, Routes, Navigate } from "react-router-dom";
 import BarraNavegacionDocente from "../BarraNavegacionDocente/BarraNavegacionDocente";
 import InfoUser from "../generalsComponets/InfoUser/InfoUser";
 import VHorarioDocente from "../VHorarioEstudianteDocente/VHorarioEstudianteDocente";
 import VCursosDocente from "../VCursosDocente/VCursosDocente";
 import VCursoDocenteContenido from "../VCursoDocenteAdministradorContenido/VCursoDocenteAdministradorContenido";
-import VTareasDocente from "../VTareasDocente/VTareasDocente";
 import VNotasDocente from "../VNotasDocenteAdministrador/VNotasDocenteAdministrador";
 import VHonorDocenteAdministrador from "../VHonorDocenteAdministrador/VHonorDocenteAdministrador";
 import VInformesDocente from "../VInformesDocenteAdministrador/VInformesDocenteAdministrador";
@@ -107,7 +105,6 @@ console.log(cursos2)
             <Route index element={<Navigate to="cursos" />} />
             <Route path="cursos/*" element={<VCursosDocente cursos={cursos2} />} />
             <Route path="horario" element={<VHorarioDocente grado_Apellidos={userDocente.apellido} nivel_Nombres={userDocente.nombre}/>} />
-            <Route path="tareas/*" element={<VTareasDocente />} />
             <Route path="chat" element={<VChatDocente />} />
             <Route path="notas/*" element={<VNotasDocente />} />
             <Route path="honor/*" element={<VHonorDocenteAdministrador />} />

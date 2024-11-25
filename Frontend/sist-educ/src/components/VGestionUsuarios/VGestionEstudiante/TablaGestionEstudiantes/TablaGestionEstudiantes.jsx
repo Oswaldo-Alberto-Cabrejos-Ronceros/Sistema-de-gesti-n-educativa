@@ -5,7 +5,7 @@ import PrimaryButton from "../../../generalsComponets/PrimaryButton/PrimaryButto
 import EditEstudianteModal from "../../Modals/EditEstudianteModal";
 import DeleteUserModal from "../../Modals/DeleteUserModal";
 import ConfirmationModal from "../../Modals/ConfirmacionModal";
-import PaginacionComponent from "../../../PaginacionComponent/PaginacionComponent";
+import PaginacionComponent from "../../../generalsComponets/PaginacionComponent/PaginacionComponent";
 
 function TablaGestionEstudiantes({
   estudiantes,

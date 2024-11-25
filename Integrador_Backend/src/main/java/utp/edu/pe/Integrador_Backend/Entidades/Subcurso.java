@@ -48,11 +48,11 @@ public class Subcurso {
     private Set<AsignacionProfesor> asignacionesProfesor;
 
     @OneToMany(mappedBy = "subcurso", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties({"subcurso", "alumno"})
+    @JsonIgnore
     private Set<AsignacionAlumno> asignacionesAlumno = new HashSet<>();
 
     @OneToMany(mappedBy = "subcurso", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("subcurso")
+    @JsonIgnore
     private Set<Nota> notas;
 
 }

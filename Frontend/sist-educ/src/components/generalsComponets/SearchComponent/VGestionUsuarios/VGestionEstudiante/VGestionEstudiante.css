@@ -1,0 +1,109 @@
+:root{
+    --BackgroudColorVGestionEstudiante:#F4F4F5;
+}
+.FiltersAndSearch {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Para que los elementos se ajusten en pantallas pequeñas */
+    margin-bottom: 20px; /* Separación inferior */
+}
+
+.FilterGroup,
+.SearchGroup {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px; /* Espacio entre elementos */
+}
+
+.FilterGroup label,
+.SearchGroup label {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.SelectComponentContainer {
+    margin-right: 10px;
+}
+
+.SelectComponentContainer select {
+    padding: 2px;
+    font-size: 14px;
+}
+
+.SearchGroup {
+    flex-grow: 1; /* Para que el componente de búsqueda ocupe el espacio restante si es necesario */
+}
+
+@media (max-width: 768px) {
+    .FiltersAndSearch {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .FilterGroup,
+    .SearchGroup {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+
+.VGestionEstudianteContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.VGestionEstudianteContainer .TitleGestionEstudiante{
+    align-self:flex-start;
+    margin: 1%;
+    height: auto;
+}
+
+.VGestionEstudianteContainer .VGestionEstudianteContainerSearch{
+    margin: 0;
+    padding-left: 1vw;
+    box-sizing: content-box;
+}
+
+.VGestionEstudianteContainer .TitleGestionEstudiante h3{
+    margin: 0;
+    padding: 0;
+}
+
+.VGestionEstudianteContainer .VGestionEstudiantesContent{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    min-height: 440px;
+    box-sizing: border-box;
+    align-self: flex-start;
+    margin-top: 20px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.VGestionEstudianteContainer .TablaGestionEstudiantesContainer{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.VGestionEstudianteContainer .ButtonFormularioContent{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -3,7 +3,7 @@ import "./TablaGestionCursos.css";
 import PrimaryButton from "../../../generalsComponets/PrimaryButton/PrimaryButton";
 import ConfirmationModal from "../../../VGestionUsuarios/Modals/ConfirmacionModal";
 import EditGestionCursosModal from "../../ModalsCurso/EditGestionCursosModal/EditGestionCursosModal";
-import DeleteUserModal from "../../../VGestionUsuarios/Modals/DeleteUserModal";
+import EliminarAsignacionModal from "../../ModalsCurso/EliminarAsignacionModal/EliminarAsignacionModal";
 import CursoService from "../../../../services/cursosService";
 import SelectComponent from "../../../generalsComponets/SelectComponent/SelectComponent";
 
@@ -135,8 +135,9 @@ function TablaGestionCursos({ cursos, onCourseUpdated, onCourseDeleted }) {
         onClose={() => setShowEditModal(false)}
       />
 
-      <DeleteUserModal
+      <EliminarAsignacionModal
         show={showDeleteModal}
+        message={`¿Estás seguro de que deseas eliminar este curso ?`}
         onConfirm={confirmDelete}
         onCancel={() => setShowDeleteModal(false)}
       />

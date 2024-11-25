@@ -4,9 +4,12 @@ const API_URL = 'http://localhost:8080/api/profesores';
 
 
 class DocenteService{
-
+    
     getAllDocente(){
         return axiosInstance.get(API_URL);
+    }
+    listarProfesoresPorNivel(Nivel) {
+        return axiosInstance.get(`${API_URL}/listar/nivel/${Nivel}`);
     }
     createProfesor(profesor) {
         return axiosInstance.post(`${API_URL}/registrar`, profesor);
@@ -14,8 +17,12 @@ class DocenteService{
     obtenerProfesorPorId(Id) {
         return axiosInstance.get(`${API_URL}/${Id}`);
     }
-    obtenerProfesorPorDni(Dni) {
-        return axiosInstance.get(`${API_URL}/${Dni}`);
+    buscarProfesorPorDNI(dni) {
+        return axiosInstance.get(`${API_URL}/buscarPorDni`, {
+            params: {
+                dni: dni || '',
+            },
+        });
     }
 
     updateProfesor(Id,UpdateRequest){
@@ -31,6 +38,9 @@ class DocenteService{
     asignarProfesor(request){
         return axiosInstance.post(`${API_URL}/asignar`,request);
     }
+    obtenerAsignacionesPorProfesor(profesorId) {
+        return axiosInstance.get(`${API_URL}/${profesorId}/asignaciones`);
+    }    
     desasignarProfesor(asignacionId){
         return axiosInstance.delete(`${API_URL}/desasignar/${asignacionId}`);
     }

@@ -9,9 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import utp.edu.pe.Integrador_Backend.Entidades.Alumno;
-import utp.edu.pe.Integrador_Backend.Entidades.Profesor;
-import utp.edu.pe.Integrador_Backend.Entidades.Rol;
+import utp.edu.pe.Integrador_Backend.Entidades.*;
+import utp.edu.pe.Integrador_Backend.Repository.AsignacionProfesorRepository;
 import utp.edu.pe.Integrador_Backend.Repository.ProfesorRepository;
 import java.security.SecureRandom;
 import java.util.List;
@@ -23,6 +22,8 @@ public class ProfesorService {
 
     @Autowired
     private ProfesorRepository profesorRepository;
+    @Autowired
+    private AsignacionProfesorRepository asignacionProfesorRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(ProfesorService.class);
 
@@ -81,9 +82,14 @@ public class ProfesorService {
                 .orElseThrow(() -> new ResourceNotFoundException("Profesor no encontrado con id: " + id));
     }
 
+    // Obtener profesor por Nivel
+    public List<Profesor> ListarProfesorPorNivel(Nivel nivel) {
+        return profesorRepository.findByNivel(nivel);
+    }
+
     // Obtener profesor por DNI
-    public List<Profesor> buscarProfesoresPorDniPrefix(String prefix) {
-        return profesorRepository.findByDniStartingWith(prefix);
+    public List<Profesor> buscarProfesoresPorDniPrefix(String dni) {
+        return profesorRepository.findByDniStartingWith(dni);
     }
 
     // Actualizar solo el teléfono y/o la contraseña del profesor

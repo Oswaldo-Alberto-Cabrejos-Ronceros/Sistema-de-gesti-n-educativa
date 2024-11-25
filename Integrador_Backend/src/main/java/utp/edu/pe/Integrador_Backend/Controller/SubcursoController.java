@@ -25,6 +25,13 @@ public class SubcursoController {
         return ResponseEntity.ok(subcursos);
     }
 
+    @GetMapping("/nivel/{nivel}")
+    public ResponseEntity<List<Subcurso>> obtenerSubcursosPorNivel(@PathVariable Nivel nivel) {
+        List<Subcurso> subcursos = subcursoService.listarSubcursosPornivel(nivel);
+        return ResponseEntity.ok(subcursos);
+    }
+
+
     @GetMapping("/curso/{cursoId}")
     public ResponseEntity<List<Subcurso>> listarSubcursosPorCursoId(@PathVariable Long cursoId) {
         List<Subcurso> subcursos = subcursoService.listarSubcursosPorCursoId(cursoId);
@@ -69,13 +76,6 @@ public class SubcursoController {
     public ResponseEntity<String> eliminarSubcurso(@PathVariable Long subcursoId) {
         subcursoService.eliminarSubcurso(subcursoId);
         return ResponseEntity.ok("Subcurso eliminado correctamente");
-    }
-
-    ////////////controller/////////////
-    @GetMapping("/nivel/{nivel}")
-    public ResponseEntity<List<Subcurso>> obtenerSubcursosPorNivel(@PathVariable Nivel nivel) {
-        List<Subcurso> subcursos = subcursoService.listarSubcursosPornivel(nivel);
-        return ResponseEntity.ok(subcursos);
     }
 
 }

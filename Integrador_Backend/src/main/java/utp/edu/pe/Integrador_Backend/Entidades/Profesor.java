@@ -1,5 +1,6 @@
 package utp.edu.pe.Integrador_Backend.Entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -31,7 +32,7 @@ public class Profesor extends Usuario{
 
 
     @OneToMany(mappedBy = "profesor",cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("profesor")
+    @JsonIgnore
     private Set<AsignacionProfesor> asignacionProfesor;
 
 }
