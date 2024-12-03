@@ -7,6 +7,15 @@
   justify-content: space-between;
 }
 
+.VCursosAdministradorContainer .VCursosAdministradorElementsContainer{
+  width: 100%;
+  height: auto;
+  padding: 2%;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+}
+
 .VCursosAdministradorContainer .VCursosAdministradorTitleContainer{
   width: 100%;
   display: flex;
@@ -21,7 +30,6 @@
 
 .VCursosAdministradorContainer .SelectCursosAdministradorGeneralContainer{
   width: 100%;
-
 }
 
 .VCursosAdministradorContainer .SelectCursosAdministradorGeneralContainer .SelectCursosAdministradorContainer{
@@ -29,11 +37,39 @@
   align-self: flex-start;
   display: flex;
   align-items: center;
-  width: 540px;
+  width: 360px;
   justify-content: space-between;
+  gap: 20px;
 }
 
+.VCursosAdministradorContainer  .VCursosAdministradorElementsContainer .VCursosAdministradorElementContent{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .VCursosAdministradorContainer .LinkCardsCursosAdministrador{
   text-decoration: none;
+  width: inherit;
+}
+
+
+@media (max-width:1600px){
+  .VCursosAdministradorContainer .VCursosAdministradorElementsContainer{
+    grid-template-columns: repeat(3,1fr);
+  }
+}
+
+@media (max-width:1224px){
+  .VCursosAdministradorContainer .VCursosAdministradorElementsContainer{
+    grid-template-columns: repeat(2,1fr);
+  }
+
+}
+
+@media (max-width:746px){
+  .VCursosAdministradorContainer .VCursosAdministradorElementsContainer{
+    grid-template-columns: repeat(1,1fr);
+  }
+
 }

@@ -9,13 +9,15 @@
   }
   
   .TablaNotasEstudianteContainer .TableNotasEstudiante {
-    width: 100%;
+    width: 96%;
   }
   .TablaNotasEstudianteContainer .TableNotasEstudiante,
   th,
   td {
     border: 1px solid var(--BorderTableNotasEstudiante);
     border-collapse:collapse;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
   
   .TablaNotasEstudianteContainer .TableNotasEstudiante tr td {
@@ -32,17 +34,14 @@
   }
 
 
-  .TablaNotasEstudianteContainer .TableNotasEstudiante th {
+  .TablaNotasEstudianteContainer .TableNotasEstudiante tr th {
     padding: 8px;
     box-sizing: border-box;
     font-size: var(--PMdsize);
-  }
-  
-
-  .TablaNotasEstudianteContainer .TableNotasEstudiante th {
     background-color: var(--BackgroudColorTableNotasEstudiante);
     color: var(--ColorTableNotasEstudiante);
   }
+ 
   
   .TablaNotasEstudianteContainer .TablaNotasEstudianteEmpty{
     width: 100%;
@@ -52,4 +51,45 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .TdNota.bloqueado {
+    background-color: #f0f0f0	; /* Fondo gris */
+    color: #a0a0a0; /* Texto gris claro */
+    pointer-events: none; /* Deshabilita interacción */
+    cursor: not-allowed; /* Cursor deshabilitado */
+  }
+
+
+  @media (max-width:902px) {
+    .TablaNotasEstudianteContainer{
+      width: 100%;
+    }
+    .TablaNotasEstudianteContainer .TableNotasEstudiante.TableNotasEstudianteBimestre{
+      width: 96%;
+    }
+  }
+  @media (max-width:586px) {
+    .TablaNotasEstudianteContainer{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  @media (max-width:348px) {
+    .TablaNotasEstudianteContainer .TableNotasEstudiante.TableNotasEstudianteBimestre tr th{
+      padding: 4px;
+    }
+    .TablaNotasEstudianteContainer .TableNotasEstudiante.TableNotasEstudianteBimestre tr td{
+      padding: 4px;
+    }
+  }
+
+  @media (max-width:298px) {
+    .TablaNotasEstudianteContainer .TableNotasEstudiante.TableNotasEstudianteBimestre tr th{
+      font-size: var(--PSmsize);
+    }
+    .TablaNotasEstudianteContainer .TableNotasEstudiante.TableNotasEstudianteBimestre tr td{
+      font-size: var(--PSmsize);
+    }
   }

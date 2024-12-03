@@ -4,15 +4,14 @@ import { SlPencil } from "react-icons/sl";
 import { Link } from "react-router-dom";
 
 function ComBoxElementTarea({curso, to, tarea}) {
-  //curso se pasa como estado, esta variable tambien se usa para guardar otros estados dependiendo del contexto
+
   return (
     <Link state={{curso,tarea}} to={to} className="LinkComBoxElementTarea">
     <div className="ComBoxElementTareaContainer">
       <div className="IconContainer">
         <SlPencil/>
       </div>
-      <p className="PMd">{tarea.nombre}</p>
-      <p className="PMd">{tarea.fechaEntrega}</p>
+      <p className="PMd">{"Tarea: " + tarea.nombreContenido}</p>
     </div>
     </Link>
   );

@@ -1,6 +1,5 @@
 import React from 'react'
 import './VChatEstudianteDocente.css'
-import CardChat from '../generalsComponets/CardChat/CardChat'
 
 function VChatEstudianteDocente() {
   return (
@@ -9,7 +8,7 @@ function VChatEstudianteDocente() {
         <h3>Chat</h3>
       </div>
       <div className='VChatEstudianteDocenteContent'>
-      <CardChat/>
+
       </div>
     </div>
   )

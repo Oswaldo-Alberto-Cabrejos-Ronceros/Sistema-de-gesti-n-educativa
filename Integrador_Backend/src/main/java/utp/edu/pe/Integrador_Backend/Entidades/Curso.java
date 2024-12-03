@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,9 +26,10 @@ public class Curso {
     @Column(name = "C_CURSOID")
     private Long cursoId;
 
-    @Column(name = "X_NOMBRECURSO")
     @NotNull
     @NotBlank
+    @Column(name = "X_NOMBRECURSO",length = 30)
+    @Size(max = 30, message = "El nombre no puede tener más de 3 caracteres")
     private String nombre;
 
     @Enumerated(EnumType.STRING)
@@ -35,6 +37,7 @@ public class Curso {
     private Nivel nivel;
 
     @Column(name = "X_DESCRIPCION",length = 150)
+    @Size(max = 100, message = "La descripcion no peude tener más de 150 caracteres")
     private String descripcion;
 
     // Relaciones

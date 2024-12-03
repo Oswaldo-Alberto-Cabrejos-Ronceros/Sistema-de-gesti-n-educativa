@@ -15,6 +15,7 @@ import utp.edu.pe.Integrador_Backend.Repository.SubcursoRepository;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class NotaService {
@@ -72,6 +73,9 @@ public class NotaService {
     @Transactional(readOnly = true)
     public Double calcularPromedioPorUnidad(Long usuarioId , Long subcursoId, Integer unidad) {
         List<Nota> notas = notaRepository.findByAlumnoUsuarioIdAndSubcursoIdAndUnidad(usuarioId , subcursoId, unidad);
+        if (notas.isEmpty()) {
+            return null;
+        }
         return notas.stream().mapToDouble(Nota::getCalificacion).average().orElse(0.0);
     }
 
@@ -83,14 +87,14 @@ public class NotaService {
         Double promedioUnidad1 = calcularPromedioPorUnidad(usuarioId, subcursoId, unidad1);
         Double promedioUnidad2 = calcularPromedioPorUnidad(usuarioId, subcursoId, unidad2);
 
-        if (promedioUnidad1 != null && promedioUnidad2 != null) {
-            return (promedioUnidad1 + promedioUnidad2) / 2;
-        } else if (promedioUnidad1 != null) {
-            return promedioUnidad1;
-        } else if (promedioUnidad2 != null) {
-            return promedioUnidad2;
+        List<Double> promediosUnidades = new ArrayList<>();
+        if (promedioUnidad1 != null) promediosUnidades.add(promedioUnidad1);
+        if (promedioUnidad2 != null) promediosUnidades.add(promedioUnidad2);
+
+        if (!promediosUnidades.isEmpty()) {
+            return promediosUnidades.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
         } else {
-            return 0.0; // Si ambas están vacías
+            return null; // Indica que no hay promedio para este bimestre
         }
     }
 
@@ -103,45 +107,49 @@ public class NotaService {
         for (Subcurso subcurso : subcursos) {
             for (int bimestre = 1; bimestre <= 4; bimestre++) {
                 Double promedioBimestral = calcularPromedioBimestral(usuarioId, subcurso.getSubcursoId(), bimestre);
-                if (promedioBimestral != 0.0) { // Solo suma bimestres con promedio
+                if (promedioBimestral != null) { // Solo suma bimestres con promedio
                     totalPromediosBimestrales += promedioBimestral;
                     totalBimestresContados++;
                 }
             }
         }
 
-        return totalBimestresContados > 0 ? totalPromediosBimestrales / totalBimestresContados : 0.0;
+        return totalBimestresContados > 0 ? totalPromediosBimestrales / totalBimestresContados : null;
     }
 
 ////////////////////// METODO  RELACIONADO AL CUADOR DE HONOR  ///////////////////
-    @Transactional(readOnly = true)
-    public List<AlumnoPromedio> listarAlumnosPorGradoNivelConMayorPromedio(Integer grado, Nivel nivel) {
-        List<Alumno> alumnos = alumnoRepository.findByGradoAndNivel(grado, nivel);
+public List<AlumnoPromedio> listarAlumnosPorGradoNivelConMayorPromedio(Integer grado, Nivel nivel) {
+    List<Alumno> alumnos = alumnoRepository.findByGradoAndNivel(grado, nivel);
 
-        List<AlumnoPromedio> alumnosConPromedio = new ArrayList<>();
+    List<AlumnoPromedio> alumnosConPromedio = new ArrayList<>();
 
-        for (Alumno alumno : alumnos) {
-            List<Subcurso> subcursos = subcursoRepository.findSubcursosByAlumnoId(alumno.getUsuarioId());
+    for (Alumno alumno : alumnos) {
+        List<Subcurso> subcursos = subcursoRepository.findSubcursosByAlumnoId(alumno.getUsuarioId());
 
-            double totalPromedio = 0.0;
-            int cursosContados = 0;
+        double totalPromedio = 0.0;
+        int cursosContados = 0;
 
-            for (Subcurso subcurso : subcursos) {
-                Double promedioCurso = calcularPromedioFinalDelCurso(alumno.getUsuarioId(), subcurso.getCurso().getCursoId());
-                if (promedioCurso != null) {
-                    totalPromedio += promedioCurso;
-                    cursosContados++;
-                }
+        for (Subcurso subcurso : subcursos) {
+            Double promedioCurso = calcularPromedioFinalDelCurso(alumno.getUsuarioId(), subcurso.getCurso().getCursoId());
+            if (promedioCurso != null) {
+                totalPromedio += promedioCurso;
+                cursosContados++;
             }
-
-            double promedioHonor = cursosContados > 0 ? totalPromedio / cursosContados : 0.0;
-
-            alumnosConPromedio.add(new AlumnoPromedio(alumno, promedioHonor));
         }
 
-        alumnosConPromedio.sort(Comparator.comparing(AlumnoPromedio::getPromedio).reversed());
-        return alumnosConPromedio;
+        double promedioHonor = cursosContados > 0 ? totalPromedio / cursosContados : null;
+
+        alumnosConPromedio.add(new AlumnoPromedio(alumno, promedioHonor));
     }
+
+    // Filtrar alumnos que no tienen promedio
+    alumnosConPromedio = alumnosConPromedio.stream()
+            .filter(ap -> ap.getPromedio() != null)
+            .collect(Collectors.toList());
+
+    alumnosConPromedio.sort(Comparator.comparing(AlumnoPromedio::getPromedio).reversed());
+    return alumnosConPromedio;
+}
 
     // Clase interna para almacenar alumno y su promedio
     public static class AlumnoPromedio {

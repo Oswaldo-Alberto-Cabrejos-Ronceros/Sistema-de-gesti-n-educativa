@@ -63,6 +63,19 @@ public class SecurityConfig {
                     http.requestMatchers(HttpMethod.PUT, "/api/profesores/**").hasAuthority("ADMIN");
                     http.requestMatchers(HttpMethod.DELETE, "/api/profesores/**").hasAuthority("ADMIN");
 
+                    // Endpoints relacionados a Horarios (ADMIN)
+                    http.requestMatchers(HttpMethod.GET, "/api/horarios/**").permitAll();
+                    http.requestMatchers(HttpMethod.POST, "/api/horarios/**").hasAuthority("ADMIN");
+                    http.requestMatchers(HttpMethod.PUT, "/api/horarios/**").hasAuthority("ADMIN");
+                    http.requestMatchers(HttpMethod.DELETE, "/api/horarios/**").hasAuthority("ADMIN");
+
+
+                    // Endpoints relacionados a Contenidos (ADMIN) /api/contenidos
+                    http.requestMatchers(HttpMethod.GET, "/api/contenidos/**").permitAll();
+                    http.requestMatchers(HttpMethod.POST, "/api/contenidos/**").hasAnyAuthority("PROFESOR", "ADMIN");
+                    http.requestMatchers(HttpMethod.PUT, "/api/contenidos/**").hasAnyAuthority("PROFESOR", "ADMIN");
+                    http.requestMatchers(HttpMethod.DELETE, "/api/contenidos/**").hasAnyAuthority("PROFESOR", "ADMIN");
+
                     // Endpoints relacionados a cursos (ADMIN)
                     http.requestMatchers(HttpMethod.GET, "/api/cursos/**").permitAll();
                     http.requestMatchers(HttpMethod.POST, "/api/cursos/**").hasAuthority("ADMIN");
@@ -125,7 +138,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedOrigins(List.of("http://aplication-educ-host-react.s3-website-sa-east-1.amazonaws.com","http://localhost:5173"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);

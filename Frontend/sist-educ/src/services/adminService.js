@@ -1,7 +1,7 @@
 import axiosInstance from './axiosInstance';
 
 
-const API_URL = 'http://localhost:8080/api/administradores';
+const API_URL = 'http://18.231.151.214:8080/api/administradores';
 
 
 class AdminService{

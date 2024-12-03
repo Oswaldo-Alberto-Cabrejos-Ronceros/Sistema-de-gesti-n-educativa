@@ -69,7 +69,7 @@ function TablaGestionCursos({ cursos, onCourseUpdated, onCourseDeleted }) {
       [cursoId]: subcursoId,
     }));
   };
-  console.log("Cursos:", cursos.map(curso => curso.cursoId));
+
 
 
   return (
@@ -95,10 +95,10 @@ function TablaGestionCursos({ cursos, onCourseUpdated, onCourseDeleted }) {
           <tbody>
             {cursos.map((curso) => (
               <tr key={curso.cursoId}> {/* Clave única aquí */}
-                <td>{curso.nombre}</td>
-                <td>{curso.descripcion}</td>
-                <td>{curso.nivel}</td>
-                <td>
+                <td data-label="Nombre">{curso.nombre}</td>
+                <td data-label="Descripcion">{curso.descripcion}</td>
+                <td data-label="Nivel">{curso.nivel}</td>
+                <td data-label="Subcursos">
                   <SelectComponent
                     name={`subcursos-${curso.cursoId}`}
                     options={
@@ -116,10 +116,10 @@ function TablaGestionCursos({ cursos, onCourseUpdated, onCourseDeleted }) {
                     }
                   />
                 </td>
-                <td>
+                <td data-label="Modificar">
                   <PrimaryButton nombre="Editar" onClick={() => handleEditClick(curso)} />
                 </td>
-                <td>
+                <td data-label="Eliminar">
                   <PrimaryButton nombre="Eliminar" onClick={() => handleDeleteClick(curso.cursoId)} />
                 </td>
               </tr>

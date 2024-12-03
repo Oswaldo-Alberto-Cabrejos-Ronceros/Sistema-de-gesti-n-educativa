@@ -18,7 +18,7 @@
   margin: 0;
 }
 
-.VNotasEstudianteElementContainer .VNotasEstudianteElementContent {
+.VNotasEstudianteElementContainer .VNotasEstudianteElementContent{
   width: 100%;
   height: auto;
   display: flex;
@@ -26,3 +26,21 @@
   justify-content: center;
   margin: 10px;
 }
+
+
+
+
+@media (max-width:460px) {
+  .VNotasEstudianteElementContainer .VNotasEstudianteElementContent {
+    justify-content: flex-start;
+  }
+
+}
+
+@media (max-width:902px) {
+  .VNotasEstudianteElementContainer .VNotasEstudianteElementContent.VNotasEstudianteElementBimestreContent{
+    justify-content: flex-start;
+    }
+}
+
+

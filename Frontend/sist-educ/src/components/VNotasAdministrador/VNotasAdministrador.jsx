@@ -6,7 +6,7 @@ import subcursoService from "../../services/subcursoService";
 import AlumnoService from "../../services/alumnoService";
 
 function VNotasAdministrador() {
-const [selectedNivel, setSelectedNivel] = useState("PRIMARIA");
+  const [selectedNivel, setSelectedNivel] = useState("PRIMARIA");
   const [selectedGrado, setSelectedGrado] = useState("SELECCIONAR");
   const [selectedSeccion, setSelectedSeccion] = useState("A");
   const [selectedCurso, setSelectedCurso] = useState("SELECCIONAR");
@@ -14,32 +14,30 @@ const [selectedNivel, setSelectedNivel] = useState("PRIMARIA");
   const [alumnos, setAlumnos] = useState([]);
   const [cursos, setCursos] = useState([]);
   const [userDocente, setUserDocente] = useState({});
-  const optionsNivel=[
-    "PRIMARIA","SECUNDARIA"
-  ]
-  const optionsGradoPrimaria=[
-    { label: "SELECCIONAR", value: "SELECCIONAR" },
+  const optionsNivel = [    { label: "Primaria", value: "PRIMARIA" },
+    { label: "Secundaria", value: "SECUNDARIA" },];
+  const optionsGradoPrimaria = [
+    { label: "Seleccionar Grado", value: "SELECCIONAR" },
     { label: "1er Grado", value: 1 },
     { label: "2do Grado", value: 2 },
     { label: "3er Grado", value: 3 },
     { label: "4to Grado", value: 4 },
     { label: "5to Grado", value: 5 },
-    { label: "6to Grado", value: 6 }
-  ]
-  const optionsGradoSecundaria=[
-    { label: "SELECCIONAR", value: "SELECCIONAR" },
+    { label: "6to Grado", value: 6 },
+  ];
+  const optionsGradoSecundaria = [
+    { label: "Seleccionar Año", value: "SELECCIONAR" },
     { label: "1er Año", value: 1 },
     { label: "2do Año", value: 2 },
     { label: "3er Año", value: 3 },
     { label: "4to Año", value: 4 },
     { label: "5to Año", value: 5 },
-
-  ]
-
+  ];
 
   useEffect(() => {
     if (selectedNivel) {
-      subcursoService.getlistarSubcursosPorNivel(selectedNivel)
+      subcursoService
+        .getlistarSubcursosPorNivel(selectedNivel)
         .then((response) => {
           setCursos(response.data); // Actualizar el estado con los cursos obtenidos
         })
@@ -50,28 +48,31 @@ const [selectedNivel, setSelectedNivel] = useState("PRIMARIA");
     }
   }, [selectedNivel]);
 
-
   // Maneja el cambio del select de Curso y actualiza selectedCursoId
   const handleCursoChange = (e) => {
-    const selectedOption = cursos.find((curso) => curso.nombre === e.target.value);
+    const selectedOption = cursos.find(
+      (curso) => curso.nombre === e.target.value
+    );
     setSelectedCurso(e.target.value);
     setSelectedCursoId(selectedOption ? selectedOption.subcursoId : null);
   };
 
   useEffect(() => {
     if (selectedCursoId && selectedGrado !== "SELECCIONAR") {
-      AlumnoService.obtenerAlumnosPorGradoYSubcurso(selectedCursoId, selectedGrado)
+      AlumnoService.obtenerAlumnosPorGradoYSubcurso(
+        selectedCursoId,
+        selectedGrado
+      )
         .then((response) => {
-          console.log("Alumnos del curso y grado seleccionados:");
           setAlumnos(response.data);
         })
-        .catch((error) => console.error("Error al obtener los alumnos:", error));
+        .catch((error) =>
+          console.error("Error al obtener los alumnos:", error)
+        );
     } else {
       setAlumnos([]); // Reiniciar lista si no se ha seleccionado Grado o Curso
     }
   }, [selectedCursoId, selectedGrado]);
-
-
 
   const curso = {
     nombre: selectedCurso,
@@ -82,41 +83,58 @@ const [selectedNivel, setSelectedNivel] = useState("PRIMARIA");
   };
 
   return (
-    <div className="VNotasDocenteAdministradorCursosContainer">
-        <div className="VNotasDocenteAdministradorTitle">
+    <div className="VNotasAdministradorCursosContainer">
+      <div className="VNotasAdministradorTitle">
         <h3>Notas</h3>
-        </div>
-      <div className="SelectNotasDocenteAdministradorCursosContainer">
-      <SelectComponent
-          name="Nivel"
-          options={
-            optionsNivel
-          }
-          value={selectedNivel}
-          onChange={(e) => setSelectedNivel(e.target.value)}
-        />
-        <SelectComponent
-          name="Grado"
-          options={
-            selectedNivel==="PRIMARIA"?(optionsGradoPrimaria):(optionsGradoSecundaria)
-          }
-          value={selectedGrado}
-          onChange={(e) => setSelectedGrado(e.target.value)}
-        />
-        <SelectComponent
-          name="Seccion"
-          options={["A", "B"]}
-          value={selectedSeccion}
-          onChange={(e) => setSelectedSeccion(e.target.value)}
-        />
-        <SelectComponent
-          name="Curso"
-          options={["SELECCIONAR", ...cursos.map((curso) => curso.nombre)]}
-          value={selectedCurso}
-          onChange={handleCursoChange}
-        />
       </div>
-      <div className="VNotasDocenteAdministradorCursosContent">
+      <div className="SelectNotasAdministradorCursosContainer">
+        <div className="FilterGroup">
+          <label htmlFor="Nivel">Nivel:</label>
+          <SelectComponent
+            name="Nivel"
+            options={optionsNivel}
+            value={selectedNivel}
+            onChange={(e) => setSelectedNivel(e.target.value)}
+          />
+        </div>
+
+        <div className="FilterGroup">
+          <label htmlFor="Grado">Grado:</label>
+
+          <SelectComponent
+            name="Grado"
+            options={
+              selectedNivel === "PRIMARIA"
+                ? optionsGradoPrimaria
+                : optionsGradoSecundaria
+            }
+            value={selectedGrado}
+            onChange={(e) => setSelectedGrado(e.target.value)}
+          />
+        </div>
+
+        <div className="FilterGroup">
+          <label htmlFor="Seccion">Seccion:</label>
+          <SelectComponent
+            name="Seccion"
+            options={["A", "B"]}
+            value={selectedSeccion}
+            onChange={(e) => setSelectedSeccion(e.target.value)}
+          />
+        </div>
+
+        <div className="FilterGroup">
+          <label htmlFor="Curso">Curso:</label>
+
+          <SelectComponent
+            name="Curso"
+            options={[{ label: "Seleccionar Curso", value: "SELECCIONAR" }, ...cursos.map((curso) => curso.nombre)]}
+            value={selectedCurso}
+            onChange={handleCursoChange}
+          />
+        </div>
+      </div>
+      <div className="VNotasAdministradorCursosContent">
         {selectedGrado === "SELECCIONAR" || selectedCurso === "SELECCIONAR" ? (
           <h3>Seleccione un grado y curso</h3>
         ) : (
@@ -128,4 +146,3 @@ const [selectedNivel, setSelectedNivel] = useState("PRIMARIA");
 }
 
 export default VNotasAdministrador;
-

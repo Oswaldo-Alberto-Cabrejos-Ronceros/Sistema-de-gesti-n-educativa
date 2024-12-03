@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 import './NavItem.css'
 
 
-function NavItem({ id, titulo, icon, to}) {
+function NavItem({ id, titulo, icon, to,onClick}) {
   return (
-    <NavLink  to={to} className={({ isActive }) =>
+    <NavLink  to={to} onClick={onClick} className={({ isActive }) =>
       `NavItemContainer ${isActive ? 'active' : ''}`
     } id={id} >
       <div className="IconContainer">

@@ -25,7 +25,9 @@ function FormularioAgregarEstudiante({ onStudentAdded }) {
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  const optionsNivel = ["SELECCIONAR", "PRIMARIA", "SECUNDARIA"];
+  const optionsNivel = [                { value: "SELECCIONAR", label: "Seleccionar Nivel" },
+    { value: "PRIMARIA", label: "Primaria" },
+    { value: "SECUNDARIA", label: "Secundaria" },];
   const optionsGradoPrimaria = ["1", "2", "3", "4", "5", "6"];
   const optionsGradoSecundaria = ["1", "2", "3", "4", "5"];
 

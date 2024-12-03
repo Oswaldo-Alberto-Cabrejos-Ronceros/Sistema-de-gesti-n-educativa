@@ -41,7 +41,7 @@ public class JwtUtil {
                 .withSubject(username)
                 .withClaim("authorities", authorities)
                 .withIssuedAt(new Date())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 15 * 60 * 1000)) // 15 minutos
+                .withExpiresAt(new Date(System.currentTimeMillis() + 15* 60 * 1000)) // 15 minutos
                 .sign(algorithm);
 
         return jwtToken;

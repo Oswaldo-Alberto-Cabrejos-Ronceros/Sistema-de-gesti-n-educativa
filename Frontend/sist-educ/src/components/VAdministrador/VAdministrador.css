@@ -1,19 +1,93 @@
 
 
-.VAdministradorMain{
-    width: 100%;
-    height: 100%;
-    display: flex;
-  }
+/* Contenedor principal */
+.VAdministradorMain {
+  min-height: 100vh; /* Asegura que el contenedor mínimo ocupe toda la altura de la ventana */
+  display: flex;
+  flex-direction: column; /* Asegura un flujo vertical */
+
+}
+
+/* Contenedor de contenido */
+.VAdministradorMain .containerCambAdministrador {
+  flex-grow: 1;
+  padding-top: 90px; /* Ajusta el espacio superior */
+  padding-right: 6%;
+  padding-bottom: 5%;
+  padding-left: 6%;
+  width: 100%;
+  height: auto;
+  background-color: var(--BackgroundColor);
+  box-sizing: border-box;
+}
+
+
   
-.VAdministradorMain .containerCambAdministrador{
-    padding: 0;
-    width: 94%;
-    height: auto;
-    min-height: 89%;
-    position: absolute;
-    top: 11%;
-    left: 6%;
-    background-color: var(--BackgroundColor);
-    box-sizing: border-box;
+  /* Pantallas pequeñas: ajusta la posición del contenido */
+@media (max-width: 1130px) {
+  .VAdministradorMain .containerCambAdministrador {
+    left: 0; /* Contenido ocupa todo el ancho */
+    z-index: 1;
+    min-height: calc(100% - 11%); /* Ajusta altura */
   }
+}
+
+@media (max-width: 1084px) {
+  .VAdministradorMain .containerCambAdministrador {
+    padding-right: 2%;
+    padding-left: 2%;
+  }
+}
+
+/* Media queries para ajustar el padding lateral en pantallas pequeñas */
+@media (max-width: 972px) {
+  .VAdministradorMain .containerCambAdministrador {
+    padding-right: 2%;
+    padding-left: 1%;
+  }
+}
+
+
+/* Pantallas muy pequeñas: ajusta la altura */
+@media (max-height: 512px) {
+  .VAdministradorMain .containerCambAdministrador {
+    top: 64px; /* Ajusta la posición del contenido */
+    min-height: calc(100% - 64px); /* Calcula la altura restante */
+  }
+}
+
+@media (min-height:760px) {
+  .VAdministradorMain .containerCambAdministrador {
+    top: 84px; /* Ajusta la posición del contenido */
+    min-height: calc(100% - 64px); /* Calcula la altura restante */
+  }
+}
+
+
+
+
+/* Pantallas muy pequeñas: ajusta la altura */
+@media (max-height: 742px) {
+  .VAdministradorMain .containerCambAdministrador {
+    padding-top: 12vh
+  }
+}
+
+@media (max-height: 568px) {
+  .VAdministradorMain .containerCambAdministrador {
+    padding-top: 14vh;
+  }
+}
+
+
+@media (max-height: 422px) {
+  .VAdministradorMain .containerCambAdministrador {
+    padding-top: 16vh;
+  }
+}
+
+@media (max-height: 366px) {
+  .VAdministradorMain .containerCambAdministrador {
+    padding-top: 18vh;
+  }
+}

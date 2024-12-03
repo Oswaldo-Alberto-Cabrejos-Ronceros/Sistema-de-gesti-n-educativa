@@ -2,8 +2,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100%; /* Asegura que cubra todo el ancho */
+    height: 100%; /* Asegura que cubra toda la altura */
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
@@ -14,7 +14,25 @@
 .confirmation-modal-content {
     background-color: white;
     padding: 20px;
+    margin: 0 10px; /* Espacio lateral en pantallas pequeñas */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    max-width: 500px; /* Ancho máximo del modal */
+    width: 100%; /* Asegura que el modal no exceda el ancho disponible */
+    box-sizing: border-box;
+}
+
+.confirmation-modal-content p {
+    font-size: 1rem; /* Tamaño de fuente relativo */
+}
+
+@media (max-width: 480px) {
+    .confirmation-modal-content {
+        padding: 15px;
+    }
+
+    .confirmation-modal-content p {
+        font-size: 0.9rem;
+    }
 }

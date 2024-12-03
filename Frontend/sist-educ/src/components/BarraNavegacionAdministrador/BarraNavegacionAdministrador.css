@@ -20,6 +20,26 @@
     align-items: center;
 }
 
+
+.BarraNavegacionAdministradorContainer .HorizontalContainerBarAdministrador .MenuIconContainer{
+  height: 100%;
+  width: 6%;
+  min-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  position: absolute;
+  cursor: pointer;
+  display: none;
+  transition: 150ms;
+}
+
+.BarraNavegacionAdministradorContainer .HorizontalContainerBarAdministrador .MenuIconContainer:hover{
+  color: var(--ColorOutSessionHover);
+}
+
+
 .BarraNavegacionAdministradorContainer .VerticalContainerBarAdmin{
     position: fixed;
     left: 0;    
@@ -31,6 +51,7 @@
     border: none;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .BarraNavegacionAdministradorContainer .OptionsContainer{
@@ -90,19 +111,115 @@
   }
   
   .LogoutButtonNo {
-    background-color: #28a745; /* Verde */
+    background-color: #1cb640; /* Verde */
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: 150ms;
+  }
+
+  .LogoutButtonNo:hover{
+    background-color: #27c04b;
   }
   
   .LogoutButtonYes {
-    background-color: #dc3545; /* Rojo */
+    background-color: #e02828; /* Rojo */
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor:pointer;
+    transition: 150ms;
+}
+
+.LogoutButtonYes:hover{
+  background-color:#ca3535;
+}
+
+.BarraNavegacionAdministradorContainer .VerticalContainerBarAdmin.show {
+  animation: openDespMenu 0.3s ease-out forwards;
+}
+
+.BarraNavegacionAdministradorContainer .VerticalContainerBarAdmin.hide {
+  animation: closeDespMenu 0.3s ease-out forwards;
+}
+
+@media (max-width:1130px) {
+  .BarraNavegacionAdministradorContainer .HorizontalContainerBarAdministrador .MenuIconContainer{
+    display: flex;
+  }
+  .BarraNavegacionAdministradorContainer .HorizontalContainerBarAdministrador{
+    z-index: 4;
+  }
+  .BarraNavegacionAdministradorContainer .VerticalContainerBarAdmin{
+    z-index: 3;
+    min-width: 72px;
+  }
+  .BarraNavegacionAdministradorContainer .OptionsContainer{
+    top: 72px;
+}
+}
+
+@media (max-height:576px) {
+  .BarraNavegacionAdministradorContainer .HorizontalContainerBarAdministrador{
+  min-height: 64px;
+}
+.BarraNavegacionAdministradorContainer .OptionsContainer{
+  top: 64px;
+}
+}
+
+
+@media (min-height:760px) {
+  .BarraNavegacionAdministradorContainer .HorizontalContainerBarAdministrador{
+    max-height: 84px;
+}
+.BarraNavegacionAdministradorContainer .OptionsContainer{
+  top: 84px;
+}
+}
+
+
+@media (max-height:728px) {
+  .BarraNavegacionAdministradorContainer .VerticalContainerBarAdmin {
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    height: 100vh; 
+    overflow-y: auto; 
+  }
+
+  .BarraNavegacionAdministradorContainer .OptionsContainer {
+    position: relative; 
+    flex-grow: 1; 
+    overflow-y: auto; 
+    height: auto; 
+  }
+
+}
+
+
+
+@keyframes openDespMenu {
+  from {
+    max-width: 0;
+    opacity: 0;
+  }
+  to {
+    max-width: 500px;
+    opacity: 1;
+  }
+}
+
+@keyframes closeDespMenu {
+  from {
+    max-width: 500px;
+    opacity: 1;
+  }
+  to {
+    max-width: 0;
+    opacity: 0;
+  }
 }

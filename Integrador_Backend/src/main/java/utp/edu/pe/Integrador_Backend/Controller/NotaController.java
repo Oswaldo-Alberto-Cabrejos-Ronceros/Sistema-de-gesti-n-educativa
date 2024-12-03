@@ -11,7 +11,6 @@ import utp.edu.pe.Integrador_Backend.Service.NotaService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173/")
 @RequestMapping("api/notas")
 public class NotaController {
 
@@ -24,7 +23,7 @@ public class NotaController {
             @PathVariable Long subcursoId,
             @PathVariable Integer unidad,
             @PathVariable Integer calificacionNumero,
-            @RequestBody   Double calificacion) {
+            @RequestBody  Double calificacion) {
         Nota nuevaNota = notaService.registrarCalificacion(usuarioId, subcursoId, unidad, calificacionNumero, calificacion);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevaNota);
     }

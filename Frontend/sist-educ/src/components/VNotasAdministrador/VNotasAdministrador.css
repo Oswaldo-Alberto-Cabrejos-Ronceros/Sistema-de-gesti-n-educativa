@@ -1,4 +1,4 @@
-.VNotasDocenteAdministradorCursosContainer{
+.VNotasAdministradorCursosContainer{
     width: 100%;
     height: auto;
     display: flex;
@@ -9,19 +9,21 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;
+
 }
 
 
-.VNotasDocenteAdministradorCursosContainer .SelectNotasDocenteAdministradorCursosContainer{
+.VNotasAdministradorCursosContainer .SelectNotasAdministradorCursosContainer{
     height: auto;
     align-self: flex-start;
     display: flex;
     align-items: center;
-    width: 720px;
+    width: 740px;
     justify-content: space-between;
+    gap: 20px;
 }
 
-.VNotasDocenteAdministradorCursosContainer .VNotasDocenteAdministradorCursosContent{
+.VNotasAdministradorCursosContainer .VNotasAdministradorCursosContent{
     width: 100%;
     height: auto;
     margin: 0;
@@ -34,14 +36,47 @@
     justify-items: center;
 }
 
-.VNotasDocenteAdministradorCursosContainer .VNotasDocenteAdministradorTitle{
+.VNotasAdministradorCursosContainer .VNotasAdministradorTitle{
     width: 100%;
     display: flex;
     align-self:flex-start;
     height: auto;
 }
-.VNotasDocenteAdministradorCursosContainer .VNotasDocenteAdministradorTitle h3{
+.VNotasAdministradorCursosContainer .VNotasAdministradorTitle h3{
     margin: 0;
     padding: 0;
     justify-self: start;
+}
+
+@media (max-width:760px){
+    .VNotasAdministradorCursosContainer .SelectNotasAdministradorCursosContainer{
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(3,1fr);
+            width: 100%;
+    }
+}
+
+@media (max-width:564px){
+    .VNotasAdministradorCursosContainer .SelectNotasAdministradorCursosContainer{
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(2,1fr);
+            width: 100%;
+    }
+    .VNotasDocenteAdministradorCursosContainer .VNotasDocenteAdministradorCursosContent{
+        margin-top: 0;
+    }
+}
+
+@media (max-width:380px){
+    .VNotasAdministradorCursosContainer .SelectNotasAdministradorCursosContainer{
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(1,1fr);
+            width: 100%;
+    }
+    .VNotasDocenteAdministradorCursosContainer .VNotasDocenteAdministradorCursosContent{
+        margin-top: 0;
+    }
 }

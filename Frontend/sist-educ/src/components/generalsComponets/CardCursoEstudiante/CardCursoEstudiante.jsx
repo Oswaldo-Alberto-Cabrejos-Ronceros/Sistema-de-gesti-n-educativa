@@ -1,5 +1,5 @@
-import React from 'react'
-import './CardCursoEstudiante.css'
+import React from "react";
+import "./CardCursoEstudiante.css";
 
 function CardCursoEstudiante({ curso }) {
   return (

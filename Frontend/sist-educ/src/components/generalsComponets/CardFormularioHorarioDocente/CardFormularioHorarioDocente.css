@@ -1,77 +1,47 @@
-:root {
-    --ColorBorderFormHorarioDocente: #171717;
-  }
-  
-  .CardFormularioHorarioDocenteContainer form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid var(--ColorBorderFormHorarioDocente);
-    border-radius: 8px;
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  }
-  
-  .CardFormularioHorarioDocenteContainer
-    form
-    .CardFormularioHorarioDocenteContent {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 20px;
-  }
-  .CardFormularioHorarioDocenteContainer form h3 {
-    padding: 0;
-    margin-top: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .CardFormularioHorarioDocenteContent .label-input-container {
-    padding: 4px;
-    box-sizing: border-box;
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
+:root{
+  --BackgroudColorVGestionEstudiante:#F4F4F5;
+  --ColorBorderFormHorarioDocente: #171717;
+}
 
-  .CardFormularioHorarioDocenteContent .label-input-container-search{
-    padding: 4px;
-    box-sizing: border-box;
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.CardFormularioHorarioDocenteContainer{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--ColorBorderFormHorarioDocente);
+  border-radius: 8px;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.CardFormularioHorarioDocenteContainer .CardFormularioHorarioDocenteTitleContainer{
+  align-self:flex-start;
+  margin: 1%;
+  height: auto;
+}
 
-    grid-column: span 2;
-  }
 
-  .CardFormularioHorarioDocenteContent .label-input-container-search label{
-    margin-right: 10px;
-  }
-  
-  .CardFormularioHorarioDocenteContent .label-input-container label {
-    margin-right: 10px;
-  }
-  
-  .CardFormularioHorarioDocenteContent label,
-  input {
-    margin-bottom: 10px;
-  }
-  
-  .CardFormularioHorarioDocenteContainer .buttonSubmitHorarioDocenteContainer {
-    padding-top: 20px;
-    padding-bottom: 10px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
 
-  .CardFormularioHorarioDocenteContainer form .InputId{
-    display: none;
-  }
+.CardFormularioHorarioDocenteContainer .CardFormularioHorarioDocenteTitleContainer h3{
+  margin: 0;
+  padding: 0;
+}
+
+.CardFormularioHorarioDocenteContainer .CardFormularioHorarioDocenteContent{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  min-height: 440px;
+  box-sizing: border-box;
+  align-self: flex-start;
+  margin-top: 20px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+
+

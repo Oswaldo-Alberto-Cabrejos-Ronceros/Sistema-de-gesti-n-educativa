@@ -1,22 +1,49 @@
 :root{
-    --Color-Border-Select:#171717;
-    --Color-Border-Hover-Select:#DC2626;
+    --Color-Border-Select: #171717;
+    --Color-Border-Hover-Select: #DC2626;
 }
-.SelectComponentContainer{
+
+.SelectComponentContainer {
     background-color: transparent;
-    width: 168px;
-    height: 44px;
+    width: 100%;
+    max-width: 200px; /* Ancho máximo para pantallas grandes */
     padding: 0;
     margin: 0;
     border-radius: 8px;
 }
-.SelectComponentContainer select{
+
+.SelectComponentContainer select {
     background-color: transparent;
     width: 100%;
-    height: 100%;
+    height: 40px; /* Altura ajustada */
     border-radius: 8px;
     border: 1px solid var(--Color-Border-Select);
+    padding: 0 10px; /* Padding horizontal */
+    font-size: 16px; /* Tamaño de fuente base */
 }
-.SelectComponentContainer select:hover{
+
+.SelectComponentContainer select:hover {
     border-color: var(--Color-Border-Hover-Select);
+}
+
+/* Media Queries */
+
+/* Pantallas medianas */
+@media (max-width: 768px) {
+    .SelectComponentContainer {
+        max-width: 100%;
+    }
+
+    .SelectComponentContainer select {
+        font-size: 14px; /* Ajuste de fuente */
+        height: 36px; /* Ajuste de altura */
+    }
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 480px) {
+    .SelectComponentContainer select {
+        font-size: 12px;
+        height: 32px;
+    }
 }

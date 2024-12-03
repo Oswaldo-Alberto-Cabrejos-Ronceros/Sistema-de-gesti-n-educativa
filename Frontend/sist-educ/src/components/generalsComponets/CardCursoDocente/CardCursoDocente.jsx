@@ -10,7 +10,7 @@ function CardCursoDocente({ curso }) {
         <div className="RowContainer">
           <p className="PMd"> {curso.Docente}</p>
           <p className="PMd Nivel">{curso.Nivel}</p>
-          <p className="PMd Nivel">{curso.Grado}</p>
+          <p className="PMd Nivel">{curso.Grado}°</p>
         </div>
       </div>
     </div>

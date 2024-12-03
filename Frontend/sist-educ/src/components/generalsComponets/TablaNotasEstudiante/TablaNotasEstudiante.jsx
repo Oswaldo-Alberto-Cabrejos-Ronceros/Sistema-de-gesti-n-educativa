@@ -4,9 +4,60 @@ import NotasService from "../../../services/notasService";
 import "./TablaNotasEstudiante.css";
 
 function TablaNotasEstudiante({ tipo, indicador }) {
+  const mostrarNota = (nota) => {
+    if (nota === null || nota === undefined) {
+      return { valor: "-", bloqueado: true }; // Celda bloqueada
+    } else {
+      return { valor: nota, bloqueado: false }; // Celda normal
+    }
+  };
+
+  const [isSmall, setisSmall] = useState(window.innerWidth > 396);
+  const [isSmallBimestral, setIsSmallBimestral] = useState(
+    window.innerWidth < 756
+  );
+  const [isVerySmallBimestral, setIsVerySmallBimestral] = useState(
+    window.innerWidth < 586
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setisSmall(window.innerWidth > 396);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallBimestral(window.innerWidth < 756);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsVerySmallBimestral(window.innerWidth < 586);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const [cursos, setCursos] = useState([]);
   const [notas, setNotas] = useState([]);
-  console.log(tipo);
 
   function obtenerUnidadesBimestre(bimestre) {
     const inicio = (bimestre - 1) * 2 + 1;
@@ -71,7 +122,6 @@ function TablaNotasEstudiante({ tipo, indicador }) {
             ).then((notasArray) => {
               const notasFiltradas = notasArray.filter((nota) => nota !== null);
               setNotas(notasFiltradas);
-              console.log("Notas por curso con promedio:", notasFiltradas); // Imprimir en consola
             });
           })
           .catch((error) =>
@@ -203,7 +253,6 @@ function TablaNotasEstudiante({ tipo, indicador }) {
               (unidad) => unidad !== null
             );
             setNotas(notasFiltradas);
-            console.log("Notas por unidad con promedio:", notasFiltradas);
           })
           .catch((error) => console.error("Error al obtener notas:", error));
       }
@@ -211,7 +260,6 @@ function TablaNotasEstudiante({ tipo, indicador }) {
   }
 
   let unidades = obtenerUnidadesBimestre(indicador);
-  console.log(notas);
 
   let noHayNotas;
 
@@ -224,7 +272,6 @@ function TablaNotasEstudiante({ tipo, indicador }) {
   } else {
     noHayNotas = notas.every((nota) => nota.promedio === 0);
   }
-  console.log(noHayNotas);
 
   return (
     <div className="TablaNotasEstudianteContainer">
@@ -246,70 +293,295 @@ function TablaNotasEstudiante({ tipo, indicador }) {
                 <th>C2</th>
                 <th>C3</th>
                 <th>C4</th>
-                <th>Promedio</th>
+                <th>{isSmall ? "Promedio" : "P"}</th>
               </tr>
             </thead>
             <tbody>
               {notas.map((nota, index) => (
                 <tr key={index}>
                   <td>{nota.area}</td>
-                  <td className="TdNota">{nota.c1 || "-"}</td>
-                  <td className="TdNota">{nota.c2 || "-"}</td>
-                  <td className="TdNota">{nota.c3 || "-"}</td>
-                  <td className="TdNota">{nota.c4 || "-"}</td>
-                  <td className="TdNota">{nota.promedio || "-"}</td>
+                  <td
+                    className={`TdNota ${
+                      mostrarNota(nota.c1).bloqueado ? "bloqueado" : ""
+                    }`}
+                  >
+                    {mostrarNota(nota.c1).valor}
+                  </td>
+                  <td
+                    className={`TdNota ${
+                      mostrarNota(nota.c2).bloqueado ? "bloqueado" : ""
+                    }`}
+                  >
+                    {mostrarNota(nota.c2).valor}
+                  </td>
+                  <td
+                    className={`TdNota ${
+                      mostrarNota(nota.c3).bloqueado ? "bloqueado" : ""
+                    }`}
+                  >
+                    {mostrarNota(nota.c3).valor}
+                  </td>
+                  <td
+                    className={`TdNota ${
+                      mostrarNota(nota.c4).bloqueado ? "bloqueado" : ""
+                    }`}
+                  >
+                    {mostrarNota(nota.c4).valor}
+                  </td>
+                  <td>{nota.promedio || "-"}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       ) : tipo === "bimestre" ? (
-        <div>
-          <table className="TableNotasEstudiante">
-            <thead>
-              <tr>
-                <th>Unidad</th>
-                <th colSpan="5">{"Unidad " + unidades[0]}</th>
-                <th colSpan="5">{"Unidad " + unidades[1]}</th>
-                <th>{"Bimestre " + indicador}</th>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <th>Área</th>
-                <th>C1</th>
-                <th>C2</th>
-                <th>C3</th>
-                <th>C4</th>
-                <th>Promedio</th>
-                <th>C1</th>
-                <th>C2</th>
-                <th>C3</th>
-                <th>C4</th>
-                <th>Promedio</th>
-                <th>Promedio</th>
-              </tr>
-            </thead>
-            <tbody>
-              {notas.map((nota, index) => (
-                <tr key={index}>
-                  <td>{nota.area}</td>
-                  <td className="TdNota">{nota.unidad1?.c1 || "-"}</td>
-                  <td className="TdNota">{nota.unidad1?.c2 || "-"}</td>
-                  <td className="TdNota">{nota.unidad1?.c3 || "-"}</td>
-                  <td className="TdNota">{nota.unidad1?.c4 || "-"}</td>
-                  <td className="TdNota">{nota.unidad1?.promedio || "-"}</td>
-                  <td className="TdNota">{nota.unidad2?.c1 || "-"}</td>
-                  <td className="TdNota">{nota.unidad2?.c2 || "-"}</td>
-                  <td className="TdNota">{nota.unidad2?.c3 || "-"}</td>
-                  <td className="TdNota">{nota.unidad2?.c4 || "-"}</td>
-                  <td className="TdNota">{nota.unidad2?.promedio || "-"}</td>
-                  <td className="TdNota">{nota.promedioBimestral || "-"}</td>
+        isVerySmallBimestral ? (
+          <>
+            <table className="TableNotasEstudiante TableNotasEstudianteBimestre">
+              <thead>
+                <tr>
+                  <th>Unidad</th>
+                  <th colSpan="5">{"Unidad " + unidades[0]}</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                <tr>
+                  <th>Área</th>
+                  <th>C1</th>
+                  <th>C2</th>
+                  <th>C3</th>
+                  <th>C4</th>
+                  <th>{isSmallBimestral ? "P" : "Promedio"}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {notas.map((nota, index) => (
+                  <tr key={index}>
+                    <td>{nota.area}</td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad1?.c1).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad1?.c1).valor}
+                    </td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad1?.c2).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad1?.c2).valor}
+                    </td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad1?.c3).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad1?.c3).valor}
+                    </td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad1?.c4).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad1?.c4).valor}
+                    </td>
+                    <td className="TdNota">{nota.unidad1?.promedio || "-"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <table className="TableNotasEstudiante TableNotasEstudianteBimestre">
+              <thead>
+                <tr>
+                  <th colSpan="5">{"Unidad " + unidades[1]}</th>
+                  <th>
+                    {isSmallBimestral
+                      ? "B " + indicador
+                      : "Bimestre " + indicador}
+                  </th>
+                </tr>
+                <tr>
+                  <th>C1</th>
+                  <th>C2</th>
+                  <th>C3</th>
+                  <th>C4</th>
+                  <th>{isSmallBimestral ? "P" : "Promedio"}</th>
+                  <th>{isSmallBimestral ? "P" : "Promedio"}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {notas.map((nota, index) => (
+                  <tr key={index}>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad2?.c1).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad2?.c1).valor}
+                    </td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad2?.c2).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad2?.c2).valor}
+                    </td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad2?.c3).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad2?.c3).valor}
+                    </td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad2?.c4).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad2?.c4).valor}
+                    </td>
+                    <td className="TdNota">{nota.unidad2?.promedio || "-"}</td>
+                    <td className="TdNota">{nota.promedioBimestral || "-"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        ) : (
+          <div>
+            <table
+              className={
+                tipo === "bimestre"
+                  ? "TableNotasEstudiante TableNotasEstudianteBimestre"
+                  : "TableNotasEstudiante"
+              }
+            >
+              <thead>
+                <tr>
+                  <th>Unidad</th>
+                  <th colSpan="5">{"Unidad " + unidades[0]}</th>
+                  <th colSpan="5">{"Unidad " + unidades[1]}</th>
+                  <th>
+                    {isSmallBimestral
+                      ? "B " + indicador
+                      : "Bimestre " + indicador}
+                  </th>
+                </tr>
+                <tr>
+                  <th>Área</th>
+                  <th>C1</th>
+                  <th>C2</th>
+                  <th>C3</th>
+                  <th>C4</th>
+                  <th>{isSmallBimestral ? "P" : "Promedio"}</th>
+                  <th>C1</th>
+                  <th>C2</th>
+                  <th>C3</th>
+                  <th>C4</th>
+                  <th>{isSmallBimestral ? "P" : "Promedio"}</th>
+                  <th>{isSmallBimestral ? "P" : "Promedio"}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {notas.map((nota, index) => (
+                  <tr key={index}>
+                    <td>{nota.area}</td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad1?.c1).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad1?.c1).valor}
+                    </td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad1?.c2).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad1?.c2).valor}
+                    </td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad1?.c3).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad1?.c3).valor}
+                    </td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad1?.c4).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad1?.c4).valor}
+                    </td>
+                    <td className="TdNota">{nota.unidad1?.promedio || "-"}</td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad2?.c1).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad2?.c1).valor}
+                    </td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad2?.c2).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad2?.c2).valor}
+                    </td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad2?.c3).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad2?.c3).valor}
+                    </td>
+                    <td
+                      className={`TdNota ${
+                        mostrarNota(nota.unidad2?.c4).bloqueado
+                          ? "bloqueado"
+                          : ""
+                      }`}
+                    >
+                      {mostrarNota(nota.unidad2?.c4).valor}
+                    </td>
+                    <td className="TdNota">{nota.unidad2?.promedio || "-"}</td>
+                    <td className="TdNota">{nota.promedioBimestral || "-"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )
       ) : (
         <div>
           <table className="TableNotasEstudiante">
@@ -320,7 +592,7 @@ function TablaNotasEstudiante({ tipo, indicador }) {
                 <th>C2</th>
                 <th>C3</th>
                 <th>C4</th>
-                <th>Promedio</th>
+                <th>{isSmall ? "Promedio" : "P"}</th>
               </tr>
             </thead>
             <tbody>

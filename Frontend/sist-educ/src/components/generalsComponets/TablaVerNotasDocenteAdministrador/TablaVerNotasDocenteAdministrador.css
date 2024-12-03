@@ -20,6 +20,9 @@
   td {
     border: 1px solid var(--BorderTableVerNotasDoc);
     border-collapse:collapse;
+    word-wrap: break-word; 
+    white-space: normal;  
+    overflow-wrap: break-word;
   }
   
   .TableVerDocNotas tr td {
@@ -73,4 +76,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  @media (max-width:464px) {
+    .TableVerDocNotas tr th {
+      padding: 4px;
+      font-size: var(--PSmsize);
+    }
+    .TableVerDocNotas tr td {
+      padding: 4px;
+      font-size: var(--PSmsize);
+    }
+  
+  }
+
+  @media (max-width:358px) {
+    .TableVerDocNotas tr th {
+      padding: 4px;
+      font-size: var(--PXSmsixe);
+    }
+    .TableVerDocNotas tr td {
+      padding: 4px;
+      font-size: var(--PXSmsixe);
+    }
+  
   }

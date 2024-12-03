@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import "./TablaVerNotasDocenteAdministrador.css";
 
 function TablaVerNotasDocenteAdministrador({
@@ -6,8 +6,23 @@ function TablaVerNotasDocenteAdministrador({
   notas,
   competencias,
 }) {
-  console.log(estudiantes);
-  console.log(notas);
+  const [isSmall, setisSmall] = useState(window.innerWidth > 524);
+
+  useEffect(() => {
+    
+    const handleResize = () => {
+      setisSmall(window.innerWidth > 524);
+    };
+
+
+    window.addEventListener("resize", handleResize);
+
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="TablaNotasVerDocContainer">
       {estudiantes.length === 0 ? (
@@ -24,6 +39,7 @@ function TablaVerNotasDocenteAdministrador({
               {competencias.map((_, index) => (
                 <th key={index}>C{index + 1}</th>
               ))}
+              <th>{isSmall?("Promedio"):("P")}</th>
             </tr>
           </thead>
           <tbody>
@@ -39,6 +55,9 @@ function TablaVerNotasDocenteAdministrador({
                       : "-"}
                   </td>
                 ))}
+                <td>   {notas[estudiante.usuarioId]?.promedio !== undefined
+    ? Math.round(notas[estudiante.usuarioId].promedio) 
+    : "-"}</td>
               </tr>
             ))}
           </tbody>

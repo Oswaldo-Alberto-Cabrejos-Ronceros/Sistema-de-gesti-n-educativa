@@ -8,23 +8,25 @@ import NotasService from "../../../services/notasService";
 
 function VInformesDocenteAdministradorAuxiliar() {
   const [selectedNivel, setSelectedNivel] = useState("PRIMARIA");
-  const [selectedGrado, setSelectedGrado] = useState("SELECCIONAR");
+  const [selectedGrado, setSelectedGrado] = useState("Seleccionar");
   const [selectedSeccion, setSelectedSeccion] = useState("A");
-  const [selectedCurso, setSelectedCurso] = useState("SELECCIONAR");
+  const [selectedCurso, setSelectedCurso] = useState("Seleccionar");
   const [selectedCursoId, setSelectedCursoId] = useState(null);
   const [alumnos, setAlumnos] = useState([]);
   const [cursos, setCursos] = useState([]);
   const [userDocente, setUserDocente] = useState({});
   const [selectedUnidad, setSelectedUnidad] = useState(1);
   const [notas, setNotas] = useState({});
-  const optionsNivel = ["PRIMARIA", "SECUNDARIA"];
+  const optionsNivel = [
+    { value: "PRIMARIA", label: "Primaria" },
+    { value: "SECUNDARIA", label: "Secundaria" },
+  ];
 
   //saber si es administrador
   const isAdmin = userDocente.rol === "ADMIN";
-  console.log(isAdmin);
 
   const optionsGradoPrimaria = [
-    { label: "SELECCIONAR", value: "SELECCIONAR" },
+    { label: "Seleccionar", value: "Seleccionar" },
     { label: "1er Grado", value: 1 },
     { label: "2do Grado", value: 2 },
     { label: "3er Grado", value: 3 },
@@ -33,7 +35,7 @@ function VInformesDocenteAdministradorAuxiliar() {
     { label: "6to Grado", value: 6 },
   ];
   const optionsGradoSecundaria = [
-    { label: "SELECCIONAR", value: "SELECCIONAR" },
+    { label: "Seleccionar", value: "Seleccionar" },
     { label: "1er Año", value: 1 },
     { label: "2do Año", value: 2 },
     { label: "3er Año", value: 3 },
@@ -86,7 +88,6 @@ function VInformesDocenteAdministradorAuxiliar() {
       }
     }
   }, [isAdmin, selectedNivel]);
-
   useEffect(() => {
     async function cargarNotas() {
       try {
@@ -99,12 +100,25 @@ function VInformesDocenteAdministradorAuxiliar() {
               selectedCursoId,
               selectedUnidad
             );
+
           const alumnoNotas = response.data.reduce((acc, nota) => {
             acc[nota.calificacionNumero - 1] = nota.calificacion;
             return acc;
           }, {});
 
-          notasRegistradas[alumno.usuarioId] = alumnoNotas;
+          const promedioResponse = await NotasService.obtenerPromedioUnidad(
+            alumno.usuarioId,
+            selectedCursoId,
+            selectedUnidad
+          );
+
+          const promedio =
+            promedioResponse.data !== "" ? promedioResponse.data : undefined;
+
+          notasRegistradas[alumno.usuarioId] = {
+            ...alumnoNotas,
+            promedio,
+          };
         }
 
         setNotas(notasRegistradas);
@@ -126,13 +140,12 @@ function VInformesDocenteAdministradorAuxiliar() {
   };
 
   useEffect(() => {
-    if (selectedCursoId && selectedGrado !== "SELECCIONAR") {
+    if (selectedCursoId && selectedGrado !== "Seleccionar") {
       AlumnoService.obtenerAlumnosPorGradoYSubcurso(
         selectedCursoId,
         selectedGrado
       )
         .then((response) => {
-          console.log("Alumnos del curso y grado seleccionados:");
           setAlumnos(response.data);
         })
         .catch((error) =>
@@ -158,12 +171,12 @@ function VInformesDocenteAdministradorAuxiliar() {
     { label: "Unidad 8", value: 8 },
   ];
 
-  let nivelP;
-  isAdmin ? (nivelP = selectedNivel) : (nivelP = userDocente.nivel);
-  console.log(nivelP);
+  const nivelP=isAdmin ? (selectedNivel) : (userDocente.nivel);
+
+  const CapitalizeNivel=nivelP==="PRIMARIA"?("Primaria"):("Secundaria")
 
   let infoAuxiliar = [
-    nivelP,
+    CapitalizeNivel,
     selectedGrado,
     selectedSeccion,
     selectedUnidad + " unidad",
@@ -183,47 +196,71 @@ function VInformesDocenteAdministradorAuxiliar() {
         }
       >
         {isAdmin ? (
-          <SelectComponent
-            name="Nivel"
-            options={optionsNivel}
-            value={selectedNivel}
-            onChange={(e) => setSelectedNivel(e.target.value)}
-          />
+          <div className="FilterGroup">
+            <label htmlFor="Nivel">Nivel:</label>
+            <SelectComponent
+              name="Nivel"
+              options={optionsNivel}
+              value={selectedNivel}
+              onChange={(e) => setSelectedNivel(e.target.value)}
+            />
+          </div>
         ) : (
           <> </>
         )}
-        <SelectComponent
-          name="Grado"
-          options={
-            isAdmin
-              ? selectedNivel === "PRIMARIA"
+        <div className="FilterGroup">
+          <label htmlFor="Grado">Grado:</label>
+          <SelectComponent
+            name="Grado"
+            options={
+              isAdmin
+                ? selectedNivel === "PRIMARIA"
+                  ? optionsGradoPrimaria
+                  : optionsGradoSecundaria
+                : docentePrimaria
                 ? optionsGradoPrimaria
                 : optionsGradoSecundaria
-              : docentePrimaria
-              ? optionsGradoPrimaria
-              : optionsGradoSecundaria
-          }
-          value={selectedGrado}
-          onChange={(e) => setSelectedGrado(e.target.value)}
-        />
-        <SelectComponent
-          name="Seccion"
-          options={["A", "B"]}
-          value={selectedSeccion}
-          onChange={(e) => setSelectedSeccion(e.target.value)}
-        />
-        <SelectComponent
-          name="Curso"
-          options={["SELECCIONAR", ...cursos.map((curso) => curso.nombre)]}
-          value={selectedCurso}
-          onChange={handleCursoChange}
-        />
-        <SelectComponent
-          name="Unidad"
-          options={unidades}
-          value={selectedUnidad}
-          onChange={(e) => setSelectedUnidad(Number(e.target.value))}
-        />
+            }
+            value={selectedGrado}
+            onChange={(e) => setSelectedGrado(e.target.value)}
+          />
+        </div>
+
+        <div className="FilterGroup">
+          <label htmlFor="Seccion">Seccion:</label>
+
+          <SelectComponent
+            name="Seccion"
+            options={["A", "B"]}
+            value={selectedSeccion}
+            onChange={(e) => setSelectedSeccion(e.target.value)}
+          />
+        </div>
+
+        <div className="FilterGroup">
+          <label htmlFor="Curso">Curso:</label>
+
+          <SelectComponent
+            name="Curso"
+            options={[
+              { label: "Seleccionar Curso", value: "Seleccionar" },
+              ...cursos.map((curso) => curso.nombre),
+            ]}
+            value={selectedCurso}
+            onChange={handleCursoChange}
+          />
+        </div>
+
+        <div className="FilterGroup">
+          <label htmlFor="Unidad">Unidad:</label>
+
+          <SelectComponent
+            name="Unidad"
+            options={unidades}
+            value={selectedUnidad}
+            onChange={(e) => setSelectedUnidad(Number(e.target.value))}
+          />
+        </div>
       </div>
       <div className="VInformesDocenteAdministradorAuxiliarContent">
         <CardInformeDocenteAdministrador

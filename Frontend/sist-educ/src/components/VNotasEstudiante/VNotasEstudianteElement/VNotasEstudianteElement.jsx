@@ -9,18 +9,14 @@ function VNotasEstudianteElement() {
   const location = useLocation();
   const { title } = location.state || {};
   const {indicador} =location.state || {};
-  console.log(indicador)
   const { tipo } = useParams();
-  console.log(title);
-  console.log(tipo);
-  console.log(indicador);
-
+  
   return (
     <div className="VNotasEstudianteElementContainer">
       <div className="TitleVNotasEstudianteElementContainer">
         <h3>{title}</h3>
       </div>
-      <div className="VNotasEstudianteElementContent">
+      <div className={tipo==="bimestre"?("VNotasEstudianteElementContent VNotasEstudianteElementBimestreContent"):("VNotasEstudianteElementContent")}>
           <TablaNotasEstudiante tipo={tipo} indicador={indicador} />
       </div>
     </div>

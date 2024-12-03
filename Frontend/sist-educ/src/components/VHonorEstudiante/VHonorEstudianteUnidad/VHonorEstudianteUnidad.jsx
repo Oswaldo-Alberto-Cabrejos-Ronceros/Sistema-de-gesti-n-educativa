@@ -22,10 +22,10 @@ function VHonorEstudianteUnidad() {
       });
   }, [userAlumno.grado, userAlumno.nivel]);
 
-  console.log(alumnos)
 
 
-  let info=[userAlumno.grado, userAlumno.nivel]
+
+  let info=[userAlumno.grado,userAlumno.seccion, userAlumno.nivel]
   return (
     <div className="VHonorEstudianteUnidadContainer">
       <div className="TitleHonorEstudianteUnidadContainer">

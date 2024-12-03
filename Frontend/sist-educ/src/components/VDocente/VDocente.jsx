@@ -9,34 +9,11 @@ import VCursoDocenteContenido from "../VCursoDocenteAdministradorContenido/VCurs
 import VNotasDocente from "../VNotasDocenteAdministrador/VNotasDocenteAdministrador";
 import VHonorDocenteAdministrador from "../VHonorDocenteAdministrador/VHonorDocenteAdministrador";
 import VInformesDocente from "../VInformesDocenteAdministrador/VInformesDocenteAdministrador";
-import VChatDocente from "../VChatEstudianteDocente/VChatEstudianteDocente";
 import subcursoService from "../../services/subcursoService";
+import Chatbot from "../generalsComponets/CardChat/CardChat";
 
 
 function VDocente() {
-  let cursosDocente = [
-    {
-      Nombre: "Trigonometria",
-      Grado: "1° Año",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-    {
-      Nombre: "Trigonometria",
-      Grado: "2° Año",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-    {
-      Nombre: "Geometria",
-      Grado: "1° Año",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-    {
-      Nombre: "Geometria",
-      Grado: "2° Año",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-  ];
-
   const [cursos, setCursos] = useState([]);
   const [userDocente, setUserDocente] = useState({});
   const [componentToShow, setComponentToShow] = useState("Cursos");
@@ -52,7 +29,6 @@ function VDocente() {
           let grado=0;
           setCursos(
             response.data.map((curso) => {
-              console.log(curso);
               const profesorAsignado = curso.asignacionesProfesor[0]?.profesor || {};
               return {
                 Nombre: curso.nombre,
@@ -95,7 +71,7 @@ cursos.map((curso)=>(
   cursos2.push(...agregargrado(curso))
 ));
 
-console.log(cursos2)
+
   return (
 
       <div className="VDocenteMain">
@@ -105,7 +81,6 @@ console.log(cursos2)
             <Route index element={<Navigate to="cursos" />} />
             <Route path="cursos/*" element={<VCursosDocente cursos={cursos2} />} />
             <Route path="horario" element={<VHorarioDocente grado_Apellidos={userDocente.apellido} nivel_Nombres={userDocente.nombre}/>} />
-            <Route path="chat" element={<VChatDocente />} />
             <Route path="notas/*" element={<VNotasDocente />} />
             <Route path="honor/*" element={<VHonorDocenteAdministrador />} />
             <Route path="curso/*" element={<VCursoDocenteContenido/>} />
@@ -113,6 +88,7 @@ console.log(cursos2)
             <Route path="usuario" element={<InfoUser/>} />
           </Routes>
         </div>
+        <Chatbot/>
       </div>
   );
 }

@@ -29,7 +29,7 @@
     font-size: var(--PMdsize);
   }
   
-  .TableVerDocNotasBimestral th {
+  .TableVerDocNotasBimestral tr th {
     padding: 8px;
     box-sizing: border-box;
     font-size: var(--PMdsize);
@@ -59,4 +59,53 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+
+  @media (max-width:996px) {
+    .TablaVerNotasDocenteAdministradorBimestralContainer{
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+   }
+
+ 
+   @media (max-width:460px) {
+    .TableVerDocNotasBimestral tr th {
+      padding: 4px;
+      font-weight: normal;
+
+    }
+    .TableVerDocNotasBimestral tr td {
+      padding: 4px;
+    }
+  }
+
+  @media (max-width:382px) {
+    .TableVerDocNotasBimestral tr th {
+      font-size: var(--PSmsize);
+    }
+    .TableVerDocNotasBimestral tr td {
+      font-size: var(--PSmsize);
+    }
+  }
+
+  @media (max-width:382px) {
+    .TableVerDocNotasBimestral tr th {
+      font-size: var(--PXSmsixe);
+    }
+    .TableVerDocNotasBimestral tr td {
+      font-size: var(--PXSmsixe);
+    }
+  }
+
+  @media (max-width:318px) {
+    .TableVerDocNotasBimestral tr th {
+      padding: 2px;
+    }
+    .TableVerDocNotasBimestral tr td {
+      padding: 2px;
+    }
   }

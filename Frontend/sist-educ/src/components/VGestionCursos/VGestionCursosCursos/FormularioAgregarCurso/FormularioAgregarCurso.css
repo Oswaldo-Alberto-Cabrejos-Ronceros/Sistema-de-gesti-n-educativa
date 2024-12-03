@@ -2,39 +2,41 @@
   --ColorBorderFormCurso: #171717;
 }
 
+/* Estilos generales del contenedor */
 .FormularioAgregarCursoContainer {
   padding: 10px;
   box-sizing: border-box;
-  margin: 0 auto; /* Centra el formulario */
+  margin: 0 auto;
   width: 100%;
-  max-width: 600px; /* Establece un ancho máximo para el formulario */
-  height: auto;
+  max-width: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* Estilos del formulario */
 .FormularioAgregarCursoContainer form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 20px;
   box-sizing: border-box;
-  width: 100%; /* Ocupa todo el ancho del contenedor */
+  width: 100%;
   border: 2px solid var(--ColorBorderFormCurso);
   border-radius: 8px;
-  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+/* Título del formulario */
 .FormularioAgregarCursoContainer form h3 {
   padding: 0;
   margin-top: 10px;
   margin-bottom: 20px;
+  font-size: 1.5rem; /* Tamaño de fuente base */
 }
 
-/* Contenedor para cada fila de entrada */
-.FormularioAgregarCursoContainer form .formularioAgregarCursoContentPrin {
+/* Contenedor principal del contenido del formulario */
+.formularioAgregarCursoContentPrin {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -44,10 +46,11 @@
 /* Estilo para la fila de "Nombre" y "Nivel" */
 .label-input-row {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
+/* Estilos para los contenedores de etiqueta y entrada */
 .label-input-container {
   display: flex;
   flex-direction: column;
@@ -55,26 +58,85 @@
   width: 100%;
 }
 
+/* Estilos para las etiquetas */
 .label-input-container label {
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
+/* Estilos para los mensajes de error */
 .error-message {
   color: red;
   font-size: 0.85rem;
   margin-top: 4px;
 }
 
+/* Estilos para inputs, textarea y select */
 input, textarea, select {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
+  font-size: 1rem;
 }
 
+/* Contenedor del botón de envío */
 .buttonSubmitCursoContainer {
   padding-top: 20px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Media Queries para pantallas medianas */
+@media (max-width: 768px) {
+  .FormularioAgregarCursoContainer form h3 {
+    font-size: 1.3rem;
+  }
+
+  .label-input-row {
+    grid-template-columns: 1fr; /* Cambia a una columna */
+  }
+
+  .label-input-container {
+    width: 100%;
+  }
+
+  input, textarea, select {
+    font-size: 0.95rem;
+  }
+
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 480px) {
+  .FormularioAgregarCursoContainer {
+    padding: 5px;
+  }
+
+  .FormularioAgregarCursoContainer form {
+    padding: 15px;
+  }
+
+  .FormularioAgregarCursoContainer form h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  .formularioAgregarCursoContentPrin {
+    gap: 15px;
+  }
+
+  input, textarea, select {
+    font-size: 0.9rem;
+    padding: 6px;
+  }
+
+  .buttonSubmitCursoContainer {
+    padding-top: 15px;
+  }
+
+  .error-message {
+    font-size: 0.8rem;
+  }
 }

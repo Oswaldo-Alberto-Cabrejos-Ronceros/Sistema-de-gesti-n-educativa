@@ -1,30 +1,28 @@
-:root{
-    --Color-Border:#171717;
-    --Color-Border-Hover:#DC2626;
+:root {
+    --Color-Border: #171717;
+    --Color-Border-Hover: #DC2626;
 }
 
-.InputComponentContainer{
+.InputComponentContainer {
     display: flex;
     height: 44px;
-    width: 302px;
-    flex-shrink: 0;
-    flex-direction: row;
+    width: 100%;
     padding: 10px;
     box-sizing: border-box;
     border-radius: 8px;
     border: 1px solid var(--Color-Border);
     align-items: center;
-    justify-content: center;
 }
 
-.InputComponentContainer .IconInputContainer{
-    width: 10%;
+.IconInputContainer {
     margin: 0;
     padding: 0;
-    font-size: 28px;
+    font-size: 24px;
+    /* Ajustar tamaño si es necesario */
     display: flex;
     color: var(--Color-Border);
 }
+
 .InputComponentContainer:hover {
     border-color: var(--Color-Border-Hover);
     color: var(--Color-Border-Hover);
@@ -32,13 +30,14 @@
 }
 
 
-.InputComponentContainer .IconInputContainer:hover{
+.InputComponentContainer .IconInputContainer:hover {
     color: var(--Color-Border-Hover);
     transition: 150ms;
 }
 
-.InputComponentContainer input{
+.InputComponentContainer input {
     width: 95%;
+    font-size: 16px;
     height: 100%;
     background-color: transparent;
     border: none;
@@ -46,4 +45,18 @@
     align-self: start;
     justify-self: flex-end;
     margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+    .InputComponentContainer {
+        padding: 8px;
+    }
+
+    .IconInputContainer {
+        font-size: 20px;
+    }
+
+    .InputComponentContainer input {
+        font-size: 14px;
+    }
 }

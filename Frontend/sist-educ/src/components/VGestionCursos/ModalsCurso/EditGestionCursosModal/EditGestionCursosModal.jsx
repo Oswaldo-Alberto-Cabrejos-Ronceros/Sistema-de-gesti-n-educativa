@@ -43,7 +43,6 @@ function EditGestionCursosModal({ show, curso, onUpdate, onClose }) {
         }
 
         const dataToSend = { nombre: nombre, descripcion };
-        console.log("Datos enviados al backend:", JSON.stringify(dataToSend, null, 2));
 
         onUpdate(dataToSend);
         showConfirmationMessage("Curso actualizado correctamente");

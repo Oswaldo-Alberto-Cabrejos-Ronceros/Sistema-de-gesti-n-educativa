@@ -26,6 +26,7 @@
     align-items: center;
     width: 720px;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .VInformesDocenteAdministradorAuxiliarContainer .SelectInformesDocenteAdministradorAuxiliarContainer.admin{
@@ -40,4 +41,59 @@ width: 900px;
     align-items: center;
     justify-content: center;
     margin:10px;
+}
+
+
+@media (max-width:932px){
+    .VInformesDocenteAdministradorAuxiliarContainer .SelectInformesDocenteAdministradorAuxiliarContainer.admin{
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(4,1fr);
+        width: 100%;  
+    }
+}
+
+@media (max-width:760px){
+    .VInformesDocenteAdministradorAuxiliarContainer .SelectInformesDocenteAdministradorAuxiliarContainer{
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(3,1fr);
+            width: 100%;
+    }
+    .VInformesDocenteAdministradorAuxiliarContainer .SelectInformesDocenteAdministradorAuxiliarContainer.admin{
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(3,1fr);
+        width: 100%;  
+    }
+}
+
+@media (max-width:588px){
+    .VInformesDocenteAdministradorAuxiliarContainer .SelectInformesDocenteAdministradorAuxiliarContainer{
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(2,1fr);
+            width: 100%;
+    }
+    .VInformesDocenteAdministradorAuxiliarContainer .SelectInformesDocenteAdministradorAuxiliarContainer.admin{
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(2,1fr);
+        width: 100%;  
+    }
+}
+
+@media (max-width:380px){
+    .VInformesDocenteAdministradorAuxiliarContainer .SelectInformesDocenteAdministradorAuxiliarContainer{
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(1,1fr);
+            width: 100%;
+    }
+    .VInformesDocenteAdministradorAuxiliarContainer .SelectInformesDocenteAdministradorAuxiliarContainer.admin{
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(1,1fr);
+        width: 100%;  
+    }
 }

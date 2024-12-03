@@ -2,43 +2,194 @@
     --BorderTableGestionEstudiante: #171717;
     --BackgroudColorTableGestionEstudiante: #ef4444;
     --ColorTableGestionEstudianteDocTh: #fef2f2;
-  }
-  
-  .TablaGestionEstudiantesContainer {
-    width: 100%;
-  }
-  .TableGestionEstudiante,
-  th,
-  td {
-    border: 1px solid var(--BorderTableGestionEstudiante);
-    border-collapse:collapse;
-  }
-  
-  .TableGestionEstudiante tr td {
-    padding: 8px;
-    box-sizing: border-box;
-    text-align: left;
-    font-size: var(--PMdsize);
-  }
-  
-  .TableGestionEstudiante th {
-    padding: 8px;
-    box-sizing: border-box;
-    font-size: var(--PMdsize);
-  }
-  
+    --BorderAlumnoSeparation: #cccccc; 
 
-  .TableGestionEstudiante th {
-    background-color: var(--BackgroudColorTableGestionEstudiante);
-    color: var(--ColorTableGestionEstudianteDocTh);
+    /* Tamaños base de fuentes */
+  --PMdsize: 16px;
+  --HeaderFontSize: 1rem;
+  --BodyFontSize: 0.9rem;
+  --SmallFontSize: 0.8rem;
   }
-  
-  .TablaGestionEstudianteVerDocEmpty{
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    display: flex;
+
+  .TablaGestionEstudiantesContainer {
+    flex-direction: column;
+    height: auto;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
   }
+
+
+/* Tabla base */
+.TableGestionEstudiante {
+  width: auto;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.TableGestionEstudiante th,
+.TableGestionEstudiante td {
+  border: 1px solid var(--BorderTableGestionEstudiante);
+  padding: 8px;
+  text-align: left;
+  font-size: var(--BodyFontSize);
+}
+
+.TableGestionEstudiante th {
+  background-color: var(--BackgroudColorTableGestionEstudiante);
+  color: var(--ColorTableGestionEstudianteDocTh);
+  font-weight:  bold;
+  font-size: var(--HeaderFontSize);
+}
+
+/* Tabla vacía */
+.TablaGestionEstudianteVerDocEmpty {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--HeaderFontSize);
+  text-align: center;
+}
+/* Responsividad para pantallas medianas: Diseño de cuadrícula */
+@media (max-width: 1120px) {
+  .TableGestionEstudiante {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajuste de columnas */
+    gap: 20px;
+    border: none;
+  }
+
+  .TableGestionEstudiante thead {
+    display: none;
+  }
+
+  .TableGestionEstudiante tbody {
+    display: contents;
+  }
+
+  .TableGestionEstudiante tr {
+    display: block;
+    border: 1px solid var(--BorderAlumnoSeparation);
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  .TableGestionEstudiante td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 5px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: var(--BodyFontSize);
+    color: #333;
+  }
+
+  .TableGestionEstudiante td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #555;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  /* Estilo específico para la fila de botones */
+  .TableGestionEstudiante td[data-label="Editar"],
+  .TableGestionEstudiante td[data-label="Eliminar"] {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+  }
+
+  .TableGestionEstudiante td[data-label="Editar"]::before,
+  .TableGestionEstudiante td[data-label="Eliminar"]::before {
+    content: none;
+  }
+}
+
+/* Responsividad para pantallas medianas */
+@media (max-width: 720px) {
+  .TableGestionEstudiante {
+    display: block;
+    overflow: hidden;
+  }
+
+  .TableGestionEstudiante thead {
+    display: none
+  }
+
+  .TableGestionEstudiante tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .TableGestionEstudiante tr {
+    display: block;
+    margin-bottom: 15px;
+    border-bottom: 4px solid var(--BorderAlumnoSeparation);
+  }
+
+  .TableGestionEstudiante td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.85rem; /* Ajuste de fuente */
+  }
+
+  .TableGestionEstudiante td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-right: 10px;
+    color: #555;
+    font-size: 0.9rem; /* Tamaño de fuente para etiquetas */
+  }
+
+  .TableGestionEstudiante td:last-child {
+    border-bottom: none;
+  }
+
+  /* Estilo específico para la fila de botones */
+  .TableGestionEstudiante td[data-label="Editar"],
+  .TableGestionEstudiante td[data-label="Eliminar"] {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+  }
+
+  .TableGestionEstudiante td[data-label="Editar"]::before,
+  .TableGestionEstudiante td[data-label="Eliminar"]::before {
+    content: none;
+  }
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 480px) {
+  :root {
+    --HeaderFontSize: 0.85rem;
+    --BodyFontSize: 0.75rem;
+  }
+
+  .TableGestionEstudiante td {
+    padding: 8px 5px;
+    font-size: var(--BodyFontSize);
+  }
+
+  .TableGestionEstudiante td::before {
+    font-size: 0.8rem;
+  }
+
+  .TablaGestionEstudianteVerDocEmpty {
+    font-size: 0.9rem;
+  }
+}

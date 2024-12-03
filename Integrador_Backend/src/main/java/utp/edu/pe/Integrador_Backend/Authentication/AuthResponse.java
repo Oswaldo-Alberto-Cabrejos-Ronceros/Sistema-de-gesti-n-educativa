@@ -25,6 +25,9 @@ public class AuthResponse {
     // Campos específicos de Profesor
     private String especialidad;
 
+    // Campo para indicar si el usuario debe cambiar la contraseña
+    private boolean debeCambiarPassword;
+
     // Constructor general para datos comunes
     public AuthResponse(String jwt, Usuario usuario) {
         this.jwt = jwt;

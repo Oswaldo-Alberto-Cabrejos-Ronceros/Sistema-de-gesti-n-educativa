@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,9 +26,10 @@ public class Subcurso {
     @Column(name = "C_SUBCURSOID")
     private Long subcursoId;
 
-    @Column(name = "X_NOMBRESUBCURSO")
+    @Column(name = "X_NOMBRESUBCURSO",length = 30)
     @NotNull
     @NotBlank
+    @Size(max = 30, message = "El nombre no puede tener más de 30 caracteres")
     private String nombre;
 
     @Enumerated(EnumType.STRING)
@@ -35,6 +37,7 @@ public class Subcurso {
     private Nivel nivel;
 
     @Column(name = "X_DESCRIPCION",length = 150)
+    @Size(max = 150, message = "La descripcion no puede tener más de 150 caracteres")
     private String descripcion;
 
     // Relaciones
@@ -54,5 +57,9 @@ public class Subcurso {
     @OneToMany(mappedBy = "subcurso", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Nota> notas;
+
+    @OneToMany(mappedBy = "subcurso", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Contenido> contenidos = new HashSet<>();
 
 }

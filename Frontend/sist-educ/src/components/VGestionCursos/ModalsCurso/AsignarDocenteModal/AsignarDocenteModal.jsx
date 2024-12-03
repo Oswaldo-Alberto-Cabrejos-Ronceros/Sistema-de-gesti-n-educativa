@@ -7,6 +7,7 @@ import { TbUserEdit } from "react-icons/tb";
 import CursoService from "../../../../services/cursosService"
 import SubcursoService from "../../../../services/subcursoService"
 import DocenteService from "../../../../services/docenteService"
+import { MdSchool } from "react-icons/md";
 import "./AsignarDocenteModal.css";
 
 function AsignarDocenteModal({ show, docente, onDocenteUpdated, onClose, onShowConfirmation }) {
@@ -18,12 +19,13 @@ function AsignarDocenteModal({ show, docente, onDocenteUpdated, onClose, onShowC
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
 
+
   useEffect(() => {
-    if (nivel !== "SELECCIONAR") {
-      CursoService.listarCursosPorNivel(nivel)
+    if (docente?.nivel && docente.nivel !== "SELECCIONAR") {
+      CursoService.listarCursosPorNivel(docente.nivel)
         .then((response) => {
           setCursoOptions([
-            { label: "SELECCIONAR", value: "SELECCIONAR" },
+            { label: "Seleccionar Curso", value: "SELECCIONAR" },
             ...response.data.map((curso) => ({
               label: curso.nombre,
               value: curso.cursoId,
@@ -32,18 +34,15 @@ function AsignarDocenteModal({ show, docente, onDocenteUpdated, onClose, onShowC
         })
         .catch((error) => console.error("Error al obtener los cursos:", error));
     } else {
-      setCursoOptions([{ label: "SELECCIONAR", value: "SELECCIONAR" }]);
+      setCursoOptions([{ label: "Seleccionar Curso", value: "SELECCIONAR" }]);
     }
-    setSelectedCursoId("SELECCIONAR");
-    setSubcursoOptions([{ label: "SELECCIONAR", value: "SELECCIONAR" }]);
-  }, [nivel]);
-
+  }, [docente?.nivel]);
   useEffect(() => {
     if (selectedCursoId !== "SELECCIONAR") {
       SubcursoService.getlistarSubcursosPorCurso(selectedCursoId)
         .then((response) => {
           setSubcursoOptions([
-            { label: "SELECCIONAR", value: "SELECCIONAR" },
+            { label: "Seleccionar SubCurso", value: "SELECCIONAR" },
             ...response.data.map((subcurso) => ({
               label: subcurso.nombre,
               value: subcurso.subcursoId,
@@ -52,7 +51,7 @@ function AsignarDocenteModal({ show, docente, onDocenteUpdated, onClose, onShowC
         })
         .catch((error) => console.error("Error al obtener los subcursos:", error));
     } else {
-      setSubcursoOptions([{ label: "SELECCIONAR", value: "SELECCIONAR" }]);
+      setSubcursoOptions([{ label: "Seleccionar SubCurso", value: "SELECCIONAR" }]);
     }
   }, [selectedCursoId]);
 
@@ -96,10 +95,10 @@ function AsignarDocenteModal({ show, docente, onDocenteUpdated, onClose, onShowC
         <button onClick={onClose} className="AsignarDocenteModalCloseButton">✕</button>
         <h4>Asignar Subcurso</h4>
         <ConfirmationModal show={showConfirmation} message={confirmationMessage} />
-
+  
         <form className="AsignarDocenteModalForm" onSubmit={handleSave}>
           <div className="AsignarDocenteModalFormSecondaryContainer">
-            <div className="AsignarDocenteModalFormLabelInputRow">
+            <div className="AsignarDocenteModalFormLabelInputContainer">
               <label>Nombres Docente:</label>
               <InputComponent
                 nombre="nombreDocente"
@@ -110,7 +109,7 @@ function AsignarDocenteModal({ show, docente, onDocenteUpdated, onClose, onShowC
                 disabled
               />
             </div>
-            <div className="AsignarDocenteModalFormLabelInputRow">
+            <div className="AsignarDocenteModalFormLabelInputContainer">
               <label>Apellidos Docente:</label>
               <InputComponent
                 nombre="apellidoDocente"
@@ -121,19 +120,18 @@ function AsignarDocenteModal({ show, docente, onDocenteUpdated, onClose, onShowC
                 disabled
               />
             </div>
-            <div className="AsignarDocenteModalFormLabelInputRow">
+            <div className="AsignarDocenteModalFormLabelInputContainer">
               <label>Nivel:</label>
-              <SelectComponent
-                options={[
-                  { label: "SELECCIONAR", value: "SELECCIONAR" },
-                  { label: "PRIMARIA", value: "PRIMARIA" },
-                  { label: "SECUNDARIA", value: "SECUNDARIA" },
-                ]}
-                value={nivel}
-                onChange={handleNivelChange}
+              <InputComponent
+                nombre="NivelDocente"
+                placeholder="Nivel del Docente"
+                icon={<MdSchool />}
+                type="text"
+                value={docente?.nivel || ""}
+                disabled
               />
             </div>
-            <div className="AsignarDocenteModalFormLabelInputRow">
+            <div className="AsignarDocenteModalFormLabelInputContainer">
               <label>Curso:</label>
               <SelectComponent
                 options={cursoOptions}
@@ -141,7 +139,7 @@ function AsignarDocenteModal({ show, docente, onDocenteUpdated, onClose, onShowC
                 onChange={(e) => setSelectedCursoId(e.target.value)}
               />
             </div>
-            <div className="AsignarDocenteModalFormLabelInputRow">
+            <div className="AsignarDocenteModalFormLabelInputContainer">
               <label>Subcurso:</label>
               <SelectComponent
                 options={subcursoOptions}

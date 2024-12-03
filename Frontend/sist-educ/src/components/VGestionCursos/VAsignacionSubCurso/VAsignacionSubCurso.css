@@ -1,33 +1,59 @@
 .VAsignacionSubCursoContainer{
     width: 100%;
-    height: auto;
     display: flex;
     flex-direction: column;
-    margin: 0;
     box-sizing: border-box;
+    padding: 20px;
 }
 
 .VAsignacionSubCursoContainer .VAsignacionSubCursoTitleContainer{
     align-self:flex-start;
-    margin: 1%;
-    height: auto;
+    margin-bottom: 20px;
 }
 
 .VAsignacionSubCursoContainer .VAsignacionSubCursoTitleContainer h3{
     margin: 0;
     padding: 0;
+    font-size: 28px;
 }
 
 .VAsignacionSubCursoContainer .VAsignacionSubCursoContent{
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: auto;
-    max-height: none;
-    min-height: 440px;
-    box-sizing: border-box;
-    align-self: flex-start;
-    margin-top: 20px;
-    box-sizing: border-box;
-    align-items: center;
+}
+
+/* TablaAsignacionSubCurso */
+.TablaAsignacionSubCurso {
+    width: 100%;
+    overflow-x: auto;
+    /* Para tablas anchas en pantallas pequeñas */
+}
+
+
+/* Pantallas medianas */
+@media (max-width: 768px) {
+    .VAsignacionSubCursoContainer .VAsignacionSubCursoTitleContainer h3 {
+        font-size: 24px;
+    }
+
+    .TablaAsignacionSubCurso {
+        overflow-x: auto;
+    }
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 480px) {
+    .VAsignacionSubCursoContainer {
+        padding: 10px;
+    }
+
+    .VAsignacionSubCursoContainer .VAsignacionSubCursoTitleContainer h3 {
+        font-size: 20px;
+    }
+
+    .VAsignacionSubCursoContainer .TablaAsignacionSubCursoContainer {
+        margin: 15px 0;
+    }
+
 }

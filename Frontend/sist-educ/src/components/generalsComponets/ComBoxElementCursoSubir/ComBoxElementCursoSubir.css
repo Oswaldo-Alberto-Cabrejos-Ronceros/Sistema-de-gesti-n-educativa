@@ -138,3 +138,29 @@
     width: 100%;
     height: 20%;
 }
+
+@media (max-width:516px) {
+    .ComBoxElementCursoDocSubirGeneralContainer{
+        width: 90vw;
+    }
+    .ComBoxElementCurSubirFormSubida form .FormSubConSecContainer, .ComBoxElementCurSubirFormSubida form .FormSubConTerContainer{
+        flex-direction: column;
+    }
+    .ComBoxElementCurSubirFormSubida form .FormSubConTerContainer label {
+        align-self: center;
+    }
+}
+
+
+@media (max-width:456px) {
+    .ComBoxElementCursoDocSubirGeneralContainer{
+        width: 89vw;
+    }
+}
+
+
+@media (max-width:376px) {
+    .ComBoxElementCursoDocSubirGeneralContainer{
+        width: 88.5vw;
+    }
+}

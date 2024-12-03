@@ -19,7 +19,7 @@
 }
 
 .ImgDocenteContainer{
-    background-image: url('/src/assets/CardCurso/CardCurso.jpg');
+    background-image: url('/public/CardCurso.jpg');
     background-size: cover;
     background-position: center;
     width: 100%;

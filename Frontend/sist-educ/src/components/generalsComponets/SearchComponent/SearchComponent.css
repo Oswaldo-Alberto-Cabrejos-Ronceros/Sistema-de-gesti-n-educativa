@@ -48,3 +48,16 @@
     justify-self: flex-end;
     padding-left: 8px;
 }
+
+@media (max-width:382px){
+    .SearchComponentContainer{
+        width: 300px;
+    }
+}
+
+
+@media (max-width:334px){
+    .SearchComponentContainer{
+        width: 260px;
+    }
+}

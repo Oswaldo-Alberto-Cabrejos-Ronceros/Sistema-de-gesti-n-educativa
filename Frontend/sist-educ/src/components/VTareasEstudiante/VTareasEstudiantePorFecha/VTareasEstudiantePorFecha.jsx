@@ -3,7 +3,6 @@ import "./VTareasEstudiantePorFecha.css";
 import ComBoxElementTarea from "../../generalsComponets/ComBoxElementTarea/ComBoxElementTarea";
 
 function VTareasEstudiantePorFecha({to, tareasPorFecha, tareas }) {
-  console.log(tareas)
   return (
     <div className="VTareasEstudiantePorFechaContainer">
       <div className="VTareasEstudiantePorFechaTitleContainer">

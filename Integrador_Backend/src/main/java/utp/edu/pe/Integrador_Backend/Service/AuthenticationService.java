@@ -64,29 +64,41 @@ public class AuthenticationService {
                         .map(alumno -> (Usuario) alumno));
     }
 
+
     public AuthResponse authenticateUser(LoginRequest loginRequest) {
         UserDetails userDetails = loadUserByUsername(loginRequest.getUsername());
+        Usuario usuario = obtenerUsuarioPorCorreoOCodigo(loginRequest.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+
         if (passwordEncoder.matches(loginRequest.getPassword(), userDetails.getPassword())) {
+            // Verificar si la contraseña es igual al DNI
+            boolean isDefaultPassword = passwordEncoder.matches(usuario.getDni(), usuario.getPassword());
+
             // Generar token de acceso
             Authentication authentication = new UsernamePasswordAuthenticationToken(
                     userDetails.getUsername(), null, userDetails.getAuthorities());
 
             String accessToken = jwtUtil.createAccessToken(authentication);
 
-            Usuario usuario = obtenerUsuarioPorCorreoOCodigo(loginRequest.getUsername())
-                    .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
-
-            // Imprimir los datos del usuario autenticado en la consola
             imprimirDatosUsuarioEnConsola(usuario);
 
-            // Crear y devolver AuthResponse
+            // Crear AuthResponse
+            AuthResponse authResponse;
             if (usuario instanceof Alumno) {
-                return new AuthResponse(accessToken, (Alumno) usuario);
+                authResponse = new AuthResponse(accessToken, (Alumno) usuario);
             } else if (usuario instanceof Profesor) {
-                return new AuthResponse(accessToken, (Profesor) usuario);
+                authResponse = new AuthResponse(accessToken, (Profesor) usuario);
             } else {
-                return new AuthResponse(accessToken, usuario);  // Para Administrador
+                authResponse = new AuthResponse(accessToken, usuario); // Para Administrador
             }
+
+            // Incluir flag para indicar si es necesario cambiar la contraseña
+            authResponse.setDebeCambiarPassword(isDefaultPassword);
+
+            // Imprimir si debe cambiar la contraseña
+            System.out.println("Debe cambiar contraseña: " + isDefaultPassword);
+
+            return authResponse;
         } else {
             throw new BadCredentialsException("Credenciales incorrectas");
         }
@@ -113,5 +125,7 @@ public class AuthenticationService {
         if (usuario instanceof Administrador) {
             System.out.println("Administrador autenticado.");
         }
+
     }
+
 }

@@ -24,6 +24,7 @@ import java.util.Optional;
 @Service
 public class ReporteService {
 
+
     @Autowired
     private AlumnoService alumnoService;
 
@@ -35,6 +36,19 @@ public class ReporteService {
 
     @Autowired
     private AsignacionProfesorRepository asignacionProfesorRepository;
+
+    public String ObtenerLetra(int nota) {
+        if (nota >= 18) {
+            return "AD";
+        } else if (nota >= 14) {
+            return "A";
+        } else if (nota >= 11) {
+            return "B";
+        } else {
+            return "C";
+        }
+    }
+
 
     public void generarReporteNotasPorSubcursoYUnidad(Nivel nivel, Integer grado, Long subcursoId, Integer unidad, OutputStream outputStream) throws IOException {
 
@@ -69,11 +83,11 @@ public class ReporteService {
         CellStyle headerDatosStyle = workbook.createCellStyle();
         CellStyle datosStyle = workbook.createCellStyle();
         XSSFCellStyle titlePromedioStyle = (XSSFCellStyle) workbook.createCellStyle();
-        XSSFCellStyle  promedioStyle =(XSSFCellStyle) workbook.createCellStyle();
+        XSSFCellStyle promedioStyle = (XSSFCellStyle) workbook.createCellStyle();
 
         //definimos un color personalizado para las celdas de promedio
-        byte[] rgbColor = new byte[] {(byte) 245, (byte) 229, (byte) 35};
-        XSSFColor promedioColorBG = new XSSFColor(rgbColor,null);
+        byte[] rgbColor = new byte[]{(byte) 245, (byte) 229, (byte) 35};
+        XSSFColor promedioColorBG = new XSSFColor(rgbColor, null);
 
         //generamos y aplicamos fonts
         Font headerFont = workbook.createFont();
@@ -150,7 +164,7 @@ public class ReporteService {
         titleRow.getCell(1).setCellStyle(titleStyle);
 
         //creamos encabezado con la informacion del curso
-        Row informationRow=sheet.createRow(1);
+        Row informationRow = sheet.createRow(1);
         informationRow.createCell(1).setCellValue("CURSO:");
         informationRow.createCell(2).setCellValue(subcurso.getNombre());
         informationRow.createCell(3).setCellValue("NIVEL:");
@@ -164,15 +178,18 @@ public class ReporteService {
         Row profesorRow = sheet.createRow(2);
         profesorRow.createCell(1).setCellValue("Profesor:");
         profesorRow.createCell(2).setCellValue(nombreProfesor);
-
+        profesorRow.createCell(3).setCellValue("Colegio:");
+        profesorRow.createCell(4).setCellValue("Peruano Japonés");
+        //fusion de columnas
+        sheet.addMergedRegion(new CellRangeAddress(2, 2, 4, 5));
 
         //aplicamos estilos a los encabezados
 
-        for(int i=1;i<9;i++){
+        for (int i = 1; i < 9; i++) {
             informationRow.getCell(i).setCellStyle(headerStyle);
         }
 
-        for(int i=1; i<3;i++){
+        for (int i = 1; i < 5; i++) {
             profesorRow.getCell(i).setCellStyle(headerStyle);
         }
 
@@ -182,23 +199,29 @@ public class ReporteService {
         headerRow.createCell(1).setCellValue("N°");
         headerRow.createCell(2).setCellValue("APELLIDOS Y NOMBRES");
         headerRow.createCell(3).setCellValue("CRITERIO 1");
-        headerRow.createCell(4).setCellValue("CRITERIO 2");
-        headerRow.createCell(5).setCellValue("CRITERIO 3");
-        headerRow.createCell(6).setCellValue("CRITERIO 4");
-        headerRow.createCell(7).setCellValue("PROMEDIO");
+        headerRow.createCell(5).setCellValue("CRITERIO 2");
+        headerRow.createCell(7).setCellValue("CRITERIO 3");
+        headerRow.createCell(9).setCellValue("CRITERIO 4");
+        headerRow.createCell(11).setCellValue("PROMEDIO");
+        for (int i = 4; i < 13; i = i + 2) {
+            headerRow.createCell(i);
+        }
 
         //aplicamos estilos a al header de datos
 
-        for (int i=1;i<7;i++){
+        for (int i = 1; i <= 10; i++) {
             headerRow.getCell(i).setCellStyle(headerDatosStyle);
         }
-        headerRow.getCell(7).setCellStyle(titlePromedioStyle);
+
+        for (int i = 11; i < 13; i++) {
+            headerRow.getCell(i).setCellStyle(titlePromedioStyle);
+        }
 
         int rowNum = 5;
-        int nAlumnos=1;
-        String ApellidosYNombres="";
+        int nAlumnos = 1;
+        String ApellidosYNombres = "";
         for (Alumno alumno : alumnos) {
-            ApellidosYNombres=alumno.getApellido().toUpperCase()+", " + alumno.getNombre();
+            ApellidosYNombres = alumno.getApellido().toUpperCase() + ", " + alumno.getNombre();
             Row row = sheet.createRow(rowNum++);
 
             row.createCell(1).setCellValue(nAlumnos);
@@ -216,41 +239,50 @@ public class ReporteService {
                         unidad,
                         calificacionNumero
                 );
-
-                Cell cell = row.createCell(2 + calificacionNumero); // Columnas 2 a 6 para C1 a C4
+                int indiceColumna = 3 + (calificacionNumero - 1) * 2;
+                Cell cell = row.createCell(indiceColumna); // Columnas 2 a 6 para C1 a C4
+                Cell cellL = row.createCell(indiceColumna + 1);
                 if (calificacion != null) {
                     // Redondear la calificación a entero
                     int calificacionRedondeada = (int) Math.round(calificacion);
                     cell.setCellValue(calificacionRedondeada);
-
+                    cellL.setCellValue(ObtenerLetra(calificacionRedondeada));
                     sumaCalificaciones += calificacion;
                     cantidadCalificaciones++;
                 } else {
                     cell.setCellValue("-");
+                    cellL.setCellValue("-");
                 }
             }
 
             // Calcular el promedio de la unidad
-            Cell promedioCell = row.createCell(7);
+            Cell promedioCell = row.createCell(11);
+            Cell promedioCellL = row.createCell(12);
             if (cantidadCalificaciones > 0) {
                 double promedio = sumaCalificaciones / cantidadCalificaciones;
                 int promedioRedondeado = (int) Math.round(promedio);
                 promedioCell.setCellValue(promedioRedondeado);
+                promedioCellL.setCellValue(ObtenerLetra(promedioRedondeado));
             } else {
                 promedioCell.setCellValue("-");
+                promedioCellL.setCellValue("-");
             }
             nAlumnos++;
-
-            for(int i=1;i<7;i++){
+            for (int i = 1; i <= 10; i++) {
                 row.getCell(i).setCellStyle(datosStyle);
             }
-            row.getCell(7).setCellStyle(promedioStyle);
-        }
-        // Autoajustar el tamaño de las columnas
-        for (int i = 2; i <= 7; i++) {
-            sheet.autoSizeColumn(i);
+            for (int i = 11; i < 13; i++) {
+                row.getCell(i).setCellStyle(promedioStyle);
+            }
         }
 
+        for (int i = 3; i < 12; i = i + 2) {
+            sheet.addMergedRegion(new CellRangeAddress(4, 4, i, i + 1));
+        }
+        // Autoajustar el tamaño de las columnas
+        for (int i = 2; i <= 5; i++) {
+            sheet.autoSizeColumn(i);
+        }
 
         // Cerrar el workbook
         workbook.write(outputStream);
@@ -482,7 +514,7 @@ public class ReporteService {
         informationRow.createCell(8).setCellValue("GRADO");
         informationRow.createCell(11).setCellValue(grado);
         informationRow.createCell(12).setCellValue("BIMESTRE:");
-        informationRow.createCell(15).setCellValue(bimestre);
+        informationRow.createCell(16).setCellValue(bimestre);
 
         //Aplicacion estilos al informationRow
 
@@ -495,8 +527,14 @@ public class ReporteService {
         Row profesorRow = sheet.createRow(2);
         profesorRow.createCell(1).setCellValue("Profesor:");
         profesorRow.createCell(2).setCellValue(nombreProfesor);
+        profesorRow.createCell(3).setCellValue("Colegio:");
+        profesorRow.createCell(4);
+        profesorRow.createCell(5).setCellValue("Peruano Japonés");
+        for (int i = 6; i < 10; i++) {
+            profesorRow.createCell(i);
+        }
         //aplicamos estilos a la profesorRow
-        for (int i = 1; i < 3; i++) {
+        for (int i = 1; i < 6; i++) {
             profesorRow.getCell(i).setCellStyle(headerStyle);
         }
 
@@ -509,84 +547,88 @@ public class ReporteService {
         }
         //Crear subencabezado
         Row subHeaderRow = sheet.createRow(4);
-        subHeaderRow.createCell(1).setCellValue("N°");
-        subHeaderRow.createCell(2).setCellValue("COMPETENCIAS/CRITERIOS");
-        subHeaderRow.createCell(3);
+        for (int i = 1; i <= 4; i++) {
+            subHeaderRow.createCell(i);
+        }
+        subHeaderRow.getCell(1).setCellValue("N°");
+        subHeaderRow.getCell(2).setCellValue("COMPETENCIAS/CRITERIOS");
         //aplicamos estilos a algunas celdas de subHeaderRow
-        for (int i = 1; i < 4; i++) {
+        for (int i = 1; i < 5; i++) {
             subHeaderRow.getCell(i).setCellStyle(headerDatosStyle);
         }
 
-        subHeaderRow.createCell(4).setCellValue("Bimestre " + bimestre);
-        for (int i = 5; i < 17; i++) {
-            subHeaderRow.createCell(i);
+        subHeaderRow.createCell(5).setCellValue("Bimestre " + bimestre);
+        subHeaderRow.getCell(5).setCellStyle(titleBimestreStyle);
+        for (int i = 6; i <= 30; i++) {
+            subHeaderRow.createCell(i).setCellStyle(titleBimestreStyle);
         }
 
-        for (int i = 4; i < 17; i++) {
-            subHeaderRow.getCell(i).setCellStyle(titleBimestreStyle);
-        }
         //creamos filas adicionales para fusionar
         //creamos post encabezado
         Row postHeaderRow = sheet.createRow(6);
         postHeaderRow.createCell(1);
         postHeaderRow.createCell(2).setCellValue("APELLIDOS Y NOMBRES");
         postHeaderRow.createCell(3);
+
         //fusion de filas
         sheet.addMergedRegion(new CellRangeAddress(4, 6, 1, 1));
-        sheet.addMergedRegion(new CellRangeAddress(4, 5, 2, 3));
-        sheet.addMergedRegion(new CellRangeAddress(5, 6, 16, 16));
+        sheet.addMergedRegion(new CellRangeAddress(4, 5, 2, 4));
+        sheet.addMergedRegion(new CellRangeAddress(5, 6, 29, 30));
         //fusion de columnas
-        sheet.addMergedRegion(new CellRangeAddress(0, 0, 1, 4));
-        sheet.addMergedRegion(new CellRangeAddress(4, 4, 4, 16));
-        sheet.addMergedRegion(new CellRangeAddress(6, 6, 2, 3));
-        sheet.addMergedRegion(new CellRangeAddress(1, 1, 4, 7));
-        sheet.addMergedRegion(new CellRangeAddress(1, 1, 8, 10));
-        sheet.addMergedRegion(new CellRangeAddress(1, 1, 12, 14));
 
         //fusion de las celdas de la cabecera de Competencias
-        for (int i = 4; i < 14; i = i + 3) {
-            sheet.addMergedRegion(new CellRangeAddress(5, 5, i, i + 2));
+        for (int i = 5; i <= 28; i = i + 6) {
+            sheet.addMergedRegion(new CellRangeAddress(5, 5, i, i + 5));
         }
 
+        for (int i = 5; i <= 28; i = i + 2) {
+            sheet.addMergedRegion(new CellRangeAddress(6, 6, i, i + 1));
+        }
+        sheet.addMergedRegion(new CellRangeAddress(2, 2, 3, 4));
+        sheet.addMergedRegion(new CellRangeAddress(2, 2, 5, 9));
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 1, 4));
+        sheet.addMergedRegion(new CellRangeAddress(4, 4, 5, 30));
+        sheet.addMergedRegion(new CellRangeAddress(6, 6, 2, 4));
+        sheet.addMergedRegion(new CellRangeAddress(1, 1, 4, 7));
+        sheet.addMergedRegion(new CellRangeAddress(1, 1, 8, 10));
+        sheet.addMergedRegion(new CellRangeAddress(1, 1, 12, 15));
 
-        //agregamos filas de competencias
-        int colIndex = 4;
-        headerRow.createCell(colIndex + 1);
-        headerRow.createCell(colIndex + 2);
-        headerRow.createCell(colIndex + 3);
+
+        int colIndex = 5;
+
+        // Estructura de headerRow
         headerRow.createCell(colIndex++).setCellValue("C1");
-        postHeaderRow.createCell(colIndex - 1).setCellValue("U" + unidadInicio);
-        colIndex++;
-        headerRow.createCell(colIndex + 1);
-        headerRow.createCell(colIndex + 2);
-        headerRow.createCell(colIndex + 3);
-        postHeaderRow.createCell(colIndex - 1).setCellValue("U" + unidadFin);
-        postHeaderRow.createCell(colIndex++).setCellValue("P");
-        headerRow.createCell(colIndex++).setCellValue("C2");
-        postHeaderRow.createCell(colIndex - 1).setCellValue("U" + unidadInicio);
-        colIndex++;
-        headerRow.createCell(colIndex + 1);
-        headerRow.createCell(colIndex + 2);
-        headerRow.createCell(colIndex + 3);
-        postHeaderRow.createCell(colIndex - 1).setCellValue("U" + unidadFin);
-        postHeaderRow.createCell(colIndex++).setCellValue("P");
-        headerRow.createCell(colIndex++).setCellValue("C3");
-        postHeaderRow.createCell(colIndex - 1).setCellValue("U" + unidadInicio);
-        colIndex++;
-        headerRow.createCell(colIndex + 1);
-        headerRow.createCell(colIndex + 2);
-        headerRow.createCell(colIndex + 3);
-        postHeaderRow.createCell(colIndex - 1).setCellValue("U" + unidadFin);
-        postHeaderRow.createCell(colIndex++).setCellValue("P");
-        headerRow.createCell(colIndex++).setCellValue("C4");
-        postHeaderRow.createCell(colIndex - 1).setCellValue("U" + unidadInicio);
-        colIndex++;
-        postHeaderRow.createCell(colIndex - 1).setCellValue("U" + unidadFin);
-        postHeaderRow.createCell(colIndex++).setCellValue("P");
-        postHeaderRow.createCell(colIndex);
+        for (int i = 0; i < 5; i++) headerRow.createCell(colIndex++);
 
-        // Agregar columna para el promedio del bimestre
-        headerRow.createCell(colIndex).setCellValue("P");
+        headerRow.createCell(colIndex++).setCellValue("C2");
+        for (int i = 0; i < 5; i++) headerRow.createCell(colIndex++);
+
+        headerRow.createCell(colIndex++).setCellValue("C3");
+        for (int i = 0; i < 5; i++) headerRow.createCell(colIndex++);
+
+        headerRow.createCell(colIndex++).setCellValue("C4");
+        for (int i = 0; i < 5; i++) headerRow.createCell(colIndex++);
+
+        headerRow.createCell(colIndex++).setCellValue("P");
+        headerRow.getCell(colIndex - 1);
+
+
+        // Reiniciamos colIndex en 5 para postHeaderRow
+        colIndex = 5;
+
+        // Estructura de postHeaderRow
+        for (int i = 1; i <= 4; i++) { // Iteramos por las competencias
+            postHeaderRow.createCell(colIndex++).setCellValue("U1");
+            postHeaderRow.createCell(colIndex++);
+            postHeaderRow.createCell(colIndex++).setCellValue("U2");
+            postHeaderRow.createCell(colIndex++);
+            postHeaderRow.createCell(colIndex++).setCellValue("P");
+            postHeaderRow.createCell(colIndex++);
+        }
+
+        // Celda final con "P" y una celda vacía
+        postHeaderRow.createCell(colIndex++);
+        postHeaderRow.createCell(colIndex++);
         //aplicamos estilos a headerRow
         Iterator<Cell> headerRowIterator = headerRow.cellIterator();
         while (headerRowIterator.hasNext()) {
@@ -596,6 +638,8 @@ public class ReporteService {
                 cell.setCellStyle(titlePromedioBimestralStyle);
             }
         }
+        headerRow.createCell(30).setCellStyle(titlePromedioBimestralStyle);
+
 
         Iterator<Cell> postHeaderRowIterator = postHeaderRow.cellIterator();
         while (postHeaderRowIterator.hasNext()) {
@@ -603,7 +647,7 @@ public class ReporteService {
             cell.setCellStyle(headerDatosStyle);
         }
 
-        for (int i = 6; i < 18; i = i + 3) {
+        for (int i = 6; i <= 28; i = i + 3) {
             postHeaderRow.getCell(i).setCellStyle(titlePromedioCompetenciaStyle);
         }
 
@@ -618,13 +662,16 @@ public class ReporteService {
             row.getCell(colIndex - 1).setCellStyle(datosStyle);
             row.createCell(colIndex++).setCellValue(alumno.getApellido().toUpperCase() + ", " + alumno.getNombre());
             row.createCell(colIndex);
+            row.createCell(colIndex + 1);
             row.getCell(colIndex - 1).setCellStyle(datosStyle);
             row.getCell(colIndex).setCellStyle(datosStyle);
+            row.getCell(colIndex + 1).setCellStyle(datosStyle);
             //fusionamos las columnas en las celdas de los nombres
-            sheet.addMergedRegion(new CellRangeAddress(rowNum - 1, rowNum - 1, colIndex - 1, colIndex));
+            sheet.addMergedRegion(new CellRangeAddress(rowNum - 1, rowNum - 1, colIndex - 1, colIndex + 1));
             double sumaPromediosUnidades = 0.0;
             int unidadesContadas = 0;
 
+            colIndex++;
             colIndex++;
             // Iterar sobre las competencias (C1 a C4)
             for (int calificacionNumero = 1; calificacionNumero <= 4; calificacionNumero++) {
@@ -641,45 +688,57 @@ public class ReporteService {
                     );
 
                     Cell cell = row.createCell(colIndex++);
+                    Cell cellL = row.createCell(colIndex++);
                     if (calificacion != null) {
                         // Redondear la calificación a entero
                         int calificacionRedondeada = (int) Math.round(calificacion);
                         cell.setCellValue(calificacionRedondeada);
-
+                        cellL.setCellValue(ObtenerLetra(calificacionRedondeada));
                         sumaCalificaciones += calificacion;
                         cantidadCalificaciones++;
                     } else {
-                        cell.setCellValue("-");
+                        cell.setCellValue(" - ");
+                        cellL.setCellValue(" - ");
                     }
                     cell.setCellStyle(datosStyle);
+                    cellL.setCellStyle(datosStyle);
                 }
 
                 // Calcular el promedio de la unidad
                 Cell promedioUnidadCell = row.createCell(colIndex++);
+                Cell promedioUnidadCellL = row.createCell(colIndex++);
+
                 if (cantidadCalificaciones > 0) {
                     double promedioUnidad = sumaCalificaciones / cantidadCalificaciones;
                     int promedioUnidadRedondeado = (int) Math.round(promedioUnidad);
                     promedioUnidadCell.setCellValue(promedioUnidadRedondeado);
+                    promedioUnidadCellL.setCellValue(ObtenerLetra(promedioUnidadRedondeado));
                     sumaPromediosUnidades += promedioUnidad;
                     unidadesContadas++;
                 } else {
-                    promedioUnidadCell.setCellValue("-");
+                    promedioUnidadCell.setCellValue(" - ");
+                    promedioUnidadCellL.setCellValue(" - ");
                 }
                 promedioUnidadCell.setCellStyle(promedioCompetenciaStyle);
+                promedioUnidadCellL.setCellStyle(promedioCompetenciaStyle);
 
             }
 
 
             // Calcular el promedio del bimestre
             Cell promedioBimestreCell = row.createCell(colIndex);
+            Cell promedioBimestreCellL = row.createCell(colIndex + 1);
             if (unidadesContadas > 0) {
                 double promedioBimestre = sumaPromediosUnidades / unidadesContadas;
                 int promedioBimestreRedondeado = (int) Math.round(promedioBimestre);
                 promedioBimestreCell.setCellValue(promedioBimestreRedondeado);
-                promedioBimestreCell.setCellStyle(promedioBimestralStyle);
+                promedioBimestreCellL.setCellValue(ObtenerLetra(promedioBimestreRedondeado));
             } else {
-                promedioBimestreCell.setCellValue("-");
+                promedioBimestreCell.setCellValue(" - ");
+                promedioBimestreCellL.setCellValue(" - ");
             }
+            promedioBimestreCell.setCellStyle(promedioBimestralStyle);
+            promedioBimestreCellL.setCellStyle(promedioBimestralStyle);
             nAlumnos++;
 
 

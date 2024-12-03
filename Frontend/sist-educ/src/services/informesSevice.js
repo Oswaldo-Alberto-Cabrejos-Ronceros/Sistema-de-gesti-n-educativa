@@ -1,7 +1,7 @@
 import axiosInstance from './axiosInstance';
 
 // URL base para los endpoints de reportes
-const API_URL = "http://localhost:8080/reportes";
+const API_URL = "http://18.231.151.214:8080/reportes";
 
 
 

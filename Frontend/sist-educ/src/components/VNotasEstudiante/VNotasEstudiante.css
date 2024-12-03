@@ -39,3 +39,12 @@
     align-items: center;
     justify-content: space-between;
 }
+
+@media (max-width:460px){
+    .VNotasEstudianteContainer .VNotasEstudianteButtonsContainer{
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(2,1fr);
+            width: 100%;
+    }
+}

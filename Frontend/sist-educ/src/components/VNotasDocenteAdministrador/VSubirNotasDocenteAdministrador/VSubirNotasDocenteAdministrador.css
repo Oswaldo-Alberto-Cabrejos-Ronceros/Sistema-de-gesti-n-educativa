@@ -11,7 +11,8 @@
     display: flex;
     box-sizing: border-box;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
 }
 .VSubirNotasContainer .OpcionTitleVNotasDocentes{
     align-self:flex-start;
@@ -78,3 +79,39 @@
     min-height: 352px;
 }
 
+@media (max-width:1050px){
+    .VSubirNotasContainer .InfoSubNot{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width:714px){
+    .VSubirNotasContainer .InfoSubNot{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 20px;
+    }
+}
+
+
+@media (max-width:634px){
+    .VSubirNotasContainer .VSubirNotasContent{
+        width: 100%;
+    }
+    
+}
+
+@media (max-width:390px){
+    .VSubirNotasContainer .InfoSubNot{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        gap: 20px;
+    }
+    .VSubirNotasContainer .SelectVSubirNotasContainer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

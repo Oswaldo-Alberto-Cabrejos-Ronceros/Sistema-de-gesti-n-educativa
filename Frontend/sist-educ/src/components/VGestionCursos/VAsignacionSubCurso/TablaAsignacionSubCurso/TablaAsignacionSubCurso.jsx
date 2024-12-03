@@ -29,7 +29,6 @@ function TablaAsignacionSubCurso({ docentes = [], onDocenteUpdated, onShowConfir
             : null;
 
         if (asignacion) {
-            console.log("ID asignación seleccionado para eliminar:", asignacion.asignacionProfesorId);
             setSelectedAsignacionId(asignacion.asignacionProfesorId);
             setSelectedDocente(docentes.find((doc) => doc.usuarioId === docenteId));
 
@@ -115,7 +114,7 @@ function TablaAsignacionSubCurso({ docentes = [], onDocenteUpdated, onShowConfir
                     <h3>No hay docentes registrados</h3>
                 </div>
             ) : (
-                <table className="TableGestionSubCursos">
+                <table className="TableGestionAsignacionSubCursos">
                     <thead>
                         <tr>
                             <th>Nombres</th>
@@ -131,11 +130,11 @@ function TablaAsignacionSubCurso({ docentes = [], onDocenteUpdated, onShowConfir
                     <tbody>
                         {docentes.map((docente) => (
                             <tr key={docente.usuarioId}>
-                                <td>{docente.nombre}</td>
-                                <td>{docente.apellido}</td>
-                                <td>{docente.nivel}</td>
-                                <td>{docente.especialidad}</td>
-                                <td>
+                                <td data-label="Nombre">{docente.nombre}</td>
+                                <td data-label="Apellido">{docente.apellido}</td>
+                                <td data-label="Nivel">{docente.nivel}</td>
+                                <td data-label="Especialidad">{docente.especialidad}</td>
+                                <td data-label="Subcursos ">
                                     <SelectComponent
                                         name={`subcursos-${docente.usuarioId}`}
                                         options={(asignaciones[docente.usuarioId] || []).map((asignacion) => ({
@@ -146,7 +145,7 @@ function TablaAsignacionSubCurso({ docentes = [], onDocenteUpdated, onShowConfir
                                         onChange={(e) => handleSelectChange(docente.usuarioId, e.target.value)}
                                     />
                                 </td>
-                                <td>
+                                <td data-label="Estado">
                                     {Array.isArray(asignaciones[docente.usuarioId]) &&
                                         asignaciones[docente.usuarioId].find(
                                             (asignacion) =>
@@ -159,10 +158,10 @@ function TablaAsignacionSubCurso({ docentes = [], onDocenteUpdated, onShowConfir
                                         )?.estado
                                         : "No asignado"}
                                 </td>
-                                <td>
+                                <td data-label="Asignar">
                                     <PrimaryButton nombre="Asignar" onClick={() => handleEditClick(docente)} />
                                 </td>
-                                <td>
+                                <td data-label="Eliminar">
                                     {Array.isArray(asignaciones[docente.usuarioId]) &&
                                         asignaciones[docente.usuarioId].length > 0 && (
                                             <PrimaryButton

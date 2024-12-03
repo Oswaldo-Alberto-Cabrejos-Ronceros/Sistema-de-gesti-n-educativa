@@ -19,15 +19,12 @@ function TablaGestionEstudiantes({
   const [showConfirmation, setShowConfirmation] = useState(false);
   //cambios paginacion
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(24);
+  const [itemsPerPage] = useState(12);
   const indexOfLastItem = currentPage * itemsPerPage;
-  console.log(currentPage, itemsPerPage);
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = estudiantes.slice(indexOfFirstItem, indexOfLastItem);
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
-  console.log(indexOfFirstItem, indexOfLastItem);
-  console.log(currentItems);
-
+  
   const handleDeleteClick = (estudianteId) => {
     setSelectedStudent(estudianteId);
     setShowDeleteModal(true);
@@ -95,8 +92,7 @@ function TablaGestionEstudiantes({
                 <th>Codigo</th>
                 <th>Celular</th>
                 <th>Nivel</th>
-                <th>Grado</th>
-                <th>Seccion</th>
+                <th>Grado - Seccion</th>
                 <th>FechaNac</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
@@ -105,22 +101,21 @@ function TablaGestionEstudiantes({
             <tbody>
               {currentItems.map((estudiante) => (
                 <tr key={estudiante.usuarioId}>
-                  <td>{estudiante.dni}</td>
-                  <td>{estudiante.nombre}</td>
-                  <td>{estudiante.apellido}</td>
-                  <td>{estudiante.codigo}</td>
-                  <td>{estudiante.telefono}</td>
-                  <td>{estudiante.nivel}</td>
-                  <td>{estudiante.grado}</td>
-                  <td>{estudiante.seccion}</td>
-                  <td>{estudiante.fechaNacimiento}</td>
-                  <td>
+                  <td data-label="Dni">{estudiante.dni}</td>
+                  <td data-label="Nombres">{estudiante.nombre}</td>
+                  <td data-label="Apellidos">{estudiante.apellido}</td>
+                  <td data-label="Codigo">{estudiante.codigo}</td>
+                  <td data-label="Celular">{estudiante.telefono}</td>
+                  <td data-label="Nivel">{estudiante.nivel}</td>
+                  <td data-label="Grado - Seccion">{`${estudiante.grado} - "${estudiante.seccion}"`}</td>
+                  <td data-label="Fecha de Nacimiento">{estudiante.fechaNacimiento}</td>
+                  <td data-label="Editar">
                     <PrimaryButton
                       onClick={() => handleEditClick(estudiante)}
                       nombre="Editar"
                     />
                   </td>
-                  <td>
+                  <td data-label="Eliminar">
                     <PrimaryButton
                       onClick={() => handleDeleteClick(estudiante.usuarioId)}
                       nombre="Eliminar"

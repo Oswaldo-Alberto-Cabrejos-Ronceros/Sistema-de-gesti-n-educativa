@@ -14,8 +14,8 @@ function VGestionEstudiante() {
   const [error, setError] = useState(null);
 
   // Estados para los filtros
-  const [nivel, setNivel] = useState("");
-  const [grado, setGrado] = useState("");
+  const [nivel, setNivel] = useState("PRIMARIA");
+  const [grado, setGrado] = useState("1");
   const [seccion, setSeccion] = useState("");
 
   // Estado para el término de búsqueda
@@ -120,7 +120,6 @@ function VGestionEstudiante() {
               setGrado("");
             }}
             options={[
-              { value: "", label: "Seleccionar Nivel" },
               { value: "PRIMARIA", label: "Primaria" },
               { value: "SECUNDARIA", label: "Secundaria" },
             ]}
@@ -134,7 +133,6 @@ function VGestionEstudiante() {
             value={grado}
             onChange={(e) => setGrado(e.target.value)}
             options={[
-              { value: "", label: "Seleccionar Grado" },
               ...getGradoOptions().map((g) => ({
                 value: g,
                 label: g.toString(),
@@ -166,6 +164,7 @@ function VGestionEstudiante() {
       {loading ? (
         <div>Cargando estudiantes...</div>
       ) : (
+        
         /* Tabla de estudiantes */
         <div className="VGestionEstudiantesContent">
           <TablaGestionEstudiantes

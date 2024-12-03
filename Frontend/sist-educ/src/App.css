@@ -8,6 +8,13 @@
   --PLgsize:22px;
   --PMdsize:16px;
   --PSmsize:14px;
+  --PXSmsixe:12px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body{
@@ -15,11 +22,11 @@ body{
   margin: 0;
   padding: 0;
 }
+
 html, body {
   height: 100%;
   width: 100%;
-  margin: 0;
-  
+  overflow-x: hidden; /* Evita scroll horizontal */
 }
 
 
@@ -58,12 +65,41 @@ h1,h2,h3,p{
 }
 
 #root {
-  min-width: 100%;
+  /*min-width: 100%;
   min-height: 100%;
-  margin: 0 auto;
+  margin: 0 ;
+  display: flex;*/
   text-align: center;
-  display: flex;
   background-color: var(--BackgroundColor);
   box-sizing: border-box;
 }
 
+/* Filtros y Búsqueda */
+.FiltersAndSearch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.FilterGroup,
+.SearchGroup {
+  display: flex;
+  align-items: center;
+}
+
+.FilterGroup label,
+.SearchGroup label {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.SelectComponentContainer select {
+  padding: 5px;
+  font-size: 14px;
+}
+
+.SearchGroup {
+  flex-grow: 1;
+}

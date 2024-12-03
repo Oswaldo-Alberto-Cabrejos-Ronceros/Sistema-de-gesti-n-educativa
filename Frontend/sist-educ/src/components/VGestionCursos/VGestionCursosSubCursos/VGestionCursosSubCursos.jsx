@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./VGestionCursosSubCursos.css";
-import SearchComponent from "../../generalsComponets/SearchComponent/SearchComponent";
 import TablaGestionSubCursos from "./TablaGestionSubCursos/TablaGestionSubCursos";
 import FormularioAgregarSubCurso from "./FormularioAgregarSubCurso/FormularioAgregarSubCurso";
 import SubcursoService from "../../../services/subcursoService";
@@ -60,16 +59,12 @@ function VGestionCursosSubCursos() {
   if (loading) return <div>Cargando subcursos...</div>;
   if (error) return <div>{error}</div>;
 
-  console.log(subcursos);
   return (
     <div className="VGestionCursosSubCursosContainer">
       <div className="VGestionCursosSubCursosContainerTitle">
         <h3>SubCursos</h3>
       </div>
-      <div className="VGestionCursosSubCursosContainerSearch">
-        <SearchComponent nombre={"Subcursos"} placeholder={"Buscar Subcurso"} />
-      </div>
-      <div className="TablaGestionSubCursosContainer">
+      <div className="VGestionSubCursosContainer">
         <TablaGestionSubCursos
           subcursos={subcursos}
           onSubCursoUpdated={handleSubCursoUpdated}

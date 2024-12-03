@@ -39,6 +39,10 @@
   background-position: center;
   background-repeat: no-repeat; 
 }
+
+.Content-1 .PMd{
+  cursor: default;
+}
 .Content-1 {
   display: flex;
   justify-content: center;
@@ -89,6 +93,7 @@
   font-size: var(--PMdsize);
   border: none;
   cursor: pointer;
+  margin-top: 12px;
 }
 
 .btnContainer button:hover {
@@ -102,8 +107,8 @@
 }
 
 .input-user-container {
-  width: 340px;
-  height: 32px;
+  width: 348px;
+  height: 36px;
   flex-shrink: 0;
   background-color: var(--ColorBackgroundInput);
   border: 1px solid var(--ColorBtnBorder);
@@ -170,5 +175,99 @@
 
 .Content-1 .IconInicioSesionContainerPassword:hover{
   transition: 150ms;
-  color: var(--ColorBtnPrin);
-}
+  color: var(--ColorBtnPrin);}
+
+
+  @media (max-width:440px){
+    .Content-1{
+      width: 94%;
+    }
+    .btnContainer button{
+      width: 84vw;
+    }
+    .input-user-container{
+      width: 84vw;
+    }
+  }
+
+  @media (max-height:544px){
+    .Content-1{
+      height: 86%;
+    }
+    .Content-1 img{
+      width: 180px;
+      height: 180px;
+      align-items: center;
+    }
+  }
+
+  @media (max-height:520px){
+    .Content-1 h3{
+      margin: 0;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-height:500px){
+    .Content-1 h3{
+      margin: 0;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (max-height:468px){
+    .Content-1 img{
+      width: 160px;
+      height: 160px;
+      align-items: center;
+    }
+  }
+
+  @media (max-height:444px){
+    .Content-1 h3{
+      margin: 0;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+  
+  @media (max-height:428px){
+    .Content-1 h3{
+display: none;
+    }
+    .Content-1 .PMd{
+      padding: 10px;
+      box-sizing: border-box;
+      align-self: center;
+      justify-self: center;
+    }
+  }
+
+  @media (max-height:404px){
+    .Content-1 img{
+      width: 140px;
+      height: 140px;
+      align-items: center;
+    }
+  }
+  @media (max-height:380px){
+    .Content-1 img{
+      width: 120px;
+      height: 120px;
+      align-items: center;
+    }
+  }
+
+  @media (max-height:360px){
+    .Content-1 img{
+      width: 100px;
+      height: 100px;
+      align-items: center;
+    }
+
+    .Content-1{
+      height: 90%;
+    }
+  }

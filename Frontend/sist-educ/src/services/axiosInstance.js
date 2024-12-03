@@ -29,7 +29,7 @@ axiosInstance.interceptors.response.use(
             if (!originalRequest.url.includes('/auth/refresh')) {
                 try {
                     // Intentar refrescar el token
-                    const response = await axiosInstance.post('http://localhost:8080/auth/refresh');
+                    const response = await axiosInstance.post('http://18.231.151.214:8080/auth/refresh');
                     const newToken = response.data.jwt;
                     sessionStorage.setItem("jwtToken", newToken);
                     originalRequest.headers['Authorization'] = 'Bearer ' + newToken;

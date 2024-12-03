@@ -24,7 +24,9 @@ function FormularioAgregarDocente({ onDocenteAdded }) {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState("");
 
-  const optionsNivel = ["SELECCIONAR", "PRIMARIA", "SECUNDARIA"];
+  const optionsNivel = [                { value: "SELECCIONAR", label: "Seleccionar Nivel" },
+    { value: "PRIMARIA", label: "Primaria" },
+    { value: "SECUNDARIA", label: "Secundaria" },];
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -10,7 +10,7 @@ function ComBoxElementCurso({ curso, to, contenido }) {
       <div className="MdContentPasteSearchContainer">
       <IoDocumentTextOutline />
       </div>
-      <p className="PMd">{contenido.nombre}</p>
+      <p className="PMd">{contenido.nombreContenido}</p>
     </div>
     </Link>
 

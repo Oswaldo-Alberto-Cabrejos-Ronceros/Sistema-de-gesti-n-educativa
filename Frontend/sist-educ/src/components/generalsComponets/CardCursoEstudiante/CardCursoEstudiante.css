@@ -1,69 +1,68 @@
 :root {
-    --ColorCardLabel: #171717;
-    --ColorCardBackground: #FEF2F2;
-    --BorderRadious: 12px;
-    --ShadowHover: #dc262633;
-    --Transition: 150ms;
+  --ColorCardLabel: #171717;
+  --ColorCardBackground: #fef2f2;
+  --BorderRadious: 12px;
+  --ShadowHover: #dc262633;
+  --Transition: 150ms;
 }
 
 .CardContainer {
-    width: 340px;
-    height: 240px;
-    color: var(--ColorCardLabel);
-    background-color: var(--ColorCardBackground);
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    flex-shrink: 0;
-    border-radius: var(--BorderRadious);
-    cursor: pointer;
+  width: 340px;
+  height: 276px;
+  color: var(--ColorCardLabel);
+  background-color: var(--ColorCardBackground);
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  border-radius: var(--BorderRadious);
+  cursor: pointer;
 }
 
 .ImgContainer {
-    background-image: url('/src/assets/CardCurso/CardCurso.jpg');
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 55%;
-    flex-shrink: 0;
-    border-radius: var(--BorderRadious) var(--BorderRadious) 0 0;
+  background-image: url("/public/CardCurso.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 55%;
+  flex-shrink: 0;
+  border-radius: var(--BorderRadious) var(--BorderRadious) 0 0;
 }
 
 .ContentContainer {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--ColorCardBackground);
-    width: 100%;
-    height: 45%;
-    flex-shrink: 0;
-    border-radius: 0 0 var(--BorderRadious) var(--BorderRadious);
-    box-sizing: border-box;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ColorCardBackground);
+  width: 100%;
+  height: 45%;
+  flex-shrink: 0;
+  border-radius: 0 0 var(--BorderRadious) var(--BorderRadious);
+  box-sizing: border-box;
+  padding: 10px;
 }
 
-.ContentContainer .PLg{
-    align-self: flex-start;
+.ContentContainer .PLg {
+  align-self: flex-start;
 }
 
 .CardContainer:hover {
-    box-shadow: 4px 4px 4px 0px var(--ShadowHover);
-    transition: var(--Transition);
+  box-shadow: 4px 4px 4px 0px var(--ShadowHover);
+  transition: var(--Transition);
 }
 
 .RowContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
 }
 
 .PMd {
-    align-self: flex-start;
-    margin: 0;
-
+  align-self: flex-start;
+  margin: 0;
 }
 
 .Nivel {
-    text-align: right;
-    margin: 0;
-    font-weight: bold;
+  text-align: right;
+  margin: 0;
+  font-weight: bold;
 }
-

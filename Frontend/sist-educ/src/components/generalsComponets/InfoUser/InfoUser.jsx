@@ -5,11 +5,14 @@ import AlumnoService from "../../../services/alumnoService";
 import DocenteService from "../../../services/docenteService";
 import ConfirmationModal from "../../VGestionUsuarios/Modals/ConfirmacionModal";
 import ICONO from "../../../../public/descarga.png"
+import { useLocation } from "react-router-dom";
 import { FaUser, FaIdCard, FaPhone, FaEnvelope, FaBook, FaGraduationCap, FaSave, FaLock } from "react-icons/fa";
 
 function InfoUser() {
+  const location = useLocation();
+  const {cambioContraseña = false} = location.state || {};
   const [user, setUser] = useState(null);
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(cambioContraseña);
   const [editableUser, setEditableUser] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
@@ -60,22 +63,28 @@ function InfoUser() {
       return;
     }
 
+
     const saveUserData = (service, successMessage) => {
       service(id, updateData)
         .then(() => {
-          setUser(editableUser);
-          sessionStorage.setItem("userData", JSON.stringify(editableUser));
+          // Actualizar `debeCambiarPassword` a false
+          const updatedUser = { ...editableUser, debeCambiarPassword: false };
+          setUser(updatedUser);
+          sessionStorage.setItem("userData", JSON.stringify(updatedUser));
+
+          // Cerrar modo de edición y mostrar mensaje de éxito
           setEditMode(false);
           setModalMessage(successMessage);
           setShowModal(true);
-          setTimeout(() => setShowModal(false), 1500); // Cerrar el modal después de 3 segundos
+          setTimeout(() => setShowModal(false), 1500); 
         })
         .catch((error) => {
           setModalMessage("Error al actualizar la información. Intenta nuevamente.");
           setShowModal(true);
-          setTimeout(() => setShowModal(false), 1500); // Cerrar el modal después de 3 segundos
+          setTimeout(() => setShowModal(false), 1500); 
         });
     };
+
 
     // Determina el servicio a usar basado en el rol del usuario
     if (user.rol === "ADMIN") {

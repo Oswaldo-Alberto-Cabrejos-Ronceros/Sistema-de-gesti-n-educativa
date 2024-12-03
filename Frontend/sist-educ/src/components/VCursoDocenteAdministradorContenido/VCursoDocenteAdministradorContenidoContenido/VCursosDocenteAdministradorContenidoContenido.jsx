@@ -3,21 +3,19 @@ import "./VCursosDocenteAdministradorContenidoContenido.css";
 import ComBoxCursoXUnidadDocente from "../../generalsComponets/ComBoxCursoXUnidadDocente/ComBoxCursoXUnidadDocente";
 
 
-function VCursosDocenteAdministradorContenidoContenido({to,curso, contenidos }) {
-  let unidad = "Unidad ";
-  let numerounidad = 1;
-  let unidadString;
+function VCursosDocenteAdministradorContenidoContenido({to,toTarea,curso }) {
+  let unidadString = "Unidad ";
+  const unidades=[1,2,3,4,5,6,7,8];
   return (
     <div className="VCursoDocenteContenidoContenidoContainer">
-      {contenidos.map((contenido) => {
-        unidadString = unidad + numerounidad;
-        numerounidad++;
+      {unidades.map((unidad) => {
         return (
           <ComBoxCursoXUnidadDocente
-            unidad={unidadString}
-            contenidos={contenido}
+            unidad={unidadString + unidad}
             curso={curso}
             to={to}
+            toTarea={toTarea}
+            unidadNumero={unidad}
           />
         );
       })}

@@ -1,6 +1,6 @@
 import axiosInstance from './axiosInstance';
 
-const API_URL = 'http://localhost:8080/api/profesores';
+const API_URL = 'http://18.231.151.214:8080/api/profesores';
 
 
 class DocenteService{

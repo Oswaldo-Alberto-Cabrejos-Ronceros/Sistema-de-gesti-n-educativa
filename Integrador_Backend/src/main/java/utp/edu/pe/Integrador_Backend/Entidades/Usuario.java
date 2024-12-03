@@ -20,11 +20,13 @@ public abstract class Usuario  {
     @Column(name = "C_USUARIOID")  // Código de usuario
     private Long usuarioId;
 
-    @Column(name = "X_NOMBRE")
+    @Column(name = "X_NOMBRE",length = 30)
     @NotBlank(message = "El nombre no puede estar vacío")
+    @Size(max = 30, message = "El nombre no puede tener más de 30 caracteres")
     private String nombre;
 
-    @Column(name = "X_APELLIDO")
+    @Column(name = "X_APELLIDO",length =60 )
+    @Size(max = 60, message = "El apellido no puede tener más de 60 caracteres")
     @NotBlank(message = "El apellido no puede estar vacío")
     private String apellido;
 

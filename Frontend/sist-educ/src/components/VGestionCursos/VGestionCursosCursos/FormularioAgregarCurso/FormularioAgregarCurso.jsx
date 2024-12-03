@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./FormularioAgregarCurso.css";
 import InputComponent from "../../../generalsComponets/InputComponent/InputComponent";
 import { RiBook2Line } from "react-icons/ri";
@@ -6,34 +6,38 @@ import TextAreaComponent from "../../../generalsComponets/TextAreaComponent/Text
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import SelectComponent from "../../../generalsComponets/SelectComponent/SelectComponent";
 import ButtonSubtmit from "../../../generalsComponets/ButtonSubmit/ButtonSubtmit";
-import CursoService from "../../../../services/cursosService"
-import ConfirmationModal from "../../../VGestionUsuarios/Modals/ConfirmacionModal"
+import CursoService from "../../../../services/cursosService";
+import ConfirmationModal from "../../../VGestionUsuarios/Modals/ConfirmacionModal";
 
 function FormularioAgregarCurso({ onCourseAdded }) {
   const [formData, setFormData] = useState({
     nombre: "",
     descripcion: "",
-    nivel: ""
+    nivel: "",
   });
-  
+
   const [errorMessages, setErrorMessages] = useState({});
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
-  
-  const nivelOptions = [ "SELECCIONAR","PRIMARIA", "SECUNDARIA"];
-  
+
+  const nivelOptions = [
+    { value: "SELECCIONAR", label: "Seleccionar Nivel" },
+    { value: "PRIMARIA", label: "Primaria" },
+    { value: "SECUNDARIA", label: "Secundaria" },
+  ];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  
+
   const showErrorMessage = (field, message) => {
     setErrorMessages((prevErrors) => ({ ...prevErrors, [field]: message }));
     setTimeout(() => {
       setErrorMessages((prevErrors) => ({ ...prevErrors, [field]: "" }));
     }, 1300);
   };
-  
+
   const showConfirmationMessage = (message, duration = 2000) => {
     setConfirmationMessage(message);
     setShowConfirmation(true);
@@ -57,20 +61,22 @@ function FormularioAgregarCurso({ onCourseAdded }) {
     }
 
     try {
-      await CursoService.createCurso(formData);  // Usar el servicio adecuado para agregar curso
+      await CursoService.createCurso(formData); // Usar el servicio adecuado para agregar curso
       showConfirmationMessage("Curso agregado correctamente", 2000);
       setTimeout(() => {
         setFormData({
           nombre: "",
           descripcion: "",
-          nivel: ""
+          nivel: "",
         });
-        onCourseAdded();  // Llama a una función para refrescar la lista de cursos
-      }, 1500); 
+        onCourseAdded(); // Llama a una función para refrescar la lista de cursos
+      }, 1500);
     } catch (error) {
       if (error.response && error.response.status === 500) {
         // Mensaje personalizado con los valores de formData
-        showConfirmationMessage(`Ya existe un curso con el nombre "${formData.nombre}" en el nivel "${formData.nivel}"`);
+        showConfirmationMessage(
+          `Ya existe un curso con el nombre "${formData.nombre}" en el nivel "${formData.nivel}"`
+        );
       } else {
         showConfirmationMessage("Error al crear el curso");
       }
@@ -79,12 +85,14 @@ function FormularioAgregarCurso({ onCourseAdded }) {
 
   return (
     <div className="FormularioAgregarCursoContainer">
-      <ConfirmationModal show={showConfirmation} message={confirmationMessage} />
-  
+      <ConfirmationModal
+        show={showConfirmation}
+        message={confirmationMessage}
+      />
+
       <form onSubmit={handleSubmit}>
         <h3>Agregar Curso</h3>
         <div className="formularioAgregarCursoContentPrin">
-          
           {/* Contenedor para "Nombre" y "Nivel" en una sola fila */}
           <div className="label-input-row">
             <div className="label-input-container">
@@ -97,9 +105,11 @@ function FormularioAgregarCurso({ onCourseAdded }) {
                 value={formData.nombre}
                 onChange={handleChange}
               />
-              {errorMessages.nombre && <p className="error-message">{errorMessages.nombre}</p>}
+              {errorMessages.nombre && (
+                <p className="error-message">{errorMessages.nombre}</p>
+              )}
             </div>
-  
+
             <div className="label-input-container">
               <label htmlFor="nivel">Nivel:</label>
               <SelectComponent
@@ -108,10 +118,12 @@ function FormularioAgregarCurso({ onCourseAdded }) {
                 value={formData.nivel}
                 onChange={handleChange}
               />
-              {errorMessages.nivel && <p className="error-message">{errorMessages.nivel}</p>}
+              {errorMessages.nivel && (
+                <p className="error-message">{errorMessages.nivel}</p>
+              )}
             </div>
           </div>
-  
+
           {/* Descripción en una fila completa */}
           <div className="label-input-container">
             <label htmlFor="descripcion">Descripción:</label>
@@ -122,10 +134,12 @@ function FormularioAgregarCurso({ onCourseAdded }) {
               value={formData.descripcion}
               onChange={handleChange}
             />
-            {errorMessages.descripcion && <p className="error-message">{errorMessages.descripcion}</p>}
+            {errorMessages.descripcion && (
+              <p className="error-message">{errorMessages.descripcion}</p>
+            )}
           </div>
         </div>
-  
+
         <div className="buttonSubmitCursoContainer">
           <ButtonSubtmit className="buttonSubmitCurso" nombre="Agregar" />
         </div>

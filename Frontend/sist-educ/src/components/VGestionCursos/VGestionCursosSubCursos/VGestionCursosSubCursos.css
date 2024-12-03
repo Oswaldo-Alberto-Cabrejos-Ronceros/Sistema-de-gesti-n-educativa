@@ -1,43 +1,100 @@
 .VGestionCursosSubCursosContainer{
     width: 100%;
-    height: auto;
     display: flex;
     flex-direction: column;
-    margin: 0;
     box-sizing: border-box;
+    padding: 20px;
 }
 
-.VGestionCursosSubCursosContainer .VGestionCursosSubCursosContainerSearch{
-    margin: 0;
-    padding-left: 1vw;
-    box-sizing: content-box;
-}
 
 .VGestionCursosSubCursosContainer .VGestionCursosSubCursosContainerTitle{
-    height: auto;
-    margin: 1%;
     align-self: flex-start;
+    margin-bottom: 20px;
 }
 
 .VGestionCursosSubCursosContainer .VGestionCursosSubCursosContainerTitle h3{
-    padding: 0;
     margin: 0;
+    padding: 0;
+    font-size: 28px;
 }
 
-.VGestionCursosSubCursosContainer .TablaGestionSubCursosContainer{
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin:10px;
+/* Barra de búsqueda */
+.VGestionCursosSubCursosContainerSearch {
+    margin-bottom: 20px;
 }
 
-.VGestionCursosSubCursosContainer .ButtonFormularioContent{
+.VGestionCursosSubCursosContainerSearch .SearchComponentContainer {
     width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    max-width: 350px;
 }
+
+/* Contenido principal */
+.VGestionSubCursosContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.VGestionSubCursosContainer .FormularioAgregarSubCurso {
+    margin-bottom: 20px;
+}
+
+/* Tabla de Subcursos */
+.TablaGestionSubCursos {
+    width: 100%;
+    overflow-x: auto;
+    /* Para tablas anchas en pantallas pequeñas */
+}
+
+/* Botón Mostrar/Ocultar */
+.VGestionCursosSubCursosContainer .ButtonFormularioContent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.VGestionCursosSubCursosContainer .ButtonFormularioContent .PrimaryButton {
+    width: 200px;
+}
+
+
+/* Pantallas medianas */
+@media (max-width: 768px) {
+    .VGestionCursosSubCursosContainer {
+        padding: 15px;
+    }
+
+    .VGestionCursosSubCursosContainerTitle h3 {
+        font-size: 24px;
+    }
+
+    .ButtonFormularioContent .PrimaryButton {
+        width: 180px;
+    }
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 480px) {
+    .VGestionCursosSubCursosContainer {
+        padding: 10px;
+    }
+
+    .VGestionCursosSubCursosContainerTitle h3 {
+        font-size: 20px;
+    }
+
+    .VGestionCursosSubCursosContainerSearch {
+        margin-bottom: 15px;
+    }
+
+    .ButtonFormularioContent .PrimaryButton {
+        width: 100%;
+    }
+
+    .TablaGestionSubCursosContainer {
+        margin: 15px 0;
+    }
+}
+
+

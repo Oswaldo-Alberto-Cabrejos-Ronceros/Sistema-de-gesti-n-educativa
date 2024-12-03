@@ -7,36 +7,7 @@ import SelectComponent from '../../generalsComponets/SelectComponent/SelectCompo
 function VVerNotasDocenteAdministrador() {
   const location = useLocation();
   const {curso} = location.state;
-  console.log(curso)
-  const alumnos = [
-    {
-      "N°": "5",
-      Dni: "78984545",
-      Nombres: "Alonzo Jorge",
-      Apellidos: "Cardenas Godoy",
-      C1:17,
-      C2:16,
-      C3:14
-    },
-    {
-      "N°": "8",
-      Dni: "78848447",
-      Nombres: "Karla Julia",
-      Apellidos: "Fernandez Espinoza",
-      C1:15,
-      C2:16,
-      C3:14
-    },
-    {
-      "N°": "7",
-      Dni: "78945612",
-      Nombres: "Luis Hermenegildo",
-      Apellidos: "Castillo Cerron",
-      C1:18,
-      C2:19,
-      C3:20
-    },
-  ];
+
   const unidades = [
     "Unidad 1",
     "Unidad 2",
@@ -66,7 +37,7 @@ function VVerNotasDocenteAdministrador() {
           <SelectComponent name={"Unidad"} options={unidades}/>
         </div>
         <div className="ContVerNot">
-        <TablaVerNotasDocente estudiantesNotas={alumnos}/>
+        <TablaVerNotasDocente/>
         </div>
       </div>
   </div>

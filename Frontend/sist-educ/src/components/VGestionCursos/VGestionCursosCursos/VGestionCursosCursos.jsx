@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from 'react'
 import './VGestionCursosCursos.css'
-import SearchComponent from '../../generalsComponets/SearchComponent/SearchComponent'
+
 import TablaGestionCursos from './TablaGestionCursos/TablaGestionCursos'
 import FormularioAgregarCurso from './FormularioAgregarCurso/FormularioAgregarCurso'
 import PrimaryButton from "../../generalsComponets/PrimaryButton/PrimaryButton";
@@ -58,17 +58,13 @@ function VGestionCursosCursos() {
         <div className="VGestionCursosCursosContainerTitle">
           <h3>Cursos</h3>
         </div>
-        <div className='VGestionCursosCursosContainerSearch'>
-        <SearchComponent nombre={"Cursos"} placeholder={"Buscar Curso"} />
-        </div>
-        <div className="TablaGestionCursosContainer">
+        <div className="VGestionCursosContent">
           <TablaGestionCursos cursos={cursos} onCourseUpdated={handleCourseUpdated} onCourseDeleted={handleCourseDeleted} />
         </div>
         <div className="ButtonFormularioContent">
         <PrimaryButton nombre={formularioIsVisible ? "Ocultar" : "Mostrar" } onClick={toggleVisibility}/>
         </div>
         {formularioIsVisible &&  <FormularioAgregarCurso onCourseAdded={fetchCursos} />}
-
       </div>
     );
   }

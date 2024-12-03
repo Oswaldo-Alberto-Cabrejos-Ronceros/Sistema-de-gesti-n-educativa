@@ -1,65 +1,73 @@
 :root {
-    --ColorBorderFormHorarioGrado: #171717;
-  }
-  
-  .CardFormularioHorarioGradoContainer form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid var(--ColorBorderFormHorarioGrado);
-    border-radius: 8px;
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  }
-  
-  .CardFormularioHorarioGradoContainer
-    form
-    .CardFormularioHorarioGradoContent {
+  --ColorBorderFormHorarioGrado: #171717;
+}
+
+.CardFormularioHorarioGradoContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--ColorBorderFormHorarioGrado);
+  border-radius: 8px;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.CardFormularioHorarioGradoContainer form .CardFormularioHorarioGradoContent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.CardFormularioHorarioGradoContainer form h3 {
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.CardFormularioHorarioGradoContent .label-input-container {
+  padding: 4px;
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.CardFormularioHorarioGradoContent .label-input-container.input-file .InputComponentContainer{
+  height: 56px;
+}
+
+.CardFormularioHorarioGradoContent .label-input-container label {
+  margin-right: 10px;
+}
+
+.CardFormularioHorarioGradoContent label,
+input {
+  margin-bottom: 10px;
+}
+
+.CardFormularioHorarioGradoContainer .buttonSubmitHorarioContainer {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.82rem;
+  margin-top: 3px;
+  min-height: 0px;
+  max-height: 0px;
+}
+
+@media (max-width:616px) {
+  .CardFormularioHorarioGradoContainer form .CardFormularioHorarioGradoContent {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
   }
-  .CardFormularioHorarioGradoContainer form h3 {
-    padding: 0;
-    margin-top: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .CardFormularioHorarioGradoContent .label-input-container {
-    padding: 4px;
-    box-sizing: border-box;
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .CardFormularioHorarioGradoContent .label-input-container label {
-    margin-right: 10px;
-  }
-  
-  .CardFormularioHorarioGradoContent label,
-  input {
-    margin-bottom: 10px;
-  }
-  
-  .CardFormularioHorarioGradoContainer .buttonSubmitHorarioContainer {
-    padding-top: 20px;
-    padding-bottom: 10px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 0.82rem;
-    margin-top: 3px;
-    min-height: 0px;
-    max-height: 0px;
-  }
-  
+}

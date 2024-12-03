@@ -1,44 +1,194 @@
 :root {
-    --BorderTableGestionCursos: #171717;
-    --BackgroudColorTableGestionCursos: #ef4444;
-    --ColorTableGestionCursosDocTh: #fef2f2;
-  }
-  
-  .TablaGestionCursosContainer {
-    width: 100%;
-  }
-  .TableGestionCursos,
-  th,
-  td {
-    border: 1px solid var(--BorderTableGestionCursos);
-    border-collapse:collapse;
-  }
-  
-  .TableGestionCursos tr td {
-    padding: 8px;
-    box-sizing: border-box;
-    text-align: left;
-    font-size: var(--PMdsize);
-  }
-  
-  .TableGestionCursos th {
-    padding: 8px;
-    box-sizing: border-box;
-    font-size: var(--PMdsize);
-  }
-  
+  --BorderTableGestionCursos: #171717;
+  --BackgroudColorTableGestionCursos: #ef4444;
+  --ColorTableGestionCursosDocTh: #fef2f2;
+  --BorderCursoSeparation: #cccccc; /* Nuevo para separar las tarjetas */
+  --PMdsize: 16px;
+  --HeaderFontSize: 1rem;
+  --BodyFontSize: 0.9rem;
+}
 
-  .TableGestionCursos th {
-    background-color: var(--BackgroudColorTableGestionCursos);
-    color: var(--ColorTableGestionCursosDocTh);
+/* Contenedor principal */
+.TablaGestionCursosContainer {
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  margin:10px;
+  margin-bottom: 40px;
+}
+
+/* Tabla base */
+.TableGestionCursos {
+  width: auto;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.TableGestionCursos th,
+.TableGestionCursos td {
+  border: 1px solid var(--BorderTableGestionCursos);
+  padding: 8px;
+  text-align: left;
+  font-size: var(--BodyFontSize);
+}
+
+.TableGestionCursos th {
+  background-color: var(--BackgroudColorTableGestionCursos);
+  color: var(--ColorTableGestionCursosDocTh);
+  font-weight: bold;
+  font-size: var(--HeaderFontSize);
+}
+
+/* Tabla vacía */
+.TablaGestionCursosVerDocEmpty {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--HeaderFontSize);
+  text-align: center;
+}
+
+/* Responsividad para pantallas medianas y pequeñas */
+@media (max-width: 900px) {
+  .TableGestionCursos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    border: none;
   }
-  
-  .TablaGestionCursosVerDocEmpty{
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    box-sizing: border-box;
+
+  .TableGestionCursos thead {
+    display: none;
+  }
+
+  .TableGestionCursos tbody {
+    display: contents;
+  }
+
+  .TableGestionCursos tr {
+    display: block;
+    border: 1px solid var(--BorderCursoSeparation);
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  .TableGestionCursos td {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    padding: 8px 5px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: var(--BodyFontSize);
+    color: #333;
   }
+
+  .TableGestionCursos td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #555;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  /* Estilo específico para la fila de botones */
+  .TableGestionCursos td[data-label="Modificar"],
+  .TableGestionCursos td[data-label="Eliminar"] {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+  }
+
+  .TableGestionCursos td[data-label="Modificar"]::before,
+  .TableGestionCursos td[data-label="Eliminar"]::before {
+    content: none;
+  }
+}
+
+@media (max-width: 720px) {
+
+  .TableGestionCursos {
+    display: block;
+    overflow: hidden;
+  }
+
+  .TableGestionCursos thead {
+    display: none;
+  }
+
+  .TableGestionCursos tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .TableGestionCursos tr {
+    display: block;
+    margin-bottom: 15px;
+    border-bottom: 4px solid var(--BorderCursoSeparation);
+  }
+
+  .TableGestionCursos td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.85rem;
+  }
+
+  .TableGestionCursos td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-right: 10px;
+    color: #555;
+    font-size: 0.9rem;
+  }
+
+  .TableGestionCursos td:last-child {
+    border-bottom: none;
+  }
+
+  /* Estilo específico para la fila de botones */
+  .TableGestionCursos td[data-label="Modificar"],
+  .TableGestionCursos td[data-label="Eliminar"] {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+  }
+
+  .TableGestionCursos td[data-label="Modificar"]::before,
+  .TableGestionCursos td[data-label="Eliminar"]::before {
+    content: none;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --HeaderFontSize: 0.85rem;
+    --BodyFontSize: 0.75rem;
+  }
+
+
+  .TableGestionCursos td {
+    padding: 8px 5px;
+    font-size: var(--BodyFontSize);
+  }
+
+  .TableGestionCursos td::before {
+    font-size: 0.8rem;
+  }
+
+  .TablaGestionCursosVerDocEmpty {
+    font-size: 0.9rem;
+  }
+}

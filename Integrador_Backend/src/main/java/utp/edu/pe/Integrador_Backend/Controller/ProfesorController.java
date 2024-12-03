@@ -1,6 +1,7 @@
 package utp.edu.pe.Integrador_Backend.Controller;
 
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import utp.edu.pe.Integrador_Backend.Entidades.*;
 import utp.edu.pe.Integrador_Backend.Repository.AsignacionProfesorRepository;
 import utp.edu.pe.Integrador_Backend.Service.AsignacionProfesorService;
+import utp.edu.pe.Integrador_Backend.Service.HorarioService;
 import utp.edu.pe.Integrador_Backend.Service.ProfesorService;
 
 import java.util.Collections;
@@ -16,7 +18,6 @@ import java.util.List;
 
 @RestController
 @Controller
-@CrossOrigin(origins = "http://localhost:5173/")
 @RequestMapping("api/profesores")
 public class ProfesorController {
 
@@ -29,9 +30,12 @@ public class ProfesorController {
     @Autowired
     private AsignacionProfesorService asignacionProfesorService;
 
+    @Autowired
+    private HorarioService horarioService;
+
     // Crear un nuevo profesor
     @PostMapping("/registrar")
-    public ResponseEntity<Profesor> crearProfesor(@RequestBody Profesor profesor) {
+    public ResponseEntity<Profesor> crearProfesor(@Valid @RequestBody Profesor profesor) {
         Profesor nuevoProfesor = profesorService.crearProfesor(profesor);
         return ResponseEntity.ok(nuevoProfesor);
     }
@@ -88,6 +92,7 @@ public class ProfesorController {
     // Eliminar profesor
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarProfesor(@PathVariable Long id) {
+        horarioService.eliminarHorarioProfesor(id);
         profesorService.eliminarProfesor(id);
         return ResponseEntity.ok("Profesor eliminado");
     }

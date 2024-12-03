@@ -1,49 +1,71 @@
+/* Variables de color */
+:root {
+    --modal-background-color: white;
+    --modal-overlay-color: rgba(0, 0, 0, 0.5);
+    --modal-text-color: #333;
+    --modal-button-background: #d32f2f;
+    --modal-button-color: white;
+}
+
+/* Estilos para el overlay del modal */
 .edit-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* Asegura que ocupe todo el ancho de la ventana */
-    height: 100vh; /* Asegura que ocupe todo el alto de la ventana */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    width: 100vw; /* Ocupa todo el ancho de la ventana */
+    height: 100vh; /* Ocupa todo el alto de la ventana */
+    background-color: var(--modal-overlay-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999; /* Aumenta el z-index para asegurarte de que esté por encima de todo */
+    z-index: 9999;
 }
 
-
+/* Estilos para el contenido del modal */
 .edit-modal-content {
-    background-color: white;
-    padding: 30px; /* Aumenta el padding para dar más espacio */
+    background-color: var(--modal-background-color);
+    padding: 30px;
     border-radius: 18px;
-    width: 650px; /* Asegura suficiente ancho para dos columnas */
-    text-align: left; /* Alinea el texto a la izquierda */
+    width: 100%;
+    max-width: 650px;
+    text-align: left;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra los elementos dentro del modal */
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0 20px; /* Margen lateral para pantallas pequeñas */
 }
 
-.edit-form-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    width: 100%; /* Ocupa todo el ancho del modal */
-}
-
+/* Botón de cierre del modal */
 .edit-close-button {
     position: absolute;
     top: 10px;
     right: 10px;
     background: transparent;
     border: none;
-    font-size: 24px; /* Tamaño un poco más grande para mejor visibilidad */
+    font-size: 24px;
     cursor: pointer;
-    color: #333; /* Color oscuro para que sea más visible */
+    color: var(--modal-text-color);
 }
 
+/* Título del modal */
+.edit-modal-content h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
 
+/* Contenedor del formulario */
+.edit-form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+/* Contenedor de cada campo del formulario */
 .label-input-container {
     display: flex;
     flex-direction: column;
@@ -51,24 +73,114 @@
     width: 100%;
 }
 
+/* Estilos para las etiquetas */
 .label-input-container label {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
+/* Estilos para los mensajes de error */
+.error-message {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+/* Contenedor del botón de actualización */
 .edit-button-container {
-    grid-column: span 2; /* Ocupa las dos columnas */
+    grid-column: span 2; /* Ocupa ambas columnas */
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
+/* Estilos para el botón de actualización */
 .edit-update-button {
-    background-color: #d32f2f; /* Cambia el color a un rojo más oscuro */
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
+    background-color: var(--modal-button-background);
+    color: var(--modal-button-color);
+    padding: 12px 24px;
+    font-size: 1rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
 }
+
+/* Media Queries para pantallas medianas */
+@media (max-width: 768px) {
+
+    .edit-modal-content {
+        padding: 20px;
+        max-width: 450px;
+    }
+
+    .edit-form-container {
+        gap: 15px;
+    }
+
+    .edit-update-button {
+
+        font-size: 0.95rem;
+    }
+    
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 600px) {
+    .edit-modal-content {
+        padding: 15px;
+        margin: 0 10px;
+        max-width: 350px;
+    }
+
+
+    .edit-update-button {
+        width: 100%; /* Ocupa todo el ancho disponible */
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .edit-close-button {
+        font-size: 22px;
+        top: 8px;
+        right: 8px;
+    }
+
+    .edit-modal-content h4 {
+        font-size: 1rem;
+    }
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 300px) {
+    .edit-modal-content {
+        padding: 15px;
+        margin: 0 10px;
+        max-width: 250px;
+    }
+
+    .edit-form-container {
+        grid-template-columns: 1fr; /* Cambia a una sola columna */
+        gap: 15px;
+    }
+
+    .edit-button-container {
+        grid-column: span 1; /* Ajusta para una columna */
+    }
+
+    .edit-update-button {
+        width: 100%; /* Ocupa todo el ancho disponible */
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .edit-close-button {
+        font-size: 22px;
+        top: 18px;
+        right: 8px;
+    }
+
+    .edit-modal-content h4 {
+        font-size: 1rem;
+    }
+}
+

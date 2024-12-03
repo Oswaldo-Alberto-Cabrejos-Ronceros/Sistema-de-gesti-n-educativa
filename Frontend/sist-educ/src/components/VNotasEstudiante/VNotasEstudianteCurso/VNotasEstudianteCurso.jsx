@@ -31,7 +31,8 @@ function VNotasEstudianteCurso() {
         .catch((error) => console.error("Error al obtener los cursos:", error));
     }
   }, []);
-  console.log(cursos)
+
+  
   return (
     <div className="VNotasEstudianteCursoContainer">
     {

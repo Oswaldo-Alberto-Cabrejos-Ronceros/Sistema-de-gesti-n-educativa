@@ -8,12 +8,15 @@ function VSubirNotasDocenteAdministrador({ curso, alumnos }) {
   const [userDocente, setUserDocente] = useState({});
   const [selectedUnidad, setSelectedUnidad] = useState(1);
   const [unidadesDesbloqueadas, setUnidadesDesbloqueadas] = useState([true, ...Array(7).fill(false)]);
+  
+
 
   useEffect(() => {
     const userData = JSON.parse(sessionStorage.getItem("userData"));
     setUserDocente(userData || {});
   }, []);
 
+ 
   // Maneja cuando una unidad es completada
   const handleUnidadCompleta = () => {
     setUnidadesDesbloqueadas((prev) => {
@@ -48,8 +51,9 @@ function VSubirNotasDocenteAdministrador({ curso, alumnos }) {
           <p className="PMd">Sección:</p>
           <p className="PMd">{curso.seccion}</p>
           <p className="PMd">Nivel:</p>
-          <p className="PMd">{userDocente.nivel}</p>
+          <p className="PMd">{curso.nivel}</p>
           <p className="PMd">Unidad:</p>
+          <div className="SelectVSubirNotasContainer">
           <SelectComponent
             name="Unidad"
             options={unidades}
@@ -57,9 +61,11 @@ function VSubirNotasDocenteAdministrador({ curso, alumnos }) {
             onChange={(e) => setSelectedUnidad(Number(e.target.value))}
             /*disabledOptions={unidades.map((_, index) => !unidadesDesbloqueadas[index])}*/
           />
+          </div>
         </div>
         <div className="IndicacionesContainer">
-          <p className="PMd">Suba notas del 0 al 20, no deje alumnos con notas en blanco.</p>
+          <p className="PMd">Suba notas del 0 al 20, no deje alumnos con notas en blanco en una competencia, ya sea el caso,
+            puede saltearse una competencia.</p>
         </div>
         <div className="ContSubNot">
           <TablaSubirNotasDocenteAdministrador

@@ -17,3 +17,61 @@
     background-color: var(--BackgroundColor);
     box-sizing: border-box;
   }
+
+    
+  /* Pantallas pequeñas: ajusta la posición del contenido */
+@media (max-width: 1130px) {
+.VDocenteMain .containerCambDocente {
+    left: 0; /* Contenido ocupa todo el ancho */
+    z-index: 1;
+    min-height: calc(100% - 11%); /* Ajusta altura */
+    width: 100%;
+  }
+}
+
+@media (max-width: 1084px) {
+.VDocenteMain .containerCambDocente {
+    padding-right: 2%;
+    padding-left: 2%;
+  }
+}
+
+/* Media queries para ajustar el padding lateral en pantallas pequeñas */
+@media (max-width: 972px) {
+.VDocenteMain .containerCambDocente {
+    padding-right: 2%;
+    padding-left: 1%;
+  }
+}
+
+
+/* Pantallas muy pequeñas: ajusta la altura */
+@media (max-height: 512px) {
+.VDocenteMain .containerCambDocente {
+    top: 64px; /* Ajusta la posición del contenido */
+    min-height: calc(100% - 64px); /* Calcula la altura restante */
+  }
+}
+
+@media (min-height:760px) {
+  .VDocenteMain .containerCambDocente {
+    top: 84px; /* Ajusta la posición del contenido */
+    min-height: calc(100% - 64px); /* Calcula la altura restante */
+  }
+}
+
+
+
+    /* Pantallas muy pequeñas: ajusta la altura */
+    @media (max-height: 742px) {
+      .VDocenteMain .containerCambDocente {
+          padding-top: 2vh;
+        }
+      }
+      
+      @media (max-height: 552px) {
+        .VDocenteMain .containerCambDocente {
+        padding-top: 3vh;
+        }
+      }
+      

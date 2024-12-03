@@ -6,28 +6,7 @@ import VHonorDocenteUnidad from "../VHonorDocenteAdministrador/VHonorDocenteAdmi
 import VHonorDocenteBimestral from "../VHonorDocenteAdministrador/VHonorDocenteAdministradorBimestral/VHonorDocenteAdministradorBimestral";
 
 function VHonorDocenteAdministrador() {
-  let info = ["Primaria", "6to", "Unica", "3era Unidad"];
-  let infoBimestral = ["Primaria", "6to", "Unica", "3er Bimestre"];
-  let estudiantesHonor = [
-    {
-      Merito: 1,
-      Apellidos: "Rodriguez Pastor",
-      Nombres: "Alberto Jorge",
-      Promedio: 18.5,
-    },
-    {
-      Merito: 2,
-      Apellidos: "Yupa Mayuri",
-      Nombres: "Karla Luisa",
-      Promedio: 18.1,
-    },
-    {
-      Merito: 3,
-      Apellidos: "Cabrera Huanta",
-      Nombres: "Xiomara Maria",
-      Promedio: 17.8,
-    },
-  ];
+
   return (
     <div className="VHonorDocenteAdministradorContainer">
       <div className="VHonorDocenteAdministradorTitleContainer">
@@ -35,7 +14,7 @@ function VHonorDocenteAdministrador() {
       </div>
       <div className="CambVHonorDocenteAdministrador">
         <Routes>
-          <Route index element={<VHonorDocenteUnidad info={info} estudiantesHonor={estudiantesHonor}/>} />
+          <Route index element={<VHonorDocenteUnidad/>} />
         </Routes>
       </div>
     </div>

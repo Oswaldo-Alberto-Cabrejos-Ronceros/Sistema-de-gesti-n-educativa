@@ -24,7 +24,7 @@
     border-radius: 16px 16px 0 0;
 }
 
-.CardHorarioContainer .CardHorarioHeaderContainer h3{
+.CardHorarioContainer .CardHorarioHeaderContainer h3, .CardHorarioContainer .CardHorarioContent h3{
     padding: 0;
     margin: 0;
     color: var(--ColorHeaderLabelCardHorario);
@@ -37,4 +37,12 @@
     justify-content: center;
     width: 100%;
     flex: 1;
+    padding: 10px;
+    padding-top: 0;
+    box-sizing: border-box;
+}
+
+.CardHorarioContainer .CardHorarioContent img{
+    width: 90%;
+    height: 80%;
 }

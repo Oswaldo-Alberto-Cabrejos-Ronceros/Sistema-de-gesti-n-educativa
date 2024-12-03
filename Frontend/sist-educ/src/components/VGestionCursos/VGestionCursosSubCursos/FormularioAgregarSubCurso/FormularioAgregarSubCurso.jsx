@@ -26,9 +26,7 @@ function FormularioAgregarSubCurso({ onSubCursoAdded }) {
       CursoService.listarCursosPorNivel(nivel)
         .then((response) => {
           const options = [
-              {label:"SELECCIONAR",
-                value:"SELECCIONAR"
-              },
+            { value: "SELECCIONAR", label: "Seleccionar Curso" },
             ...response.data.map((curso) => ({
               label: curso.nombre,
               value: curso.cursoId,
@@ -130,9 +128,9 @@ function FormularioAgregarSubCurso({ onSubCursoAdded }) {
             <label htmlFor="Nivel">Nivel:</label>
             <SelectComponent
               options={[
-                { label: "SELECCIONAR", value: "SELECCIONAR" },
-                { label: "PRIMARIA", value: "PRIMARIA" },
-                { label: "SECUNDARIA", value: "SECUNDARIA" },
+                { value: "SELECCIONAR", label: "Seleccionar Nivel" },
+                { value: "PRIMARIA", label: "Primaria" },
+                { value: "SECUNDARIA", label: "Secundaria" },
               ]}
               value={nivel}
               onChange={handleNivelChange}

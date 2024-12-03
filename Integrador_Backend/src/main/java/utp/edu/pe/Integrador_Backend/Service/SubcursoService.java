@@ -55,7 +55,7 @@ public class SubcursoService {
     }
 
     @Transactional
-    public Subcurso crearSubcurso(Long cursoId, Subcurso subcurso){
+    public Subcurso crearSubcurso(Long cursoId, Subcurso subcurso) {
         Curso curso = cursoRepository.findById(cursoId)
                 .orElseThrow(() -> new ResourceNotFoundException("Curso no encontrado con id: " + cursoId));
 

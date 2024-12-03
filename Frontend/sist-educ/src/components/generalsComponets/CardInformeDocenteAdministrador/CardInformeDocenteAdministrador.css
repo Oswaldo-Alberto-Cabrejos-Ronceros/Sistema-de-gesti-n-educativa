@@ -49,3 +49,16 @@
     padding: 10px;
     box-sizing: border-box;
 }
+
+@media (max-width:1124px) {
+ .CardInformeDocenteAdministradorContainer{
+    width: 96%;
+ }   
+}
+
+@media (max-width:996px) {
+    .TablaVerNotasDocenteAdministradorBimestralContainer{
+        
+    }
+   }
+   

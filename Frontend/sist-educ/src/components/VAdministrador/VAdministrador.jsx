@@ -24,56 +24,9 @@ function VAdministrador() {
       setUser(parsedUser  || {nombre:"Admin", apellido:"Admin"});
     }
   }, []);
-  console.log(userUser)
 
-  let cursosDocente = [
-    {
-      Nombre: "Trigonometria",
-      Grado: "1° Año",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-    {
-      Nombre: "Trigonometria",
-      Grado: "2° Año",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-    {
-      Nombre: "Geometria",
-      Grado: "1° Año",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-    {
-      Nombre: "Geometria",
-      Grado: "2° Año",
-      Docente: "Fernadez Flores Jose Marcos",
-    },
-  ];
-  let subcursosGestion = [
-    {
-      Nombre: "Trigonometria",
-      Curso: "Matematica",
-      Descripcion: "Curso sobre triangulos",
-      Docente: "Maurtua Lopez, Antonio Jose",
-    },
-    {
-      Nombre: "Geometria",
-      Curso: "Matematica",
-      Descripcion: "Curso sobre poligonos",
-      Docente: "Maurtua Lopez, Antonio Jose",
-    },
-    {
-      Nombre: "Lenguaje",
-      Curso: "Comunicacíon",
-      Descripcion: "Curso sobre gramatica y lexico",
-      Docente: "Rodriguez Saavedra, Paolo Christian",
-    },
-    {
-      Nombre: "Literatura",
-      Curso: "Comunicacíon",
-      Descripcion: "Curso sobre literatura",
-      Docente: "Rodriguez Saavedra, Paolo Christian",
-    },
-  ];
+
+
   
 
 
@@ -83,11 +36,11 @@ function VAdministrador() {
       <div className='containerCambAdministrador'>
       <Routes>
       <Route index element={<Navigate to="cursos" />} />
-            <Route path="cursos/*" element={<VCursosAdministrador cursos={cursosDocente} />} />
+            <Route path="cursos/*" element={<VCursosAdministrador />} />
             <Route path="horario/*" element={<VHorarioAdministrador/>} />
             <Route path="notas/*" element={<VNotasAdministrador/>} />
             <Route path="gestionusuarios/*" element={<VGestionUsuarios />} />
-            <Route path="gestioncursos/*" element={<VGestionCursos subcursos={subcursosGestion} />} />
+            <Route path="gestioncursos/*" element={<VGestionCursos />} />
             <Route path="honor/*" element={<VHonorAdministrador/>} />
             <Route path="curso/*" element={<VCursoAdministradorContenido/>} />
             <Route path="informes/*" element={<VInformesAdministrador/>} />

@@ -73,6 +73,7 @@ function TablaGestionDocentes({
     setTimeout(() => setShowConfirmation(false), 1700);
   };
 
+  console.log(docentes)
   return (
     <div className="TablaGestionDocentesContainer">
       <ConfirmationModal
@@ -103,20 +104,20 @@ function TablaGestionDocentes({
           <tbody>
             {currentItems.map((docente) => (
               <tr key={docente.usuarioId}>
-                <td>{docente.dni}</td>
-                <td>{docente.nombre}</td>
-                <td>{docente.apellido}</td>
-                <td>{docente.especialidad}</td>
-                <td>{docente.codigo}</td>
-                <td>{docente.telefono}</td>
-                <td>{docente.nivel}</td>
-                <td>
+                <td data-label="Dni">{docente.dni}</td>
+                <td data-label="Nombres">{docente.nombre}</td>
+                <td data-label="Apellidos">{docente.apellido}</td>
+                <td data-label="Especialidad">{docente.especialidad}</td>
+                <td data-label="Codigo">{docente.codigo}</td>
+                <td data-label="Celular">{docente.telefono}</td>
+                <td data-label="Nivel">{docente.nivel}</td>
+                <td data-label="Editar">
                   <PrimaryButton
                     onClick={() => handleEditClick(docente)}
                     nombre="Editar"
                   />
                 </td>
-                <td>
+                <td data-label="Eliminar">
                   <PrimaryButton
                     onClick={() => handleDeleteClick(docente.usuarioId)}
                     nombre="Eliminar"
@@ -143,7 +144,7 @@ function TablaGestionDocentes({
 
       <EditDocenteModal
         show={showEditModal}
-        profesor={selectedDocente} // Puede renombrarse a `teacher` si prefieres
+        profesor={selectedDocente} 
         onUpdate={handleUpdate}
         onClose={() => setShowEditModal(false)}
       />

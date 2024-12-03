@@ -1,5 +1,4 @@
 
-
 .CursosEstudianteContainer{
     padding: 2%;
     display: flex;
@@ -7,9 +6,26 @@
     gap: 20px;
     justify-content: space-between;
 }
+
+.CursosEstudianteContainer .VCursosEstudianteElementsContainer{
+    width: 100%;
+    height: auto;
+    padding: 2%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+.CursosEstudianteContainer .VCursosEstudianteElementsContainer .VCursosEstudianteElementContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .CursosEstudianteContainer .LinkCursoCardEstudiante{
     text-decoration: none;
-}
+    width: inherit;
+}  
 
 .VCursosEstudianteTitle{
     width: 100%;
@@ -22,3 +38,25 @@
     padding: 0;
     justify-self: start;
 }
+
+
+
+@media (max-width:1600px){
+    .CursosEstudianteContainer .VCursosEstudianteElementsContainer{
+      grid-template-columns: repeat(3,1fr);
+    }
+  }
+  
+  @media (max-width:1224px){
+    .CursosEstudianteContainer .VCursosEstudianteElementsContainer{
+      grid-template-columns: repeat(2,1fr);
+    }
+  
+  }
+  
+  @media (max-width:746px){
+    .CursosEstudianteContainer .VCursosEstudianteElementsContainer{
+      grid-template-columns: repeat(1,1fr);
+    }
+  
+  }

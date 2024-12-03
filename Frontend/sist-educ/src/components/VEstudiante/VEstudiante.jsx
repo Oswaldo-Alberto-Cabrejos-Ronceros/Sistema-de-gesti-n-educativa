@@ -9,7 +9,7 @@ import VCursosEstudiante from "../VCursosEstudiante/VCursosEstudiante";
 import VCursosEstudianteContenido from "../VCursosEstudiante/VCursoEstudianteContenido/VCursoEstudianteContenido";
 import VHorarioEstudiante from "../VHorarioEstudianteDocente/VHorarioEstudianteDocente";
 import VNotasEstudiante from "../VNotasEstudiante/VNotasEstudiante";
-import VChatEstudiante from "../VChatEstudianteDocente/VChatEstudianteDocente";
+import ChatBot from '../generalsComponets/CardChat/CardChat'
 
 function VEstudiante() {
   const [cursos, setCursos] = useState([]);
@@ -30,6 +30,7 @@ function VEstudiante() {
               return {
                 Nombre: curso.nombre,
                 Nivel: curso.nivel,
+                SubcursoId:curso.subcursoId,
                 Docente: profesorAsignado.nombre && profesorAsignado.apellido
                   ? `${profesorAsignado.nombre} ${profesorAsignado.apellido}`
                   : "No asignado",
@@ -45,7 +46,6 @@ function VEstudiante() {
     setComponentToShow(option);
   };
 
-
   return (
       <div className="VEstudianteMain">
         <BarraNavegacion onOptionSelect={handleOptionSelect} nombre={userAlumno.nombre} apellido={userAlumno.apellido}/>
@@ -60,18 +60,19 @@ function VEstudiante() {
               path="horario"
               element={
                 <VHorarioEstudiante
-                grado_Apellidos={userAlumno.grado}
+                grado_Apellidos={userAlumno.grado + " " + userAlumno.seccion }
                 nivel_Nombres={userAlumno.nivel}
                 />
               }
             />
-            <Route path="chat" element={<VChatEstudiante />} />
             <Route path="notas/*" element={<VNotasEstudiante />} />
             <Route path="honor/*" element={<VHonorEstudiante />} />
-            <Route path="curso/*" element={<VCursosEstudianteContenido />} />
+            <Route path="curso/*" element={<VCursosEstudianteContenido grado={userAlumno.grado}/>} />
             <Route path="usuario" element={<InfoUser/>} />
+            
           </Routes>
         </div>
+        <ChatBot/>
       </div>
   );
 }

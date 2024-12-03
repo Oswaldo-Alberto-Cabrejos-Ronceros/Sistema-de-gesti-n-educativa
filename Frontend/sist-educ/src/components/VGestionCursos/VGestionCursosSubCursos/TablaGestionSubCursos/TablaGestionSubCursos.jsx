@@ -84,14 +84,14 @@ function TablaGestionSubCursos({ subcursos, onSubCursoUpdated, onSubCursoDeleted
                     <tbody>
                         {subcursos.map((subcurso) => (
                             <tr key={subcurso.subcursoId}>
-                                <td>{subcurso.nombre}</td>
-                                <td>{subcurso.descripcion}</td>
-                                <td>{subcurso.nivel}</td>
-                                <td>{subcurso.curso.nombre}</td>
-                                <td>
+                                <td data-label="Nombre">{subcurso.nombre}</td>
+                                <td data-label="Descripcion">{subcurso.descripcion}</td>
+                                <td data-label="Nivel">{subcurso.nivel}</td>
+                                <td data-label="Curso">{subcurso.curso.nombre}</td>
+                                <td data-label="Modificar">
                                     <PrimaryButton nombre="Editar" onClick={() => handleEditClick(subcurso)} />
                                 </td>
-                                <td>
+                                <td data-label="Eliminar">
                                     <PrimaryButton nombre="Eliminar" onClick={() => handleDeleteClick(subcurso.subcursoId)} />
                                 </td>
                             </tr>
